@@ -1,0 +1,133 @@
+http://disnaker.tangerangkota.go.id/web
+
+MENU
+-DAFTAR PERUSAHAAN	(NAMA PERUSAHAAN,ALAMAT,TELEPON,EMAIL,BIDANG PERUSAHAAN,KODE POS,KELURAHAN,KECAMATAN)
+-DAFTAR PENCARI KERJA	(PERIODE PENCARIAN,JUMLAH LAKI-LAKI,JUMLAH PEREMPUAN,NOPENDAFTARAN,NIK,NAMA LENGKAP,JENIS KELAMIN,KECAMATAN)
+-DAFTAR LOWONGAN KERJA	(NAMA LOWONGAN,NAMA PERUSAHAAN,ALAMAT PERUSAHAAN,EMAIL,TGL MULAI BERLAKU,TGL JATUH TEMPO,PERSYARATAN(JUMLAH LAKI-LAKI,JUMLAH PEREMPUAN,MAXUSIA,PENDIDIKAN,SYARAT KHUSUS,LOKASI PENEMPATAN))
+-PERSYARATAN
+(
+	Berikut Persyaratan Pembuatan Kartu Tanda Pencari Kerja :
+    KTP Kota Bekasi
+    Ijazah SD, SMP, SLTA Sampai Terakhir/ Asli/ Fotocopy Yang dilegalisir
+    Phas Foto 3 x 4 Sebanyak 2 (dua) Lembar
+    Print Out Pendaftaran Kartu Tanda Pencari Kerja Online Jika Mendaftar Online
+)
+-STATISTIK(GRAFIK TOTAL PENCARI KERJA,KECAMATAN,JUMLAH LAKI-LAKI,JUMLAH PEREMPUAN)
+-LOGIN()
+        PENCAKER(agus98,agus)
+        PERUSAHAAN(aozora,aozora)
+-REGISTRASI PERUSAHAAN
+(
+	AKUN LOGIN PERUSAHAAN
+	Username 	* 		
+	Password 	* 		
+	Konfirmasi Password 	* 		
+	BIODATA PERUSAHAAN
+	Nama Perusahaan 	* 		
+	Bidang Perusahaan 	* 		(ASURANSI,DISTRIBUTOR,EKSPEDISI,ELEKTRONIK,FUNITURE,GARMENT,INDUSTRI,INDUSTRI PENGOLAHAN,JASA CATHERING,JASA KEUANGAN,JASA PENGENDALIAN HAMA,JASA PENGIRIMAN,KESEHATAN,MANUFACTURING,MASANGGER,OLEO CHEMICAL,OTOMOTIF,PANEL LISTRIK,PELAYANAN PERPARKIRAN,Pembiayaan,Pembuatan Sepatu,PEMERINTAHAN,PENDIDIKAN,PENGOLAHAN KIMIA,PENGOLAHAN MAKANAN DAN MINUMAN,PERBANKAN,PERDAGANGAN,PERTAMBANGAN,PJTKI,PROPERTI,RENTAL MOBIL,RENTAL PULSA,RETAIL,Sosial Kemasyarakatan,SPBU,SUPERVISOR,TEXTILE)
+	Email 	* 		
+	Telp 	* 		
+	Alamat 	* 		
+	Kode Pos 	* 		
+	Kecamatan 	* 		
+	Kelurahan 	* 	
+		
+	Kota 	* 		
+	Provinsi 	* 		
+	BIODATA PEMBERI KERJA
+	Nama Pemberi Kerja 	* 		
+	Jabatan 	* 		
+	Kontak Person 	* 		
+	Email Pemberi Kerja
+)
+-REGISTRASI PENCARI KERJA
+(
+	AKUN LOGIN PENCARI KERJA
+	Username 	* 		
+	Password 	* 		
+	Konfirmasi Password 	* 		
+	BIODATA
+	Nomor Induk Kependudukan 	* 		
+	Nama Lengkap 	* 		
+	Tempat Lahir 	* 		
+	Tanggal Lahir 	* 		
+	Jenis Kelamin 	* 	Laki-laki    Perempuan 	
+	Alamat 	* 		
+	Kecamatan 	* 		
+	Kelurahan 	* 	
+		
+	Telp 	* 		
+	Email 	* 		
+	Kode Pos 	* 		
+	Kewarganegaraan 	* 	WNI    WNA 	
+	Status Pernikahan 	* 		(KAWIN,BELUM MENIKAH,JANDA,DUDA)
+	Agama 	* 		(ISLAM,KATHOLOK,PROTESTAN,HINDU,BUDHA)
+	Pendidikan Formal
+	Pendidikan Terakhir 	* 		(AKTA I,AKTA II,AKTA III,AKTA IV,AKTA V,D1,D2,D3,D4,DOKTOR,S1,S2,S3,SD,SM,SMA,SMP,SMK,TIDAK TAMAT SD)
+	Jurusan 	* 		
+	Keterampilan 	* 		
+	Nem / IPK 	* 	Nem    IPK 	
+	Nilai 	* 		
+	Tahun Lulus 	* 		
+	Tinggi Badan 	* 	Cm 	
+	Berat Badan 	* 	Kg 	
+	Catatan Pengantar 	* 		
+	Jabatan Yang diinginkan
+	Posisi Jabatan 	* 		
+	Lokasi 	* 	Dalam Negeri    Luar Negeri 	
+	Besar upah yg diinginkan 	* 		
+	*) Data Harus terisi 		  	 
+	Upload Foto Anda
+	Upload Foto
+)
+
+MENU PERUSAHAAN
+-PROFIL PERUSAHAAN
+(
+Perusahaan 	: 	PT. Rahmat Aozora Sejahtera
+Bidang 	: 	ELEKTRONIK
+Email 	: 	agus_pugariyadi_98@yahoo.co.id
+Telp 	: 	021956345  
+Alamat 	: 	Jl. Pertukangan
+Kode Pos 	: 	145623
+Kelurahan 	: 	Pajang
+Kecamatan 	: 	Benda
+Kota 	: 	Jakarta
+Provinsi 	: 	DKI Jakarta
+)
+-PROFIL PEMBERI KERJA
+(
+Perusahaan 	: 	PT. Rahmat Aozora Sejahtera
+Nama 	: 	Khoirul
+Jabatan 	: 	Supervisor
+Kontak Person 	: 	Khoirul  
+Email Pemberi Kerja 	: 	khoirul@yahoo.com
+)
+-GANTI PASSWORD
+-DAFTAR PENCARI KERJA(No. Pendaftaran,nik,Nama lengkap,Pendidikan Terakhir,Tgl Berlaku,Berlaku (Hari),Tgl Berakhir,Status AK2)
+-DAFTAR LOWONGAN KERJA
+-DAFTAR STATUS LOWONGAN KERJA
+-LOGOUT
+
+
+
+
+MENU PENCAKER
+-BIODATA
+(
+No. Pendaftaran 	: 	004265 	
+Nomor Kartu Penduduk 	: 	1231546585
+Nama 	: 	agus
+Jenis Kelamin 	: 	Laki-laki
+Tempat/ Tgl. Lahir 	: 	Tangerang/ 25-07-2012
+PENGUASAAN BAHASA ASING
+PENGALAMAN
+)
+-DAFTAR LOWONGAN KERJA
+-GANTI PASSWORD
+-LOGOUT
+
+MENU
+-PERUSAHAAN
+-PERSYARATAN
+-STATISTIK
