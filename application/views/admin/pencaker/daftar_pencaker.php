@@ -56,7 +56,15 @@
                            <img id="photo" src="<?= site_url('assets/file/temp') ?>" width="120px" height="160px">
                         </td>
                         <td align="left" valign="top" width="140px">
-                           Nomor Induk Pencaker
+                           ID Pencaker
+                        </td>
+                        <td align="left" valign="top">
+                           <span id="idpencaker"></span>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td nowrap="nowrap" align="left" valign="top">
+                           Nomor Induk Pencaker(NIK)
                         </td>
                         <td align="left" valign="top">
                            <span id="nomorindukpencaker"></span>
@@ -368,6 +376,7 @@ function DoView(IDPencaker)
           var bulan = new Array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
           var tgllahir = getdata.TglLahir.split("-");
           $("#photo").attr('src',src+'/'+getdata.IDPencaker+'.jpg');
+          $('#idpencaker').html(getdata.IDPencaker);
           $('#nomorindukpencaker').html(getdata.NomorIndukPencaker);
           $('#namapencaker').html(getdata.NamaPencaker);
           $('#tempattgllahir').html(getdata.TempatLahir+', '+parseInt(tgllahir[2])+' '+bulan[parseInt(tgllahir[1]-1)]+' '+tgllahir[0]);

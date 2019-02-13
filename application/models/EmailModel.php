@@ -9,15 +9,12 @@ class EmailModel extends CI_Model
 		parent::__construct();
 		
                 $this->config = Array(
-                'protocol' => 'smtp',
-                // 'smtp_host' => 'ssl://bkol.depok.go.id',
-				'smtp_host' => 'smtp.gmail.com',
-                'smtp_port' => 465,
-                // 'smtp_user' => 'admin@bkol.depok.go.id',
-                // 'smtp_pass' => 'Langitbiru1',
-				'smtp_user' => 'disnakerdepok.bkol@gmail.com',
-				'smtp_pass' => 'langitbiru',
-                'mailtype' => 'html'
+                'protocol'  => 'smtp',
+		'smtp_host' => 'smtp.gmail.com',
+                'smtp_port' =>  465,
+		'smtp_user' => 'disnaker.depok@gmail.com',
+		'smtp_pass' => '2014umar',
+                'mailtype'  => 'html'
                 );
 	}
 	
@@ -32,14 +29,10 @@ class EmailModel extends CI_Model
                 $this->email->subject($subject);
                 $this->email->message($msg);
 
-                if ($this->email->send())
-                {
+                if ($this->email->send()){
                         return true;
-                }
-                else
-                {
+                } else {
                         return $this->email->print_debugger();
                 }
 	}
-	
 }
