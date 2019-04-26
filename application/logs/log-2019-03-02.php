@@ -1,0 +1,14 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
+
+ERROR - 2019-03-02 00:56:09 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\BKOL\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-03-02 00:56:10 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\BKOL\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-03-02 00:56:11 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\BKOL\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-03-02 00:56:16 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\BKOL\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-03-02 00:56:25 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\BKOL\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-03-02 00:56:26 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\BKOL\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-03-02 00:56:27 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\BKOL\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-03-02 00:56:32 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\BKOL\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-03-02 00:56:37 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\BKOL\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-03-02 00:56:38 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\BKOL\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-03-02 00:59:24 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\BKOL\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-03-02 00:59:31 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\BKOL\system\database\drivers\mysql\mysql_driver.php 91

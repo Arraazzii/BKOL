@@ -67,8 +67,8 @@ $db['default']['stricton'] = FALSE;
 
 $db['db_lama']['hostname'] = 'localhost';
 $db['db_lama']['username'] = 'root';
-$db['db_lama']['password'] = '';
-$db['db_lama']['database'] = 'ak1db';
+$db['db_lama']['password'] = 'Bkol54321';
+$db['db_lama']['database'] = 'ak1_db';
 $db['db_lama']['dbdriver'] = 'mysqli';
 $db['db_lama']['dbprefix'] = '';
 $db['db_lama']['pconnect'] = TRUE;

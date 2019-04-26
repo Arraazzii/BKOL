@@ -107,11 +107,11 @@ class MsPengalaman extends CI_Model
                 $save['TglMasuk'] = $tglmasuk[2].$tglmasuk[1].$tglmasuk[0];
                 $save['TglBerhenti'] = $tglberhenti[2].$tglberhenti[1].$tglberhenti[0];
                 $save['StatusPekerjaan'] = $input['StatusPekerjaan'];
-                if($input['StatusPekerjaan'] == 1)
-                {
-                        $this->db->where('IDPencaker', $idpencaker);
-                        $this->db->update('mspengalaman', ['StatusPekerjaan'=>0]);
-                }
+                // if($input['StatusPekerjaan'] == 1)
+                // {
+                //         $this->db->where('IDPencaker', $idpencaker);
+                //         $this->db->update('mspengalaman', ['StatusPekerjaan'=>0]);
+                // }
                 $this->db->insert(strtolower('MsPengalaman'), $save);
                 if ($this->db->affected_rows() > 0)
                 {
@@ -133,11 +133,11 @@ class MsPengalaman extends CI_Model
                 $save['StatusPekerjaan'] = $input['StatusPekerjaan'];
                 $save['TglMasuk'] = $tglmasuk[2].$tglmasuk[1].$tglmasuk[0];
                 $save['TglBerhenti'] = $tglberhenti[2].$tglberhenti[1].$tglberhenti[0];
-                if($input['StatusPekerjaan'] == 1)
-                {
-                        $this->db->where('IDPencaker', $idpencaker);
-                        $this->db->update('mspengalaman', ['StatusPekerjaan'=>0]);
-                }
+                // if($input['StatusPekerjaan'] == 1)
+                // {
+                //         $this->db->where('IDPencaker', $idpencaker);
+                //         $this->db->update('mspengalaman', ['StatusPekerjaan'=>0]);
+                // }
                 $this->db->where('IDPengalaman', $idpengalaman);
                 $this->db->where('IDPencaker', $idpencaker);
                 $this->db->update(strtolower('MsPengalaman'), $save);

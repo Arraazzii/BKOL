@@ -35,8 +35,8 @@
             <div class="col-md-2">
               <select name="jenispencaker" id="jenispencaker" class="form-control input-sm">
                 <option value="0">Terdaftar</option>
-                <option value="1">Diproses</option>
-                <option value="2">Ditempatkan</option>
+                <!-- <option value="2">Diproses</option> -->
+                <option value="1">Ditempatkan</option>
               </select>
             </div>
           </div>

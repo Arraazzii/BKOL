@@ -55,7 +55,7 @@ class TrLowonganMasuk extends CI_Model
                     INNER JOIN ".strtolower("MsLowongan")." AS b ON a.IDLowongan=b.IDLowongan
                     INNER JOIN ".strtolower("MsPerusahaan")." AS c ON b.IDPerusahaan=c.IDPerusahaan
                     INNER JOIN ".strtolower("MsPencaker")." AS d ON a.IDPencaker=d.IDPencaker
-                    WHERE a.RegisterDate >= '".$start."' AND a.RegisterDate <= '".$end."'
+                    WHERE DATE(a.RegisterDate) >= '".$start."' AND DATE(a.RegisterDate) <= '".$end."'
                     AND a.StatusLowongan = 1
                     ORDER BY a.IDLowonganMasuk DESC
                 ");
@@ -68,26 +68,24 @@ class TrLowonganMasuk extends CI_Model
             else
             {
 
-                $query = $this->db->query("SELECT @no:=@no+1 as nomor, d.NomerPenduduk, d.NamaPencaker, d.Alamat, c.NamaPerusahaan,b.NamaLowongan,e.NamaStatusPendidikan, IF(d.JenisKelamin=0, 'L','P') as JenisKelamin FROM ".strtolower("TrLowonganMasuk")." AS a
-                    INNER JOIN ".strtolower("MsLowongan")." AS b ON a.IDLowongan=b.IDLowongan
-                    INNER JOIN ".strtolower("MsPerusahaan")." AS c ON b.IDPerusahaan=c.IDPerusahaan
-                    INNER JOIN ".strtolower("MsPencaker")." AS d ON a.IDPencaker=d.IDPencaker
-                    INNER JOIN ".strtolower("MsStatusPendidikan")." AS e ON d.IDStatusPendidikan=e.IDStatusPendidikan
-                    WHERE a.RegisterDate >= '".$start."' AND a.RegisterDate <= '".$end."'
-                    AND a.StatusLowongan = ".$status."
-                    ORDER BY a.IDLowonganMasuk DESC
+                $query = $this->db->query("SELECT @no:=@no+1 as nomor, a.NomerPenduduk, a.NamaPencaker, a.Alamat, b.NamaPerusahaan, b.Jabatan as NamaLowongan, c.NamaStatusPendidikan, IF(a.JenisKelamin=0, 'Laki-laki','Perempuan') as JenisKelamin 
+                    FROM ".strtolower("MsPencaker")." as a
+                    INNER JOIN ".strtolower("MsPengalaman")." as b ON b.IDPencaker = a.IDPencaker
+                    INNER JOIN ".strtolower("MsStatusPendidikan")." as c ON a.IDStatusPendidikan = c.IDStatusPendidikan
+                    WHERE DATE(a.RegisterDate) >= '".$start."' AND DATE(a.RegisterDate) <= '".$end."'
+                    AND b.StatusPekerjaan = '1'
                 ");
 
-                if($query->num_rows > 0)
+                if($query->num_rows > 0) {
                     $data = $query->result_array();
-                else
+                } else {
                     $data = NULL;
-
-                $query2 = $this->db->query("SELECT @no:=@no+1 as nomor, a.NomerPenduduk, a.NamaPencaker, a.Alamat, b.NamaPerusahaan, b.Jabatan as NamaLowongan, c.NamaStatusPendidikan, IF(a.JenisKelamin=0, 'L','P') as JenisKelamin 
-                    FROM mspengalaman as b
-                    INNER JOIN mspencaker as a ON b.IDPencaker=a.IDPencaker
-                    INNER JOIN msstatuspendidikan as c ON a.IDStatusPendidikan = c.IDStatusPendidikan
-                    WHERE StatusPekerjaan = 1
+                    $query2 = $this->db->query("SELECT @no:=@no+1 as nomor, a.NomerPenduduk, a.NamaPencaker, a.Alamat, b.NamaPerusahaan, b.Jabatan as NamaLowongan, c.NamaStatusPendidikan, IF(a.JenisKelamin=0, 'Laki-laki','Perempuan') as JenisKelamin 
+                    FROM ".strtolower("MsPencaker")." as a
+                    INNER JOIN ".strtolower("MsPengalaman")." as b ON b.IDPencaker = a.IDPencaker
+                    INNER JOIN ".strtolower("MsStatusPendidikan")." as c ON a.IDStatusPendidikan = c.IDStatusPendidikan
+                    WHERE DATE(a.RegisterDate) >= '".$start."' AND DATE(a.RegisterDate) <= '".$end."'
+                    AND b.StatusPekerjaan = '1'
                 ");
 
                 if($query2->num_rows > 0)
@@ -98,6 +96,8 @@ class TrLowonganMasuk extends CI_Model
                         $data[$key+$count] = $value;
                     }
                 }
+
+            }
 
                 return $data;
 
@@ -260,10 +260,11 @@ class TrLowonganMasuk extends CI_Model
             }
             else
             {
-                $this->db->select('IDLowonganMasuk');
-                $this->db->from($this->table);
+                $this->db->select('mspengalaman.IDPencaker');
+                $this->db->from('mspengalaman');
+                $this->db->join('mspencaker', 'mspengalaman.IDPencaker = mspencaker.IDPencaker', 'right');
                 if ($cat == 0) {
-                        $this->db->where('IDKelurahan', $wh['kelurahan']);
+                        $this->db->where('mspencaker.IDKelurahan', $wh['kelurahan']);
                 }
                 else if ($cat == 1) {
                     if ($wh['umur']['batasatas'] != 0) {
@@ -276,12 +277,12 @@ class TrLowonganMasuk extends CI_Model
                         
                 }
                 else if ($cat == 2) {
-                        $this->db->where('Jurusan', $wh['jurusan']);
+                        $this->db->where('mspencaker.IDStatusPendidikan', $wh['idpendidikan']);
                 }
-                $this->db->where('JenisKelamin', $wh['jk']);
-                $this->db->where('StatusLowongan', $type);
-                $this->db->where('DATE(RegisterDate) >=', $wh['from']);
-                $this->db->where('DATE(RegisterDate) <=', $wh['to']);
+                $this->db->where('mspencaker.JenisKelamin', $wh['jk']);
+                $this->db->where('mspengalaman.StatusPekerjaan', $type);
+                $this->db->where('DATE(mspencaker.RegisterDate) >=', $wh['from']);
+                $this->db->where('DATE(mspencaker.RegisterDate) <=', $wh['to']);
                 $query = $this->db->get();
                 return $query->num_rows();
             }

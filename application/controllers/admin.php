@@ -299,9 +299,50 @@ class admin extends CI_Controller {
                 {
                     // gambar
                     rename(realpath('assets/file/temp/'.$idpencakertemp.'.jpg'), realpath('assets/file/pencaker').'/'.$getmspencakerdata->IDPencaker.'.jpg');
-                    $this->load->model('EmailModel');
-                    @$this->EmailModel->sendEmail($getmspencakerdata->Email,'[Aktivasi] Pendaftaran Pencaker Baru','Data Pencaker anda telah diaktifkan.<br/>Terimakasih atas pastisipasi anda dalam menggunakan aplikasi ini,<br/>Data pendaftaran anda adalah sebagai berikut :<br/><br/>Nomer ID : '.$getmsuserdata->NomorIndukPencaker.'<br/>Nama Pengguna : '.$getmsuserdata->Username.'<br/>Kata Sandi : '.$getmsuserdata->Password.'<br/><br/>Untuk aktivasi akun dan pencetakan kartu AK-1 mohon untuk membawa dokumen-dokumen sebagai berikut :<br/><br/>1. Foto kopi KTP Depok yang masih berlaku<br/>2. Ijazah SD, SMP, SLTA Sampai Terakhir/ Asli/ Fotocopy Yang dilegalisir<br/>3. Pas Foto 3 x 4 Sebanyak 2 (dua) Lembar<br/>4. Kartu AK-I yang masih berlaku<br/><br/>ke pusat pelayanan terpadu Dinas Tenaga Kerja Kota Depok<br/>Jl. Margonda Raya No.54 Kec.Pancoran Mas, Depok - JABAR<br/>Telp. 021-77204211,Fax. 021-77211866');
-                    $this->session->set_flashdata('notifikasi', '<script>notifikasi("Pencaker Berhasil Ditambahkan", "success", "fa fa-check")</script>');
+                    // $this->load->model('EmailModel');
+                    $this->load->library('PHPMailer');
+                    $this->load->library('SMTP');
+
+                    $email_admin = 'disnaker.depok@gmail.com';
+                    $nama_admin = 'BKOL';
+                    $password_admin = '2014umar';
+
+                    $mail = new PHPMailer();
+                    $mail->isSMTP();  
+                    $mail->SMTPKeepAlive = true;
+                    $mail->Charset  = 'UTF-8';
+                    $mail->IsHTML(true);
+                        // $mail->SMTPDebug = 2;
+                    $mail->SMTPAuth = true;
+                    $mail->Host = 'smtp.gmail.com'; 
+                    $mail->Port = 587;
+                    $mail->SMTPSecure = 'ssl';
+                    $mail->Username = $email_admin;
+                    $mail->Password = $password_admin;
+                    $mail->Mailer   = 'smtp';
+                    $mail->WordWrap = 100;       
+                
+                
+                    $mail->setFrom($email_admin);
+                    $mail->FromName = $nama_admin;
+                    $mail->addAddress($getmspencakerdata->Email);
+                    $mail->Subject          = 'Akun Verifikasi '.$getmspencakerdata->NamaPencaker;
+                    $mail_data['subject']   = $getmspencakerdata->NamaPencaker;
+                    $mail_data['induk']     = $getmspencakerdata->NomorIndukPencaker;
+                    $mail_data['username']  = $$getmsuserdata->Username;
+                    $mail_data['password']  = $getmsuserdata->Password;
+                
+                    $message = $this->load->view('email_temp', $mail_data, TRUE);
+                    $mail->Body = $message;
+                
+                    if ($mail->send()) {
+                       $this->session->set_flashdata('notifikasi', '<script>notifikasi("Pencaker Berhasil Ditambahkan", "success", "fa fa-check")</script>');
+                    } else {
+                      echo 'Message could not be sent.';
+                      echo 'Mailer Error: ' . $mail->ErrorInfo;
+                    }
+                    // $this->EmailModel->sendEmail($getmspencakerdata->Email,'[Aktivasi] Pendaftaran Pencaker Baru','Data Pencaker anda telah diaktifkan.<br/>Terimakasih atas pastisipasi anda dalam menggunakan aplikasi ini,<br/>Data pendaftaran anda adalah sebagai berikut :<br/><br/>Nomer ID : '.$getmsuserdata->NomorIndukPencaker.'<br/>Nama Pengguna : '.$getmsuserdata->Username.'<br/>Kata Sandi : '.$getmsuserdata->Password.'<br/><br/>Untuk aktivasi akun dan pencetakan kartu AK-1 mohon untuk membawa dokumen-dokumen sebagai berikut :<br/><br/>1. Foto kopi KTP Depok yang masih berlaku<br/>2. Ijazah SD, SMP, SLTA Sampai Terakhir/ Asli/ Fotocopy Yang dilegalisir<br/>3. Pas Foto 3 x 4 Sebanyak 2 (dua) Lembar<br/>4. Kartu AK-I yang masih berlaku<br/><br/>ke pusat pelayanan terpadu Dinas Tenaga Kerja Kota Depok<br/>Jl. Margonda Raya No.54 Kec.Pancoran Mas, Depok - JABAR<br/>Telp. 021-77204211,Fax. 021-77211866');
+                    // $this->session->set_flashdata('notifikasi', '<script>notifikasi("Pencaker Berhasil Ditambahkan", "success", "fa fa-check")</script>');
                 }
             }
             else if ($iduser == 'exists') {
@@ -2790,7 +2831,7 @@ class admin extends CI_Controller {
 
                             //get count for female
                             $wh['jk'] = 1;
-                            $row['wanita'] =+ $this->TrLowonganMasuk->GetCountCustom($cat, $type, $wh);
+                            $row['wanita'] += $this->TrLowonganMasuk->GetCountCustom($cat, $type, $wh);
 
                         }
                         $row['total'] = $row['pria'] + $row['wanita'];
@@ -2851,7 +2892,7 @@ class admin extends CI_Controller {
 
                         //jumlah wanita
                         $wh['jk'] = 1;
-                        $row['wanita'] =+ $this->TrLowonganMasuk->GetCountCustom($cat, $type, $wh);
+                        $row['wanita'] += $this->TrLowonganMasuk->GetCountCustom($cat, $type, $wh);
 
                         $row['total'] = $row['pria'] + $row['wanita'];
 
@@ -2901,8 +2942,7 @@ class admin extends CI_Controller {
                 }
                 $data['summary'] = $this->TrLowonganMasuk->GetCountByPeriod($type, $start, $end, $cat);
                 $data['jenis'] = 0;
-            }
-            else if($jenis == 1)
+        } else if($jenis == 1)
             {
                 $this->load->model('TrLowonganMasuk');
                 $data['detail'] = $this->TrLowonganMasuk->GetByRangeDate($start, $end);
@@ -2912,7 +2952,7 @@ class admin extends CI_Controller {
             {
                 $this->load->model('TrLowonganMasuk');
                 $this->load->model('MsPencaker');
-                $ditempatkan = $this->TrLowonganMasuk->GetByRangeDate($start, $end, 2);
+                $ditempatkan = $this->TrLowonganMasuk->GetByRangeDate($start, $end, 1);
                 $data['detail'] = $ditempatkan;
                 $data['jenis'] = 2;
             }
@@ -3365,7 +3405,7 @@ class admin extends CI_Controller {
 
                             //get count for female
                             $wh['jk'] = 1;
-                            $row['wanita'] =+ $this->pencaker->GetCountCustom($cat, $wh);
+                            $row['wanita'] += $this->pencaker->GetCountCustom($cat, $wh);
                             $row['total'] = $row['pria'] + $row['wanita'];
 
                             $data['detail'][] = $row;
@@ -3420,7 +3460,7 @@ class admin extends CI_Controller {
 
                             //jumlah wanita
                             $wh['jk'] = 1;
-                            $row['wanita'] =+ $this->pencaker->GetCountCustom($cat, $wh);
+                            $row['wanita'] += $this->pencaker->GetCountCustom($cat, $wh);
 
                             $row['total'] = $row['pria'] + $row['wanita'];
 

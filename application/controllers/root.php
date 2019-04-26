@@ -529,15 +529,9 @@ class root extends CI_Controller {
                         )
                     );
 
-                    $this->form_validation->set_rules($config);
+                    // $this->form_validation->set_rules($config);
 
-                    if ($this->form_validation->run() == FALSE)
-                    {
-                        $data['input'] = $input;
-                        $this->template->load('frontend', 'pencaker/register', $data);
-                    }
-                    else
-                    {
+                    
                         $jumlah = 3;
 
                         for($a=1; $a<$jumlah+1; $a++)
@@ -583,7 +577,6 @@ class root extends CI_Controller {
                         }
 
                         redirect('register/2');
-                    }
                 }
                 else
                 {

@@ -24,23 +24,23 @@
       </div>
       <div class="box-body">
         <div class="form-group <?php echo form_error('username') ? 'has-error' : '' ?>">
-          <label for="username" class="control-label col-md-3">Nama pengguna</label>
+          <label for="username" class="control-label col-md-3">*Nama pengguna</label>
           <div class="col-md-5">
-            <input class="form-control input-sm" id="username" name="username" type="text" value="<?= isset($input['username']) ? $input['username'] : '' ?>" size="20" autofocus>
+            <input class="form-control input-sm" id="username" name="username" type="text" value="<?= isset($input['username']) ? $input['username'] : '' ?>" size="20" required="" autofocus>
             <?php echo form_error('username', '<span class="help-block">', '</span>'); ?>
           </div>
         </div>
         <div class="form-group <?php echo form_error('password') ? 'has-error' : '' ?>">
-          <label for="password" class="control-label col-md-3">Kata sandi</label>
+          <label for="password" class="control-label col-md-3">*Kata sandi</label>
           <div class="col-md-5">
-            <input class="form-control input-sm" id="password" name="password" type="password" value="<?= isset($input) ? $input['password'] : ''; ?>" size="20">
+            <input class="form-control input-sm" id="password" name="password" type="password" value="<?= isset($input) ? $input['password'] : ''; ?>" size="20" required="">
             <?php echo form_error('password', '<span class="help-block">', '</span>'); ?>
           </div>
         </div>
         <div class="form-group <?php echo form_error('password2') ? 'has-error' : '' ?>">
-          <label for="password2" class="control-label col-md-3">Konfirmasi kata sandi</label>
+          <label for="password2" class="control-label col-md-3">*Konfirmasi kata sandi</label>
           <div class="col-md-5">
-            <input class="form-control input-sm" id="password2" name="password2" type="password" value="<?= isset($input) ? $input['password2'] : ''; ?>" size="20">
+            <input class="form-control input-sm" id="password2" name="password2" type="password" value="<?= isset($input) ? $input['password2'] : ''; ?>" size="20" required="">
             <?php echo form_error('password2', '<span class="help-block">', '</span>'); ?>
           </div>
         </div>
@@ -53,21 +53,21 @@
       </div>
       <div class="box-body">
         <div class="form-group <?php echo form_error('nomorindukpencaker') ? 'has-error' : '' ?>">
-          <label for="nomorindukpencaker" class="control-label col-md-3">Nomor KTP</label>
+          <label for="nomorindukpencaker" class="control-label col-md-3">*Nomor KTP</label>
           <div class="col-md-5">
-            <input id="nomorindukpencaker" class="form-control input-sm" name="nomorindukpencaker" type="text" value="<?= isset($input) ? $input['nomorindukpencaker'] : ''; ?>" size="20" maxlength="20">
+            <input id="nomorindukpencaker" class="form-control input-sm" name="nomorindukpencaker" type="text" value="<?= isset($input) ? $input['nomorindukpencaker'] : ''; ?>" size="20" maxlength="20" required="">
             <?php echo form_error('nomorindukpencaker', '<span class="help-block">', '</span>'); ?>
           </div>
         </div>
         <div class="form-group <?php echo form_error('namapencaker') ? 'has-error' : '' ?>">
-          <label for="namapencaker" class="control-label col-md-3">Nama Pencari Kerja</label>
+          <label for="namapencaker" class="control-label col-md-3">*Nama Pencari Kerja</label>
           <div class="col-md-5">
-            <input id="namapencaker" name="namapencaker" class="form-control input-sm" type="text" value="<?= isset($input) ? $input['namapencaker'] : ''; ?>" size="20" maxlength="20">
+            <input id="namapencaker" name="namapencaker" class="form-control input-sm" type="text" value="<?= isset($input) ? $input['namapencaker'] : ''; ?>" size="20" maxlength="20" required="">
             <?php echo form_error('namapencaker', '<span class="help-block">', '</span>'); ?>
           </div>
         </div>
         <div class="form-group <?php echo form_error('jeniskelamin') ? 'has-error' : '' ?>">
-          <label for="jeniskelamin" class="control-label col-md-3">Jenis Kelamin</label>
+          <label for="jeniskelamin" class="control-label col-md-3">*Jenis Kelamin</label>
           <div class="col-md-5">
             <label class="radio-inline"><input name="jeniskelamin" value="0" type="radio" 
                 <?php  
@@ -89,35 +89,35 @@
           </div>
         </div>
         <div class="form-group <?php echo form_error('tempatlahir') ? 'has-error' : '' ?>">
-          <label for="tempatlahir" class="control-label col-md-3">Tempat Lahir</label>
+          <label for="tempatlahir" class="control-label col-md-3">*Tempat Lahir</label>
           <div class="col-md-5">
-            <input id="tempatlahir" class="form-control input-sm" name="tempatlahir" type="text" value="<?= isset($input) ? $input['tempatlahir'] : '' ?>" size="20" maxlength="20">
+            <input id="tempatlahir" class="form-control input-sm" name="tempatlahir" type="text" value="<?= isset($input) ? $input['tempatlahir'] : '' ?>" size="20" maxlength="20" required="">
             <?php echo form_error('tempatlahir', '<span class="help-block">', '</span>'); ?>
           </div>
         </div>
         <div class="form-group <?php echo form_error('tgllahir') ? 'has-error' : '' ?>">
-          <label for="tgllahir" class="control-label col-md-3">Tanggal Lahir</label>
+          <label for="tgllahir" class="control-label col-md-3">*Tanggal Lahir</label>
           <div class="col-md-2">
-            <input id="tgllahir" name="tgllahir" class="form-control input-sm" type="text" value="<?= isset($input) ? $input['tgllahir'] : date('d-m-Y', mktime(0, 0, 0, 1, 1, 1990)) ?>" readonly size="10" maxlength="10">
+            <input id="tgllahir" name="tgllahir" class="form-control input-sm" type="text" value="<?= isset($input) ? $input['tgllahir'] : date('d-m-Y', mktime(0, 0, 0, 1, 1, 1990)) ?>" readonly size="10" maxlength="10" required="">
             <?php echo form_error('tgllahir', '<span class="help-block">', '</span>'); ?>
           </div>
         </div>
         <div class="form-group <?php echo form_error('email') ? 'has-error' : '' ?>">
-          <label for="tgllahir" class="control-label col-md-3">Email</label>
+          <label for="tgllahir" class="control-label col-md-3">*Email</label>
           <div class="col-md-5">
-            <input id="email" name="email" class="form-control input-sm" type="text" value="<?= isset($input) ? $input['email'] : '' ?>" size="20" maxlength="100">
+            <input id="email" name="email" class="form-control input-sm" type="text" value="<?= isset($input) ? $input['email'] : '' ?>" size="20" maxlength="100" required="">
             <?php echo form_error('email', '<span class="help-block">', '</span>'); ?>
           </div>
         </div>
         <div class="form-group <?php echo form_error('telepon') ? 'has-error' : '' ?>">
-          <label for="telepon" class="control-label col-md-3">Telepon</label>
+          <label for="telepon" class="control-label col-md-3">*Telepon</label>
           <div class="col-md-5">
-            <input id="telepon" name="telepon" class="form-control input-sm" type="text" value="<?= isset($input) ? $input['telepon'] : '' ?>" size="20" maxlength="20">
+            <input id="telepon" name="telepon" class="form-control input-sm" type="text" value="<?= isset($input) ? $input['telepon'] : '' ?>" size="20" maxlength="20" required="">
             <?php echo form_error('telepon', '<span class="help-block">', '</span>'); ?>
           </div>
         </div>
         <div class="form-group <?php echo form_error('idkecamatan') ? 'has-error' : '' ?>">
-          <label for="idkecamatan" class="control-label col-md-3">Kecamatan</label>
+          <label for="idkecamatan" class="control-label col-md-3">*Kecamatan</label>
           <div class="col-md-5">
             <?php
               $active = isset($input['idkecamatan']) ? $input['idkecamatan'] : 0;
@@ -126,18 +126,18 @@
           </div>
         </div>
         <div class="form-group <?php echo form_error('idkelurahan') ? 'has-error' : '' ?>">
-          <label for="kelurahan" class="control-label col-md-3">Kelurahan</label>
+          <label for="kelurahan" class="control-label col-md-3">*Kelurahan</label>
           <div class="col-md-5">
-            <select id="idkelurahan" class="form-control input-sm" name="idkelurahan">
+            <select id="idkelurahan" class="form-control input-sm" name="idkelurahan" required="">
                 <option value="">- Pilih Kelurahan -</option>
             </select>
             <?php echo form_error('idkelurahan', '<span class="help-block">', '</span>'); ?>
           </div>
         </div>
         <div class="form-group <?php echo form_error('alamat') ? 'has-error' : '' ?>">
-          <label for="alamant" class="control-label col-md-3">Alamat</label>
+          <label for="alamant" class="control-label col-md-3">*Alamat</label>
           <div class="col-md-5">
-            <textarea id="alamat" name="alamat" class="form-control input-sm" cols="30" rows="3" maxlength="400"><?= isset($input) ? $input['alamat'] : '' ?></textarea>
+            <textarea id="alamat" name="alamat" class="form-control input-sm" cols="30" rows="3" maxlength="400" required=""><?= isset($input) ? $input['alamat'] : '' ?></textarea>
             <?php echo form_error('alamat', '<span class="help-block">', '</span>'); ?>
           </div>
         </div>
@@ -171,9 +171,9 @@
           </div>
         </div>
         <div class="form-group <?php echo form_error('idagama') ? 'has-error' : '' ?>">
-          <label for="agama" class="control-label col-md-3">Agama</label>
+          <label for="agama" class="control-label col-md-3">*Agama</label>
           <div class="col-md-5">
-            <select id="idagama" class="form-control input-sm" name="idagama">
+            <select id="idagama" class="form-control input-sm" name="idagama" required="">
               <option value="">- Pilih Agama -</option>
               <?php
               foreach ($MsAgamaData as $getcmb)
@@ -193,9 +193,9 @@
           </div>
         </div>
         <div class="form-group <?php echo form_error('idstatuspernikahan') ? 'has-error' : '' ?>">
-          <label for="idstatuspernikahan" class="control-label col-md-3">Status Pernikahan</label>
+          <label for="idstatuspernikahan" class="control-label col-md-3">*Status Pernikahan</label>
           <div class="col-md-5">
-            <select id="idstatuspernikahan" class="form-control input-sm" name="idstatuspernikahan">
+            <select id="idstatuspernikahan" class="form-control input-sm" name="idstatuspernikahan" required="">
               <option value="">- Pilih Status -</option>
               <?php
               foreach ($MsStatusPernikahanData as $getcmb)
@@ -229,10 +229,10 @@
         <h3 class="box-title">Data Pendidikan</h3>
       </div>
       <div class="box-body" id="datapendidikan">
-        <div class="form-group <?php echo form_error('idstatuspendidikan') ? 'has-error' : '' ?>">
-          <label for="idstatuspendidikan" class="control-label col-md-3">Pendidikan Terakhir</label>
+        <div class="form-group">
+          <label for="idstatuspendidikan" class="control-label col-md-3">*Pendidikan Terakhir</label>
           <div class="col-md-4">
-            <select id="idstatuspendidikan" class="form-control input-sm" name="idstatuspendidikan">
+            <select id="idstatuspendidikan" class="form-control input-sm" name="idstatuspendidikan" required="">
               <option value="">- Pilih Status Pendidikan -</option>
               <?php
               foreach ($MsStatusPendidikanData as $getcmb)
@@ -248,26 +248,23 @@
               }
               ?>
             </select>
-            <?php echo form_error('idstatuspendidikan', '<span class="help-block">', '</span>'); ?>
           </div>
         </div>
-        <div class="form-group <?php echo form_error('jurusan') ? 'has-error' : '' ?>">
-          <label for="jurusan" class="control-label col-md-3">Jurusan</label>
+        <div class="form-group">
+          <label for="jurusan" class="control-label col-md-3">*Jurusan</label>
           <div class="col-md-4">
-            <select id="jurusan" class="form-control input-sm" name="jurusan">
+            <select id="jurusan" class="form-control input-sm" name="jurusan" required="">
               <option value="">- Pilih Jurusan -</option>
             </select>
-            <?php echo form_error('jurusan', '<span class="help-block">', '</span>'); ?>
           </div>
         </div>
-        <div class="form-group <?php echo form_error('keterampilan') ? 'has-error' : '' ?>">
+        <div class="form-group">
           <label for="keterampilan" class="control-label col-md-3">Keterampilan</label>
           <div class="col-md-5">
-            <input id="keterampilan" name="keterampilan" class="form-control input-sm" type="text" value="<?= isset($input['keterampilan']) ? $input['keterampilan'] : '' ?>" size="20">
-            <?php echo form_error('keterampilan', '<span class="help-block">', '</span>'); ?>
+            <input id="keterampilan" name="keterampilan" class="form-control input-sm" type="text"  size="20">
           </div>
         </div>
-        <div class="form-group <?php echo form_error('nemipk') ? 'has-error' : '' ?>">
+        <div class="form-group">
           <label for="nemipk" class="control-label col-md-3">NEM/IPK</label>
           <div class="col-md-5">
             <label for="" class="radio-inline"><input name="nemipk" value="0" type="radio"
@@ -286,17 +283,15 @@
                     }
                 ?>
             >IPK</label>
-            <p><?php echo form_error('nemipk', '<span class="help-block">', '</span>'); ?></p>
           </div>
         </div>
-        <div class="form-group <?php echo form_error('nilai') ? 'has-error' : '' ?>">
+        <div class="form-group">
           <label for="nilai" class="control-label col-md-3">Nilai</label>
           <div class="col-md-2">
-            <input id="nilai" name="nilai" class="form-control input-sm" type="text" value="<?= isset($input) ? $input['nilai'] : '' ?>" size="20">
-            <?php echo form_error('nilai', '<span class="help-block">', '</span>'); ?>
+            <input id="nilai" name="nilai" class="form-control input-sm" type="text" size="20">
           </div>
         </div>
-        <div class="form-group <?php echo form_error('tahunlulus') ? 'has-error' : '' ?>">
+        <div class="form-group">
           <label for="tahunlulus" class="control-label col-md-3">Tahun lulus</label>
           <div class="col-md-3">
             <select id="tahunlulus" class="form-control input-sm" name="tahunlulus">
@@ -315,34 +310,30 @@
               }
               ?>
             </select>
-            <?php echo form_error('tahunlulus', '<span class="help-block">', '</span>'); ?>
           </div>
         </div>
-        <div class="form-group <?php echo form_error('tinggibadan') ? 'has-error' : '' ?>">
+        <div class="form-group">
           <label for="tinggibadan" class="control-label col-md-3">Tinggi badan</label>
           <div class="col-md-2">
             <div class="input-group">
-              <input id="tinggibadan" name="tinggibadan" class="form-control input-sm" type="text" value="<?= isset($input) ? $input['tinggibadan'] : '0' ?>" size="3" maxlength="3">
+              <input id="tinggibadan" name="tinggibadan" class="form-control input-sm" type="text"  size="3" maxlength="3">
               <span class="input-group-addon">cm</span>
             </div>
-            <?php echo form_error('tinggibadan', '<span class="help-block">', '</span>'); ?>
           </div>
         </div>
-        <div class="form-group <?php echo form_error('beratbadan') ? 'has-error' : '' ?>">
+        <div class="form-group">
           <label for="beratbadan" class="control-label col-md-3">Berat badan</label>
           <div class="col-md-2">
             <div class="input-group">
-              <input id="beratbadan" name="beratbadan" class="form-control input-sm" type="text" value="<?= isset($input) ? $input['beratbadan'] : '0'; ?>" size="3" maxlength="3">
+              <input id="beratbadan" name="beratbadan" class="form-control input-sm" type="text" size="3" maxlength="3">
               <span class="input-group-addon">Kg</span>
             </div>
-            <?php echo form_error('beratbadan', '<span class="help-block">', '</span>'); ?>
           </div>
         </div>
-        <div class="form-group <?php echo form_error('keterangan') ? 'has-error' : '' ?>">
+        <div class="form-group">
           <label for="keterangan" class="control-label col-md-3">Keterangan</label>
           <div class="col-md-5">
-            <textarea id="keterangan" name="keterangan" class="form-control input-sm" cols="30" rows="3" maxlength="100"><?= isset($input) ? $input['keterangan'] : '' ?></textarea>
-            <?php echo form_error('keterangan', '<span class="help-block">', '</span>'); ?>
+            <textarea id="keterangan" name="keterangan" class="form-control input-sm" cols="30" rows="3" maxlength="100"></textarea>
           </div>
         </div>
       </div>
@@ -352,10 +343,10 @@
         <h3 class="box-title">Jabatan yang diinginkan</h3>
       </div>
       <div class="box-body">
-        <div class="form-group <?php echo form_error('idposisijabatan') ? 'has-error' : '' ?>">
-          <label for="posisijabatan" class="control-label col-md-3">Posisi / Jabatan</label>
+        <div class="form-group">
+          <label for="posisijabatan" class="control-label col-md-3">*Posisi / Jabatan</label>
           <div class="col-md-4">
-            <select id="idposisijabatan" class="form-control input-sm" name="idposisijabatan">
+            <select id="idposisijabatan" class="form-control input-sm" name="idposisijabatan" required="">
               <option value="">(Pilih Jabatan)</option>
               <?php
               foreach ($MsPosisiJabatanData as $getcmb)
@@ -371,10 +362,9 @@
               }
               ?>
             </select>
-            <?php echo form_error('idposisijabatan', '<span class="help-block">', '</span>'); ?>
           </div>
         </div>
-        <div class="form-group <?php echo form_error('lokasi') ? 'has-error' : '' ?>">
+        <div class="form-group">
           <label for="lokasi" class="control-label col-md-3">Lokasi</label>
           <div class="col-md-5">
             <label class="radio-inline"><input name="lokasi" value="0" type="radio" 
@@ -404,11 +394,10 @@
             <p><?php echo form_error('lokasi', '<span class="help-block">', '</span>'); ?></p>
           </div>
         </div>
-        <div class="form-group <?php echo form_error('upahyangdicari') ? 'has-error' : '' ?>">
+        <div class="form-group">
           <label for="upahyangdicari" class="control-label col-md-3">Upah yang diinginkan</label>
           <div class="col-md-4">
-            <input id="upahyangdicari" class="form-control input-sm" name="upahyangdicari" type="text" value="<?= isset($input) ? $input['upahyangdicari'] : '0' ?>" size="20">
-            <?php echo form_error('upahyangdicari', '<span class="help-block">', '</span>'); ?>
+            <input id="upahyangdicari" class="form-control input-sm" name="upahyangdicari" type="text" size="20">
           </div>
         </div>
       </div>

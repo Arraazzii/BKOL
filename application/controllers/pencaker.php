@@ -168,18 +168,18 @@ class pencaker extends CI_Controller {
             {
                 $this->seterrormsg($input,"Status Pendidikan harus dipilih");
             }
-            else if ($input['idposisijabatan'] == "")
-            {
-                $this->seterrormsg($input,"Posisi Jabatan harus dipilih");
-            }
-            else if ($input['tinggibadan'] == "")
-            {
-                $this->seterrormsg($input,"Tinggi Badan harus diisi");
-            }
-            else if ($input['beratbadan'] == "")
-            {
-                $this->seterrormsg($input,"Berat Badan harus diisi");
-            }
+            // else if ($input['idposisijabatan'] == "")
+            // {
+            //     $this->seterrormsg($input,"Posisi Jabatan harus dipilih");
+            // }
+            // else if ($input['tinggibadan'] == "")
+            // {
+            //     $this->seterrormsg($input,"Tinggi Badan harus diisi");
+            // }
+            // else if ($input['beratbadan'] == "")
+            // {
+            //     $this->seterrormsg($input,"Berat Badan harus diisi");
+            // }
             else if ($_FILES['photo']['error'] > 0)
             {
                     switch ($_FILES['photo']['error'])
