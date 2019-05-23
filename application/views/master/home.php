@@ -113,172 +113,172 @@
                   $timeLimit = date('Y-m-d');
                   if ($CountMsLowonganData > 0): ?>
                   <?php foreach ($MsLowonganData as $getdata): ?>
-                  <!-- /.timeline-label -->
-                  <!-- timeline item -->
-                  <li>
-                    <div class="timeline-item">
-                      <!-- <div class="timeline-item" onclick="viewLowongan('<?php //echo $getdata->IDLowongan ?>')"> -->
-                        <?php if ($getdata->TglBerakhir <= $timeLimit){ ?>                            
-                        <span class="label label-danger time">EXPIRED</span>
-                        <?php } ?>
-                        <span class="time">Tanggal Berakhir : <?php echo $getdata->TglBerakhir ?></span>
-                        <h3 class="timeline-header"><?php echo $getdata->NamaLowongan ?></h3>
-                        <?php if (file_exists(BASEPATH .'/../assets/file/perusahaan/'.$getdata->IDPerusahaan.'.jpg')): ?>
-                          <div class="col-md-2">
-                            <img width="90" src="<?php echo site_url('assets/file/perusahaan/'.$getdata->IDPerusahaan.'.jpg') ?>">
-                          </div>
-                        <?php endif ?>
-                        <?php  
-
-                        ?>
-                        <div class="timeline-body col-md-9">
-                          <i class="fa fa-building"></i> <?php echo $getdata->NamaPerusahaan ?><br>    
-                          <i class="fa fa-map-marker"></i> <?php echo $getdata->Penempatan ?><br>
-                          - <?php echo $getdata->JamKerjaSeminggu . ' Jam Per Minggu' ?><br>
-                          - <?php echo $getdata->UraianTugas ?><br>
-                          <?php echo 'Rp. ' . number_format($getdata->GajiPerbulan) . ' / Bulan' ?>
-                        </div>                          
-                        <div class="timeline-footer col-md-12">
-                          <?php if ($getdata->TglBerakhir >= $timeLimit){ ?>
-                          <a class="btn btn-success btn-xs" onclick="viewLowongan('<?php echo $getdata->IDLowongan ?>')">Baca Selengkapnya</a>
-                          <?php }else{?>
-                          <a class="btn btn-danger btn-xs disabled">Baca Selengkapnya (EXPIRED)</a>
+                    <!-- /.timeline-label -->
+                    <!-- timeline item -->
+                    <li>
+                      <div class="timeline-item">
+                        <!-- <div class="timeline-item" onclick="viewLowongan('<?php //echo $getdata->IDLowongan ?>')"> -->
+                          <?php if ($getdata->TglBerakhir <= $timeLimit){ ?>                            
+                          <span class="label label-danger time">EXPIRED</span>
                           <?php } ?>
+                          <span class="time">Tanggal Berakhir : <?php echo $getdata->TglBerakhir ?></span>
+                          <h3 class="timeline-header"><?php echo $getdata->NamaLowongan ?></h3>
+                          <?php if (file_exists(BASEPATH .'/../assets/file/perusahaan/'.$getdata->IDPerusahaan.'.jpg')): ?>
+                            <div class="col-md-2">
+                              <img width="90" src="<?php echo site_url('assets/file/perusahaan/'.$getdata->IDPerusahaan.'.jpg') ?>">
+                            </div>
+                          <?php endif ?>
+                          <?php  
+
+                          ?>
+                          <div class="timeline-body col-md-9">
+                            <i class="fa fa-building"></i> <?php echo $getdata->NamaPerusahaan ?><br>    
+                            <i class="fa fa-map-marker"></i> <?php echo $getdata->Penempatan ?><br>
+                            - <?php echo $getdata->JamKerjaSeminggu . ' Jam Per Minggu' ?><br>
+                            - <?php echo $getdata->UraianTugas ?><br>
+                            <?php echo 'Rp. ' . number_format($getdata->GajiPerbulan) . ' / Bulan' ?>
+                          </div>                          
+                          <div class="timeline-footer col-md-12">
+                            <?php if ($getdata->TglBerakhir >= $timeLimit){ ?>
+                            <a class="btn btn-success btn-xs" onclick="viewLowongan('<?php echo $getdata->IDLowongan ?>')">Baca Selengkapnya</a>
+                            <?php }else{?>
+                            <a class="btn btn-danger btn-xs disabled">Baca Selengkapnya (EXPIRED)</a>
+                            <?php } ?>
+                          </div>
+
                         </div>
+                      </li>
+                      <!-- END timeline item -->
+                    <?php endforeach ?>
+                  <?php else: ?>
 
-                      </div>
-                    </li>
-                    <!-- END timeline item -->
-                  <?php endforeach ?>
-                <?php else: ?>
-
-                <?php endif ?>
-              </ul>
+                  <?php endif ?>
+                </ul>
+              </div>
+              <!-- /.col -->
             </div>
-            <!-- /.col -->
+            <!-- /.row -->
           </div>
-          <!-- /.row -->
+        </div>
+        <div class="box box-default">
+          <div class="box-body">
+            <div class="text-center">
+              <?php echo '<a class="btn btn-primary" href="'.site_url('datalowongan').'">Selengkapnya</a>'; ?>
+            </div>
+          </div>
+          <div class="box-footer">
+            <div class="text-center">
+              <?php echo
+              'Jika Anda Sudah Mempunyai Account dan Berminat Mengisi Jabatan Pada Perusahaan Ini.<br />Silahkan Login <a href="'.site_url('login').'">disini</a> dan Jika Belum Mempunyai Account Silahkan <a href="'.site_url('register/2').'">Daftar</a> Terlebih Dahulu';
+              ?>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="box box-default">
-        <div class="box-body">
-          <div class="text-center">
-            <?php echo '<a class="btn btn-primary" href="'.site_url('datalowongan').'">Selengkapnya</a>'; ?>
-          </div>
-        </div>
-        <div class="box-footer">
-          <div class="text-center">
-            <?php echo
-            'Jika Anda Sudah Mempunyai Account dan Berminat Mengisi Jabatan Pada Perusahaan Ini.<br />Silahkan Login <a href="'.site_url('login').'">disini</a> dan Jika Belum Mempunyai Account Silahkan <a href="'.site_url('register/2').'">Daftar</a> Terlebih Dahulu';
-            ?>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- /.tab-pane -->
-    <div class="tab-pane" id="tab_2">
-      <?php
-      if ($CountMsBeritaData > 0)
-      {
-        echo '<ul style="list-style:none;">';
-        foreach ($MsBeritaData as $getdata)
+      <!-- /.tab-pane -->
+      <div class="tab-pane" id="tab_2">
+        <?php
+        if ($CountMsBeritaData > 0)
         {
-          $hari = array(
-            "0" => "Minggu",
-            "1" => "Senin",
-            "2" => "Selasa",
-            "3" => "Rabu",
-            "4" => "Kamis",
-            "5" => "Jumat",
-            "6" => "Sabtu"
-          );
-          $bulan = array(
-            "1" => "Januari",
-            "2" => "Februari",
-            "3" => "Maret",
-            "4" => "April",
-            "5" => "Mei",
-            "6" => "Juni",
-            "7" => "Juli",
-            "8" => "Agustus",
-            "9" => "September",
-            "10" => "Oktober",
-            "11" => "November",
-            "12" => "Desember"
-          );
-          if($getdata->TglBerita <= $timeLimit){
-            $labelEx = " <span class='label label-danger'>EXPIRED</span>";
-            $hrefGo = '<a href="#">'.$getdata->JudulBerita.'</a>';
-          }else{
-            $hrefGo = '<a href="'.site_url('berita/view').'/'.$getdata->IDBerita.'">'.$getdata->JudulBerita.'</a>';
+          echo '<ul style="list-style:none;">';
+          foreach ($MsBeritaData as $getdata)
+          {
+            $hari = array(
+              "0" => "Minggu",
+              "1" => "Senin",
+              "2" => "Selasa",
+              "3" => "Rabu",
+              "4" => "Kamis",
+              "5" => "Jumat",
+              "6" => "Sabtu"
+            );
+            $bulan = array(
+              "1" => "Januari",
+              "2" => "Februari",
+              "3" => "Maret",
+              "4" => "April",
+              "5" => "Mei",
+              "6" => "Juni",
+              "7" => "Juli",
+              "8" => "Agustus",
+              "9" => "September",
+              "10" => "Oktober",
+              "11" => "November",
+              "12" => "Desember"
+            );
+            if($getdata->TglBerita <= $timeLimit){
+              $labelEx = " <span class='label label-danger'>EXPIRED</span>";
+              $hrefGo = '<a href="#">'.$getdata->JudulBerita.'</a>';
+            }else{
+              $hrefGo = '<a href="'.site_url('berita/view').'/'.$getdata->IDBerita.'">'.$getdata->JudulBerita.'</a>';
+            }
+            $tglberita = explode("-", $getdata->TglBerita);
+            $gettgl = mktime(0, 0, 0, $tglberita[1], $tglberita[2], $tglberita[0]);
+            echo '<li style="background: #fff;padding: 10px;box-shadow: 0 2px 6px #f1f1f1;border-radius: 3px;margin: 10px 0px;">
+            <font>
+            <b>Lowongan Kerja : </b><i>'.$hari[(int)date("w", $gettgl)].', '.(int)date("d", $gettgl).' '.$bulan[(int)date("m", $gettgl)].' '.(int)date("Y", $gettgl).'</i>'. $labelEx .'<br />' . $hrefGo . '    </font>';
+            echo '</li>';
           }
-          $tglberita = explode("-", $getdata->TglBerita);
-          $gettgl = mktime(0, 0, 0, $tglberita[1], $tglberita[2], $tglberita[0]);
-          echo '<li style="background: #fff;padding: 10px;box-shadow: 0 2px 6px #f1f1f1;border-radius: 3px;margin: 10px 0px;">
-          <font>
-          <b>Lowongan Kerja : </b><i>'.$hari[(int)date("w", $gettgl)].', '.(int)date("d", $gettgl).' '.$bulan[(int)date("m", $gettgl)].' '.(int)date("Y", $gettgl).'</i>'. $labelEx .'<br />' . $hrefGo . '    </font>';
-          echo '</li>';
+          echo '</ul>';
+          echo '<div class="text-center"><a class="btn btn-primary" href="'.site_url('berita').'">Selengkapnya</a></div>';
         }
-        echo '</ul>';
-        echo '<div class="text-center"><a class="btn btn-primary" href="'.site_url('berita').'">Selengkapnya</a></div>';
-      }
-      else
-      {
-        echo '<div align="center">Belum Ada Data</div>';
-      }
-      ?>
-    </div>
-    <!-- /.tab-pane -->
-    <div class="tab-pane" id="tab_3">
-      <?php
-      if ($CountMsEventData > 0)
-      {
-        echo '<ul style="list-style:none;">';
-        foreach ($MsEventData as $getdata)
+        else
         {
-          $hari = array(
-            "0" => "Minggu",
-            "1" => "Senin",
-            "2" => "Selasa",
-            "3" => "Rabu",
-            "4" => "Kamis",
-            "5" => "Jumat",
-            "6" => "Sabtu"
-          );
-          $bulan = array(
-            "1" => "Januari",
-            "2" => "Februari",
-            "3" => "Maret",
-            "4" => "April",
-            "5" => "Mei",
-            "6" => "Juni",
-            "7" => "Juli",
-            "8" => "Agustus",
-            "9" => "September",
-            "10" => "Oktober",
-            "11" => "November",
-            "12" => "Desember"
-          );
-          $tglevent = explode("-", $getdata->TglEvent);
-          $gettgl = mktime(0, 0, 0, $tglevent[1], $tglevent[2], $tglevent[0]);
-          echo '<li style="background: #fff;padding: 10px;box-shadow: 0 2px 6px #f1f1f1;border-radius: 3px;margin: 10px 0px;">
-          <font size="1">
-          <i>'.$hari[(int)date("w", $gettgl)].', '.(int)date("d", $gettgl).' '.$bulan[(int)date("m", $gettgl)].' '.(int)date("Y", $gettgl).'</i><br /><a href="'.site_url('event/view').'/'.$getdata->IDEvent.'">'.$getdata->JudulEvent.'</a></font>';
-          echo '</li>';
+          echo '<div align="center">Belum Ada Data</div>';
         }
-        echo '</ul>';
-        echo '<div class="text-center"><a class="btn btn-primary" href="'.site_url('event').'">Selengkapnya</a></div>';
-      }
-      else
-      {
-        echo '<div align="center">belum ada data</div>';
-      }
-      ?>
+        ?>
+      </div>
+      <!-- /.tab-pane -->
+      <div class="tab-pane" id="tab_3">
+        <?php
+        if ($CountMsEventData > 0)
+        {
+          echo '<ul style="list-style:none;">';
+          foreach ($MsEventData as $getdata)
+          {
+            $hari = array(
+              "0" => "Minggu",
+              "1" => "Senin",
+              "2" => "Selasa",
+              "3" => "Rabu",
+              "4" => "Kamis",
+              "5" => "Jumat",
+              "6" => "Sabtu"
+            );
+            $bulan = array(
+              "1" => "Januari",
+              "2" => "Februari",
+              "3" => "Maret",
+              "4" => "April",
+              "5" => "Mei",
+              "6" => "Juni",
+              "7" => "Juli",
+              "8" => "Agustus",
+              "9" => "September",
+              "10" => "Oktober",
+              "11" => "November",
+              "12" => "Desember"
+            );
+            $tglevent = explode("-", $getdata->TglEvent);
+            $gettgl = mktime(0, 0, 0, $tglevent[1], $tglevent[2], $tglevent[0]);
+            echo '<li style="background: #fff;padding: 10px;box-shadow: 0 2px 6px #f1f1f1;border-radius: 3px;margin: 10px 0px;">
+            <font size="1">
+            <i>'.$hari[(int)date("w", $gettgl)].', '.(int)date("d", $gettgl).' '.$bulan[(int)date("m", $gettgl)].' '.(int)date("Y", $gettgl).'</i><br /><a href="'.site_url('event/view').'/'.$getdata->IDEvent.'">'.$getdata->JudulEvent.'</a></font>';
+            echo '</li>';
+          }
+          echo '</ul>';
+          echo '<div class="text-center"><a class="btn btn-primary" href="'.site_url('event').'">Selengkapnya</a></div>';
+        }
+        else
+        {
+          echo '<div align="center">belum ada data</div>';
+        }
+        ?>
+      </div>
+      <!-- /.tab-pane -->
     </div>
-    <!-- /.tab-pane -->
+    <!-- /.tab-content -->
   </div>
-  <!-- /.tab-content -->
-</div>
 </div>
 <script>
 
@@ -316,11 +316,24 @@
 
   function SendLowongan() {
     $('#modal-lowongan').modal('hide');
-    swal(
-      'Anda Harus Login!',
+    swal({
+      title: '<strong>Anda Harus Login!</strong>',
+      type: 'info',
+      html:
       'Jika anda sudah punya akun, silahkan login, jika belum anda bisa memilih menu pendaftaran!',
-      'info'
-      )
+      showCloseButton: true,
+      showCancelButton: true,
+      focusConfirm: false,
+      ButtonText:
+      'Login',
+      ButtonText:
+      'Daftar',
+    });
+    $('.swal2-confirm').click(function(){
+      window.location.href = "<?php echo site_url();?>login";
+    });
+    $('.swal2-cancel').click(function(){
+      window.location.href = "<?php echo site_url();?>register/2";
+    });
   }
-
 </script>
