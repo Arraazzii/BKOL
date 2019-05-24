@@ -287,6 +287,7 @@
 </div>
 <script>
    $(document).ready(function(){
+        $.fn.dataTable.ext.errMode = 'none';
         $.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings)
         {
             return {
@@ -493,4 +494,14 @@
       $('#lokasi').html("");
       $('#upahyangdicari').html("");
    }
+</script>
+    <script type="text/javascript">
+        window.addEventListener( "pageshow", function ( event ) {
+          var historyTraversal = event.persisted || 
+          ( typeof window.performance != "undefined" && 
+              window.performance.navigation.type === 2 );
+          if ( historyTraversal ) {
+            window.location.reload();
+        }
+    });
 </script>

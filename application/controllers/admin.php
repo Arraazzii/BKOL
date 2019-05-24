@@ -2,46 +2,32 @@
 
 class admin extends CI_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -  
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in 
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see http://codeigniter.com/user_guide/general/urls.html
-	 */
+
 	public function index()
 	{
-        $iduser = $this->session->userdata('iduser');
-        if ($iduser != '')
-        {
-            redirect('admin/newpencaker');
-        }
-        else
+        if (empty($this->session->userdata('iduser')))
         {
             $data['route'] = $this->uri->segment(1);
             $this->load->view('admin/login', $data);
             // $this->load->view('index2',$data); 
+        }
+        else
+        {
+            redirect('admin/newpencaker', 'refresh');
         }
     }
 
     public function logout()
     {
         $iduser = $this->session->userdata('iduser');
-        if ($iduser != '')
+        if ($iduser != NULL)
         {
             $this->load->model('MsUser');
             $this->MsUser->Logout($iduser);
         }
+        $this->session->sess_destroy();
         $this->clearsession();
-        redirect("admin");
+        redirect("admin", 'refresh');
     }
 
     public function dologin()
@@ -52,12 +38,12 @@ class admin extends CI_Controller {
             if ($input['username'] == "")
             {
                 $this->seterrormsg($input,"Nama Admin harus diisi");
-                redirect("admin");
+                redirect("admin", 'refresh');
             }
             else if ($input['password'] == "")
             {
                 $this->seterrormsg($input,"Kata Sandi harus diisi");
-                redirect("admin");
+                redirect("admin", 'refresh');
             }
             else
             {
@@ -69,18 +55,19 @@ class admin extends CI_Controller {
                     $this->session->set_userdata("iduser",$getdata->IDUser);
                     $this->session->set_userdata("username",$getdata->Username);
                     $this->session->set_userdata("idjenisuser","000000");
-                    redirect();
+                    redirect('admin/newpencaker', 'refresh');
                 }
                 else
                 {
                     $this->clearsession();
                     $this->seterrormsg($input,"Nama Admin atau Kata Sandi salah");
-                    redirect("admin");
+                    redirect("admin", 'refresh');
                 }
             }
         }
         else
         {
+
         }
     }
 
@@ -2600,7 +2587,7 @@ class admin extends CI_Controller {
     {
 
         $iduser = $this->session->userdata('iduser');
-        if ($iduser != '')
+        if ($iduser != NULL)
         {
             $this->load->model('MsUser');
             $getmsuser = $this->MsUser->GetMsUserByIDUser($iduser);

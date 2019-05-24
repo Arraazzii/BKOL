@@ -1,3 +1,5 @@
+<?php if (empty($this->session->userdata('iduser'))) {?>
+
 <?php $this->load->view('inc/header');
 $input = $this->session->flashdata('input');
 ?>
@@ -9,7 +11,7 @@ $input = $this->session->flashdata('input');
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">
-            
+
             <?php if ($this->session->flashdata('error') != null): ?>
                 <?php echo '<p class="login-box-msg">'.$this->session->flashdata('error').'</p>'; ?>
             <?php endif ?>
@@ -35,3 +37,18 @@ $input = $this->session->flashdata('input');
     </div>
     <!-- /.login-box -->
     <?php $this->load->view('inc/footer') ?>
+
+    <?php }else{
+        redirect('admin/newpencaker', 'refresh');
+    } ?>
+
+    <script type="text/javascript">
+        window.addEventListener( "pageshow", function ( event ) {
+          var historyTraversal = event.persisted || 
+          ( typeof window.performance != "undefined" && 
+              window.performance.navigation.type === 2 );
+          if ( historyTraversal ) {
+            window.location.reload();
+        }
+    });
+</script>

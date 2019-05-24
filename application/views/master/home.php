@@ -144,6 +144,7 @@
                           <?php }else{?>
                           <a class="btn btn-danger btn-xs disabled">Baca Selengkapnya (EXPIRED)</a>
                           <?php } ?>
+                          <a href="https://wa.me/?text=share" class="btn btn-primary btn-xs" data-toggle="tooltip" title="Share Jobs To Whatsapp!" target="_blank"><i class="fa fa-whatsapp"></i></a>
                         </div>
 
                       </div>
@@ -338,4 +339,9 @@
       window.location.href = "<?php echo site_url();?>register/2";
     });
     }
+</script>
+<script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip(); 
+});
 </script>
