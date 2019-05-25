@@ -53,17 +53,17 @@
                 <center><img class="" src="<?= site_url('assets/file/berita/'.$MsBeritaData->IDBerita.'.jpg') ?>"></center>
             <?php endif ?>
             <p><font size="3" style="line-height: 100%;"><?= $MsBeritaData->IsiBerita ?></font><p>
+            </div>
         </div>
-    </div>
-    <!-- /.box -->
+        <!-- /.box -->
 
-</section>
-<!-- /.content -->
+    </section>
+    <!-- /.content -->
 
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('.box-body').find('img').attr({
-            class: 'img-responsive',
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.box-body').find('img').attr({
+                class: 'img-responsive',
+            });
         });
-    });
-</script>
+    </script>

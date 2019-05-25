@@ -15,22 +15,22 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="box box-info">
-	            <div class="box-header">
-	              <h3 class="box-title">Import Data Pencaker
-	              </h3>
-	              
-	          </div>
-	          <div class="box-body">
-	          	<form action="<?php echo base_url('admin/import_pencaker') ?>" method="POST" role="form">
-	          		<div class="form-control">
-	          			<label class="col-md-3 control-label">Pilih File CSV</label>
-	          			<div class="col-md-5">
-	          				<input type="file" name="filepencaker">
-	          			</div>
-	          		</div>
-	          	</form>
-	          </div>
-	          <!-- /.box -->
+				<div class="box-header">
+					<h3 class="box-title">Import Data Pencaker
+					</h3>
+					
+				</div>
+				<div class="box-body">
+					<form action="<?php echo base_url('admin/import_pencaker') ?>" method="POST" role="form">
+						<div class="form-control">
+							<label class="col-md-3 control-label">Pilih File CSV</label>
+							<div class="col-md-5">
+								<input type="file" name="filepencaker">
+							</div>
+						</div>
+					</form>
+				</div>
+				<!-- /.box -->
+			</div>
 		</div>
-	</div>
-</section>
+	</section>

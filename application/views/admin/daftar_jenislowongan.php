@@ -41,7 +41,7 @@
             <div class="box">
                 <div class="box-header text-center">
                     <h3 class="box-title">DAFTAR JENIS LOWONGAN KERJA</h3>
-                        <button type="button" class="btn btn-default btn-sm pull-right" title="Tambah Jenis Lowongan" id="tambahjenislowongan"><i class="fa fa-plus"></i></button>
+                    <button type="button" class="btn btn-default btn-sm pull-right" title="Tambah Jenis Lowongan" id="tambahjenislowongan"><i class="fa fa-plus"></i></button>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
@@ -56,20 +56,20 @@
                         </thead>
                         <tbody>
                             <?php if ($this->pagination->total_rows > 0): ?>
-                            <?php $i = 0; ?>
-                            <?php foreach ($MsJenisLowonganData as $getdata): ?>
-                                <?php 
+                                <?php $i = 0; ?>
+                                <?php foreach ($MsJenisLowonganData as $getdata): ?>
+                                    <?php 
                                     $i++;
-                                    $detailbtn = '<a class="btn btn-default btn-sm" onclick="DoEdit(\''.$getdata->IDJenisLowongan.'\') ">Edit</a>';
-                                    $viewbtn = '<a class="btn btn-default btn-sm" href="'.site_url('admin/keahlian/'.$getdata->IDJenisLowongan).'">Lihat Keahlian</a>';
-                                    $deletebtn = '<a class="btn btn-default btn-sm" onclick="DoDeleteConfirm(\''.$getdata->IDJenisLowongan.'\') ">Hapus</a>';
-                                ?>
-                                <tr>
-                                    <td class="text-center"><?php echo $i+$this->uri->segment(3) ?></td>
-                                    <td><?php echo $getdata->NamaJenisLowongan ?></td>
-                                    <td class="text-center"><?php echo $detailbtn.$viewbtn.$deletebtn ?></td>
-                                </tr>
-                            <?php endforeach ?>
+                                    $detailbtn = '<a class="btn btn-warning btn-sm" onclick="DoEdit(\''.$getdata->IDJenisLowongan.'\') ">Edit</a> ';
+                                    $viewbtn = '<a class="btn btn-primary btn-sm" href="'.site_url('admin/keahlian/'.$getdata->IDJenisLowongan).'">Lihat Keahlian</a> ';
+                                    $deletebtn = '<a class="btn btn-danger btn-sm" onclick="DoDeleteConfirm(\''.$getdata->IDJenisLowongan.'\') ">Hapus</a>';
+                                    ?>
+                                    <tr>
+                                        <td class="text-center"><?php echo $i+$this->uri->segment(3) ?></td>
+                                        <td><?php echo $getdata->NamaJenisLowongan ?></td>
+                                        <td class="text-center"><?php echo $detailbtn.$viewbtn.$deletebtn ?></td>
+                                    </tr>
+                                <?php endforeach ?>
                             <?php else: ?>
                                 <tr>
                                     <td colspan="3" class="text-center">Belum ada data</td>
@@ -77,7 +77,7 @@
                             <?php endif ?>
                         </tbody>
                     </table>
-                        
+                    
                 </div>
                 <?php if ($this->pagination->create_links()): ?>
                     <div class="box-footer">
@@ -152,7 +152,7 @@
                 });
             }
         }
-            
+        
     });
 
     function clearmodaljenis() {
@@ -180,9 +180,9 @@
                 else
                 {
                     swal({
-                     type: 'error',
-                     title: 'Oops...',
-                     text: 'Jenis Lowongan Tidak Ditemukan!'
+                       type: 'error',
+                       title: 'Oops...',
+                       text: 'Jenis Lowongan Tidak Ditemukan!'
                    })
                 }
             },'json')
@@ -229,12 +229,23 @@
                 else
                 {
                     swal({
-                     type: 'error',
-                     title: 'Oops...',
-                     text: 'Jenis Lowongan Tidak Ditemukan!'
+                       type: 'error',
+                       title: 'Oops...',
+                       text: 'Jenis Lowongan Tidak Ditemukan!'
                    })
                 }
             },'json')
     }
 
+</script>
+</script>
+<script type="text/javascript">
+    window.addEventListener( "pageshow", function ( event ) {
+      var historyTraversal = event.persisted || 
+      ( typeof window.performance != "undefined" && 
+          window.performance.navigation.type === 2 );
+      if ( historyTraversal ) {
+        window.location.reload();
+    }
+});
 </script>

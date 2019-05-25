@@ -46,22 +46,22 @@
                 <!-- /.box-header -->
                 <!-- form start -->
                 <div class="box-body table-responsive">
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th width="10">No</th>
-                                    <th class="text-center">Nama Posisi Jabatan</th>
-                                    <th class="text-center">Detail</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php if ($this->pagination->total_rows > 0): ?>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th width="10">No</th>
+                                <th class="text-center">Nama Posisi Jabatan</th>
+                                <th class="text-center">Detail</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if ($this->pagination->total_rows > 0): ?>
                                 <?php $i = 0; ?>
                                 <?php foreach ($MsPosisiJabatanData as $getdata): ?>
                                     <?php 
-                                        $i++;
-                                        $detailbtn = '<a class="btn btn-default btn-sm" onclick="DoEdit(\''.$getdata->IDPosisiJabatan.'\') "><i class="fa fa-edit"></i> Edit</a>';
-                                        $deletebtn = '<a class="btn btn-default btn-sm" onclick="DoDeleteConfirm(\''.$getdata->IDPosisiJabatan.'\') "><i class="fa fa-trash"></i> Hapus</a>';
+                                    $i++;
+                                    $detailbtn = '<a class="btn btn-warning btn-sm" onclick="DoEdit(\''.$getdata->IDPosisiJabatan.'\') "><i class="fa fa-edit"></i> Edit</a> ';
+                                    $deletebtn = '<a class="btn btn-danger btn-sm" onclick="DoDeleteConfirm(\''.$getdata->IDPosisiJabatan.'\') "><i class="fa fa-trash"></i> Hapus</a>';
                                     ?>
                                     <tr>
                                         <td class="text-center"><?php echo $i+$this->uri->segment(3) ?></td>
@@ -69,13 +69,13 @@
                                         <td class="text-center"><?php echo $detailbtn.$deletebtn ?></td>
                                     </tr>
                                 <?php endforeach ?>
-                                <?php else: ?>
-                                    <tr>
-                                        <td colspan="3" class="text-center">Belum ada data</td>
-                                    </tr>
-                                <?php endif ?>
-                            </tbody>
-                        </table>
+                            <?php else: ?>
+                                <tr>
+                                    <td colspan="3" class="text-center">Belum ada data</td>
+                                </tr>
+                            <?php endif ?>
+                        </tbody>
+                    </table>
                 </div>
                 <?php if ($this->pagination->create_links()): ?>
                     <div class="box-footer">
@@ -90,7 +90,7 @@
     </div>
 </section>
 <script>
-   
+ 
     $("#tambahdata").click(function() {
         clearmodaljenis();
         var tmodal = $("#modal-posisijabatan");
@@ -152,7 +152,7 @@
                 });
             }
         }
-            
+        
     });
 
     function clearmodaljenis() {
@@ -180,9 +180,9 @@
                 else
                 {
                     swal({
-                     type: 'error',
-                     title: 'Oops...',
-                     text: 'Posisi Jabatan Tidak Ditemukan!'
+                       type: 'error',
+                       title: 'Oops...',
+                       text: 'Posisi Jabatan Tidak Ditemukan!'
                    })
                 }
             },'json')
@@ -229,12 +229,23 @@
                 else
                 {
                     swal({
-                     type: 'error',
-                     title: 'Oops...',
-                     text: 'Posisi Jabatan Tidak Ditemukan!'
+                       type: 'error',
+                       title: 'Oops...',
+                       text: 'Posisi Jabatan Tidak Ditemukan!'
                    })
                 }
             },'json')
     }
 
+</script>
+</script>
+<script type="text/javascript">
+    window.addEventListener( "pageshow", function ( event ) {
+      var historyTraversal = event.persisted || 
+      ( typeof window.performance != "undefined" && 
+          window.performance.navigation.type === 2 );
+      if ( historyTraversal ) {
+        window.location.reload();
+    }
+});
 </script>

@@ -580,3 +580,512 @@ ERROR - 2019-05-24 14:40:27 --> Severity: 8192  --> mysql_pconnect(): The mysql 
 ERROR - 2019-05-24 14:40:28 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
 ERROR - 2019-05-24 14:40:28 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
 ERROR - 2019-05-24 14:40:28 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:29:01 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:29:01 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:29:03 --> Severity: Warning  --> mysql_pconnect(): No connection could be made because the target machine actively refused it.
+ C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:29:03 --> Severity: Warning  --> mysql_pconnect(): No connection could be made because the target machine actively refused it.
+ C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:29:03 --> Unable to connect to the database
+ERROR - 2019-05-24 21:29:03 --> Unable to connect to the database
+ERROR - 2019-05-24 21:29:07 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:29:09 --> Severity: Warning  --> mysql_pconnect(): No connection could be made because the target machine actively refused it.
+ C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:29:09 --> Unable to connect to the database
+ERROR - 2019-05-24 21:29:36 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:30:49 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:31:06 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:37:25 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:37:39 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:38:30 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:38:36 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:39:28 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:39:41 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:39:49 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:40:01 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:40:15 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:40:19 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:41:06 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:41:43 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:41:52 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:42:08 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:42:33 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:42:49 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:42:59 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:43:16 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:43:21 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:43:54 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:44:05 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:44:15 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:44:21 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:44:33 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:44:39 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:45:20 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:45:38 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:45:57 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:46:45 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:46:59 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 21:47:55 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:48:03 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 21:48:44 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:48:45 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 21:50:07 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:50:08 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 21:50:31 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:50:55 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:51:14 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 21:52:11 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:52:29 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:52:36 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:52:45 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 21:53:38 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:53:39 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 21:55:05 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:55:24 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:56:36 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:56:49 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:56:54 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:57:15 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:57:38 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:57:43 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:58:01 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:58:24 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:58:32 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:58:58 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:59:10 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:59:26 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 21:59:26 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 121
+ERROR - 2019-05-24 21:59:26 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 124
+ERROR - 2019-05-24 21:59:26 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 125
+ERROR - 2019-05-24 21:59:26 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 126
+ERROR - 2019-05-24 21:59:26 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 135
+ERROR - 2019-05-24 21:59:26 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 136
+ERROR - 2019-05-24 21:59:26 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 137
+ERROR - 2019-05-24 21:59:26 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 138
+ERROR - 2019-05-24 21:59:26 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 139
+ERROR - 2019-05-24 21:59:26 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 142
+ERROR - 2019-05-24 21:59:26 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 121
+ERROR - 2019-05-24 21:59:26 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 124
+ERROR - 2019-05-24 21:59:26 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 125
+ERROR - 2019-05-24 21:59:26 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 126
+ERROR - 2019-05-24 21:59:26 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 135
+ERROR - 2019-05-24 21:59:26 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 136
+ERROR - 2019-05-24 21:59:26 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 137
+ERROR - 2019-05-24 21:59:26 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 138
+ERROR - 2019-05-24 21:59:26 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 139
+ERROR - 2019-05-24 21:59:26 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 142
+ERROR - 2019-05-24 21:59:26 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 121
+ERROR - 2019-05-24 21:59:26 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 124
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 125
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 126
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 135
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 136
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 137
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 138
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 139
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 142
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 121
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 124
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 125
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 126
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 135
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 136
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 137
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 138
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 139
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 142
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 121
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 124
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 125
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 126
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 135
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 136
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 137
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 138
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 139
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 142
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 121
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 124
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 125
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 126
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 135
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 136
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 137
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 138
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 139
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 142
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 121
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 124
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 125
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 126
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 135
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 136
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 137
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 138
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 139
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 142
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 121
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 124
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 125
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 126
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 135
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 136
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 137
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 138
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 139
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 142
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Undefined variable: CountMsBeritaData C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 182
+ERROR - 2019-05-24 21:59:27 --> Severity: Notice  --> Undefined variable: CountMsEventData C:\xampp\htdocs\bkol\application\views\master\daftar_lowongan.php 235
+ERROR - 2019-05-24 21:59:54 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:00:03 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:00:32 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:00:49 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:02:08 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:02:18 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:02:25 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:02:25 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:02:55 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:03:02 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:03:44 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:03:45 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:04:04 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:04:25 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:04:26 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:04:35 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:04:36 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:04:37 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:04:37 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:04:41 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:04:42 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:04:51 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:04:52 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:04:54 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:05:25 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:05:26 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:05:43 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:05:44 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:05:54 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:05:55 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:06:00 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:06:01 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:07:59 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:08:23 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:08:30 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:08:44 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:08:46 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:09:02 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 181
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 181
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 181
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 181
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 181
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 203
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 203
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 203
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 203
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 240
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 240
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 240
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 240
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 240
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 240
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 240
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 240
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 240
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 240
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 240
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 354
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 354
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 354
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 354
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 354
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 354
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 354
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 354
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 354
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 354
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 354
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 354
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 354
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 354
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 354
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 354
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 354
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 354
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 354
+ERROR - 2019-05-24 22:09:02 --> Severity: Notice  --> Undefined variable: input C:\xampp\htdocs\bkol\application\views\pencaker\register.php 354
+ERROR - 2019-05-24 22:09:31 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:09:37 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:09:42 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:09:47 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:10:36 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:10:53 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:11:03 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:11:30 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:12:01 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:12:12 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:12:18 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:12:44 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:13:21 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:13:21 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:13:25 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:13:25 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:13:26 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:13:26 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:13:29 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:13:30 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:13:30 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:13:31 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:13:31 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:13:33 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:13:34 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:13:34 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:13:39 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:13:39 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:13:40 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:13:42 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:13:42 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:13:45 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:13:45 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:13:46 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:23:58 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:23:58 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:25:35 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:25:36 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:25:37 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:25:55 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:25:56 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:26:23 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:26:23 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:36:20 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:36:21 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:36:36 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:36:37 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:37:18 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:37:18 --> Severity: Notice  --> Undefined variable: getmslowongan C:\xampp\htdocs\bkol\application\views\master\detailLowongan.php 50
+ERROR - 2019-05-24 22:37:19 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:37:39 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:37:40 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:38:30 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:38:31 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:38:47 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:38:47 --> Severity: Notice  --> Undefined variable: CountMsLowonganData C:\xampp\htdocs\bkol\application\views\master\detailLowongan.php 50
+ERROR - 2019-05-24 22:38:48 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:38:52 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:38:52 --> Severity: Notice  --> Undefined variable: CountMsLowonganData C:\xampp\htdocs\bkol\application\views\master\detailLowongan.php 50
+ERROR - 2019-05-24 22:38:52 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:38:56 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:38:56 --> Severity: Notice  --> Undefined variable: CountMsLowonganData C:\xampp\htdocs\bkol\application\views\master\detailLowongan.php 49
+ERROR - 2019-05-24 22:38:57 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:39:09 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:39:09 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:39:42 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:39:43 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:41:39 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:41:40 --> Severity: Notice  --> Undefined variable: MsLowonganData C:\xampp\htdocs\bkol\application\views\master\detailLowongan.php 49
+ERROR - 2019-05-24 22:41:40 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:41:54 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:41:54 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:41:57 --> 404 Page Not Found --> detailLowonganPekerjaan
+ERROR - 2019-05-24 22:42:20 --> 404 Page Not Found --> detailLowonganPekerjaan
+ERROR - 2019-05-24 22:43:30 --> 404 Page Not Found --> getlowongan
+ERROR - 2019-05-24 22:43:38 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:43:42 --> 404 Page Not Found --> detailLowonganPekerjaan
+ERROR - 2019-05-24 22:44:27 --> 404 Page Not Found --> detailLowonganPekerjaan
+ERROR - 2019-05-24 22:44:34 --> 404 Page Not Found --> detailLowonganPekerjaan
+ERROR - 2019-05-24 22:54:07 --> 404 Page Not Found --> detailLowonganPekerjaan
+ERROR - 2019-05-24 22:54:34 --> 404 Page Not Found --> detailLowonganPekerjaan
+ERROR - 2019-05-24 22:54:56 --> 404 Page Not Found --> detailLowonganPekerjaan
+ERROR - 2019-05-24 22:55:00 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:55:03 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:55:14 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 22:55:15 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 22:55:58 --> 404 Page Not Found --> detailLowonganPekerjaan
+ERROR - 2019-05-24 22:57:06 --> 404 Page Not Found --> detailLowonganPekerjaan
+ERROR - 2019-05-24 22:57:07 --> 404 Page Not Found --> detailLowonganPekerjaan
+ERROR - 2019-05-24 22:57:08 --> 404 Page Not Found --> detailLowonganPekerjaan
+ERROR - 2019-05-24 23:02:09 --> 404 Page Not Found --> detailLowonganPekerjaan
+ERROR - 2019-05-24 23:02:10 --> 404 Page Not Found --> detailLowonganPekerjaan
+ERROR - 2019-05-24 23:02:13 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:02:13 --> The session cookie data did not match what was expected. This could be a possible hacking attempt.
+ERROR - 2019-05-24 23:02:13 --> Severity: Warning  --> Missing argument 1 for root::LowonganPekerjaan() C:\xampp\htdocs\bkol\application\controllers\root.php 83
+ERROR - 2019-05-24 23:02:13 --> Severity: Notice  --> Undefined variable: idlowongan C:\xampp\htdocs\bkol\application\controllers\root.php 85
+ERROR - 2019-05-24 23:02:13 --> Severity: Notice  --> Undefined variable: idlowongan C:\xampp\htdocs\bkol\application\controllers\root.php 87
+ERROR - 2019-05-24 23:02:14 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:03:34 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:03:34 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:03:49 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:03:50 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:04:40 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:04:41 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:04:56 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:04:56 --> Severity: Notice  --> Undefined variable: key C:\xampp\htdocs\bkol\application\views\master\detailLowongan.php 49
+ERROR - 2019-05-24 23:04:57 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:05:11 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:05:11 --> Severity: Notice  --> Undefined variable: key C:\xampp\htdocs\bkol\application\views\master\detailLowongan.php 49
+ERROR - 2019-05-24 23:05:12 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:05:15 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:05:15 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:06:08 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:06:08 --> Severity: Notice  --> Undefined variable: data C:\xampp\htdocs\bkol\application\views\master\detailLowongan.php 49
+ERROR - 2019-05-24 23:06:09 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:06:25 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:06:26 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:06:33 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:06:34 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:06:36 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:06:41 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:06:45 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:06:58 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:06:59 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:07:09 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:07:10 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:08:54 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:08:55 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:09:26 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:09:26 --> Severity: Notice  --> Array to string conversion C:\xampp\htdocs\bkol\application\views\master\detailLowongan.php 49
+ERROR - 2019-05-24 23:09:27 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:09:46 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:09:47 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:10:20 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:10:21 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:10:23 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:10:52 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:10:53 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:10:53 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:10:54 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:10:55 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:10:57 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:10:57 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:10:59 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:11:00 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:11:01 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:11:03 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:11:04 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:11:05 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:12:41 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:12:42 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:14:09 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:14:10 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:16:20 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:16:22 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:17:15 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:17:15 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\detailLowongan.php 2
+ERROR - 2019-05-24 23:17:16 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:17:25 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:17:25 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\detailLowongan.php 2
+ERROR - 2019-05-24 23:17:25 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\detailLowongan.php 3
+ERROR - 2019-05-24 23:17:25 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:17:33 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:17:33 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\detailLowongan.php 2
+ERROR - 2019-05-24 23:17:33 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:17:43 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:17:44 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:22:28 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:22:44 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:22:49 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:23:10 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:23:40 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:23:40 --> Severity: Notice  --> Undefined variable: getdata C:\xampp\htdocs\bkol\application\views\master\detailLowongan.php 25
+ERROR - 2019-05-24 23:23:40 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\detailLowongan.php 25
+ERROR - 2019-05-24 23:23:42 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:24:05 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:24:05 --> Severity: Notice  --> Undefined variable: getdata C:\xampp\htdocs\bkol\application\views\master\detailLowongan.php 25
+ERROR - 2019-05-24 23:24:05 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\detailLowongan.php 25
+ERROR - 2019-05-24 23:24:06 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:24:16 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:24:17 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:25:41 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:25:42 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:27:44 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:27:44 --> Severity: Notice  --> Undefined variable: getdata C:\xampp\htdocs\bkol\application\views\master\detailLowongan.php 26
+ERROR - 2019-05-24 23:27:44 --> Severity: Notice  --> Trying to get property of non-object C:\xampp\htdocs\bkol\application\views\master\detailLowongan.php 26
+ERROR - 2019-05-24 23:27:45 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:28:08 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:28:09 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:29:26 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:29:27 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:29:28 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:29:29 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:30:03 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:30:04 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:30:21 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:30:22 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:30:29 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:30:30 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:30:35 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:30:36 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:31:01 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:31:02 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:31:09 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:31:10 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:31:37 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:31:38 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:31:49 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:31:50 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:31:57 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:31:58 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:32:03 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:32:03 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:32:29 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:32:30 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:32:35 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:32:36 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:32:51 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:32:52 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:32:59 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:33:00 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:33:03 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:33:04 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:33:05 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:33:06 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:33:23 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:33:24 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:33:48 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:33:49 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:34:32 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:35:12 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:35:27 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:35:35 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:35:42 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:35:51 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:36:05 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:36:13 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:36:22 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:36:52 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:37:34 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:37:50 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:38:49 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:39:24 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:40:57 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:40:57 --> Severity: Notice  --> Undefined variable: syaratkhusus C:\xampp\htdocs\bkol\application\views\master\detailLowongan.php 196
+ERROR - 2019-05-24 23:41:06 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:41:28 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:41:57 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:43:13 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:44:11 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:44:44 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:44:45 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:44:57 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:45:30 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:45:35 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:46:10 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:48:41 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:49:01 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:49:08 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:49:28 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:50:31 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:51:08 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:51:08 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:52:25 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:52:26 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:52:39 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:52:40 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:52:55 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:52:56 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:53:10 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:53:11 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:53:24 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:53:25 --> 404 Page Not Found --> assets
+ERROR - 2019-05-24 23:53:55 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-05-24 23:55:47 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91

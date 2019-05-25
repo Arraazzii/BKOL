@@ -21,7 +21,7 @@
       <div class="box-body">
         <div class="form-group">
           <label for="jenisfilter" class="control-label col-md-3">Jenis Filter</label>
-          <div class="col-md-2">
+          <div class="col-md-5">
             <select name="jenisfilter" id="jenisfilter" class="form-control input-sm">
               <option value="0">Jumlah Pencaker</option>
               <option value="1">Lamaran Diproses</option>
@@ -32,7 +32,7 @@
         <div  id="filterjumlah">
           <div class="form-group">
             <label for="jenispencaker" class="control-label col-md-3">Jenis Pencaker</label>
-            <div class="col-md-2">
+            <div class="col-md-5">
               <select name="jenispencaker" id="jenispencaker" class="form-control input-sm">
                 <option value="0">Terdaftar</option>
                 <!-- <option value="2">Diproses</option> -->
@@ -42,7 +42,7 @@
           </div>
           <div class="form-group">
             <label for="kategori" class="control-label col-md-3">Kategori</label>
-            <div class="col-md-3">
+            <div class="col-md-5">
               <select name="kategori" id="kategori" class="form-control input-sm">
                 <option value="0">Kecamatan</option>
                 <option value="1">Umur</option>
@@ -54,18 +54,18 @@
         </div>
         <div class="form-group">
           <label for="date_from" class="control-label col-md-3">Dari</label>
-          <div class="col-md-2">
+          <div class="col-md-5">
             <input type="text" readonly required name="date_from" placeholder="dd-mm-yyyy" id="date_from" class="form-control input-sm">
           </div>
         </div>
         <div class="form-group">
           <label for="date_to" class="control-label col-md-3">Sampai</label>
-          <div class="col-md-2">
+          <div class="col-md-5">
             <input type="text" readonly required name="date_to" id="date_to" placeholder="dd-mm-yyyy" class="form-control input-sm">
           </div>
         </div>
         <div class="form-group">
-          <div class="col-md-5 col-md-offset-3">
+          <div class="col-md-6 col-md-offset-6">
             <input id="simpan" class="btn btn-primary btn-sm" name="simpan" type="submit" value="Filter">
             <button type="button" id="excel" class="btn btn-success btn-sm"><i class="fa fa-file-excel-o"></i> Export Excel</button>
           </div>
@@ -191,64 +191,64 @@
   });
 
   function filter() {
-      var myForm = document.getElementById('formFilter');
-      $.ajax({
-        type: 'post',
-        dataType: 'json',
-        url: '<?php echo base_url('admin/report/lap_rekap_pencaker/submit') ?>',
-        contentType: false,
-        processData: false,
-        cache: false,
-        data: new FormData(myForm),
-        success: function(res) {
-          var tbody = document.getElementById('data-body');
-          var tfoot = document.getElementById('data-foot');
+    var myForm = document.getElementById('formFilter');
+    $.ajax({
+      type: 'post',
+      dataType: 'json',
+      url: '<?php echo base_url('admin/report/lap_rekap_pencaker/submit') ?>',
+      contentType: false,
+      processData: false,
+      cache: false,
+      data: new FormData(myForm),
+      success: function(res) {
+        var tbody = document.getElementById('data-body');
+        var tfoot = document.getElementById('data-foot');
         
-          tbody.innerHTML = '';
-          tfoot.innerHTML = '';
-          detail = res.detail;
-          summ = res.summary;
-          jenis = res.jenis;
+        tbody.innerHTML = '';
+        tfoot.innerHTML = '';
+        detail = res.detail;
+        summ = res.summary;
+        jenis = res.jenis;
 
-          if(detail == null)
+        if(detail == null)
+        {
+          var tr = document.createElement('tr');
+          var td = document.createElement('td');
+          td.appendChild(document.createTextNode('Tidak ada data'));
+          td.setAttribute('class', 'text-center');
+          if(jenis == 0) {
+            td.setAttribute('colspan', '4');
+          } else if(jenis == 1) {
+            td.setAttribute('colspan', '5');
+          } else if(jenis == 2) {
+            td.setAttribute('colspan', '8');
+          }
+          tr.appendChild(td);
+          tbody.appendChild(tr);
+        }
+        else
+        {
+          for(var k in detail)
           {
+            obj = detail[k];
             var tr = document.createElement('tr');
-            var td = document.createElement('td');
-            td.appendChild(document.createTextNode('Tidak ada data'));
-            td.setAttribute('class', 'text-center');
-            if(jenis == 0) {
-              td.setAttribute('colspan', '4');
-            } else if(jenis == 1) {
-              td.setAttribute('colspan', '5');
-            } else if(jenis == 2) {
-              td.setAttribute('colspan', '8');
+
+            for (var i in obj)
+            {
+              var td = document.createElement('td');
+              td.appendChild(document.createTextNode(obj[i]));
+              if(i == 'kecamatan' || i == 'Kelompok Umur' || i == 'pendidikan') {
+                td.setAttribute('class', 'text-left');
+              } else {
+                td.setAttribute('class', 'text-center');
+              }
+              tr.appendChild(td);
             }
-            tr.appendChild(td);
             tbody.appendChild(tr);
           }
-          else
+
+          if(jenis == 0)
           {
-            for(var k in detail)
-            {
-              obj = detail[k];
-              var tr = document.createElement('tr');
-
-              for (var i in obj)
-              {
-                var td = document.createElement('td');
-                td.appendChild(document.createTextNode(obj[i]));
-                if(i == 'kecamatan' || i == 'Kelompok Umur' || i == 'pendidikan') {
-                  td.setAttribute('class', 'text-left');
-                } else {
-                  td.setAttribute('class', 'text-center');
-                }
-                tr.appendChild(td);
-              }
-              tbody.appendChild(tr);
-            }
-
-            if(jenis == 0)
-            {
               // for table footer
               var tr = document.createElement('tr');
               var th = document.createElement('th');
@@ -267,7 +267,7 @@
           }
         }
       });
-    }
+  }
 
   function getFormattedDate()
   {
@@ -308,4 +308,15 @@
     container.appendChild(table);
     filter();
   }
+</script>
+</script>
+<script type="text/javascript">
+  window.addEventListener( "pageshow", function ( event ) {
+    var historyTraversal = event.persisted || 
+    ( typeof window.performance != "undefined" && 
+      window.performance.navigation.type === 2 );
+    if ( historyTraversal ) {
+      window.location.reload();
+    }
+  });
 </script>

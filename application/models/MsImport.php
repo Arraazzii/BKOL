@@ -25,11 +25,11 @@ class MsImport extends CI_Model {
 			$num = intval($num);
 			$num++;
 			for($i=strlen($num);$i<6;$i++)
-            {
-                    $LastID .= "0";
-            }
-            
-            $LastID .= $num;
+			{
+				$LastID .= "0";
+			}
+			
+			$LastID .= $num;
 		}
 		else
 		{
@@ -40,26 +40,26 @@ class MsImport extends CI_Model {
 	}
 
 	public function GetLastID()
-    {
-        $LastID = "";
-        $query = $this->db->query("SELECT IDPencaker FROM ".strtolower("MsPencaker")." ORDER BY IDPencaker DESC LIMIT 1");
-        if ($query->num_rows() > 0)
-        {
-                $getdata = $query->row();
-                $GetLastID = (int)$getdata->IDPencaker;
-                $GetLastID++;
-                for($i=strlen($GetLastID);$i<6;$i++)
-                {
-                        $LastID .= "0";
-                }
-                $LastID .= $GetLastID;
-        }
-        else
-        {
-                $LastID = "000001";
-        }
-        return $LastID;
-    }
+	{
+		$LastID = "";
+		$query = $this->db->query("SELECT IDPencaker FROM ".strtolower("MsPencaker")." ORDER BY IDPencaker DESC LIMIT 1");
+		if ($query->num_rows() > 0)
+		{
+			$getdata = $query->row();
+			$GetLastID = (int)$getdata->IDPencaker;
+			$GetLastID++;
+			for($i=strlen($GetLastID);$i<6;$i++)
+			{
+				$LastID .= "0";
+			}
+			$LastID .= $GetLastID;
+		}
+		else
+		{
+			$LastID = "000001";
+		}
+		return $LastID;
+	}
 
 }
 

@@ -22,36 +22,36 @@ if (!$this->input->post())
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
-    <h1>
-        Profil
-        <small>Pencaker</small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="<?php echo site_url('') ?>">Home</a></li>
-        <li>Pencaker</li>
-        <li class="active">Edit Profil</li>
-    </ol>
+  <h1>
+    Profil
+    <small>Pencaker</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="<?php echo site_url('') ?>">Home</a></li>
+    <li>Pencaker</li>
+    <li class="active">Edit Profil</li>
+  </ol>
 </section>
 <!-- Main content -->
 <section class="content">
-    <form class="form-horizontal" method="post" id="formedit" action="<?php echo site_url('pencaker/edit') ?>" enctype="multipart/form-data">
-        <div class="panel panel-default">
-          <div class="panel-body text-center">
-          <?php $filename = '/assets/file/pencaker/' . $MsPencakerData->IDPencaker .'.jpg' ?>
-          <?php if (file_exists(BASEPATH.'/..'.$filename)): ?>
+  <form class="form-horizontal" method="post" id="formedit" action="<?php echo site_url('pencaker/edit') ?>" enctype="multipart/form-data">
+    <div class="panel panel-default">
+      <div class="panel-body text-center">
+        <?php $filename = '/assets/file/pencaker/' . $MsPencakerData->IDPencaker .'.jpg' ?>
+        <?php if (file_exists(BASEPATH.'/..'.$filename)): ?>
           <img src="<?php echo site_url($filename) ?>" class="img-circle profile-avatar" height="200" alt="User avatar">  
-          <?php else: ?>
+        <?php else: ?>
           <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-circle profile-avatar" alt="User avatar">  
-          <?php endif ?>
-          <h3 class="profile-username text-center"><?= $input != null ? $input['namapencaker'] : ''; ?></h3>
-          <p class="text-muted text-center"><?= $input != null ? $input['email'] : '' ?></p>
-          </div>
-        </div>
-      <div class="panel panel-default">
-        <div class="panel-heading">
+        <?php endif ?>
+        <h3 class="profile-username text-center"><?= $input != null ? $input['namapencaker'] : ''; ?></h3>
+        <p class="text-muted text-center"><?= $input != null ? $input['email'] : '' ?></p>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
         <h4 class="panel-title">Edit Data Profil</h4>
-        </div>
-        <div class="panel-body">
+      </div>
+      <div class="panel-body">
         <div class="form-group">
           <label for="idpencaker" class="control-label col-md-3 col-md-offset-1">No. Pendaftaran</label>
           <div class="col-md-5">
@@ -227,9 +227,9 @@ if (!$this->input->post())
             <input id="simpan" name="simpan" class="btn btn-primary" type="submit" value="Simpan">
           </div>
         </div>
-        </div>
       </div>
-    </form>
+    </div>
+  </form>
 </section>
 <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', function() {

@@ -30,21 +30,21 @@
                 </thead>
                 <tbody>
                     <?php if ($this->pagination->total_rows > 0): ?>
-                    <?php $i = 0;  ?>
-                    <?php foreach ($MsEventData as $getdata): ?>
-                        <?php 
+                        <?php $i = 0;  ?>
+                        <?php foreach ($MsEventData as $getdata): ?>
+                            <?php 
 
-                        $detailbtn = '<a class="btn btn-default btn-sm" href="'.site_url('admin/event/updatedata')."/".$getdata->IDEvent.'" "><i class="fa fa-edit"></i> Edit</a>';
-                        $deletebtn = '<a class="btn btn-default btn-sm" onclick="DoDelete(\''.$getdata->IDEvent.'\') "><i class="fa fa-trash"></i> Hapus</a>';
-                        $i++;
-                        ?>
-                        <tr>
-                            <td class="text-left"><?php echo $i+$this->uri->segment(3) ?></td>
-                            <td class="text-left"><?php echo $getdata->TglEvent ?></td>
-                            <td class="text-left"><?php echo $getdata->JudulEvent ?></td>
-                            <td class="text-center"><?php echo $detailbtn.$deletebtn ?></td>
-                        </tr>
-                    <?php endforeach ?>
+                            $detailbtn = '<a class="btn btn-warning btn-sm" href="'.site_url('admin/event/updatedata')."/".$getdata->IDEvent.'" "><i class="fa fa-edit"></i> Edit</a> ';
+                            $deletebtn = '<a class="btn btn-danger btn-sm" onclick="DoDelete(\''.$getdata->IDEvent.'\') "><i class="fa fa-trash"></i> Hapus</a>';
+                            $i++;
+                            ?>
+                            <tr>
+                                <td class="text-left"><?php echo $i+$this->uri->segment(3) ?></td>
+                                <td class="text-left"><?php echo $getdata->TglEvent ?></td>
+                                <td class="text-left"><?php echo $getdata->JudulEvent ?></td>
+                                <td class="text-center"><?php echo $detailbtn.$deletebtn ?></td>
+                            </tr>
+                        <?php endforeach ?>
                     <?php else: ?>
                         <tr>
                             <td colspan="4" class="text-center">Belum ada data</td>
@@ -69,10 +69,10 @@
   function DoDelete(idkegiatan)
   {
     $.get('<?= site_url('admin/event/getdata') ?>/'+idkegiatan,
-    function(getdata)
-    {
-       if (getdata.exists)
-       {
+        function(getdata)
+        {
+         if (getdata.exists)
+         {
           swal({
             title: 'Hapus Kegiatan?',
             text: "Kegiatan "+getdata.JudulEvent+" akan dihapus!",
@@ -82,7 +82,7 @@
             cancelButtonColor: '#d33',
             confirmButtonText: 'Hapus!',
             cancelButtonText: 'Batal'
-          }).then((result) => {
+        }).then((result) => {
             if (result.value) {
                 $.ajax({
                     url: '<?= site_url('admin/event/deletedata') ?>',
@@ -94,17 +94,28 @@
                 });
                 
             }
-          })
-       }
-       else
-       {
-          swal({
-            type: 'error',
-            title: 'Oops...',
-            text: 'Kegiatan Tidak Ditemukan!'
-          })
-       }
-    },'json')
+        })
+    }
+    else
+    {
+      swal({
+        type: 'error',
+        title: 'Oops...',
+        text: 'Kegiatan Tidak Ditemukan!'
+    })
   }
+},'json')
+}
 
-  </script>
+</script>
+</script>
+<script type="text/javascript">
+    window.addEventListener( "pageshow", function ( event ) {
+      var historyTraversal = event.persisted || 
+      ( typeof window.performance != "undefined" && 
+          window.performance.navigation.type === 2 );
+      if ( historyTraversal ) {
+        window.location.reload();
+    }
+});
+</script>

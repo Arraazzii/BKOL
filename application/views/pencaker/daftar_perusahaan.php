@@ -27,21 +27,21 @@
                     </tr>
                 </thead>
                 <?php if ($MsPerusahaanData->num_rows > 0): ?>
-                <tbody>
-                    <?php foreach ($MsPerusahaanData->result() as $getdata): ?>
-                    <?php $i++; ?>
-                    <tr>
-                        <td><?php echo $i+$this->uri->segment(3) ?></td>
-                        <td><?php echo $getdata->NamaPerusahaan.'<br />'.$getdata->Alamat ?></td>
-                    </tr>
-                    <?php endforeach ?>
-                </tbody>    
+                    <tbody>
+                        <?php foreach ($MsPerusahaanData->result() as $getdata): ?>
+                            <?php $i++; ?>
+                            <tr>
+                                <td><?php echo $i+$this->uri->segment(3) ?></td>
+                                <td><?php echo $getdata->NamaPerusahaan.'<br />'.$getdata->Alamat ?></td>
+                            </tr>
+                        <?php endforeach ?>
+                    </tbody>    
                 <?php else: ?>
-                <tbody>
-                    <tr>
-                        <td colspan="2" class="text-center">Belum Ada Data</td>
-                    </tr>
-                </tbody>
+                    <tbody>
+                        <tr>
+                            <td colspan="2" class="text-center">Belum Ada Data</td>
+                        </tr>
+                    </tbody>
                 <?php endif ?>
             </table>
             <?php echo $this->pagination->create_links(); ?>

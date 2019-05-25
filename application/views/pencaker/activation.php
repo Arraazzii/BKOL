@@ -4,47 +4,47 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <table width="100%">
-        <tr>
-                <td align="center">
-                        <table width="100%" class="table-form">
-                                <tbody>
-                                        <tr>
-                                                <th align="center">
-                                                        <div align="center">
-                                                                AKTIVASI PENGGUNA
-                                                        </div>
-                                                </th>
-                                        </tr>
-                                        <tr>
-                                                <td align="left" valign="top">
-                                                        Untuk dapat menggunakan layanan pencari kerja, silahkan mengaktifkan akun anda dengan menekan tombol aktivasi.
-                                                </td>
-                                        </tr>
-                                        <tr>
-                                                <td align="left" valign="top">
-                                                        <div align="center">
-                                                                <a class="button" href="<?= site_url('pencaker/aktivasi') ?>">Aktivasi</a>
-                                                                <br />
-                                                        <?php
-                                                                if ($this->session->flashdata('error') != null){
-                                                                    echo $this->session->flashdata('error');
-                                                                }
-                                                        ?>
-                                                        </div>
-                                                </td>
-                                        </tr>
-                                </tbody>
-                        </table>
-                </td>
-        </tr>
+    <tr>
+        <td align="center">
+            <table width="100%" class="table-form">
+                <tbody>
+                    <tr>
+                        <th align="center">
+                            <div align="center">
+                                AKTIVASI PENGGUNA
+                            </div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td align="left" valign="top">
+                            Untuk dapat menggunakan layanan pencari kerja, silahkan mengaktifkan akun anda dengan menekan tombol aktivasi.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left" valign="top">
+                            <div align="center">
+                                <a class="button" href="<?= site_url('pencaker/aktivasi') ?>">Aktivasi</a>
+                                <br />
+                                <?php
+                                if ($this->session->flashdata('error') != null){
+                                    echo $this->session->flashdata('error');
+                                }
+                                ?>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
 </table>
 
 <script>
-$.get('<?= site_url('pencaker/getdata') ?>/'+IDPencaker,
-function(getdata)
-{
-        if (getdata.exists)
+    $.get('<?= site_url('pencaker/getdata') ?>/'+IDPencaker,
+        function(getdata)
         {
+            if (getdata.exists)
+            {
                 var bulan = new Array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
                 var tgllahir = getdata.TglLahir.split("-");
                 $('#nomorindukpencaker').html(getdata.NomorIndukPencaker);
@@ -74,10 +74,10 @@ function(getdata)
                 $('#upahyangdicari').html(getdata.UpahYangDicari);
                 $('#dialog-edit').dialog('option', 'title', 'Data Pencaker');
                 $("#dialog-edit").dialog("open");
-        }
-        else
-        {
+            }
+            else
+            {
                 alert('Pencaker tidak ditemukan');
-        }
-},'json')
-</script>
+            }
+        },'json')
+    </script>

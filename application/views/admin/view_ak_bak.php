@@ -2,91 +2,91 @@
 
 <head>
     <style type="text/css" media="print">
-        
+    
 
-        @page {
-            size: letter;
-            width: 50cm;
-            /* height: cm; */
-        }
-        
+    @page {
+        size: letter;
+        width: 50cm;
+        /* height: cm; */
+    }
+    
 
-        .kolom {
-            visibility: visible;
-        }
+    .kolom {
+        visibility: visible;
+    }
 
-        .ak {
-            width: 100%;
-            position: absolute;
-            left: 0px;
-            top: 0px;
-            z-index: -1;
-        }
-        
-        .nip_pencaker {
-            margin-left: 43.2em;
-            margin-top: 7.8em;
-            /* letter-spacing: 0.16em; */
-        }
+    .ak {
+        width: 100%;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        z-index: -1;
+    }
+    
+    .nip_pencaker {
+        margin-left: 43.2em;
+        margin-top: 7.8em;
+        /* letter-spacing: 0.16em; */
+    }
 
-        .nomor_penduduk {
-            margin-left: 43.2em;
-            margin-top: -1.2em;
-            /* letter-spacing: 0.15em; */
-        }
+    .nomor_penduduk {
+        margin-left: 43.2em;
+        margin-top: -1.2em;
+        /* letter-spacing: 0.15em; */
+    }
 
-        .nama_pencaker {
-            margin-left: 43.2em;
-            margin-top: -1.2em;
-            letter-spacing: 0.15em;
-        }
+    .nama_pencaker {
+        margin-left: 43.2em;
+        margin-top: -1.2em;
+        letter-spacing: 0.15em;
+    }
 
-        .tgl_tempat {
-            margin-left: 43.2em;
-            margin-top: -1.5em;
-            letter-spacing: 0.15em;
-        }
+    .tgl_tempat {
+        margin-left: 43.2em;
+        margin-top: -1.5em;
+        letter-spacing: 0.15em;
+    }
 
-        .jenkel {
-            margin-left: 43.2em;
-            margin-top: -1.5em;
-            letter-spacing: 0.15em;
-        }
+    .jenkel {
+        margin-left: 43.2em;
+        margin-top: -1.5em;
+        letter-spacing: 0.15em;
+    }
 
-        .status {
-            margin-left: 43.2em;
-            margin-top: -1.5em;
-            letter-spacing: 0.15em;
-        }
-        
-        .agama {
-            margin-left: 43.2em;
-            margin-top: -1.5em;
-            letter-spacing: 0.15em;
-        }
+    .status {
+        margin-left: 43.2em;
+        margin-top: -1.5em;
+        letter-spacing: 0.15em;
+    }
+    
+    .agama {
+        margin-left: 43.2em;
+        margin-top: -1.5em;
+        letter-spacing: 0.15em;
+    }
 
-        .alamat {
-            margin-left: 43.2em;
-            margin-top: -1.5em;
-            letter-spacing: 0.15em;
-        }
+    .alamat {
+        margin-left: 43.2em;
+        margin-top: -1.5em;
+        letter-spacing: 0.15em;
+    }
 
-        .pendidikan_formal {
-            position: relative;
-            top: -14.7em;
-        }
+    .pendidikan_formal {
+        position: relative;
+        top: -14.7em;
+    }
 
-        .keterampilan {
-            position: relative;
-            top: -9.5em;
-        }
-    </style>
+    .keterampilan {
+        position: relative;
+        top: -9.5em;
+    }
+</style>
 </head>
 
 <body>
     <?php
-        $fromdate = explode("-", substr($getdata->RegisterDate,0,10));
-        $todate = explode("-", $getdata->ExpiredDate);
+    $fromdate = explode("-", substr($getdata->RegisterDate,0,10));
+    $todate = explode("-", $getdata->ExpiredDate);
     ?>
     <p class="id_pencaker"><?php //echo $IDPencaker;?></p>
     <p class="nip_pencaker"><?php echo substr($NomorIndukPencaker,0,1) . "&nbsp;" . substr($NomorIndukPencaker,1,1) . "&nbsp;" . substr($NomorIndukPencaker,2,1) . "&nbsp;" . substr($NomorIndukPencaker,3,1) . "&nbsp;" . substr($NomorIndukPencaker,4,1) . "&nbsp;" . substr($NomorIndukPencaker,5,1) . "&nbsp;&nbsp;&nbsp;&nbsp;" . substr($NomorIndukPencaker,6,1) . "&nbsp;" . substr($NomorIndukPencaker,7,1) .  "&nbsp;" . substr($NomorIndukPencaker,8,1) . "&nbsp;&nbsp;" . substr($NomorIndukPencaker,9,1) . "&nbsp;" . substr($NomorIndukPencaker,10,1) . "&nbsp;" . substr($NomorIndukPencaker,11,1) . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . substr($NomorIndukPencaker,12,1) . "&nbsp;" . substr($NomorIndukPencaker,13,1) . "&nbsp;" . substr($NomorIndukPencaker,14,1) . "&nbsp;&nbsp;" . substr($NomorIndukPencaker,15,1); ?></p>

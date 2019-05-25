@@ -207,28 +207,28 @@
   </form>
 </section>
 <script type="text/javascript">
-function GetKelurahan(id)
-{
-        $.post('<?= site_url('GetKelurahan') ?>/'+id.value,
-        function(data){
-                document.getElementById('idkelurahan').innerHTML = data
-        })
-}
+  function GetKelurahan(id)
+  {
+    $.post('<?= site_url('GetKelurahan') ?>/'+id.value,
+      function(data){
+        document.getElementById('idkelurahan').innerHTML = data
+      })
+  }
 
-function getFormattedDate(date)
-{
-        var day = date.getDate();
-        var month = date.getMonth() + 1;
-        var year = date.getFullYear().toString();
-        return day + '-' + month + '-' + year;
-}
-document.addEventListener('DOMContentLoaded', function() {
-  $("#username").keypress(function (e){
-        if (e.which==32)
-        {
-                return false
-        }
+  function getFormattedDate(date)
+  {
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear().toString();
+    return day + '-' + month + '-' + year;
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    $("#username").keypress(function (e){
+      if (e.which==32)
+      {
+        return false
+      }
+    });
   });
-});
 </script>
 <!-- /.content -->

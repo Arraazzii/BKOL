@@ -2,14 +2,14 @@
 $input = $this->session->flashdata('input');
 if ($input != NULL)
 {
-    $MsKelurahanData = $input['MsKelurahanData'];
+  $MsKelurahanData = $input['MsKelurahanData'];
 }
 else
 {
-    $input['namapemberikerja'] = $MsPerusahaanData->NamaPemberiKerja;
-    $input['jabatanpemberikerja'] = $MsPerusahaanData->JabatanPemberiKerja;
-    $input['teleponpemberikerja'] = $MsPerusahaanData->TeleponPemberiKerja;
-    $input['emailpemberikerja'] = $MsPerusahaanData->EmailPemberiKerja;
+  $input['namapemberikerja'] = $MsPerusahaanData->NamaPemberiKerja;
+  $input['jabatanpemberikerja'] = $MsPerusahaanData->JabatanPemberiKerja;
+  $input['teleponpemberikerja'] = $MsPerusahaanData->TeleponPemberiKerja;
+  $input['emailpemberikerja'] = $MsPerusahaanData->EmailPemberiKerja;
 }
 ?>
 <!-- Content Header (Page header) -->
@@ -58,38 +58,38 @@ else
           </div>
         </div>
         <div class="form-group">
-            <div class="col-md-5 col-md-offset-3">
-                <a class="btn btn-default btn-sm" href="<?= site_url() ?>">Kembali</a>
-                <input id="simpan" class="btn btn-primary btn-sm" name="simpan" type="submit" value="Simpan">
-            </div>
+          <div class="col-md-5 col-md-offset-3">
+            <a class="btn btn-default btn-sm" href="<?= site_url() ?>">Kembali</a>
+            <input id="simpan" class="btn btn-primary btn-sm" name="simpan" type="submit" value="Simpan">
+          </div>
         </div>
       </div>
     </div>
   </form>
 </section>
 <script type="text/javascript">
-function GetKelurahan(id)
-{
-        $.post('<?= site_url('GetKelurahan') ?>/'+id.value,
-        function(data){
-                document.getElementById('idkelurahan').innerHTML = data
-        })
-}
+  function GetKelurahan(id)
+  {
+    $.post('<?= site_url('GetKelurahan') ?>/'+id.value,
+      function(data){
+        document.getElementById('idkelurahan').innerHTML = data
+      })
+  }
 
-function getFormattedDate(date)
-{
-        var day = date.getDate();
-        var month = date.getMonth() + 1;
-        var year = date.getFullYear().toString();
-        return day + '-' + month + '-' + year;
-}
-document.addEventListener('DOMContentLoaded', function() {
-  $("#username").keypress(function (e){
-        if (e.which==32)
-        {
-                return false
-        }
+  function getFormattedDate(date)
+  {
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear().toString();
+    return day + '-' + month + '-' + year;
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    $("#username").keypress(function (e){
+      if (e.which==32)
+      {
+        return false
+      }
+    });
   });
-});
 </script>
 <!-- /.content -->

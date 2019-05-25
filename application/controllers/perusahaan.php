@@ -10,13 +10,13 @@ class perusahaan extends CI_Controller {
             $data['MsPerusahaanData'] = $this->MsPerusahaan->GetMsPerusahaanByIDUser($this->session->userdata('iduser'));
             if ($data['MsPerusahaanData'] != NULL)
             {
-                    $data['route'] = $this->uri->segment(1);
+                $data['route'] = $this->uri->segment(1);
                     // $this->load->view('index',$data); 
-                    $this->template->load('backend', 'perusahaan/profil', $data);
+                $this->template->load('backend', 'perusahaan/profil', $data);
             }
             else
             {
-                    
+                
             }
         }
         else
@@ -778,531 +778,526 @@ class perusahaan extends CI_Controller {
                         )
                     );
 
-                    $this->form_validation->set_rules($config);
+$this->form_validation->set_rules($config);
 
-                    if ($this->form_validation->run() == FALSE)
-                    {
-                        $data['input'] = $input;
-                        $this->template->load('backend', 'perusahaan/tambah_lowongan', $data);
-                    }
-                    else
-                    { 
-                        
-                        $insert = $this->MsLowongan->Insert($idperusahaan,$input,$registerdate);
-                        
-                        if ($insert) 
-                        {
-                            $this->session->set_flashdata('notifikasi', '<script>notifikasi("Lowongan Berhasil Di Tambah", "success", "fa fa-check")</script>');
-                            redirect('perusahaan/lowongan');
-                        }
-                        else
-                        {
-                            $this->session->set_flashdata('notifikasi', '<script>notifikasi("Lowongan Gagal Di Tambah", "danger", "fa fa-exclamation")</script>');
-                            redirect('perusahaan/lowongan/tambahdata');
-                        }
-                    }
-                }
-                else
-                {
-                    $data['input'] = [];
-                    $this->template->load('backend', 'perusahaan/tambah_lowongan', $data);
-                }
-            }
-            else if ($this->uri->segment(3) == 'detail')
+if ($this->form_validation->run() == FALSE)
+{
+    $data['input'] = $input;
+    $this->template->load('backend', 'perusahaan/tambah_lowongan', $data);
+}
+else
+{ 
+    
+    $insert = $this->MsLowongan->Insert($idperusahaan,$input,$registerdate);
+    
+    if ($insert) 
+    {
+        $this->session->set_flashdata('notifikasi', '<script>notifikasi("Lowongan Berhasil Di Tambah", "success", "fa fa-check")</script>');
+        redirect('perusahaan/lowongan');
+    }
+    else
+    {
+        $this->session->set_flashdata('notifikasi', '<script>notifikasi("Lowongan Gagal Di Tambah", "danger", "fa fa-exclamation")</script>');
+        redirect('perusahaan/lowongan/tambahdata');
+    }
+}
+}
+else
+{
+    $data['input'] = [];
+    $this->template->load('backend', 'perusahaan/tambah_lowongan', $data);
+}
+}
+else if ($this->uri->segment(3) == 'detail')
+{
+    $idlowongan = $this->uri->segment(4);
+    $this->load->model('MsLowongan');
+    $MsLowonganData = $this->MsLowongan->GetMsLowonganByIDLowongan($idlowongan);
+
+    if ($MsLowonganData != NULL)
+    {
+        $data['MsLowonganData'] = $MsLowonganData;
+        $this->load->model('MsPosisiJabatan');
+        $data['MsPosisiJabatanData'] = $this->MsPosisiJabatan->GetComboMsPosisiJabatan();
+        $this->load->model('MsStatusPendidikan');
+        $data['MsStatusPendidikanData'] = $this->MsStatusPendidikan->GetComboMsStatusPendidikan();
+        $this->load->model('MsJenisLowongan');
+        $data['MsJenisLowonganData'] = $this->MsJenisLowongan->GetComboMsJenisLowongan();
+        $this->load->model('MsKeahlian');
+        $data['MsKeahlianData'] = $this->MsKeahlian->GetComboMsKeahlianByIDJenisLowongan($MsLowonganData->IDJenisLowongan);
+        $this->load->model('MsJenisPengupahan');
+        $data['MsJenisPengupahanData'] = $this->MsJenisPengupahan->GetComboMsJenisPengupahan();
+        $this->load->model('MsStatusHubunganKerja');
+        $data['MsStatusHubunganKerjaData'] = $this->MsStatusHubunganKerja->GetComboMsStatusHubunganKerja();
+        $tglberlaku = explode("-", $MsLowonganData->TglBerlaku);
+        $tglberakhir = explode("-", $MsLowonganData->TglBerakhir);
+        $data['IDLowongan'] = $MsLowonganData->IDLowongan;
+        
+        if ($this->input->post()) 
+        {
+            $input = $this->input->post();
+
+            $config = array(
+                array(
+                    'field' => 'namalowongan',
+                    'label' => 'Nama Lowongan',
+                    'rules' => 'required'
+                ),
+                array(
+                    'field' => 'uraianpekerjaan',
+                    'label' => 'Rincian Pekerjaan',
+                    'rules' => 'required'
+                ),
+                array(
+                    'field' => 'uraiantugas',
+                    'label' => 'Uraian Tugas',
+                    'rules' => 'required'
+                ),
+                array(
+                    'field' => 'penempatan',
+                    'label' => 'Lokasi Penempatan',
+                    'rules' => 'required'
+                ),
+                array(
+                    'field' => 'jmlpria',
+                    'label' => 'Jumlah Laki-laki',
+                    'rules' => 'required|numeric'
+                ),
+                array(
+                    'field' => 'jmlwanita',
+                    'label' => 'Jumlah Wanita',
+                    'rules' => 'required|numeric'
+                ),
+                array(
+                    'field' => 'batasumur',
+                    'label' => 'Batas Umur',
+                    'rules' => 'required|numeric|greater_than[17]',
+                    'error'=> array(
+                        'greater_than' => 'Batas Umur harus 18 Tahun Keatas'
+                    )
+                ),
+                array(
+                    'field' => 'idstatuspendidikan',
+                    'label' => 'Pendidikan Formal',
+                    'rules' => 'required'
+                ),
+                array(
+                    'field' => 'idposisijabatan',
+                    'label' => 'Posisi Jabatan',
+                    'rules' => 'required'
+                ),
+                array(
+                    'field' => 'jurusan',
+                    'label' => 'Jurusan',
+                    'rules' => 'required'
+                ),
+                array(
+                    'field' => 'idjenislowongan',
+                    'label' => 'Kategori',
+                    'rules' => 'required'
+                ),
+                array(
+                    'field' => 'idkeahlian',
+                    'label' => 'Keahlian',
+                    'rules' => 'required'
+                ),
+                array(
+                    'field' => 'pengalaman',
+                    'label' => 'Pengalaman',
+                    'rules' => 'required'
+                ),
+                array(
+                    'field' => 'syaratkhusus',
+                    'label' => 'Syarat Khusus',
+                    'rules' => 'required'
+                ),
+                array(
+                    'field' => 'idjenispengupahan',
+                    'label' => 'Jenis Pengupahan',
+                    'rules' => 'required'
+                ),
+                array(
+                    'field' => 'gajiperbulan',
+                    'label' => 'Gaji Perbulan',
+                    'rules' => 'required|numeric|greater_than[0]'
+                ),
+                array(
+                    'field' => 'idstatushubungankerja',
+                    'label' => 'Status Hubungan Kerja',
+                    'rules' => 'required'
+                ),
+                array(
+                    'field' => 'jamkerjaseminggu',
+                    'label' => 'Jam Kerja',
+                    'rules' => 'required|numeric|greater_than[0]'
+                )
+            );
+            
+            $this->form_validation->set_rules($config);
+
+            if ($this->form_validation->run() == FALSE)
             {
-                $idlowongan = $this->uri->segment(4);
-                $this->load->model('MsLowongan');
-                $MsLowonganData = $this->MsLowongan->GetMsLowonganByIDLowongan($idlowongan);
-
-                if ($MsLowonganData != NULL)
-                {
-                    $data['MsLowonganData'] = $MsLowonganData;
-                    $this->load->model('MsPosisiJabatan');
-                    $data['MsPosisiJabatanData'] = $this->MsPosisiJabatan->GetComboMsPosisiJabatan();
-                    $this->load->model('MsStatusPendidikan');
-                    $data['MsStatusPendidikanData'] = $this->MsStatusPendidikan->GetComboMsStatusPendidikan();
-                    $this->load->model('MsJenisLowongan');
-                    $data['MsJenisLowonganData'] = $this->MsJenisLowongan->GetComboMsJenisLowongan();
-                    $this->load->model('MsKeahlian');
-                    $data['MsKeahlianData'] = $this->MsKeahlian->GetComboMsKeahlianByIDJenisLowongan($MsLowonganData->IDJenisLowongan);
-                    $this->load->model('MsJenisPengupahan');
-                    $data['MsJenisPengupahanData'] = $this->MsJenisPengupahan->GetComboMsJenisPengupahan();
-                    $this->load->model('MsStatusHubunganKerja');
-                    $data['MsStatusHubunganKerjaData'] = $this->MsStatusHubunganKerja->GetComboMsStatusHubunganKerja();
-                    $tglberlaku = explode("-", $MsLowonganData->TglBerlaku);
-                    $tglberakhir = explode("-", $MsLowonganData->TglBerakhir);
-                    $data['IDLowongan'] = $MsLowonganData->IDLowongan;
-                    
-                    if ($this->input->post()) 
-                    {
-                        $input = $this->input->post();
-
-                        $config = array(
-                            array(
-                                'field' => 'namalowongan',
-                                'label' => 'Nama Lowongan',
-                                'rules' => 'required'
-                            ),
-                            array(
-                                'field' => 'uraianpekerjaan',
-                                'label' => 'Rincian Pekerjaan',
-                                'rules' => 'required'
-                            ),
-                            array(
-                                'field' => 'uraiantugas',
-                                'label' => 'Uraian Tugas',
-                                'rules' => 'required'
-                            ),
-                            array(
-                                'field' => 'penempatan',
-                                'label' => 'Lokasi Penempatan',
-                                'rules' => 'required'
-                            ),
-                            array(
-                                'field' => 'jmlpria',
-                                'label' => 'Jumlah Laki-laki',
-                                'rules' => 'required|numeric'
-                            ),
-                            array(
-                                'field' => 'jmlwanita',
-                                'label' => 'Jumlah Wanita',
-                                'rules' => 'required|numeric'
-                            ),
-                            array(
-                                'field' => 'batasumur',
-                                'label' => 'Batas Umur',
-                                'rules' => 'required|numeric|greater_than[17]',
-                                'error'=> array(
-                                    'greater_than' => 'Batas Umur harus 18 Tahun Keatas'
-                                )
-                            ),
-                            array(
-                                'field' => 'idstatuspendidikan',
-                                'label' => 'Pendidikan Formal',
-                                'rules' => 'required'
-                            ),
-                            array(
-                                'field' => 'idposisijabatan',
-                                'label' => 'Posisi Jabatan',
-                                'rules' => 'required'
-                            ),
-                            array(
-                                'field' => 'jurusan',
-                                'label' => 'Jurusan',
-                                'rules' => 'required'
-                            ),
-                            array(
-                                'field' => 'idjenislowongan',
-                                'label' => 'Kategori',
-                                'rules' => 'required'
-                            ),
-                            array(
-                                'field' => 'idkeahlian',
-                                'label' => 'Keahlian',
-                                'rules' => 'required'
-                            ),
-                            array(
-                                'field' => 'pengalaman',
-                                'label' => 'Pengalaman',
-                                'rules' => 'required'
-                            ),
-                            array(
-                                'field' => 'syaratkhusus',
-                                'label' => 'Syarat Khusus',
-                                'rules' => 'required'
-                            ),
-                            array(
-                                'field' => 'idjenispengupahan',
-                                'label' => 'Jenis Pengupahan',
-                                'rules' => 'required'
-                            ),
-                            array(
-                                'field' => 'gajiperbulan',
-                                'label' => 'Gaji Perbulan',
-                                'rules' => 'required|numeric|greater_than[0]'
-                            ),
-                            array(
-                                'field' => 'idstatushubungankerja',
-                                'label' => 'Status Hubungan Kerja',
-                                'rules' => 'required'
-                            ),
-                            array(
-                                'field' => 'jamkerjaseminggu',
-                                'label' => 'Jam Kerja',
-                                'rules' => 'required|numeric|greater_than[0]'
-                            )
-                        );
-                        
-                        $this->form_validation->set_rules($config);
-
-                        if ($this->form_validation->run() == FALSE)
-                        {
-                            $data['input'] = $input;
-                            $this->template->load('backend', 'perusahaan/detail_lowongan', $data);
-                        }
-                        else
-                        { 
-                            $iduser = $this->session->userdata('iduser');
-                            $registerdate = date('Y-m-d H:i:s');
-                            $this->load->model('MsPerusahaan');
-                            $idperusahaan = $this->MsPerusahaan->GetIDPerusahaanByIDUser($iduser);
-                            $this->load->model('MsLowongan');
-
-                            $update = $this->MsLowongan->Update($idlowongan,$idperusahaan,$input,$registerdate);
-                            
-                            if ($update) 
-                            {
-                                $this->session->set_flashdata('notifikasi', '<script>notifikasi("Lowongan Berhasil Di Update", "success", "fa fa-check")</script>');
-                                redirect('perusahaan/lowongan');
-                            }
-                            else
-                            {
-                                $this->session->set_flashdata('notifikasi', '<script>notifikasi("Lowongan Gagal Di Update", "danger", "fa fa-exclamation")</script>');
-                                redirect('perusahaan/lowongan/tambahdata');
-                            }
-                        }
-                    }
-                    else
-                    {
-                        $input['idposisijabatan'] = $MsLowonganData->IDPosisiJabatan;
-                        $input['idjenislowongan'] = $MsLowonganData->IDJenisLowongan;
-                        $input['idkeahlian'] = $MsLowonganData->IDKeahlian;
-                        $input['idstatuspendidikan'] = $MsLowonganData->IDStatusPendidikan;
-                        $input['idjenispengupahan'] = $MsLowonganData->IDJenisPengupahan;
-                        $input['idstatushubungankerja'] = $MsLowonganData->IDStatusHubunganKerja;
-                        $input['tglberlaku'] = $tglberlaku[2].'-'.$tglberlaku[1].'-'.$tglberlaku[0];
-                        $input['tglberakhir'] = $tglberakhir[2].'-'.$tglberakhir[1].'-'.$tglberakhir[0];
-                        $input['namalowongan'] = $MsLowonganData->NamaLowongan;
-                        $input['uraianpekerjaan'] = $MsLowonganData->UraianPekerjaan;
-                        $input['uraiantugas'] = $MsLowonganData->UraianTugas;
-                        $input['penempatan'] = $MsLowonganData->Penempatan;
-                        $input['batasumur'] = $MsLowonganData->BatasUmur;
-                        $input['jmlpria'] = $MsLowonganData->JmlPria;
-                        $input['jmlwanita'] = $MsLowonganData->JmlWanita;
-                        $input['jurusan'] = $MsLowonganData->Jurusan;
-                        $input['pengalaman'] = $MsLowonganData->Pengalaman;
-                        $input['syaratkhusus'] = $MsLowonganData->SyaratKhusus;
-                        $input['gajiperbulan'] = $MsLowonganData->GajiPerbulan;
-                        $input['jamkerjaseminggu'] = $MsLowonganData->JamKerjaSeminggu;
-                        $data['input'] = $input;
-                        $this->template->load('backend', 'perusahaan/detail_lowongan', $data);
-                    }
-                }
-                else
-                {
-                    $this->template->load('backend', 'perusahaan/detail_lowongan', $data);
-                }
-
-            }
-            else if ($this->uri->segment(3) == 'delete') 
-            {
-                $idlowongan = $this->uri->segment(4);
-                $this->load->model('MsLowongan');
-                $this->MsLowongan->delete($idlowongan);
-                $this->session->set_flashdata('notifikasi', '<script>notifikasi("Lowongan Berhasil Di Hapus", "success", "fa fa-check")</script>');
-                            redirect('perusahaan/lowongan');
-                redirect('perusahaan/lowongan');
+                $data['input'] = $input;
+                $this->template->load('backend', 'perusahaan/detail_lowongan', $data);
             }
             else
-            {
-                $page = $this->uri->segment(3);
+            { 
                 $iduser = $this->session->userdata('iduser');
+                $registerdate = date('Y-m-d H:i:s');
                 $this->load->model('MsPerusahaan');
                 $idperusahaan = $this->MsPerusahaan->GetIDPerusahaanByIDUser($iduser);
-                $data['fromdate'] = $this->session->userdata('fromdate');
-                $data['todate'] = $this->session->userdata('todate');
                 $this->load->model('MsLowongan');
-                if ($data['fromdate'] == '' || $data['todate'] == '')
+
+                $update = $this->MsLowongan->Update($idlowongan,$idperusahaan,$input,$registerdate);
+                
+                if ($update) 
                 {
-                    $getmslowongan = $this->MsLowongan->GetGridMsLowonganByIDPerusahaan($idperusahaan, 10,$page);
-                    $getcount = $this->MsLowongan->GetCountMsLowonganByIDPerusahaan($idperusahaan);
+                    $this->session->set_flashdata('notifikasi', '<script>notifikasi("Lowongan Berhasil Di Update", "success", "fa fa-check")</script>');
+                    redirect('perusahaan/lowongan');
                 }
                 else
                 {
-                    $getmslowongan = $this->MsLowongan->GetGridMsLowonganByDateIDPerusahaan($idperusahaan, $data['fromdate'],$data['todate'],10,$page);
-                    $getcount = $this->MsLowongan->GetCountMsLowonganByDateIDPerusahaan($idperusahaan, $data['fromdate'],$data['todate']);
+                    $this->session->set_flashdata('notifikasi', '<script>notifikasi("Lowongan Gagal Di Update", "danger", "fa fa-exclamation")</script>');
+                    redirect('perusahaan/lowongan/tambahdata');
                 }
-                $data['MsLowonganData'] = $getmslowongan;
-                $config['base_url'] = site_url('perusahaan/lowongan');
-                $config['total_rows'] = $getcount->total_rows;
-                $config['per_page'] = 10;
-                $this->pagination->initialize($config);
-                $data['route'] = $this->uri->segment(2);
-                $this->template->load('backend', 'perusahaan/lowongan', $data);
             }
-            // $this->load->view('index2',$data);
         }
         else
         {
-            redirect();
+            $input['idposisijabatan'] = $MsLowonganData->IDPosisiJabatan;
+            $input['idjenislowongan'] = $MsLowonganData->IDJenisLowongan;
+            $input['idkeahlian'] = $MsLowonganData->IDKeahlian;
+            $input['idstatuspendidikan'] = $MsLowonganData->IDStatusPendidikan;
+            $input['idjenispengupahan'] = $MsLowonganData->IDJenisPengupahan;
+            $input['idstatushubungankerja'] = $MsLowonganData->IDStatusHubunganKerja;
+            $input['tglberlaku'] = $tglberlaku[2].'-'.$tglberlaku[1].'-'.$tglberlaku[0];
+            $input['tglberakhir'] = $tglberakhir[2].'-'.$tglberakhir[1].'-'.$tglberakhir[0];
+            $input['namalowongan'] = $MsLowonganData->NamaLowongan;
+            $input['uraianpekerjaan'] = $MsLowonganData->UraianPekerjaan;
+            $input['uraiantugas'] = $MsLowonganData->UraianTugas;
+            $input['penempatan'] = $MsLowonganData->Penempatan;
+            $input['batasumur'] = $MsLowonganData->BatasUmur;
+            $input['jmlpria'] = $MsLowonganData->JmlPria;
+            $input['jmlwanita'] = $MsLowonganData->JmlWanita;
+            $input['jurusan'] = $MsLowonganData->Jurusan;
+            $input['pengalaman'] = $MsLowonganData->Pengalaman;
+            $input['syaratkhusus'] = $MsLowonganData->SyaratKhusus;
+            $input['gajiperbulan'] = $MsLowonganData->GajiPerbulan;
+            $input['jamkerjaseminggu'] = $MsLowonganData->JamKerjaSeminggu;
+            $data['input'] = $input;
+            $this->template->load('backend', 'perusahaan/detail_lowongan', $data);
         }
     }
-
-    public function carilowongan()
+    else
     {
-        if ($this->isperusahaan())
+        $this->template->load('backend', 'perusahaan/detail_lowongan', $data);
+    }
+
+}
+else if ($this->uri->segment(3) == 'delete') 
+{
+    $idlowongan = $this->uri->segment(4);
+    $this->load->model('MsLowongan');
+    $this->MsLowongan->delete($idlowongan);
+    $this->session->set_flashdata('notifikasi', '<script>notifikasi("Lowongan Berhasil Di Hapus", "success", "fa fa-check")</script>');
+    redirect('perusahaan/lowongan');
+    redirect('perusahaan/lowongan');
+}
+else
+{
+    $page = $this->uri->segment(3);
+    $iduser = $this->session->userdata('iduser');
+    $this->load->model('MsPerusahaan');
+    $idperusahaan = $this->MsPerusahaan->GetIDPerusahaanByIDUser($iduser);
+    $data['fromdate'] = $this->session->userdata('fromdate');
+    $data['todate'] = $this->session->userdata('todate');
+    $this->load->model('MsLowongan');
+    if ($data['fromdate'] == '' || $data['todate'] == '')
+    {
+        $getmslowongan = $this->MsLowongan->GetGridMsLowonganByIDPerusahaan($idperusahaan, 10,$page);
+        $getcount = $this->MsLowongan->GetCountMsLowonganByIDPerusahaan($idperusahaan);
+    }
+    else
+    {
+        $getmslowongan = $this->MsLowongan->GetGridMsLowonganByDateIDPerusahaan($idperusahaan, $data['fromdate'],$data['todate'],10,$page);
+        $getcount = $this->MsLowongan->GetCountMsLowonganByDateIDPerusahaan($idperusahaan, $data['fromdate'],$data['todate']);
+    }
+    $data['MsLowonganData'] = $getmslowongan;
+    $config['base_url'] = site_url('perusahaan/lowongan');
+    $config['total_rows'] = $getcount->total_rows;
+    $config['per_page'] = 10;
+    $this->pagination->initialize($config);
+    $data['route'] = $this->uri->segment(2);
+    $this->template->load('backend', 'perusahaan/lowongan', $data);
+}
+            // $this->load->view('index2',$data);
+}
+else
+{
+    redirect();
+}
+}
+
+public function carilowongan()
+{
+    if ($this->isperusahaan())
+    {
+        $input = $this->input->post();
+        $iduser = $this->session->userdata('iduser');
+        $this->load->model('MsPerusahaan');
+        $idperusahaan = $this->MsPerusahaan->GetIDPerusahaanByIDUser($iduser);
+        $this->session->set_userdata("fromdate",$input['fromdate']);
+        $this->session->set_userdata("todate",$input['todate']);
+        $data['fromdate'] = $input['fromdate'];
+        $data['todate'] = $input['todate'];
+        $this->load->model('MsLowongan');
+        $page = $this->uri->segment(3);
+        if ($data['fromdate'] == '' || $data['todate'] == '')
         {
-            $input = $this->input->post();
-            $iduser = $this->session->userdata('iduser');
-            $this->load->model('MsPerusahaan');
-            $idperusahaan = $this->MsPerusahaan->GetIDPerusahaanByIDUser($iduser);
-            $this->session->set_userdata("fromdate",$input['fromdate']);
-            $this->session->set_userdata("todate",$input['todate']);
-            $data['fromdate'] = $input['fromdate'];
-            $data['todate'] = $input['todate'];
-            $this->load->model('MsLowongan');
-            $page = $this->uri->segment(3);
-            if ($data['fromdate'] == '' || $data['todate'] == '')
-            {
-                $getmslowongan = $this->MsLowongan->GetGridMsLowonganByIDPerusahaan($idperusahaan, 100,$page);
-                $getcount = $this->MsLowongan->GetCountMsLowonganByIDPerusahaan($idperusahaan);
-            }
-            else
-            {
-                $getmslowongan = $this->MsLowongan->GetGridMsLowonganByDateIDPerusahaan($idperusahaan, $data['fromdate'],$data['todate'],10,$page);
-                $getcount = $this->MsLowongan->GetCountMsLowonganByDateIDPerusahaan($idperusahaan, $data['fromdate'],$data['todate']);
-            }
-            $data['MsLowonganData'] = $getmslowongan;
-            $config['base_url'] = site_url('perusahaan/lowongan');
-            $config['total_rows'] = $getcount->total_rows;
-            $config['per_page'] = 100;
-            $this->pagination->initialize($config);
+            $getmslowongan = $this->MsLowongan->GetGridMsLowonganByIDPerusahaan($idperusahaan, 100,$page);
+            $getcount = $this->MsLowongan->GetCountMsLowonganByIDPerusahaan($idperusahaan);
+        }
+        else
+        {
+            $getmslowongan = $this->MsLowongan->GetGridMsLowonganByDateIDPerusahaan($idperusahaan, $data['fromdate'],$data['todate'],10,$page);
+            $getcount = $this->MsLowongan->GetCountMsLowonganByDateIDPerusahaan($idperusahaan, $data['fromdate'],$data['todate']);
+        }
+        $data['MsLowonganData'] = $getmslowongan;
+        $config['base_url'] = site_url('perusahaan/lowongan');
+        $config['total_rows'] = $getcount->total_rows;
+        $config['per_page'] = 100;
+        $this->pagination->initialize($config);
             // $data['route'] = 'lowongan';
             // $this->load->view('index',$data);
-            $this->template->load('backend', 'perusahaan/daftar_lowongan', $data);
-        }
-        else
-        {
-            redirect();
-        }
+        $this->template->load('backend', 'perusahaan/daftar_lowongan', $data);
     }
-
-    public function statuslowongan()
+    else
     {
-        if ($this->isperusahaan())
+        redirect();
+    }
+}
+
+public function statuslowongan()
+{
+    if ($this->isperusahaan())
+    {
+
+        if ($this->uri->segment(3) == 'getdata')
         {
-
-            if ($this->uri->segment(3) == 'getdata')
+            $idlowonganmasuk = $this->uri->segment(4);
+            $this->load->model('TrLowonganMasuk');
+            $this->load->model('MsPengalaman');
+            $this->load->model('MsBahasa');
+            $getmspencaker = $this->TrLowonganMasuk->GetMsPencakerByIDLowonganMasuk($idlowonganmasuk);
+            if ($getmspencaker != NULL)
             {
-                $idlowonganmasuk = $this->uri->segment(4);
-                $this->load->model('TrLowonganMasuk');
-                $this->load->model('MsPengalaman');
-                $this->load->model('MsBahasa');
-                $getmspencaker = $this->TrLowonganMasuk->GetMsPencakerByIDLowonganMasuk($idlowonganmasuk);
-                if ($getmspencaker != NULL)
+                $data['exists'] = true;
+                $data['IDPencaker'] = $getmspencaker->IDPencaker;
+                $data['NomorIndukPencaker'] = $getmspencaker->NomorIndukPencaker;
+                $data['NamaPencaker'] = $getmspencaker->NamaPencaker;
+                $data['TempatLahir'] = $getmspencaker->TempatLahir;
+                $data['TglLahir'] = $getmspencaker->TglLahir;
+                $data['JenisKelamin'] = $getmspencaker->JenisKelamin;
+                $data['Email'] = $getmspencaker->Email;
+                $data['Telepon'] = $getmspencaker->Telepon;
+                $data['Alamat'] = $getmspencaker->Alamat;
+                $data['NamaKecamatan'] = $getmspencaker->NamaKecamatan;
+                $data['NamaKelurahan'] = $getmspencaker->NamaKelurahan;
+                $data['KodePos'] = $getmspencaker->KodePos;
+                $data['Kewarganegaraan'] = $getmspencaker->Kewarganegaraan;
+                $data['NamaAgama'] = $getmspencaker->NamaAgama;
+                $data['NamaStatusPernikahan'] = $getmspencaker->NamaStatusPernikahan;
+                $data['NamaStatusPendidikan'] = $getmspencaker->NamaStatusPendidikan;
+                $data['Jurusan'] = $getmspencaker->Jurusan;
+                $data['Keterampilan'] = $getmspencaker->Keterampilan;
+                $data['NEMIPK'] = $getmspencaker->NEMIPK;
+                $data['Nilai'] = $getmspencaker->Nilai;
+                $data['TahunLulus'] = $getmspencaker->TahunLulus;
+                $data['TinggiBadan'] = $getmspencaker->TinggiBadan;
+                $data['BeratBadan'] = $getmspencaker->BeratBadan;
+                $data['Keterangan'] = $getmspencaker->Keterangan;
+                $data['IDPosisiJabatan'] = $getmspencaker->IDPosisiJabatan;
+                $data['NamaPosisiJabatan'] = $getmspencaker->NamaPosisiJabatan;
+                $data['Lokasi'] = $getmspencaker->Lokasi;
+                $data['UpahYangDicari'] = number_format($getmspencaker->UpahYangDicari);
+                $data['StatusLowongan'] = $getmspencaker->StatusLowongan;
+                $data['PengalamanData'] = "";
+
+                $getmspengalamandata = $this->MsPengalaman->GetMsPengalamanByIDPencaker($getmspencaker->IDPencaker);
+                
+                if ($getmspengalamandata->num_rows() > 0)
                 {
-                    $data['exists'] = true;
-                    $data['IDPencaker'] = $getmspencaker->IDPencaker;
-                    $data['NomorIndukPencaker'] = $getmspencaker->NomorIndukPencaker;
-                    $data['NamaPencaker'] = $getmspencaker->NamaPencaker;
-                    $data['TempatLahir'] = $getmspencaker->TempatLahir;
-                    $data['TglLahir'] = $getmspencaker->TglLahir;
-                    $data['JenisKelamin'] = $getmspencaker->JenisKelamin;
-                    $data['Email'] = $getmspencaker->Email;
-                    $data['Telepon'] = $getmspencaker->Telepon;
-                    $data['Alamat'] = $getmspencaker->Alamat;
-                    $data['NamaKecamatan'] = $getmspencaker->NamaKecamatan;
-                    $data['NamaKelurahan'] = $getmspencaker->NamaKelurahan;
-                    $data['KodePos'] = $getmspencaker->KodePos;
-                    $data['Kewarganegaraan'] = $getmspencaker->Kewarganegaraan;
-                    $data['NamaAgama'] = $getmspencaker->NamaAgama;
-                    $data['NamaStatusPernikahan'] = $getmspencaker->NamaStatusPernikahan;
-                    $data['NamaStatusPendidikan'] = $getmspencaker->NamaStatusPendidikan;
-                    $data['Jurusan'] = $getmspencaker->Jurusan;
-                    $data['Keterampilan'] = $getmspencaker->Keterampilan;
-                    $data['NEMIPK'] = $getmspencaker->NEMIPK;
-                    $data['Nilai'] = $getmspencaker->Nilai;
-                    $data['TahunLulus'] = $getmspencaker->TahunLulus;
-                    $data['TinggiBadan'] = $getmspencaker->TinggiBadan;
-                    $data['BeratBadan'] = $getmspencaker->BeratBadan;
-                    $data['Keterangan'] = $getmspencaker->Keterangan;
-                    $data['IDPosisiJabatan'] = $getmspencaker->IDPosisiJabatan;
-                    $data['NamaPosisiJabatan'] = $getmspencaker->NamaPosisiJabatan;
-                    $data['Lokasi'] = $getmspencaker->Lokasi;
-                    $data['UpahYangDicari'] = number_format($getmspencaker->UpahYangDicari);
-                    $data['StatusLowongan'] = $getmspencaker->StatusLowongan;
-                    $data['PengalamanData'] = "";
-
-                    $getmspengalamandata = $this->MsPengalaman->GetMsPengalamanByIDPencaker($getmspencaker->IDPencaker);
-                    
-                    if ($getmspengalamandata->num_rows() > 0)
+                    $data['PengalamanData'] .= '<ul>';
+                    foreach ($getmspengalamandata->result() as $getdata)
                     {
-                        $data['PengalamanData'] .= '<ul>';
-                        foreach ($getmspengalamandata->result() as $getdata)
+                        $lama = $getdata->lamabekerja;
+                        $lm = $lama . ' Hari';
+
+                        if($lama < 365)
                         {
-                            $lama = $getdata->lamabekerja;
-                            $lm = $lama . ' Hari';
-
-                            if($lama < 365)
-                            {
-                                $lama = floor($lama / 30);
-                                $lm = $lama . ' Bulan';
-                            }
-                            else if ($lama >= 365)
-                            {
-                                $lama = round($lama / 365, 1);
-                                $lm = $lama . ' Tahun';
-                            }
-
-                            $data['PengalamanData'] .=  '<li>'.$getdata->Jabatan . ', ' . $getdata->NamaPerusahaan.', '.$lm.'</li>';
+                            $lama = floor($lama / 30);
+                            $lm = $lama . ' Bulan';
                         }
-                        $data['PengalamanData'] .= '</ul>';
-                    }
-                    else
-                    {
-                        $data['PengalamanData'] .= 'tidak ada data';
-                    }
-
-                    $getmsbahasadata = $this->MsBahasa->GetMsBahasaByIDPencaker($getmspencaker->IDPencaker);
-                    $data['BahasaData'] = "";
-                    if ($getmsbahasadata->num_rows() > 0)
-                    {
-                        $data['BahasaData'] .= '<ul>';
-                        foreach ($getmsbahasadata->result() as $getdata)
+                        else if ($lama >= 365)
                         {
-                            $data['BahasaData'] .=  '<li>'.$getdata->NamaBahasa.'</li>';
+                            $lama = round($lama / 365, 1);
+                            $lm = $lama . ' Tahun';
                         }
-                        $data['BahasaData'] .= '</ul>';
-                    }
-                    else
-                    {
-                        $data['BahasaData'] .= 'tidak ada data';
-                    }
 
+                        $data['PengalamanData'] .=  '<li>'.$getdata->Jabatan . ', ' . $getdata->NamaPerusahaan.', '.$lm.'</li>';
+                    }
+                    $data['PengalamanData'] .= '</ul>';
                 }
                 else
                 {
-                    $data['exists'] = false;
+                    $data['PengalamanData'] .= 'tidak ada data';
                 }
-                echo json_encode($data);
-            }
-            else if ($this->uri->segment(3) == 'updatedata')
-            {
-                $input = $this->input->post();
-                $this->load->model('TrLowonganMasuk');
-                if ($this->TrLowonganMasuk->UpdateStatusLowongan($input,$input['IDLowonganMasuk']))
+
+                $getmsbahasadata = $this->MsBahasa->GetMsBahasaByIDPencaker($getmspencaker->IDPencaker);
+                $data['BahasaData'] = "";
+                if ($getmsbahasadata->num_rows() > 0)
                 {
-                    $data['valid'] = true;
-                    $data['error'] = "Data Lowongan berhasil disimpan";
+                    $data['BahasaData'] .= '<ul>';
+                    foreach ($getmsbahasadata->result() as $getdata)
+                    {
+                        $data['BahasaData'] .=  '<li>'.$getdata->NamaBahasa.'</li>';
+                    }
+                    $data['BahasaData'] .= '</ul>';
                 }
                 else
                 {
-                    $data['valid'] = false;
-                    $data['error'] = "Data Lowongan gagal disimpan";
+                    $data['BahasaData'] .= 'tidak ada data';
                 }
-                echo json_encode($data);
+
             }
             else
             {
-                $page = $this->uri->segment(3);
-                $data['fromdate'] = $this->session->userdata('fromdate');
-                $data['todate'] = $this->session->userdata('todate');
-                $this->load->model('MsLowongan');
-                if ($data['fromdate'] == '' || $data['todate'] == '')
-                {
-                    $getmslowongan = $this->MsLowongan->GetGridMsLowonganStatus(10,$page);
-                    $getcount = $this->MsLowongan->GetCountMsLowonganStatus();
-                }
-                else
-                {
-                    $getmslowongan = $this->MsLowongan->GetGridMsLowonganStatusByDate($data['fromdate'],$data['todate'],10,$page);
-                    $getcount = $this->MsLowongan->GetCountMsLowonganStatusByDate($data['fromdate'],$data['todate']);
-                }
-                // var_dump($getcount);
-                $data['TotalPria'] = $getcount->TotalPria;
-                $data['TotalWanita'] = $getcount->TotalWanita;
-                $data['MsLowonganData'] = $getmslowongan;
-                $config['base_url'] = site_url('perusahaan/statuslowongan');
-                $config['total_rows'] = $getcount->total_rows;
-                $config['per_page'] = 10;
-                $this->pagination->initialize($config);
-                $this->template->load('backend', 'perusahaan/daftar_statuslowongan', $data);
+                $data['exists'] = false;
             }
+            echo json_encode($data);
         }
-        if ($this->isperusahaan())
+        else if ($this->uri->segment(3) == 'updatedata')
         {
+            $input = $this->input->post();
+            $this->load->model('TrLowonganMasuk');
+            if ($this->TrLowonganMasuk->UpdateStatusLowongan($input,$input['IDLowonganMasuk']))
+            {
+                $data['valid'] = true;
+                $data['error'] = "Data Lowongan berhasil disimpan";
+            }
+            else
+            {
+                $data['valid'] = false;
+                $data['error'] = "Data Lowongan gagal disimpan";
+            }
+            echo json_encode($data);
         }
         else
         {
-            redirect();
-        }
-    }
-
-    public function caristatuslowongan()
-    {
-        if ($this->isperusahaan())
-        {
-            $input = $this->input->post();
-            $this->session->set_userdata("fromdate",$input['fromdate']);
-            $this->session->set_userdata("todate",$input['todate']);
-            $data['fromdate'] = $input['fromdate'];
-            $data['todate'] = $input['todate'];
-            $this->load->model('MsLowongan');
             $page = $this->uri->segment(3);
+            $data['fromdate'] = $this->session->userdata('fromdate');
+            $data['todate'] = $this->session->userdata('todate');
+            $this->load->model('MsLowongan');
             if ($data['fromdate'] == '' || $data['todate'] == '')
             {
-                $getmslowongan = $this->MsLowongan->GetGridMsLowonganStatus(100,$page);
+                $getmslowongan = $this->MsLowongan->GetGridMsLowonganStatus(10,$page);
                 $getcount = $this->MsLowongan->GetCountMsLowonganStatus();
             }
             else
             {
-                $getmslowongan = $this->MsLowongan->GetGridMsLowonganStatusByDate($data['fromdate'],$data['todate'],100,$page);
+                $getmslowongan = $this->MsLowongan->GetGridMsLowonganStatusByDate($data['fromdate'],$data['todate'],10,$page);
                 $getcount = $this->MsLowongan->GetCountMsLowonganStatusByDate($data['fromdate'],$data['todate']);
             }
-            $data['MsLowonganData'] = $getmslowongan;
+                // var_dump($getcount);
             $data['TotalPria'] = $getcount->TotalPria;
             $data['TotalWanita'] = $getcount->TotalWanita;
+            $data['MsLowonganData'] = $getmslowongan;
             $config['base_url'] = site_url('perusahaan/statuslowongan');
             $config['total_rows'] = $getcount->total_rows;
-            $config['per_page'] = 100;
+            $config['per_page'] = 10;
             $this->pagination->initialize($config);
             $this->template->load('backend', 'perusahaan/daftar_statuslowongan', $data);
         }
-        else
-        {
-            redirect();
-        }
     }
-
-
-    public function deletelowongan()
+    if ($this->isperusahaan())
     {
-        if ($this->isperusahaan())
+    }
+    else
+    {
+        redirect();
+    }
+}
+
+public function caristatuslowongan()
+{
+    if ($this->isperusahaan())
+    {
+        $input = $this->input->post();
+        $this->session->set_userdata("fromdate",$input['fromdate']);
+        $this->session->set_userdata("todate",$input['todate']);
+        $data['fromdate'] = $input['fromdate'];
+        $data['todate'] = $input['todate'];
+        $this->load->model('MsLowongan');
+        $page = $this->uri->segment(3);
+        if ($data['fromdate'] == '' || $data['todate'] == '')
         {
-            $iduser = $this->session->userdata('iduser');
-            $idlowongan = $this->uri->segment(3);
-            $this->load->model('MsPerusahaan');
-            $idperusahaan = $this->MsPerusahaan->GetIDPerusahaanByIDUser($iduser);
-            if ($idperusahaan != NULL)
-            {
-                $this->load->model('MsLowongan');
-                $this->MsLowongan->DeleteByIDPerusahaan($idlowongan,$idperusahaan);
-                redirect('perusahaan/lowongan');
-            }
+            $getmslowongan = $this->MsLowongan->GetGridMsLowonganStatus(100,$page);
+            $getcount = $this->MsLowongan->GetCountMsLowonganStatus();
         }
         else
         {
-            redirect();
+            $getmslowongan = $this->MsLowongan->GetGridMsLowonganStatusByDate($data['fromdate'],$data['todate'],100,$page);
+            $getcount = $this->MsLowongan->GetCountMsLowonganStatusByDate($data['fromdate'],$data['todate']);
         }
+        $data['MsLowonganData'] = $getmslowongan;
+        $data['TotalPria'] = $getcount->TotalPria;
+        $data['TotalWanita'] = $getcount->TotalWanita;
+        $config['base_url'] = site_url('perusahaan/statuslowongan');
+        $config['total_rows'] = $getcount->total_rows;
+        $config['per_page'] = 100;
+        $this->pagination->initialize($config);
+        $this->template->load('backend', 'perusahaan/daftar_statuslowongan', $data);
     }
+    else
+    {
+        redirect();
+    }
+}
 
-    function isperusahaan()
+
+public function deletelowongan()
+{
+    if ($this->isperusahaan())
     {
         $iduser = $this->session->userdata('iduser');
-        if ($iduser != '')
+        $idlowongan = $this->uri->segment(3);
+        $this->load->model('MsPerusahaan');
+        $idperusahaan = $this->MsPerusahaan->GetIDPerusahaanByIDUser($iduser);
+        if ($idperusahaan != NULL)
         {
-            $this->load->model('MsUser');
-            $getmsuser = $this->MsUser->GetMsUserByIDUser($iduser);
-            if ($getmsuser != NULL)
+            $this->load->model('MsLowongan');
+            $this->MsLowongan->DeleteByIDPerusahaan($idlowongan,$idperusahaan);
+            redirect('perusahaan/lowongan');
+        }
+    }
+    else
+    {
+        redirect();
+    }
+}
+
+function isperusahaan()
+{
+    $iduser = $this->session->userdata('iduser');
+    if ($iduser != '')
+    {
+        $this->load->model('MsUser');
+        $getmsuser = $this->MsUser->GetMsUserByIDUser($iduser);
+        if ($getmsuser != NULL)
+        {
+            if ($getmsuser->IDJenisUser == '000001')
             {
-                if ($getmsuser->IDJenisUser == '000001')
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return true;
             }
             else
             {
@@ -1314,62 +1309,67 @@ class perusahaan extends CI_Controller {
             return false;
         }
     }
-
-    function seterrormsg($input,$msg)
+    else
     {
-        if ($input != NULL)
-        {
-            $this->session->set_flashdata('input',$input);
-        }
-        if ($msg != NULL)
-        {
-            $this->session->set_flashdata('error',$msg);
-        }
+        return false;
     }
+}
 
-    public function chat()
+function seterrormsg($input,$msg)
+{
+    if ($input != NULL)
     {
-        $this->load->model('MsChat');
-
-        if ($this->isperusahaan())
-        {               
-            $id_user= $this->session->userdata('iduser');
-            $this->MsChat->Read_user($id_user);
-            $data['iduser'] = $id_user;
-            $data['route'] = $this->uri->segment(2);
-            $this->load->view('index',$data);
-
-        }
+        $this->session->set_flashdata('input',$input);
     }
-    public function send_chat($pengirim,$pesan)
+    if ($msg != NULL)
     {
-        $this->load->model('MsChat');
-        $data['pengirim']=$pengirim;
-        $data['penerima']='admin';
-        $data['pesan']=urldecode($pesan);
-        $data['date']=date("Y-m-d H:i:s");
-        $data['status']='D';
-        $kirim=$this->MsChat->Insert($data);
-        if ($kirim==TRUE) {
-            echo json_encode($data);
-        }
+        $this->session->set_flashdata('error',$msg);
     }
+}
 
-    public function get_chat($pengirim,$jum_chat){
-        $this->load->model('MsChat');
-        $get=$this->MsChat->GetBypengirim($pengirim);
-        if ($get->num_rows()>$jum_chat) {
-            $output['message']=$get->result_array();
-            $output['jum_message']=$get->num_rows();
-            $output['status']="TRUE";
-            echo json_encode($output);
-        }else{
-            $output['status']="FALSE";
-            echo json_encode($output);   
-        }
+public function chat()
+{
+    $this->load->model('MsChat');
 
+    if ($this->isperusahaan())
+    {               
+        $id_user= $this->session->userdata('iduser');
+        $this->MsChat->Read_user($id_user);
+        $data['iduser'] = $id_user;
+        $data['route'] = $this->uri->segment(2);
+        $this->load->view('index',$data);
 
     }
+}
+public function send_chat($pengirim,$pesan)
+{
+    $this->load->model('MsChat');
+    $data['pengirim']=$pengirim;
+    $data['penerima']='admin';
+    $data['pesan']=urldecode($pesan);
+    $data['date']=date("Y-m-d H:i:s");
+    $data['status']='D';
+    $kirim=$this->MsChat->Insert($data);
+    if ($kirim==TRUE) {
+        echo json_encode($data);
+    }
+}
+
+public function get_chat($pengirim,$jum_chat){
+    $this->load->model('MsChat');
+    $get=$this->MsChat->GetBypengirim($pengirim);
+    if ($get->num_rows()>$jum_chat) {
+        $output['message']=$get->result_array();
+        $output['jum_message']=$get->num_rows();
+        $output['status']="TRUE";
+        echo json_encode($output);
+    }else{
+        $output['status']="FALSE";
+        echo json_encode($output);   
+    }
+
+
+}
 
 }
 

@@ -182,29 +182,29 @@ class pencaker extends CI_Controller {
             // }
             else if ($_FILES['photo']['error'] > 0)
             {
-                    switch ($_FILES['photo']['error'])
-                    {
-                            case 1:
-                                    $this->seterrormsg($input,"Ukuran file foto maksimal 2 MB");
-                                    break;
-                            case 2:
-                                    $this->seterrormsg($input,"Ukuran file foto maksimal 2 MB");
-                                    break;
-                            case 3:
-                                    $this->seterrormsg($input,"Foto belum diupload sepenuhnya");
-                                    break;
-                            case 4:
-                                    $this->seterrormsg($input,"Foto belum diupload");
-                                    break;
-                    }
+                switch ($_FILES['photo']['error'])
+                {
+                    case 1:
+                    $this->seterrormsg($input,"Ukuran file foto maksimal 2 MB");
+                    break;
+                    case 2:
+                    $this->seterrormsg($input,"Ukuran file foto maksimal 2 MB");
+                    break;
+                    case 3:
+                    $this->seterrormsg($input,"Foto belum diupload sepenuhnya");
+                    break;
+                    case 4:
+                    $this->seterrormsg($input,"Foto belum diupload");
+                    break;
+                }
             }
             else if (end(explode(".", $_FILES["photo"]["name"])) != 'jpg')
             {
-                    $this->seterrormsg($input,"File harus berformat *.jpg");
+                $this->seterrormsg($input,"File harus berformat *.jpg");
             }
             else if ($_FILES['photo']['size'] > 2097152)
             {
-                    $this->seterrormsg($input,"Ukuran file foto maksimal 2 MB");
+                $this->seterrormsg($input,"Ukuran file foto maksimal 2 MB");
             }
             else
             {
@@ -235,8 +235,8 @@ class pencaker extends CI_Controller {
                 {
                     if ($_FILES['photo']['size'] != NULL)
                     {
-                            $this->load->model('UploadModel');
-                            $this->UploadModel->Upload('photo', $getidpencakertemp, 'assets/file/temp');
+                        $this->load->model('UploadModel');
+                        $this->UploadModel->Upload('photo', $getidpencakertemp, 'assets/file/temp');
                     }
                     $this->load->model('EmailModel');
                     @$this->EmailModel->sendEmail($input['email'],'Pendaftaran Pencaker Baru','Data Pencari Kerja anda telah terdaftar<br />Mohon Tunggu konfirmasi dari admin terlebih dahulu');
@@ -333,7 +333,7 @@ class pencaker extends CI_Controller {
                     {
                         $data['valid'] = true;
                         $data['error'] = "Bahasa berhasil disimpan";
-                         $this->session->set_flashdata('notifikasi', '<script>notifikasi("Bahasa Berhasil Di Tambah", "success", "fa fa-check")</script>');
+                        $this->session->set_flashdata('notifikasi', '<script>notifikasi("Bahasa Berhasil Di Tambah", "success", "fa fa-check")</script>');
                     }
                     else
                     {
@@ -517,7 +517,7 @@ class pencaker extends CI_Controller {
                         $data['error'] = "Pengalaman gagal disimpan";
                     }
                 }
-                    
+                
                 echo json_encode($data);
             }
         }
@@ -547,7 +547,7 @@ class pencaker extends CI_Controller {
             if ($this->input->post()) 
             {
                 $this->load->model('MsKelurahan');
-               
+                
 
                 $config = array(
                     array(
@@ -1142,101 +1142,96 @@ class pencaker extends CI_Controller {
                         }
                         else
                         {   
-                           $this->session->set_flashdata('notifikasi', '<script>notifikasi("Anda sudah pernah mengirimkan CV untuk loker '.$getmslowongandata->NamaLowongan.'", "warning", "fa fa-warning")</script>');
-                        }
-                        redirect('pencaker/lowongan');
-                    }
-                    else
-                    {
-                        redirect();
-                    }
+                         $this->session->set_flashdata('notifikasi', '<script>notifikasi("Anda sudah pernah mengirimkan CV untuk loker '.$getmslowongandata->NamaLowongan.'", "warning", "fa fa-warning")</script>');
+                     }
+                     redirect('pencaker/lowongan');
+                 }
+                 else
+                 {
+                    redirect();
                 }
             }
-        }
-        else
-        {
-            redirect();
         }
     }
-
-    public function doupdatepassword()
+    else
     {
-        if ($this->ispencaker())
+        redirect();
+    }
+}
+
+public function doupdatepassword()
+{
+    if ($this->ispencaker())
+    {
+        $input = $this->input->post();
+        if ($input['oldpassword'] == "")
         {
-            $input = $this->input->post();
-            if ($input['oldpassword'] == "")
-            {
-                $this->seterrormsg($input,"Kata Sandi Lama harus diisi");
-            }
-            else if ($input['password'] == "")
-            {
-                $this->seterrormsg($input,"Kata Sandi harus diisi");
-            }
-            else if (strlen($input['password']) < 4)
-            {
-                $this->seterrormsg($input,"Kata Sandi minimal 4 karakter");
-            }
-            else if ($input['password2'] == "")
-            {
-                $this->seterrormsg($input,"Konfirmasi Kata Sandi harus diisi");
-            }
-            else if ($input['password'] != $input['password2'])
-            {
-                $this->seterrormsg($input,"Konfirmasi Kata Sandi harus sama");
-            }
-            else
-            {
-                $iduser = $this->session->userdata('iduser');
-                $this->load->model('MsUser');
-                if ($this->MsUser->UpdatePassword($iduser,$input['oldpassword'],$input['password']))
-                {
-                    $this->seterrormsg(NULL,"Kata Sandi berhasil diupdate");
-                }
-                else
-                {
-                    $input['oldpassword'] = "";
-                    $this->seterrormsg($input,"Kata Sandi Lama salah");
-                }
-            }
-            redirect("ubahsandi");
+            $this->seterrormsg($input,"Kata Sandi Lama harus diisi");
+        }
+        else if ($input['password'] == "")
+        {
+            $this->seterrormsg($input,"Kata Sandi harus diisi");
+        }
+        else if (strlen($input['password']) < 4)
+        {
+            $this->seterrormsg($input,"Kata Sandi minimal 4 karakter");
+        }
+        else if ($input['password2'] == "")
+        {
+            $this->seterrormsg($input,"Konfirmasi Kata Sandi harus diisi");
+        }
+        else if ($input['password'] != $input['password2'])
+        {
+            $this->seterrormsg($input,"Konfirmasi Kata Sandi harus sama");
         }
         else
-        {
-            redirect();
-        }
-    }
-
-    public function aktivasi()
-    {
-        if ($this->ispencaker())
         {
             $iduser = $this->session->userdata('iduser');
-            $this->load->model('MsPencaker');
-            $getmspencaker = $this->MsPencaker->GetMsPencakerByIDUser($iduser);
-            if ($getmspencaker != NULL)
+            $this->load->model('MsUser');
+            if ($this->MsUser->UpdatePassword($iduser,$input['oldpassword'],$input['password']))
             {
-                $this->load->model('MsAktivasi');
-                if ($this->MsAktivasi->GetIDAktivasiByIDPencaker($getmspencaker->IDPencaker) == NULL)
-                {
-                    $idaktivasi = $this->MsAktivasi->Insert($getmspencaker->IDPencaker);
-                    if ($idaktivasi != NULL)
-                    {
-                        $this->seterrormsg(NULL,"Konfirmasi Aktivasi berhasil dikirim.<br />Jika akun telah diaktifkan, kami akan mengirimkan pemberitahuan ke email anda(<b>".$getmspencaker->Email."<b/>).");
-                    }
-                    else
-                    {
-                        $this->seterrormsg(NULL,"Konfirmasi Aktivasi gagal dikirim.");
-                    }
-                    redirect();
-                }
-                else
-                {
-                    $this->seterrormsg(NULL,"Aktivasi telah dikirimkan sebelumnya,<br />Menunggu konfirmasi dari admin.");
-                    redirect();
-                }
+                $this->seterrormsg(NULL,"Kata Sandi berhasil diupdate");
             }
             else
             {
+                $input['oldpassword'] = "";
+                $this->seterrormsg($input,"Kata Sandi Lama salah");
+            }
+        }
+        redirect("ubahsandi");
+    }
+    else
+    {
+        redirect();
+    }
+}
+
+public function aktivasi()
+{
+    if ($this->ispencaker())
+    {
+        $iduser = $this->session->userdata('iduser');
+        $this->load->model('MsPencaker');
+        $getmspencaker = $this->MsPencaker->GetMsPencakerByIDUser($iduser);
+        if ($getmspencaker != NULL)
+        {
+            $this->load->model('MsAktivasi');
+            if ($this->MsAktivasi->GetIDAktivasiByIDPencaker($getmspencaker->IDPencaker) == NULL)
+            {
+                $idaktivasi = $this->MsAktivasi->Insert($getmspencaker->IDPencaker);
+                if ($idaktivasi != NULL)
+                {
+                    $this->seterrormsg(NULL,"Konfirmasi Aktivasi berhasil dikirim.<br />Jika akun telah diaktifkan, kami akan mengirimkan pemberitahuan ke email anda(<b>".$getmspencaker->Email."<b/>).");
+                }
+                else
+                {
+                    $this->seterrormsg(NULL,"Konfirmasi Aktivasi gagal dikirim.");
+                }
+                redirect();
+            }
+            else
+            {
+                $this->seterrormsg(NULL,"Aktivasi telah dikirimkan sebelumnya,<br />Menunggu konfirmasi dari admin.");
                 redirect();
             }
         }
@@ -1245,24 +1240,24 @@ class pencaker extends CI_Controller {
             redirect();
         }
     }
-
-    function ispencaker()
+    else
     {
-        $iduser = $this->session->userdata('iduser');
-        if ($iduser != '')
+        redirect();
+    }
+}
+
+function ispencaker()
+{
+    $iduser = $this->session->userdata('iduser');
+    if ($iduser != '')
+    {
+        $this->load->model('MsUser');
+        $getmsuser = $this->MsUser->GetMsUserByIDUser($iduser);
+        if ($getmsuser != NULL)
         {
-            $this->load->model('MsUser');
-            $getmsuser = $this->MsUser->GetMsUserByIDUser($iduser);
-            if ($getmsuser != NULL)
+            if ($getmsuser->IDJenisUser == '000002')
             {
-                if ($getmsuser->IDJenisUser == '000002')
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return true;
             }
             else
             {
@@ -1274,153 +1269,158 @@ class pencaker extends CI_Controller {
             return false;
         }
     }
-
-    function seterrormsg($input,$msg)
+    else
     {
-        if ($input != NULL)
-        {
-            $this->session->set_flashdata('input',$input);
-        }
-        if ($msg != NULL)
-        {
-            $this->session->set_flashdata('error',$msg);
-        }
+        return false;
+    }
+}
+
+function seterrormsg($input,$msg)
+{
+    if ($input != NULL)
+    {
+        $this->session->set_flashdata('input',$input);
+    }
+    if ($msg != NULL)
+    {
+        $this->session->set_flashdata('error',$msg);
+    }
+}
+
+public function chat()
+{
+    $this->load->model('MsChat');
+
+    if ($this->ispencaker())
+    {               
+        $id_user= $this->session->userdata('iduser');
+        $this->MsChat->Read_user($id_user);
+        $data['iduser'] = $id_user;
+        $data['route'] = $this->uri->segment(2);
+        $this->load->view('index',$data);
+
+    }
+}
+public function send_chat($pengirim,$pesan)
+{
+    $this->load->model('MsChat');
+    $data['pengirim']=$pengirim;
+    $data['penerima']='admin';
+    $data['pesan']=urldecode($pesan);
+    $data['date']=date("Y-m-d H:i:s");
+    $data['status']='D';
+    $kirim=$this->MsChat->Insert($data);
+    if ($kirim==TRUE) {
+        echo json_encode($data);
+    }
+}
+
+public function get_chat($pengirim,$jum_chat){
+    $this->load->model('MsChat');
+    $get=$this->MsChat->GetBypengirim($pengirim);
+    if ($get->num_rows()>$jum_chat) {
+        $output['message']=$get->result_array();
+        $output['jum_message']=$get->num_rows();
+        $output['status']="TRUE";
+        echo json_encode($output);
+    }else{
+        $output['status']="FALSE";
+        echo json_encode($output);   
     }
 
-    public function chat()
+
+}
+
+public function update_password()
+{
+    if ($this->ispencaker())
     {
-        $this->load->model('MsChat');
+        $data['error_string'] = array();
+        $data['inputerror'] = array();
+        $data['status'] = TRUE;
 
-        if ($this->ispencaker())
-        {               
-            $id_user= $this->session->userdata('iduser');
-            $this->MsChat->Read_user($id_user);
-            $data['iduser'] = $id_user;
-            $data['route'] = $this->uri->segment(2);
-            $this->load->view('index',$data);
-
+        if ($this->input->post('sandilama') == '') 
+        {
+            $data['inputerror'][]   = 'sandilama';
+            $data['error_string'][] = 'Sandi Lama Tidak Boleh Kosong';
+            $data['status'] = FALSE;
         }
-    }
-    public function send_chat($pengirim,$pesan)
-    {
-        $this->load->model('MsChat');
-        $data['pengirim']=$pengirim;
-        $data['penerima']='admin';
-        $data['pesan']=urldecode($pesan);
-        $data['date']=date("Y-m-d H:i:s");
-        $data['status']='D';
-        $kirim=$this->MsChat->Insert($data);
-        if ($kirim==TRUE) {
+        if ($this->input->post('sandibaru') == '') 
+        {
+            $data['inputerror'][]   = 'sandibaru';
+            $data['error_string'][] = 'Sandi Baru Tidak Boleh Kosong';
+            $data['status'] = FALSE;
+        }
+        if (strlen($this->input->post('sandibaru')) < 4) 
+        {
+            $data['inputerror'][]   = 'sandibaru';
+            $data['error_string'][] = 'Kata Sandi Minimal 4 Karakter';
+            $data['status'] = FALSE;
+        }
+        if ($this->input->post('sandibaru_confirm') == '') 
+        {
+            $data['inputerror'][]   = 'sandibaru_confirm';
+            $data['error_string'][] = 'Sandi Baru Ko Tidak Boleh Kosong';
+            $data['status'] = FALSE;
+        }
+        if ($this->input->post('sandibaru') != $this->input->post('sandibaru_confirm')) 
+        {
+            $data['inputerror'][]   = 'sandibaru_confirm';
+            $data['error_string'][] = 'Sandi Konfirmasi Tidak Cocok';
+            $data['status'] = FALSE;
+        }
+
+        if($data['status'] === FALSE)
+        {
             echo json_encode($data);
-        }
-    }
-
-    public function get_chat($pengirim,$jum_chat){
-        $this->load->model('MsChat');
-        $get=$this->MsChat->GetBypengirim($pengirim);
-        if ($get->num_rows()>$jum_chat) {
-            $output['message']=$get->result_array();
-            $output['jum_message']=$get->num_rows();
-            $output['status']="TRUE";
-            echo json_encode($output);
-        }else{
-            $output['status']="FALSE";
-            echo json_encode($output);   
+            exit();
         }
 
+        $iduser = $this->session->userdata('iduser');
+        $this->load->model('MsUser');
 
-    }
-
-    public function update_password()
-    {
-        if ($this->ispencaker())
+        if ($this->MsUser->UpdatePassword($iduser,$this->input->post('sandilama'),$this->input->post('sandibaru')) != false) 
         {
-            $data['error_string'] = array();
-            $data['inputerror'] = array();
             $data['status'] = TRUE;
-
-            if ($this->input->post('sandilama') == '') 
-            {
-                $data['inputerror'][]   = 'sandilama';
-                $data['error_string'][] = 'Sandi Lama Tidak Boleh Kosong';
-                $data['status'] = FALSE;
-            }
-            if ($this->input->post('sandibaru') == '') 
-            {
-                $data['inputerror'][]   = 'sandibaru';
-                $data['error_string'][] = 'Sandi Baru Tidak Boleh Kosong';
-                $data['status'] = FALSE;
-            }
-            if (strlen($this->input->post('sandibaru')) < 4) 
-            {
-                $data['inputerror'][]   = 'sandibaru';
-                $data['error_string'][] = 'Kata Sandi Minimal 4 Karakter';
-                $data['status'] = FALSE;
-            }
-            if ($this->input->post('sandibaru_confirm') == '') 
-            {
-                $data['inputerror'][]   = 'sandibaru_confirm';
-                $data['error_string'][] = 'Sandi Baru Ko Tidak Boleh Kosong';
-                $data['status'] = FALSE;
-            }
-            if ($this->input->post('sandibaru') != $this->input->post('sandibaru_confirm')) 
-            {
-                $data['inputerror'][]   = 'sandibaru_confirm';
-                $data['error_string'][] = 'Sandi Konfirmasi Tidak Cocok';
-                $data['status'] = FALSE;
-            }
-
-            if($data['status'] === FALSE)
-            {
-                echo json_encode($data);
-                exit();
-            }
-
-            $iduser = $this->session->userdata('iduser');
-            $this->load->model('MsUser');
-
-            if ($this->MsUser->UpdatePassword($iduser,$this->input->post('sandilama'),$this->input->post('sandibaru')) != false) 
-            {
-                $data['status'] = TRUE;
-                $data['ket']    = 1;
-                echo json_encode($data);
-                exit();
-            }
-            else
-            {
-                $data['inputerror'][]   = 'sandilama';
-                $data['error_string'][] = 'Kata Sandi Salah';
-                $data['status'] = FALSE;
-                echo json_encode($data);
-                exit();
-            }
-        }
-    }
-
-    function do_upload($fname)
-    {
-        $config['upload_path'] = './assets/file/pencaker/';
-        $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size']     = '20480';
-        $config['max_width']  = '3264';
-        $config['max_height']  = '2448';
-        $config['file_name'] = date('dmYhis');
-
-        $this->load->library('upload', $config);
-
-        if ( ! $this->upload->do_upload($fname))
-        {
-            $error = array('error' => $this->upload->display_errors());
-
-            return false;
+            $data['ket']    = 1;
+            echo json_encode($data);
+            exit();
         }
         else
         {
-            $data = $this->upload->data();
-            return $data['file_name'];
+            $data['inputerror'][]   = 'sandilama';
+            $data['error_string'][] = 'Kata Sandi Salah';
+            $data['status'] = FALSE;
+            echo json_encode($data);
+            exit();
         }
-
     }
+}
+
+function do_upload($fname)
+{
+    $config['upload_path'] = './assets/file/pencaker/';
+    $config['allowed_types'] = 'gif|jpg|png';
+    $config['max_size']     = '20480';
+    $config['max_width']  = '3264';
+    $config['max_height']  = '2448';
+    $config['file_name'] = date('dmYhis');
+
+    $this->load->library('upload', $config);
+
+    if ( ! $this->upload->do_upload($fname))
+    {
+        $error = array('error' => $this->upload->display_errors());
+
+        return false;
+    }
+    else
+    {
+        $data = $this->upload->data();
+        return $data['file_name'];
+    }
+
+}
 }
 
 /* End of file welcome.php */

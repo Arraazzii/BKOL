@@ -65,14 +65,14 @@ class MsKecamatan extends CI_Model
                         $tahun = date('Y');
                 }
                 $query = $this->db->query("SELECT b.IDKecamatan,b.NamaKecamatan,COALESCE(SUM(c.TotalPria),0) AS TotalPria,COALESCE(SUM(d.TotalWanita),0) AS TotalWanita FROM ".strtolower("MsKelurahan")." AS a
-                INNER JOIN ".strtolower("MsKecamatan")." AS b ON a.IDKecamatan=b.IDKecamatan
-                LEFT JOIN
-                (SELECT COUNT(IDPencaker) AS TotalPria,IDKelurahan FROM ".strtolower("MsPencaker")." WHERE JenisKelamin=0".($bulan!="" ? " AND Month(RegisterDate)=".$bulan : "")." AND Year(RegisterDate)=".$tahun.")c
-                ON a.IDKelurahan=c.IDKelurahan
-                LEFT JOIN
-                (SELECT COUNT(IDPencaker) AS TotalWanita,IDKelurahan FROM ".strtolower("MsPencaker")." WHERE JenisKelamin=1".($bulan!="" ? " AND Month(RegisterDate)=".$bulan : "")." AND Year(RegisterDate)=".$tahun.")d
-                ON a.IDKelurahan=d.IDKelurahan
-                GROUP BY a.IDKecamatan");
+                        INNER JOIN ".strtolower("MsKecamatan")." AS b ON a.IDKecamatan=b.IDKecamatan
+                        LEFT JOIN
+                        (SELECT COUNT(IDPencaker) AS TotalPria,IDKelurahan FROM ".strtolower("MsPencaker")." WHERE JenisKelamin=0".($bulan!="" ? " AND Month(RegisterDate)=".$bulan : "")." AND Year(RegisterDate)=".$tahun.")c
+                        ON a.IDKelurahan=c.IDKelurahan
+                        LEFT JOIN
+                        (SELECT COUNT(IDPencaker) AS TotalWanita,IDKelurahan FROM ".strtolower("MsPencaker")." WHERE JenisKelamin=1".($bulan!="" ? " AND Month(RegisterDate)=".$bulan : "")." AND Year(RegisterDate)=".$tahun.")d
+                        ON a.IDKelurahan=d.IDKelurahan
+                        GROUP BY a.IDKecamatan");
                 return $query;
         }
 

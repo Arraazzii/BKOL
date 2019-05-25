@@ -6,7 +6,7 @@
         <h4 class="modal-title">Tambah Bahasa</h4>
       </div>
       <div class="modal-body">
-      <form action="" method="POST" class="form-horizontal" role="form">
+        <form action="" method="POST" class="form-horizontal" role="form">
           <div class="form-group">
             <label class="col-md-3">Bahasa</label>
             <div class="col-md-9">
@@ -21,7 +21,7 @@
               </select>
             </div>
           </div>
-      </form>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
@@ -31,30 +31,30 @@
   </div>
 </div>
 <section class="content-header">
-    <h1>
-        Profil
-        <small>Pencaker</small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="<?php echo site_url('') ?>">Home</a></li>
-        <li>Profil Pencaker</li>
-        <li class="active">Detail Bahasa</li>
-    </ol>
+  <h1>
+    Profil
+    <small>Pencaker</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="<?php echo site_url('') ?>">Home</a></li>
+    <li>Profil Pencaker</li>
+    <li class="active">Detail Bahasa</li>
+  </ol>
 </section>
 <!-- Main content -->
 <section class="content">
-    <div class="box">
-      <div class="box-header">
-        <h3 class="box-title">Penguasaan Bahasa</h3>
+  <div class="box">
+    <div class="box-header">
+      <h3 class="box-title">Penguasaan Bahasa</h3>
+    </div>
+    <div class="box-body table-responsive">
+      <div class="col-md-12" style="margin-bottom: 10px">
+        <button type="button" class="btn btn-default btn-sm" id="btn-tambah">Tambah Bahasa</button>
+        <button type="button" class="btn btn-default btn-sm" onclick="window.location.href='<?php echo base_url() ?>'">Kembali</button>
       </div>
-      <div class="box-body table-responsive">
-        <div class="col-md-12" style="margin-bottom: 10px">
-          <button type="button" class="btn btn-default btn-sm" id="btn-tambah">Tambah Bahasa</button>
-          <button type="button" class="btn btn-default btn-sm" onclick="window.location.href='<?php echo base_url() ?>'">Kembali</button>
-        </div>
 
-        <div class="col-md-6">
-          <table class="table table-bordered">
+      <div class="col-md-6">
+        <table class="table table-bordered">
           <thead>
             <tr>
               <th width="10">No</th>
@@ -64,51 +64,51 @@
           </thead>
           <tbody>
             <?php if ($MsBahasaData->num_rows() > 0): ?>
-            <?php $i = 0; ?>
-            <?php foreach ($MsBahasaData->result() as $getdata): ?>
-              <?php $i++ ?>
-              <tr>
-                <td><?php echo $i+$this->uri->segment(3) ?></td>
-                <td><?php echo $getdata->NamaBahasa ?></td>
-                <td class="text-center"><?php echo '<a class="btn btn-default btn-sm" href="'.site_url('pencaker/dodeletebahasa').'/'.$getdata->IDBahasa.'">Hapus Bahasa</a>' ?></td>
-              </tr>
-            <?php endforeach ?>
-            <?php else: ?>
+              <?php $i = 0; ?>
+              <?php foreach ($MsBahasaData->result() as $getdata): ?>
+                <?php $i++ ?>
                 <tr>
-                    <td class="text-center" colspan="3">Belum ada data</td>
+                  <td><?php echo $i+$this->uri->segment(3) ?></td>
+                  <td><?php echo $getdata->NamaBahasa ?></td>
+                  <td class="text-center"><?php echo '<a class="btn btn-default btn-sm" href="'.site_url('pencaker/dodeletebahasa').'/'.$getdata->IDBahasa.'">Hapus Bahasa</a>' ?></td>
                 </tr>
+              <?php endforeach ?>
+            <?php else: ?>
+              <tr>
+                <td class="text-center" colspan="3">Belum ada data</td>
+              </tr>
             <?php endif ?>
           </tbody>
         </table>
-        </div>
       </div>
     </div>
+  </div>
 
 </section>
 <script>
-    $('#btn-tambah').click(function() {
-        $('#modal-bahasa').modal('show');
-        $('#namabahasa').val('');
-    });
+  $('#btn-tambah').click(function() {
+    $('#modal-bahasa').modal('show');
+    $('#namabahasa').val('');
+  });
 
-    $('#btn-simpan').click(function() {
-        namabahasa = $('#namabahasa').val();
+  $('#btn-simpan').click(function() {
+    namabahasa = $('#namabahasa').val();
 
-        $.ajax({
-            url: '<?= site_url('pencaker/tambahbahasa') ?>',
-            type: 'POST',
-            dataType: 'JSON',
-            data: {
-                NamaBahasa: namabahasa
-            },
-            success: function(data) {
-                if (data.valid) {
-                    window.location.reload();
-                }
-                else {
-                    notifikasi(data.error, 'danger', 'fa fa-exclamation');
-                }
-            }
-        });
+    $.ajax({
+      url: '<?= site_url('pencaker/tambahbahasa') ?>',
+      type: 'POST',
+      dataType: 'JSON',
+      data: {
+        NamaBahasa: namabahasa
+      },
+      success: function(data) {
+        if (data.valid) {
+          window.location.reload();
+        }
+        else {
+          notifikasi(data.error, 'danger', 'fa fa-exclamation');
+        }
+      }
     });
+  });
 </script>

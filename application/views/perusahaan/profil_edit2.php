@@ -71,11 +71,11 @@ if($this->input->post() == NULL)
                             <input type="text" class="form-control" readonly>
                         </div>
                         <img id='img-upload'
-                            <?php  
-                                if (file_exists(BASEPATH.'/../assets/file/perusahaan/'.$MsPerusahaanData->IDPerusahaan.'.jpg')) {
-                                    echo "src='".site_url('assets/file/perusahaan')."/".$MsPerusahaanData->IDPerusahaan.".jpg'";
-                                }
-                            ?>
+                        <?php  
+                        if (file_exists(BASEPATH.'/../assets/file/perusahaan/'.$MsPerusahaanData->IDPerusahaan.'.jpg')) {
+                            echo "src='".site_url('assets/file/perusahaan')."/".$MsPerusahaanData->IDPerusahaan.".jpg'";
+                        }
+                        ?>
                         />
                         <?php echo form_error('logoperusahaan', '<span class="help-block">', '</span>'); ?>
                     </div>

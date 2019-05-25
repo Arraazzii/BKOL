@@ -46,14 +46,14 @@ if (!$this->input->post())
                                     <?php
                                     foreach ($MsStatusPendidikanData as $getcmb)
                                     {
-                                            if ($input['idstatuspendidikan'] == $getcmb->IDStatusPendidikan)
-                                            {
-                                                    echo "<option value='".$getcmb->IDStatusPendidikan."' selected=\"selected\">".$getcmb->NamaStatusPendidikan."</option>";
-                                            }
-                                            else
-                                            {
-                                                    echo "<option value='".$getcmb->IDStatusPendidikan."'>".$getcmb->NamaStatusPendidikan."</option>";
-                                            }
+                                        if ($input['idstatuspendidikan'] == $getcmb->IDStatusPendidikan)
+                                        {
+                                            echo "<option value='".$getcmb->IDStatusPendidikan."' selected=\"selected\">".$getcmb->NamaStatusPendidikan."</option>";
+                                        }
+                                        else
+                                        {
+                                            echo "<option value='".$getcmb->IDStatusPendidikan."'>".$getcmb->NamaStatusPendidikan."</option>";
+                                        }
                                     }
                                     ?>
                                 </select>
@@ -81,39 +81,39 @@ if (!$this->input->post())
                             <div class="col-md-7">
                                 <label class="control-label">
                                   <input name="nemipk" value="0" class="minimal" type="radio" <?= $input['nemipk'] == 0 ? 'checked="checked"' : '' ?>>&nbsp;NEM
-                                                                                &nbsp;&nbsp;
-                                </label>
-                                <label class="control-label">
+                                  &nbsp;&nbsp;
+                              </label>
+                              <label class="control-label">
                                   <input name="nemipk" value="1" class="minimal" type="radio" <?= $input['nemipk'] == 1 ? 'checked="checked"' : '' ?>>&nbsp;IPK
-                                </label>
-                                <?php echo form_error('nemipk', '<span class="help-block">', '</span>') ?>
-                            </div>
+                              </label>
+                              <?php echo form_error('nemipk', '<span class="help-block">', '</span>') ?>
+                          </div>
+                      </div>
+                      <div class="form-group <?php echo form_error('nilai') ? 'has-error' : '' ?>">
+                        <label class="col-md-4 control-label">Nilai</label>
+                        <div class="col-md-7">
+                            <input id="nilai" name="nilai" type="text" value="<?= $input != null ? $input['nilai'] : '' ?>" class="form-control">
+                            <?php echo form_error('nilai', '<span class="help-block">', '</span>') ?>
                         </div>
-                        <div class="form-group <?php echo form_error('nilai') ? 'has-error' : '' ?>">
-                            <label class="col-md-4 control-label">Nilai</label>
-                            <div class="col-md-7">
-                                <input id="nilai" name="nilai" type="text" value="<?= $input != null ? $input['nilai'] : '' ?>" class="form-control">
-                                <?php echo form_error('nilai', '<span class="help-block">', '</span>') ?>
-                            </div>
-                        </div>
-                        <div class="form-group <?php echo form_error('tahunlulus') ? 'has-error' : '' ?>">
-                            <label class="col-md-4 control-label">Tahun Lulus</label>
-                            <div class="col-md-4">
-                                <select id="tahunlulus" name="tahunlulus" class="form-control">
-                                        <?php
-                                        $tahun = date('Y');
-                                        for ($i=$tahun;$i>1900;$i--)
+                    </div>
+                    <div class="form-group <?php echo form_error('tahunlulus') ? 'has-error' : '' ?>">
+                        <label class="col-md-4 control-label">Tahun Lulus</label>
+                        <div class="col-md-4">
+                            <select id="tahunlulus" name="tahunlulus" class="form-control">
+                                <?php
+                                $tahun = date('Y');
+                                for ($i=$tahun;$i>1900;$i--)
+                                {
+                                    if ($i == ($input != null ? $input['tahunlulus'] : ''))
                                         {
-                                                if ($i == ($input != null ? $input['tahunlulus'] : ''))
-                                                {
-                                                        echo "<option value='".$i."' selected=\"selected\">".$i."</option>";
-                                                }
-                                                else
-                                                {
-                                                        echo "<option value='".$i."'>".$i."</option>";
-                                                }
+                                            echo "<option value='".$i."' selected=\"selected\">".$i."</option>";
                                         }
-                                        ?>
+                                        else
+                                        {
+                                            echo "<option value='".$i."'>".$i."</option>";
+                                        }
+                                    }
+                                    ?>
                                 </select>
                                 <?php echo form_error('tahunlulus', '<span class="help-block">', '</span>') ?>
                             </div>
@@ -158,20 +158,20 @@ if (!$this->input->post())
                             <label class="col-md-4 control-label">Posisi Jabatan</label>
                             <div class="col-md-7">
                                 <select id="idposisijabatan" name="idposisijabatan" class="form-control">
-                                        <option value="">Pilih Jabatan</option>
-                                        <?php
-                                        foreach ($MsPosisiJabatanData as $getcmb)
+                                    <option value="">Pilih Jabatan</option>
+                                    <?php
+                                    foreach ($MsPosisiJabatanData as $getcmb)
+                                    {
+                                        if ($input['idposisijabatan'] == $getcmb->IDPosisiJabatan)
                                         {
-                                                if ($input['idposisijabatan'] == $getcmb->IDPosisiJabatan)
-                                                {
-                                                        echo "<option value='".$getcmb->IDPosisiJabatan."' selected=\"selected\">".$getcmb->NamaPosisiJabatan."</option>";
-                                                }
-                                                else
-                                                {
-                                                        echo "<option value='".$getcmb->IDPosisiJabatan."'>".$getcmb->NamaPosisiJabatan."</option>";
-                                                }
+                                            echo "<option value='".$getcmb->IDPosisiJabatan."' selected=\"selected\">".$getcmb->NamaPosisiJabatan."</option>";
                                         }
-                                        ?>
+                                        else
+                                        {
+                                            echo "<option value='".$getcmb->IDPosisiJabatan."'>".$getcmb->NamaPosisiJabatan."</option>";
+                                        }
+                                    }
+                                    ?>
                                 </select>
                                 <?php echo form_error('idposisijabatan', '<span class="help-block">', '</span>') ?>
                             </div>
@@ -181,56 +181,56 @@ if (!$this->input->post())
                             <div class="col-md-7">
                                 <label class="control-label">
                                   <input name="lokasi" value="0" class="minimal" type="radio" <?= $input['lokasi'] == 0 ? 'checked="checked"' : '' ?>>&nbsp;&nbsp;Dalam Negeri
-                                </label>
-                                &nbsp;&nbsp;
-                                <label class="control-label">
-                                     <input name="lokasi" class="minimal" value="1" type="radio" <?= $input['lokasi'] == 1 ? 'checked="checked"' : '' ?>>&nbsp;&nbsp;Luar Negeri
-                                </label>
-                                <label class="control-label">
-                                    <input name="lokasi" class="minimal" value="2" type="radio" <?= $input['lokasi'] == 2 ? 'checked="checked"' : '' ?>>&nbsp;&nbsp;Dimana Saja
-                                </label>
-                                &nbsp;&nbsp;
-                                <?php echo form_error('lokasi', '<span class="help-block">', '</span>') ?>
-                            </div>
-                        </div>
-                        <div class="form-group <?php echo form_error('upahyangdicari') ? 'has-error' : '' ?>">
-                            <label class="col-md-4 control-label">Gaji yang diinginkan</label>
-                            <div class="col-md-7">
-                                 <input id="upahyangdicari" name="upahyangdicari" type="text" value="<?= $input != null ? $input['upahyangdicari'] : '0' ?>" class="form-control">
-                                 <?php echo form_error('upahyangdicari', '<span class="help-block">', '</span>') ?>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="box-footer">
-                        <div class="col-md-offset-2">
-                            <button type="button" class="btn btn-default" onclick="window.location.href='<?php echo site_url() ?>'">Kembali</button>
-                            <button type="submit" class="btn btn-primary">Simpan</button>    
-                        </div>
+                              </label>
+                              &nbsp;&nbsp;
+                              <label class="control-label">
+                               <input name="lokasi" class="minimal" value="1" type="radio" <?= $input['lokasi'] == 1 ? 'checked="checked"' : '' ?>>&nbsp;&nbsp;Luar Negeri
+                           </label>
+                           <label class="control-label">
+                            <input name="lokasi" class="minimal" value="2" type="radio" <?= $input['lokasi'] == 2 ? 'checked="checked"' : '' ?>>&nbsp;&nbsp;Dimana Saja
+                        </label>
+                        &nbsp;&nbsp;
+                        <?php echo form_error('lokasi', '<span class="help-block">', '</span>') ?>
                     </div>
                 </div>
+                <div class="form-group <?php echo form_error('upahyangdicari') ? 'has-error' : '' ?>">
+                    <label class="col-md-4 control-label">Gaji yang diinginkan</label>
+                    <div class="col-md-7">
+                       <input id="upahyangdicari" name="upahyangdicari" type="text" value="<?= $input != null ? $input['upahyangdicari'] : '0' ?>" class="form-control">
+                       <?php echo form_error('upahyangdicari', '<span class="help-block">', '</span>') ?>
+                   </div>
+               </div>
+           </div>
+           <div class="box-footer">
+            <div class="col-md-offset-2">
+                <button type="button" class="btn btn-default" onclick="window.location.href='<?php echo site_url() ?>'">Kembali</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>    
             </div>
         </div>
-    </form>
+    </div>
+</div>
+</div>
+</form>
 </section>
 
 
 <script type="text/javascript">
-function GetJurusan(IDStatusPendidikan, selected = 0) {
-  $.ajax({
+    function GetJurusan(IDStatusPendidikan, selected = 0) {
+      $.ajax({
         url: '<?php echo site_url('ajax/get_jurusan') ?>',
         type: 'POST',
         dataType: 'html',
         data: {
           IDStatusPendidikan: IDStatusPendidikan,
           selected: selected
-        },
-        success: function(data) {
-            $("#jurusan").html(data);
-        }
-    });
-}
+      },
+      success: function(data) {
+        $("#jurusan").html(data);
+    }
+});
+  }
 
-<?php if (isset($input) && $input['idjurusan'] != ''): ?>
-    GetJurusan('<?php echo $input['idstatuspendidikan'] ?>', '<?php echo $input['idjurusan'] ?>');
-<?php endif ?>
+  <?php if (isset($input) && $input['idjurusan'] != ''): ?>
+  GetJurusan('<?php echo $input['idstatuspendidikan'] ?>', '<?php echo $input['idjurusan'] ?>');
+  <?php endif ?>
 </script>

@@ -17,63 +17,63 @@
     <div class="row">
         <div class="col-md-12">
             <div class="box">
-        <div class="box-header with-border text-center">
-            <h3 class="box-title">DAFTAR KEAHLIAN</h3>
-            <button type="button" class="btn btn-default btn-sm pull-right" title="Tambah Keahlian" id="tambahjenislowongan"><i class="fa fa-plus"></i></button>
-            <button type="button" class="btn btn-default btn-sm pull-left" title="Kembali" id="kembali"><i class="fa fa-arrow-left"></i></button>
-        </div>
-        <!-- /.box-header -->
-        <!-- form start -->
-        <div class="box-body table-responsive">
-            <table class="table">
-                <tr>
-                    <td>Jenis Lowongan</td>
-                    <td><?= $MsJenisLowonganData->NamaJenisLowongan ?></td>
-                </tr>
-            </table>
-            <div class="col-md-12" style="margin-bottom: 10px;">
-            </div>
-            <table class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th width="10">No</th>
-                        <th class="text-center">Nama Keahlian</th>
-                        <th class="text-center">Detail</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php if ($this->pagination->total_rows > 0): ?>
-                    <?php $i = 0; ?>
-                    <?php foreach ($MsKeahlianData as $getdata): ?>
-                        <?php 
-                            $i++;
-                            $detailbtn = '<a class="btn btn-default btn-sm" onclick="DoEdit(\''.$getdata->IDKeahlian.'\') "><i class="fa fa-edit"></i> Edit</a>';
-                            $deletebtn = '<a class="btn btn-default btn-sm" onclick="DoDeleteConfirm(\''.$getdata->IDKeahlian.'\') "><i class="fa fa-trash"></i> Hapus</a>';
-                        ?>
-                        <tr>
-                            <td class="text-center"><?php echo $i+$this->uri->segment(4) ?></td>
-                            <td><?php echo $getdata->NamaKeahlian ?></td>
-                            <td class="text-center"><?php echo $detailbtn.$deletebtn ?></td>
-                        </tr>
-                    <?php endforeach ?>
-                    <?php else: ?>
-                        <tr>
-                            <td colspan="3" class="text-center">Belum ada data</td>
-                        </tr>
-                    <?php endif ?>
-                </tbody>
-            </table>
-                
-        </div>
-        <?php if ($this->pagination->create_links()): ?>
-            <div class="box-footer">
-                <div class="pull-right">
-                    <?php echo $this->pagination->create_links() ?>
+                <div class="box-header with-border text-center">
+                    <h3 class="box-title">DAFTAR KEAHLIAN</h3>
+                    <button type="button" class="btn btn-default btn-sm pull-right" title="Tambah Keahlian" id="tambahjenislowongan"><i class="fa fa-plus"></i></button>
+                    <button type="button" class="btn btn-default btn-sm pull-left" title="Kembali" id="kembali"><i class="fa fa-arrow-left"></i></button>
                 </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <div class="box-body table-responsive">
+                    <table class="table">
+                        <tr>
+                            <td>Jenis Lowongan</td>
+                            <td><?= $MsJenisLowonganData->NamaJenisLowongan ?></td>
+                        </tr>
+                    </table>
+                    <div class="col-md-12" style="margin-bottom: 10px;">
+                    </div>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th width="10">No</th>
+                                <th class="text-center">Nama Keahlian</th>
+                                <th class="text-center">Detail</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if ($this->pagination->total_rows > 0): ?>
+                                <?php $i = 0; ?>
+                                <?php foreach ($MsKeahlianData as $getdata): ?>
+                                    <?php 
+                                    $i++;
+                                    $detailbtn = '<a class="btn btn-warning btn-sm" onclick="DoEdit(\''.$getdata->IDKeahlian.'\') "><i class="fa fa-edit"></i> Edit</a>';
+                                    $deletebtn = '<a class="btn btn-danger btn-sm" onclick="DoDeleteConfirm(\''.$getdata->IDKeahlian.'\') "><i class="fa fa-trash"></i> Hapus</a>';
+                                    ?>
+                                    <tr>
+                                        <td class="text-center"><?php echo $i+$this->uri->segment(4) ?></td>
+                                        <td><?php echo $getdata->NamaKeahlian ?></td>
+                                        <td class="text-center"><?php echo $detailbtn.$deletebtn ?></td>
+                                    </tr>
+                                <?php endforeach ?>
+                            <?php else: ?>
+                                <tr>
+                                    <td colspan="3" class="text-center">Belum ada data</td>
+                                </tr>
+                            <?php endif ?>
+                        </tbody>
+                    </table>
+                    
+                </div>
+                <?php if ($this->pagination->create_links()): ?>
+                    <div class="box-footer">
+                        <div class="pull-right">
+                            <?php echo $this->pagination->create_links() ?>
+                        </div>
+                    </div>
+                    <!-- /.box-footer -->    
+                <?php endif ?>
             </div>
-            <!-- /.box-footer -->    
-        <?php endif ?>
-    </div>
         </div>
     </div>
 </section>
@@ -143,7 +143,7 @@
                 });
             }
         }
-            
+        
     });
 
     function clearmodaljenis() {
@@ -171,9 +171,9 @@
                 else
                 {
                     swal({
-                     type: 'error',
-                     title: 'Oops...',
-                     text: 'Keahlian Tidak Ditemukan!'
+                       type: 'error',
+                       title: 'Oops...',
+                       text: 'Keahlian Tidak Ditemukan!'
                    })
                 }
             },'json')
@@ -220,9 +220,9 @@
                 else
                 {
                     swal({
-                     type: 'error',
-                     title: 'Oops...',
-                     text: 'Keahlian Tidak Ditemukan!'
+                       type: 'error',
+                       title: 'Oops...',
+                       text: 'Keahlian Tidak Ditemukan!'
                    })
                 }
             },'json')
@@ -255,3 +255,14 @@
         </div>
     </div>
 </div>
+</script>
+<script type="text/javascript">
+    window.addEventListener( "pageshow", function ( event ) {
+      var historyTraversal = event.persisted || 
+      ( typeof window.performance != "undefined" && 
+          window.performance.navigation.type === 2 );
+      if ( historyTraversal ) {
+        window.location.reload();
+    }
+});
+</script>

@@ -22,20 +22,20 @@ and open the template in the editor.
                                                         $iduser = $this->session->userdata('iduser');
                                                         if ($iduser == "")
                                                         {
-                                                        ?>
-                                                        <li>
-                                                                <a href="<?php echo site_url() ?>">BERANDA</a>
-                                                        </li>
-                                                        <li>
-                                                                <a href="<?= site_url('dataperusahaan') ?>">DAFTAR PERUSAHAAN</a>
-                                                        </li>
-                                                        <li>
-                                                                <a href="<?= site_url('datapencaker') ?>">DAFTAR PENCARI KERJA</a>
-                                                        </li>
-                                                        <li>
-                                                                <a href="<?= site_url('datalowongan') ?>">DAFTAR LOWONGAN KERJA</a>
-                                                        </li>
-                                                        <?php  
+                                                                ?>
+                                                                <li>
+                                                                        <a href="<?php echo site_url() ?>">BERANDA</a>
+                                                                </li>
+                                                                <li>
+                                                                        <a href="<?= site_url('dataperusahaan') ?>">DAFTAR PERUSAHAAN</a>
+                                                                </li>
+                                                                <li>
+                                                                        <a href="<?= site_url('datapencaker') ?>">DAFTAR PENCARI KERJA</a>
+                                                                </li>
+                                                                <li>
+                                                                        <a href="<?= site_url('datalowongan') ?>">DAFTAR LOWONGAN KERJA</a>
+                                                                </li>
+                                                                <?php  
                                                         }
                                                         ?>
                                                         <li>
@@ -47,11 +47,11 @@ and open the template in the editor.
                                                         <?php
                                                         if ($iduser == "")
                                                         {
-                                                        ?>
-                                                        <li>
-                                                                <a href="<?= site_url('login') ?>">LOGIN</a>
-                                                        </li>
-                                                        <?php  
+                                                                ?>
+                                                                <li>
+                                                                        <a href="<?= site_url('login') ?>">LOGIN</a>
+                                                                </li>
+                                                                <?php  
                                                         }
                                                         ?>
                                                 </ul>

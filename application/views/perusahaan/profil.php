@@ -21,11 +21,11 @@
                 <!-- form start -->
                 <div class="box-body table-responsive">
                     <?php  
-                        $filename = BASEPATH.'/../assets/file/perusahaan/'.$MsPerusahaanData->IDPerusahaan.'.jpg';
-                        if(file_exists($filename))
-                        {
-                            echo '<img class="profile-user-img img-responsive" src="'.site_url('assets/file/perusahaan').'/'.$MsPerusahaanData->IDPerusahaan.'.jpg">';
-                        }
+                    $filename = BASEPATH.'/../assets/file/perusahaan/'.$MsPerusahaanData->IDPerusahaan.'.jpg';
+                    if(file_exists($filename))
+                    {
+                        echo '<img class="profile-user-img img-responsive" src="'.site_url('assets/file/perusahaan').'/'.$MsPerusahaanData->IDPerusahaan.'.jpg">';
+                    }
 
                     ?>
                     <h3 class="profile-username text-center"><?= $MsPerusahaanData->NamaPerusahaan ?></h3>
@@ -56,5 +56,5 @@
     </div>
 </section>
 <script>
-   
+ 
 </script>

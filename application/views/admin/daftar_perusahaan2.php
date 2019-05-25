@@ -93,6 +93,6 @@ and open the template in the editor.
         if (confirm("Anda yakin?") == true)
         {
             window.location.href="<?php echo site_url('admin/perusahaan/') ?>/" + id + '/delete'
-      }
-  }
+        }
+    }
 </script>

@@ -27,10 +27,10 @@ class perusahaan extends CI_Controller {
                 {
                         redirect();
                 }
-	}
+        }
         
-	public function edit()
-	{
+        public function edit()
+        {
                 if ($this->isperusahaan())
                 {
                         $iduser = $this->session->userdata('iduser');
@@ -53,10 +53,10 @@ class perusahaan extends CI_Controller {
                 {
                         redirect(); 
                 }
-	}
+        }
         
-	public function doupdateprofile()
-	{
+        public function doupdateprofile()
+        {
                 if ($this->isperusahaan())
                 {
                         $iduser = $this->session->userdata('iduser');
@@ -109,10 +109,10 @@ class perusahaan extends CI_Controller {
                 {
                         redirect(); 
                 }
-	}
+        }
         
-	public function getdataperusahaan()
-	{
+        public function getdataperusahaan()
+        {
                 if ($this->isperusahaan())
                 {
                         $iduser = $this->session->userdata('iduser');
@@ -141,7 +141,7 @@ class perusahaan extends CI_Controller {
                 else
                 {
                 }
-	}
+        }
         
         public function doregister()
         {
@@ -793,8 +793,8 @@ class perusahaan extends CI_Controller {
                 }
         }
         
-	public function addlowongan()
-	{
+        public function addlowongan()
+        {
                 if ($this->isperusahaan())
                 {
                         $input = $this->input->post();
@@ -905,10 +905,10 @@ class perusahaan extends CI_Controller {
                 {
                         redirect();
                 }
-	}
+        }
         
-	public function updatelowongan()
-	{
+        public function updatelowongan()
+        {
                 if ($this->isperusahaan())
                 {
                         $idlowongan = $this->uri->segment(3);
@@ -1020,10 +1020,10 @@ class perusahaan extends CI_Controller {
                 {
                         redirect();
                 }
-	}
+        }
         
-	public function deletelowongan()
-	{
+        public function deletelowongan()
+        {
                 if ($this->isperusahaan())
                 {
                         $iduser = $this->session->userdata('iduser');
@@ -1041,7 +1041,7 @@ class perusahaan extends CI_Controller {
                 {
                         redirect();
                 }
-	}
+        }
         
         function isperusahaan()
         {

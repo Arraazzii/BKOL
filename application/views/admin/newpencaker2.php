@@ -292,9 +292,9 @@ $input = $this->session->flashdata('input');
                             foreach ($MsPencakerTempData as $getdata)
                             {
                                 $i++;
-                                $detailbtn = '<a class="button" onclick="DoView(\''.$getdata->IDPencakerTemp.'\') ">Detail</a>';
-                                $accept = '<a class="button" onclick="DoActivateConfirm(\''.$getdata->IDPencakerTemp.'\')">Terima</a>';
-                                $reject = '<a class="button" onclick="DoDeleteConfirm(\''.$getdata->IDPencakerTemp.'\')">Hapus</a>';
+                                $detailbtn = '<a class="btn btn-primary btn-sm" onclick="DoView(\''.$getdata->IDPencakerTemp.'\') ">Detail</a>';
+                                $accept = '<a class="btn btn-success btn-sm" onclick="DoActivateConfirm(\''.$getdata->IDPencakerTemp.'\')">Terima</a>';
+                                $reject = '<a class="btn btn-danger btn-sm" onclick="DoDeleteConfirm(\''.$getdata->IDPencakerTemp.'\')">Hapus</a>';
                                 $this->table->add_row(
                                     array('data'=>$i),
                                     array('data'=>$getdata->NomorIndukPencaker."--".$getdata->IDPencakerTemp),

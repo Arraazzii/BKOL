@@ -1,43 +1,43 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
-    <h1>
-        Daftar
-        <small>Lowongan Kerja</small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="<?php echo site_url('admin') ?>">Home</a></li>
-        <li><a href="<?php echo site_url('admin') ?>">Perusahaan</a></li>
-        <li class="active">Lowongan Kerja</li>
-    </ol>
+  <h1>
+    Daftar
+    <small>Lowongan Kerja</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="<?php echo site_url('admin') ?>">Home</a></li>
+    <li><a href="<?php echo site_url('admin') ?>">Perusahaan</a></li>
+    <li class="active">Lowongan Kerja</li>
+  </ol>
 </section>
 
 <!-- Main content -->
 <section class="content">
-    <div class="box">
-        <div class="box-header with-border text-center">
-            <h3 class="box-title">DAFTAR LOWONGAN KERJA</h3>
-        </div>
-        <!-- /.box-header -->
-        <!-- form start -->
-        <div class="box-body table-responsive">
-            <table class="table table-bordered table-striped" id="tabel-lowongan">
-                <thead>
-                    <tr>
-                        <th class="text-center">No</th>
-                        <th class="text-center">ID Loker</th>
-                        <th class="text-center">Nama Pekerjaan</th>
-                        <th class="text-center">Tgl Berlaku</th>
-                        <th class="text-center">Tgl Berakhir</th>
-                        <th class="text-center">Status</th>
-                        <th class="text-center">Pria</th>
-                        <th class="text-center">Wanita</th>
-                        <th class="text-center">Detail</th>
-                    </tr>
-                </thead>
-            </table>
-            </div>
-        </div>
+  <div class="box">
+    <div class="box-header with-border text-center">
+      <h3 class="box-title">DAFTAR LOWONGAN KERJA</h3>
     </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+    <div class="box-body table-responsive">
+      <table class="table table-bordered table-striped" id="tabel-lowongan">
+        <thead>
+          <tr>
+            <th class="text-center">No</th>
+            <th class="text-center">ID Loker</th>
+            <th class="text-center">Nama Pekerjaan</th>
+            <th class="text-center">Tgl Berlaku</th>
+            <th class="text-center">Tgl Berakhir</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">Pria</th>
+            <th class="text-center">Wanita</th>
+            <th class="text-center">Detail</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+</div>
 </section>
 
 <script>
@@ -109,18 +109,18 @@
   function DoDeleteConfirm(id)
   {
     swal({
-        title: 'Hapus Data Lowongan?',
-        text: "Lowongan ini akan dihapus!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Hapus!',
-        cancelButtonText: 'Batal'
-      }).then((result) => {
-        if (result.value) {
-          window.location.href = '<?= site_url('perusahaan/lowongan/delete') ?>/' + id;
-        }
-      })
+      title: 'Hapus Data Lowongan?',
+      text: "Lowongan ini akan dihapus!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Hapus!',
+      cancelButtonText: 'Batal'
+    }).then((result) => {
+      if (result.value) {
+        window.location.href = '<?= site_url('perusahaan/lowongan/delete') ?>/' + id;
+      }
+    })
   }
 </script>

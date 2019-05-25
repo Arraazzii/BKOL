@@ -24,15 +24,15 @@
                             <tr>
                                 <td align="left" valign="top" rowspan="4" width="120px">
                                     <?php  
-                                        $filepath = BASEPATH.'/../assets/file/pencaker/'.$MsPencakerData->IDPencaker.'.jpg';
-                                        if (file_exists($filepath)) 
-                                        {
-                                            $profilepic = base_url().'assets/file/pencaker/'.$MsPencakerData->IDPencaker.'.jpg';
-                                        }
-                                        else
-                                        {
-                                            $profilepic = base_url().'assets/file/pencaker/default.jpg';
-                                        }
+                                    $filepath = BASEPATH.'/../assets/file/pencaker/'.$MsPencakerData->IDPencaker.'.jpg';
+                                    if (file_exists($filepath)) 
+                                    {
+                                        $profilepic = base_url().'assets/file/pencaker/'.$MsPencakerData->IDPencaker.'.jpg';
+                                    }
+                                    else
+                                    {
+                                        $profilepic = base_url().'assets/file/pencaker/default.jpg';
+                                    }
                                     ?>
                                     <img src="<?php echo $profilepic;?>" width="120px" height="160px">
                                 </td>
@@ -183,26 +183,26 @@
                 <div class="box-body table-responsive">
                     <table class="table table-condensed">
                         <tr>
-                                <td align="left" colspan="2">
-                                    <div align="left">
-                                        <?php
-                                        if ($MsBahasaData->num_rows > 0)
+                            <td align="left" colspan="2">
+                                <div align="left">
+                                    <?php
+                                    if ($MsBahasaData->num_rows > 0)
+                                    {
+                                        echo '<ul>';
+                                        foreach ($MsBahasaData->result() as $getdata)
                                         {
-                                            echo '<ul>';
-                                            foreach ($MsBahasaData->result() as $getdata)
-                                            {
-                                                echo '<li>'.$getdata->NamaBahasa.'</li>';
-                                            }
-                                            echo '</ul>';
+                                            echo '<li>'.$getdata->NamaBahasa.'</li>';
                                         }
-                                        else
-                                        {
-                                            echo 'belum ada data';
-                                        }
-                                        ?>
-                                    </div>
-                                </td>
-                            </tr>
+                                        echo '</ul>';
+                                    }
+                                    else
+                                    {
+                                        echo 'belum ada data';
+                                    }
+                                    ?>
+                                </div>
+                            </td>
+                        </tr>
                     </table>
                 </div>
                 <div class="box-footer">
@@ -215,32 +215,32 @@
                 </div>
                 <div class="box-body table-responsive">
                     <?php if ($MsPengalamanData->num_rows > 0): $i=1; ?>
-                    <?php foreach ($MsPengalamanData->result() as $getdata): ?>
+                        <?php foreach ($MsPengalamanData->result() as $getdata): ?>
                             <div class="row"><div class="col-xs-5">Jabatan</div><div class="col-xs-7">: <?php echo $getdata->Jabatan ?></div></div>
                             <?php  
-                                $i++;
-                                $interval = date_diff(date_create($getdata->TglMasuk), date_create($getdata->TglBerhenti));
-                                $out = $interval->format("Years:%Y,Months:%M,Days:%d");
-                                $result = array();
-                                $newOut = explode(',',$out);
-                                array_walk($newOut,
-                                    function($val,$key) use(&$result){
-                                        $v=explode(':',$val);
-                                        $result[$v[0]] = $v[1];
-                                    });
-                            ?>
-                            <div class="row"><div class="col-xs-5">Nama Perusahaan</div><div class="col-xs-7">: <?php echo $getdata->NamaPerusahaan ?></div></div>
-                            <div class="row"><div class="col-xs-5">Lama Bekerja</div><div class="col-xs-7">: <?php echo ((int)$result['Years'] > 0 ? (int)$result['Years'].' tahun' : '').((int)$result['Months'] > 0 ? ' '.(int)$result['Months'].' bulan' : ((int)$result['Days'] > 0 ? ' '.(int)$result['Days'].' hari' : ' 0 hari')) ?></div></div>
-                        <br>
-                    <?php endforeach ?>
-                    <?php else: ?>
-                        <p>Belum Ada Data</p>
-                    <?php endif ?>
-                </div>
-                <div class="box-footer">
-                     <a class="btn btn-default btn-sm" href="<?php echo base_url();?>pencaker/pengalaman"><i class="fa fa-edit"></i> Detail Pengalaman</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+                            $i++;
+                            $interval = date_diff(date_create($getdata->TglMasuk), date_create($getdata->TglBerhenti));
+                            $out = $interval->format("Years:%Y,Months:%M,Days:%d");
+                            $result = array();
+                            $newOut = explode(',',$out);
+                            array_walk($newOut,
+                                function($val,$key) use(&$result){
+                                    $v=explode(':',$val);
+                                    $result[$v[0]] = $v[1];
+                                });
+                                ?>
+                                <div class="row"><div class="col-xs-5">Nama Perusahaan</div><div class="col-xs-7">: <?php echo $getdata->NamaPerusahaan ?></div></div>
+                                <div class="row"><div class="col-xs-5">Lama Bekerja</div><div class="col-xs-7">: <?php echo ((int)$result['Years'] > 0 ? (int)$result['Years'].' tahun' : '').((int)$result['Months'] > 0 ? ' '.(int)$result['Months'].' bulan' : ((int)$result['Days'] > 0 ? ' '.(int)$result['Days'].' hari' : ' 0 hari')) ?></div></div>
+                                <br>
+                            <?php endforeach ?>
+                        <?php else: ?>
+                            <p>Belum Ada Data</p>
+                        <?php endif ?>
+                    </div>
+                    <div class="box-footer">
+                       <a class="btn btn-default btn-sm" href="<?php echo base_url();?>pencaker/pengalaman"><i class="fa fa-edit"></i> Detail Pengalaman</a>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </section>

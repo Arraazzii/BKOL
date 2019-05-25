@@ -50,23 +50,23 @@
                         <button type="button" class="btn btn-default btn-sm" id="tambahdata"><i class="fa fa-plus"></i> Tambah Kabupaten</button>
                         <!-- <button type="button" class="btn btn-default" id="kembali"><i class="fa fa-arrow-left"></i> kembali</button> -->
                     </div>
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th width="10">No</th>
-                                    <th class="text-center">Nama Kabupaten</th>
-                                    <th class="text-center">Detail</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php if ($this->pagination->total_rows > 0): ?>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th width="10">No</th>
+                                <th class="text-center">Nama Kabupaten</th>
+                                <th class="text-center">Detail</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if ($this->pagination->total_rows > 0): ?>
                                 <?php $i = 0; ?>
                                 <?php foreach ($MsKabupatenData as $getdata): ?>
                                     <?php 
-                                        $i++;
-                                        $detailbtn = '<a class="btn btn-default btn-sm" onclick="DoEdit(\''.$getdata->IDKabupaten.'\') ">Detail</a>';
-                                        $viewbtn = '<a class="btn btn-default btn-sm" href="'.site_url('admin/kecamatan/'.$getdata->IDKabupaten).'">Lihat Kecamatan</a>';
-                                        $deletebtn = '<a class="btn btn-default btn-sm" onclick="DoDeleteConfirm(\''.$getdata->IDKabupaten.'\') ">Hapus</a>';
+                                    $i++;
+                                    $detailbtn = '<a class="btn btn-primary btn-sm" onclick="DoEdit(\''.$getdata->IDKabupaten.'\') ">Detail</a>';
+                                    $viewbtn = '<a class="btn btn-primary btn-sm" href="'.site_url('admin/kecamatan/'.$getdata->IDKabupaten).'">Lihat Kecamatan</a>';
+                                    $deletebtn = '<a class="btn btn-danger btn-sm" onclick="DoDeleteConfirm(\''.$getdata->IDKabupaten.'\') ">Hapus</a>';
                                     ?>
                                     <tr>
                                         <td class="text-center"><?php echo $i+$this->uri->segment(3) ?></td>
@@ -74,13 +74,13 @@
                                         <td class="text-center"><?php echo $detailbtn.$viewbtn.$deletebtn ?></td>
                                     </tr>
                                 <?php endforeach ?>
-                                <?php else: ?>
-                                    <tr>
-                                        <td colspan="3" class="text-center">Belum ada data</td>
-                                    </tr>
-                                <?php endif ?>
-                            </tbody>
-                        </table>
+                            <?php else: ?>
+                                <tr>
+                                    <td colspan="3" class="text-center">Belum ada data</td>
+                                </tr>
+                            <?php endif ?>
+                        </tbody>
+                    </table>
                 </div>
                 <?php if ($this->pagination->create_links()): ?>
                     <div class="box-footer">
@@ -95,7 +95,7 @@
     </div>
 </section>
 <script>
-   
+ 
     $("#tambahdata").click(function() {
         clearmodaljenis();
         var tmodal = $("#modal-kabupaten");
@@ -157,7 +157,7 @@
                 });
             }
         }
-            
+        
     });
 
     function clearmodaljenis() {
@@ -185,9 +185,9 @@
                 else
                 {
                     swal({
-                     type: 'error',
-                     title: 'Oops...',
-                     text: 'Kabupaten Tidak Ditemukan!'
+                       type: 'error',
+                       title: 'Oops...',
+                       text: 'Kabupaten Tidak Ditemukan!'
                    })
                 }
             },'json')
@@ -234,12 +234,23 @@
                 else
                 {
                     swal({
-                     type: 'error',
-                     title: 'Oops...',
-                     text: 'Kabupaten Tidak Ditemukan!'
+                       type: 'error',
+                       title: 'Oops...',
+                       text: 'Kabupaten Tidak Ditemukan!'
                    })
                 }
             },'json')
     }
 
+</script>
+</script>
+<script type="text/javascript">
+    window.addEventListener( "pageshow", function ( event ) {
+      var historyTraversal = event.persisted || 
+      ( typeof window.performance != "undefined" && 
+          window.performance.navigation.type === 2 );
+      if ( historyTraversal ) {
+        window.location.reload();
+    }
+});
 </script>

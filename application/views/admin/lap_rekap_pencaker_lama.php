@@ -90,7 +90,7 @@
         success: function(res) {
           var tbody = document.getElementById('data-body');
           var tfoot = document.getElementById('data-foot');
-        
+          
           tbody.innerHTML = '';
           tfoot.innerHTML = '';
           detail = res.detail;
@@ -162,4 +162,15 @@
     table.appendChild(tfoot);
     container.appendChild(table);
   }
+</script>
+</script>
+<script type="text/javascript">
+  window.addEventListener( "pageshow", function ( event ) {
+    var historyTraversal = event.persisted || 
+    ( typeof window.performance != "undefined" && 
+      window.performance.navigation.type === 2 );
+    if ( historyTraversal ) {
+      window.location.reload();
+    }
+  });
 </script>

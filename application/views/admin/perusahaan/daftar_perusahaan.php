@@ -91,7 +91,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
-             </div>
+            </div>
         </div>
     </div>
 </div>
@@ -157,84 +157,95 @@
 
         });
     });
-function DoView(id)
-  {
-    
-    $.get('<?= site_url('admin/perusahaan/getdata') ?>/'+id,
-      function(getdata)
-      {
-        if (getdata.exists)
-        {
-            var inst = $('#modal-detail');
-            inst.modal('show');
-            ClearAddInput();
-            $("#namaperusahaan").html(getdata.NamaPerusahaan);
-            $('#bidangperusahaan').html(getdata.NamaBidangPerusahaan);
-            $('#email').html(getdata.Email);
-            $('#telepon').html(getdata.Telepon);
-            $('#alamat').html(getdata.Alamat);
-            $('#kelurahan').html(getdata.NamaKelurahan);
-            $('#kecamatan').html(getdata.NamaKecamatan);
-            $('#kodepos').html(getdata.KodePos);
-            $('#kota').html(getdata.Kota);
-            $('#provinsi').html(getdata.Propinsi);
-        }
-        else
-        {
-          swal({
-            type: 'error',
-            title: 'Oops...',
-            text: 'Perusahaan Tidak Ditemukan!'
-          })
-        }
-      },'json')
-  }
-
-  function DoDelete(id)
-  {
-    $.get('<?= site_url('admin/perusahaan/getdata') ?>/'+id,
-    function(getdata)
+    function DoView(id)
     {
-       if (getdata.exists)
-       {
-          swal({
-            title: 'Hapus Data Perusahaan?',
-            text: "Perusahaan "+getdata.NamaPerusahaan+" akan dihapus!",
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Hapus!',
-            cancelButtonText: 'Batal'
-          }).then((result) => {
-            if (result.value) {
-              window.location.href = '<?= site_url('admin/perusahaan/') ?>/' + id + '/delete';
+        
+        $.get('<?= site_url('admin/perusahaan/getdata') ?>/'+id,
+          function(getdata)
+          {
+            if (getdata.exists)
+            {
+                var inst = $('#modal-detail');
+                inst.modal('show');
+                ClearAddInput();
+                $("#namaperusahaan").html(getdata.NamaPerusahaan);
+                $('#bidangperusahaan').html(getdata.NamaBidangPerusahaan);
+                $('#email').html(getdata.Email);
+                $('#telepon').html(getdata.Telepon);
+                $('#alamat').html(getdata.Alamat);
+                $('#kelurahan').html(getdata.NamaKelurahan);
+                $('#kecamatan').html(getdata.NamaKecamatan);
+                $('#kodepos').html(getdata.KodePos);
+                $('#kota').html(getdata.Kota);
+                $('#provinsi').html(getdata.Propinsi);
             }
-          })
-       }
-       else
-       {
-          swal({
-            type: 'error',
-            title: 'Oops...',
-            text: 'Perusahaan Tidak Ditemukan!'
-          })
-       }
-    },'json')
-  }
+            else
+            {
+              swal({
+                type: 'error',
+                title: 'Oops...',
+                text: 'Perusahaan Tidak Ditemukan!'
+            })
+          }
+      },'json')
+    }
 
-  function ClearAddInput()
-  {
-    $('#namaperusahaan').html("");
-    $('#bidangperusahaan').html("");
-    $('#email').html("");
-    $('#telepon').html("");
-    $('#alamat').html("");
-    $('#kelurahan').html("");
-    $('#kecamatan').html("");
-    $('#kodepos').html("");
-    $('#kota').html("");
-    $('#provinsi').html("");
-  }
+    function DoDelete(id)
+    {
+        $.get('<?= site_url('admin/perusahaan/getdata') ?>/'+id,
+            function(getdata)
+            {
+               if (getdata.exists)
+               {
+                  swal({
+                    title: 'Hapus Data Perusahaan?',
+                    text: "Perusahaan "+getdata.NamaPerusahaan+" akan dihapus!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.value) {
+                      window.location.href = '<?= site_url('admin/perusahaan/') ?>/' + id + '/delete';
+                  }
+              })
+            }
+            else
+            {
+              swal({
+                type: 'error',
+                title: 'Oops...',
+                text: 'Perusahaan Tidak Ditemukan!'
+            })
+          }
+      },'json')
+    }
 
-  </script>
+    function ClearAddInput()
+    {
+        $('#namaperusahaan').html("");
+        $('#bidangperusahaan').html("");
+        $('#email').html("");
+        $('#telepon').html("");
+        $('#alamat').html("");
+        $('#kelurahan').html("");
+        $('#kecamatan').html("");
+        $('#kodepos').html("");
+        $('#kota').html("");
+        $('#provinsi').html("");
+    }
+
+</script>
+</script>
+<script type="text/javascript">
+    window.addEventListener( "pageshow", function ( event ) {
+      var historyTraversal = event.persisted || 
+      ( typeof window.performance != "undefined" && 
+          window.performance.navigation.type === 2 );
+      if ( historyTraversal ) {
+        window.location.reload();
+    }
+});
+</script>

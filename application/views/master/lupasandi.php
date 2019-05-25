@@ -1,5 +1,5 @@
 <?php
-    $input = $this->session->flashdata('input');
+$input = $this->session->flashdata('input');
 ?>
 <style type="text/css" media="screen">
     /*
@@ -8,7 +8,7 @@
     /*
      * General styles
      */
-    body, html {
+     body, html {
         height: 100%;
         background-repeat: no-repeat;
         background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
@@ -31,7 +31,7 @@
     /*
      * Card component
      */
-    .card {
+     .card {
         background-color: #F7F7F7;
         /* just in case there no content*/
         padding: 20px 25px 30px;
@@ -59,7 +59,7 @@
     /*
      * Form styles
      */
-    .profile-name-card {
+     .profile-name-card {
         font-size: 16px;
         font-weight: bold;
         text-align: center;
@@ -140,9 +140,9 @@
     <form method="post" class="form-signin" action="<?= site_url('login/dosendpassword') ?>">
         <span id="reauth-email" class="reauth-email">
             <?php if ($this->session->flashdata('error') != null): ?>
-            <span class="callout callout-danger">
-                <?php echo $this->session->flashdata('error'); ?>
-            </span>   
+                <span class="callout callout-danger">
+                    <?php echo $this->session->flashdata('error'); ?>
+                </span>   
             <?php endif ?>
         </span>
         <input id="email" class="form-control" name="email" type="email" value="<?= $input != null ? $input['email'] : '' ?>" placeholder="Email Pengguna" autofocus>

@@ -52,17 +52,17 @@
                 <center><img class="" src="<?= site_url('assets/file/berita/'.$MsEventData->IDEvent.'.jpg') ?>"></center>
             <?php endif ?>
             <p><font size="3" style="line-height: 100%;"><?= $MsEventData->IsiEvent ?></font><p>
+            </div>
         </div>
-    </div>
-    <!-- /.box -->
+        <!-- /.box -->
 
-</section>
-<!-- /.content -->
+    </section>
+    <!-- /.content -->
 
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('.box-body').find('img').attr({
-            class: 'img-responsive',
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.box-body').find('img').attr({
+                class: 'img-responsive',
+            });
         });
-    });
-</script>
+    </script>

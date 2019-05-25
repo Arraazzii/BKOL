@@ -37,14 +37,14 @@ and open the template in the editor.
                                                         <!-- <li>
                                                                 <a href="<?= site_url('pencaker/chat') ?>">PESAN ADMINISTRATOR  
                                                                         <?php if($jum_chat>0){?> <b>(<?php echo $jum_chat;?>)</b><?php } ?></a>
-                                                        </li> -->
-                                                        <li>
-                                                                <a href="<?= site_url('logout') ?>">LOGOUT</a>
-                                                        </li>
-                                                </ul>
-                                        </div>
-                                </td>
-                        </tr>
-                </table>
-        </td>
-</tr>
+                                                                </li> -->
+                                                                <li>
+                                                                        <a href="<?= site_url('logout') ?>">LOGOUT</a>
+                                                                </li>
+                                                        </ul>
+                                                </div>
+                                        </td>
+                                </tr>
+                        </table>
+                </td>
+        </tr>

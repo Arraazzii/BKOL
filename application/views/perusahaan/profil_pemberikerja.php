@@ -97,7 +97,7 @@
         });
 
         $("#btnsimpan").click(function() {
-                $.ajax({
+            $.ajax({
                 url: '<?php echo site_url('pemberikerja') ?>',
                 type: 'POST',
                 dataType: 'JSON',
@@ -121,5 +121,5 @@
                 }
             });
         });
-   });
+    });
 </script>

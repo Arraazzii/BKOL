@@ -6,6 +6,14 @@ and open the template in the editor.
 <?php
 $input = $this->session->flashdata('input');
 ?>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta property="og:site_name" content="BKOL DEPOK">
+<meta property="og:title" content="Bursa Lowongan Kerja Online KOTA DEPOK" />
+<meta property="og:description" content="Lowongan Dan Data Pekerjaan Kota Depok" />
+<meta property="og:image" itemprop="image" content="<?php echo site_url();?>assets/depok.png">
+<meta property="og:type" content="website" />
+<link rel="shortcut icon" href="<?php echo base_url();?>assets/depok.png" type="image/x-icon">
 <table width="100%">
     <tr>
         <td align="center">

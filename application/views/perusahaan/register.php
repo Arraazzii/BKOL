@@ -40,7 +40,7 @@
             <?php echo form_error('password2', '<span class="help-block">', '</span>'); ?>
           </div>
         </div>
-        </div>
+      </div>
       <!-- /.box-body -->
     </div>
     <div class="box box-primary box-solid">
@@ -59,11 +59,11 @@
           <label for="" class="control-label col-md-3">Bidang perusahaan</label>
           <div class="col-md-5">
             <?php 
-                $idbidang = 0;
-                if (isset($input['idbidangperusahaan'])) {
-                    $idbidang = $input['idbidangperusahaan'];
-                }
-                echo combo_bidang($idbidang);
+            $idbidang = 0;
+            if (isset($input['idbidangperusahaan'])) {
+              $idbidang = $input['idbidangperusahaan'];
+            }
+            echo combo_bidang($idbidang);
             ?>
             <?php echo form_error('idbidangperusahaan', '<span class="help-block">', '</span>'); ?>
           </div>
@@ -86,8 +86,8 @@
           <label for="idkecamatan" class="control-label col-md-3">Kecamatan</label>
           <div class="col-md-5">
             <?php
-              $active = isset($input['idkecamatan']) ? $input['idkecamatan'] : 0;
-              echo combo_kecamatan($active); 
+            $active = isset($input['idkecamatan']) ? $input['idkecamatan'] : 0;
+            echo combo_kecamatan($active); 
             ?>
           </div>
         </div>
@@ -95,7 +95,7 @@
           <label for="kelurahan" class="control-label col-md-3">Kelurahan</label>
           <div class="col-md-5">
             <select id="idkelurahan" class="form-control input-sm" name="idkelurahan">
-                <option value="">- Pilih Desa / Kelurahan -</option>
+              <option value="">- Pilih Desa / Kelurahan -</option>
             </select>
             <?php echo form_error('idkelurahan', '<span class="help-block">', '</span>'); ?>
           </div>
@@ -177,52 +177,52 @@
   </form>
 </section>
 <script type="text/javascript">
-$("#idkecamatan").change(function() {
+  $("#idkecamatan").change(function() {
     var IDKecamatan = $("#idkecamatan").val();
     GetKelurahan(IDKecamatan);
-});
+  });
 
 
-function GetKelurahan(IDKecamatan, selected = 0)
-{
+  function GetKelurahan(IDKecamatan, selected = 0)
+  {
     $.ajax({
-        url: '<?php echo site_url('ajax/get_kelurahan') ?>',
-        type: 'POST',
-        dataType: 'html',
-        data: {
-          IDKecamatan: IDKecamatan,
-          selected: selected
-        },
-        success: function(data) {
-            $("#idkelurahan").html(data);
-        }
+      url: '<?php echo site_url('ajax/get_kelurahan') ?>',
+      type: 'POST',
+      dataType: 'html',
+      data: {
+        IDKecamatan: IDKecamatan,
+        selected: selected
+      },
+      success: function(data) {
+        $("#idkelurahan").html(data);
+      }
     });
-}
+  }
 
-<?php  
+  <?php  
   if (isset($input['idkecamatan'])) {
     if ($input['idkecamatan'] != '') {
-        $activekec = $input['idkecamatan'];
-        $activekel = isset($input['idkelurahan']) && $input['idkelurahan'] != '' ? $input['idkelurahan'] : 0;
-        echo "GetKelurahan(".$activekec.",".$activekel.");";
+      $activekec = $input['idkecamatan'];
+      $activekel = isset($input['idkelurahan']) && $input['idkelurahan'] != '' ? $input['idkelurahan'] : 0;
+      echo "GetKelurahan(".$activekec.",".$activekel.");";
     }
   }
-?>
+  ?>
 
-function getFormattedDate(date)
-{
-        var day = date.getDate();
-        var month = date.getMonth() + 1;
-        var year = date.getFullYear().toString();
-        return day + '-' + month + '-' + year;
-}
-document.addEventListener('DOMContentLoaded', function() {
-  $("#username").keypress(function (e){
-        if (e.which==32)
-        {
-                return false
-        }
+  function getFormattedDate(date)
+  {
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear().toString();
+    return day + '-' + month + '-' + year;
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    $("#username").keypress(function (e){
+      if (e.which==32)
+      {
+        return false
+      }
+    });
   });
-});
 </script>
 <!-- /.content -->

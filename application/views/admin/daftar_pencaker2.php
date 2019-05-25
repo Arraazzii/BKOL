@@ -510,6 +510,6 @@ and open the template in the viewor.
         }
       });
           // window.location = '<?php echo base_url();?>admin/print_ak/'+id;
-    }
+        }
 
-  </script>
+      </script>

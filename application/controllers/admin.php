@@ -308,8 +308,8 @@ class admin extends CI_Controller {
                     $mail->Password = $password_admin;
                     $mail->Mailer   = 'smtp';
                     $mail->WordWrap = 100;       
-                
-                
+                    
+                    
                     $mail->setFrom($email_admin);
                     $mail->FromName = $nama_admin;
                     $mail->addAddress($getmspencakerdata->Email);
@@ -318,332 +318,332 @@ class admin extends CI_Controller {
                     $mail_data['induk']     = $getmspencakerdata->NomorIndukPencaker;
                     $mail_data['username']  = $$getmsuserdata->Username;
                     $mail_data['password']  = $getmsuserdata->Password;
-                
+                    
                     $message = $this->load->view('email_temp', $mail_data, TRUE);
                     $mail->Body = $message;
-                
+                    
                     if ($mail->send()) {
-                       $this->session->set_flashdata('notifikasi', '<script>notifikasi("Pencaker Berhasil Ditambahkan", "success", "fa fa-check")</script>');
-                    } else {
-                      echo 'Message could not be sent.';
-                      echo 'Mailer Error: ' . $mail->ErrorInfo;
-                    }
+                     $this->session->set_flashdata('notifikasi', '<script>notifikasi("Pencaker Berhasil Ditambahkan", "success", "fa fa-check")</script>');
+                 } else {
+                  echo 'Message could not be sent.';
+                  echo 'Mailer Error: ' . $mail->ErrorInfo;
+              }
                     // $this->EmailModel->sendEmail($getmspencakerdata->Email,'[Aktivasi] Pendaftaran Pencaker Baru','Data Pencaker anda telah diaktifkan.<br/>Terimakasih atas pastisipasi anda dalam menggunakan aplikasi ini,<br/>Data pendaftaran anda adalah sebagai berikut :<br/><br/>Nomer ID : '.$getmsuserdata->NomorIndukPencaker.'<br/>Nama Pengguna : '.$getmsuserdata->Username.'<br/>Kata Sandi : '.$getmsuserdata->Password.'<br/><br/>Untuk aktivasi akun dan pencetakan kartu AK-1 mohon untuk membawa dokumen-dokumen sebagai berikut :<br/><br/>1. Foto kopi KTP Depok yang masih berlaku<br/>2. Ijazah SD, SMP, SLTA Sampai Terakhir/ Asli/ Fotocopy Yang dilegalisir<br/>3. Pas Foto 3 x 4 Sebanyak 2 (dua) Lembar<br/>4. Kartu AK-I yang masih berlaku<br/><br/>ke pusat pelayanan terpadu Dinas Tenaga Kerja Kota Depok<br/>Jl. Margonda Raya No.54 Kec.Pancoran Mas, Depok - JABAR<br/>Telp. 021-77204211,Fax. 021-77211866');
                     // $this->session->set_flashdata('notifikasi', '<script>notifikasi("Pencaker Berhasil Ditambahkan", "success", "fa fa-check")</script>');
-                }
-            }
-            else if ($iduser == 'exists') {
-                $this->session->set_flashdata('notifikasi', '<script>notifikasi("Pencaker Sudah Terdaftar", "danger", "fa fa-exclamation")</script>');
-            }
-            else
-            {
-                $this->session->set_flashdata('notifikasi', '<script>notifikasi("Pencaker Gagal Ditambah", "danger", "fa fa-exclamation")</script>');
-            }
-            redirect('admin/newpencaker');
-        }
-        else
-        {
-            redirect();
-        }
+          }
+      }
+      else if ($iduser == 'exists') {
+        $this->session->set_flashdata('notifikasi', '<script>notifikasi("Pencaker Sudah Terdaftar", "danger", "fa fa-exclamation")</script>');
     }
-
-    public function deletepencakertemp()
+    else
     {
-        if ($this->isadmin())
+        $this->session->set_flashdata('notifikasi', '<script>notifikasi("Pencaker Gagal Ditambah", "danger", "fa fa-exclamation")</script>');
+    }
+    redirect('admin/newpencaker');
+}
+else
+{
+    redirect();
+}
+}
+
+public function deletepencakertemp()
+{
+    if ($this->isadmin())
+    {
+        $idpencakertemp = $this->uri->segment(3);
+        $this->load->model('MsPencakerTemp');
+        $getmspencakertempdata = $this->MsPencakerTemp->GetMsPencakerTempByIDPencakerTemp($idpencakertemp);
+        if ($getmspencakertempdata != NULL)
         {
-            $idpencakertemp = $this->uri->segment(3);
-            $this->load->model('MsPencakerTemp');
-            $getmspencakertempdata = $this->MsPencakerTemp->GetMsPencakerTempByIDPencakerTemp($idpencakertemp);
-            if ($getmspencakertempdata != NULL)
-            {
-                $this->MsPencakerTemp->DeleteByIDPencakerTemp($getmspencakertempdata->IDPencakerTemp);
+            $this->MsPencakerTemp->DeleteByIDPencakerTemp($getmspencakertempdata->IDPencakerTemp);
                                 //unlink('assets/file/temp/'.$getmspencakertempdata->IDPencakerTemp.'.jpg');
+            $this->load->model('EmailModel');
+            @$this->EmailModel->sendEmail($getmspencakertempdata->Email,'Pembatalan Pendaftaran Pencaker Baru','Maaf Data Pencaker yang anda berikan tidak valid.<br/>Silakan mendaftar kembali, pastikan nomor induk pencaker sesuai dengan nomor yang ada di kartu kuning anda.');
+        }
+        $this->session->set_flashdata('notifikasi', '<script>notifikasi("Pencaker Berhasil Dihapus", "success", "fa fa-check")</script>');
+        redirect('admin/newpencaker');
+    }
+    else
+    {
+        redirect();
+    }
+}
+
+public function exportperusahaantemp()
+{
+    if ($this->isadmin())
+    {
+        $idperusahaantemp = $this->uri->segment(3);
+        $this->load->model('MsPerusahaanTemp');
+        $iduser = $this->MsPerusahaanTemp->Export($idperusahaantemp);
+        if ($iduser != NULL)
+        {
+            $this->load->model('MsUser');
+            $getmsuserdata = $this->MsUser->GetMsUserByIDUser($iduser);
+            $this->load->model('MsPerusahaan');
+            $getmsperusahaandata = $this->MsPerusahaan->GetMsPerusahaanByIDUser($iduser);
+            if ($getmsuserdata != NULL && $getmsperusahaandata != NULL)
+            {
                 $this->load->model('EmailModel');
-                @$this->EmailModel->sendEmail($getmspencakertempdata->Email,'Pembatalan Pendaftaran Pencaker Baru','Maaf Data Pencaker yang anda berikan tidak valid.<br/>Silakan mendaftar kembali, pastikan nomor induk pencaker sesuai dengan nomor yang ada di kartu kuning anda.');
+                @$this->EmailModel->sendEmail($getmsperusahaandata->EmailPemberiKerja,'[Aktivasi] Pendaftaran Perusahaan Baru','Data Perusahaan anda telah diaktifkan.<br/>Nama Pengguna : '.$getmsuserdata->Username.'<br/>Kata Sandi : '.$getmsuserdata->Password);
+                $this->seterrormsg(NULL,"Pencaker berhasil ditambah");
             }
-            $this->session->set_flashdata('notifikasi', '<script>notifikasi("Pencaker Berhasil Dihapus", "success", "fa fa-check")</script>');
-            redirect('admin/newpencaker');
+            $this->session->set_flashdata('notifikasi', '<script>notifikasi("Perusahaan Berhasil Diaktifkan", "success", "fa fa-check")</script>');
         }
         else
         {
-            redirect();
+            $this->session->set_flashdata('notifikasi', '<script>notifikasi("Perusahaan Gagal Diaktifkan", "danger", "fa fa-exclamation")</script>');
         }
+        redirect('admin/newperusahaan');
     }
-
-    public function exportperusahaantemp()
+    else
     {
-        if ($this->isadmin())
+        redirect();
+    }
+}
+
+public function deleteperusahaantemp()
+{
+    if ($this->isadmin())
+    {
+        $idperusahaantemp = $this->uri->segment(3);
+        $this->load->model('MsPerusahaanTemp');
+        $getmsperusahaantempdata = $this->MsPerusahaanTemp->GetMsPerusahaanTempByIDPerusahaanTemp($idperusahaantemp);
+        if ($getmsperusahaantempdata != NULL)
         {
-            $idperusahaantemp = $this->uri->segment(3);
-            $this->load->model('MsPerusahaanTemp');
-            $iduser = $this->MsPerusahaanTemp->Export($idperusahaantemp);
-            if ($iduser != NULL)
+            $this->MsPerusahaanTemp->DeleteByIDPerusahaanTemp($getmsperusahaantempdata->IDPerusahaanTemp);
+            $this->load->model('EmailModel');
+            @$this->EmailModel->sendEmail($getmsperusahaantempdata->Email,'Pembatalan Pendaftaran Perusahaan Baru','Maaf Data Perusahaan yang anda berikan tidak valid.<br/>Silakan mendaftar kembali, pastikan nomor induk perusahaan sesuai dengan nomor yang ada di kartu kuning anda.');
+        }
+        $this->session->set_flashdata('notifikasi', '<script>notifikasi("Perusahaan Berhasil Dihapus", "success", "fa fa-check")</script>');
+        redirect('admin/newperusahaan');
+    }
+    else
+    {
+        redirect();
+    }
+}
+
+public function pencaker()
+{
+    if ($this->isadmin())
+    {
+        if ($this->uri->segment(3) == 'getdata')
+        {
+            $idpencaker = $this->uri->segment(4);
+            $this->load->model('MsPencaker');
+            $getmspencakerdata = $this->MsPencaker->GetMsPencakerByIDPencaker($idpencaker);
+            if ($getmspencakerdata != NULL)
             {
-                $this->load->model('MsUser');
-                $getmsuserdata = $this->MsUser->GetMsUserByIDUser($iduser);
-                $this->load->model('MsPerusahaan');
-                $getmsperusahaandata = $this->MsPerusahaan->GetMsPerusahaanByIDUser($iduser);
-                if ($getmsuserdata != NULL && $getmsperusahaandata != NULL)
+                $data['exists'] = true;
+                $this->load->model('MsBahasa');
+                $getmsbahasadata = $this->MsBahasa->GetMsBahasaByIDPencaker($getmspencakerdata->IDPencaker);
+                $data['BahasaData'] = "";
+                if ($getmsbahasadata->num_rows() > 0)
                 {
-                    $this->load->model('EmailModel');
-                    @$this->EmailModel->sendEmail($getmsperusahaandata->EmailPemberiKerja,'[Aktivasi] Pendaftaran Perusahaan Baru','Data Perusahaan anda telah diaktifkan.<br/>Nama Pengguna : '.$getmsuserdata->Username.'<br/>Kata Sandi : '.$getmsuserdata->Password);
-                    $this->seterrormsg(NULL,"Pencaker berhasil ditambah");
-                }
-                $this->session->set_flashdata('notifikasi', '<script>notifikasi("Perusahaan Berhasil Diaktifkan", "success", "fa fa-check")</script>');
-            }
-            else
-            {
-                $this->session->set_flashdata('notifikasi', '<script>notifikasi("Perusahaan Gagal Diaktifkan", "danger", "fa fa-exclamation")</script>');
-            }
-            redirect('admin/newperusahaan');
-        }
-        else
-        {
-            redirect();
-        }
-    }
-
-    public function deleteperusahaantemp()
-    {
-        if ($this->isadmin())
-        {
-            $idperusahaantemp = $this->uri->segment(3);
-            $this->load->model('MsPerusahaanTemp');
-            $getmsperusahaantempdata = $this->MsPerusahaanTemp->GetMsPerusahaanTempByIDPerusahaanTemp($idperusahaantemp);
-            if ($getmsperusahaantempdata != NULL)
-            {
-                $this->MsPerusahaanTemp->DeleteByIDPerusahaanTemp($getmsperusahaantempdata->IDPerusahaanTemp);
-                $this->load->model('EmailModel');
-                @$this->EmailModel->sendEmail($getmsperusahaantempdata->Email,'Pembatalan Pendaftaran Perusahaan Baru','Maaf Data Perusahaan yang anda berikan tidak valid.<br/>Silakan mendaftar kembali, pastikan nomor induk perusahaan sesuai dengan nomor yang ada di kartu kuning anda.');
-            }
-            $this->session->set_flashdata('notifikasi', '<script>notifikasi("Perusahaan Berhasil Dihapus", "success", "fa fa-check")</script>');
-            redirect('admin/newperusahaan');
-        }
-        else
-        {
-            redirect();
-        }
-    }
-
-    public function pencaker()
-    {
-        if ($this->isadmin())
-        {
-            if ($this->uri->segment(3) == 'getdata')
-            {
-                $idpencaker = $this->uri->segment(4);
-                $this->load->model('MsPencaker');
-                $getmspencakerdata = $this->MsPencaker->GetMsPencakerByIDPencaker($idpencaker);
-                if ($getmspencakerdata != NULL)
-                {
-                    $data['exists'] = true;
-                    $this->load->model('MsBahasa');
-                    $getmsbahasadata = $this->MsBahasa->GetMsBahasaByIDPencaker($getmspencakerdata->IDPencaker);
-                    $data['BahasaData'] = "";
-                    if ($getmsbahasadata->num_rows() > 0)
+                    foreach ($getmsbahasadata->result() as $getdata)
                     {
-                        foreach ($getmsbahasadata->result() as $getdata)
-                        {
-                            $data['BahasaData'] .=  '<li>'.$getdata->NamaBahasa.'</li>';
-                        }
+                        $data['BahasaData'] .=  '<li>'.$getdata->NamaBahasa.'</li>';
                     }
-                    else
-                    {
-                        $data['BahasaData'] .= 'belum ada data';
-                    }
-                    $this->load->model('MsPengalaman');
-                    $getmspengalamandata = $this->MsPengalaman->GetMsPengalamanByIDPencaker($getmspencakerdata->IDPencaker);
-                    $data['PengalamanData'] = "";
-                    if ($getmspengalamandata->num_rows() > 0)
-                    {
-                        $data['PengalamanData'] .= '<ul>';
-                        foreach ($getmspengalamandata->result() as $getdata)
-                        {
-                            $lama = $getdata->lamabekerja;
-                            $lm = $lama . ' Hari';
-
-                            if($lama < 365)
-                            {
-                                $lama = floor($lama / 30);
-                                $lm = $lama . ' Bulan';
-                            }
-                            else if ($lama >= 365)
-                            {
-                                $lama = round($lama / 365, 1);
-                                $lm = $lama . ' Tahun';
-                            }
-
-                            $data['PengalamanData'] .=  '<li>'.$getdata->Jabatan . ', ' . $getdata->NamaPerusahaan.', '.$lm.'</li>';
-                        }
-                        $data['PengalamanData'] .= '</ul>';
-                    }
-                    else
-                    {
-                        $data['PengalamanData'] .= 'belum ada data';
-                    }
-                    $data['IDPencaker'] = $getmspencakerdata->IDPencaker;
-                    $data['NomorIndukPencaker'] = $getmspencakerdata->NomorIndukPencaker;
-                    $data['NamaPencaker'] = $getmspencakerdata->NamaPencaker;
-                    $data['TempatLahir'] = $getmspencakerdata->TempatLahir;
-                    $data['TglLahir'] = $getmspencakerdata->TglLahir;
-                    $data['JenisKelamin'] = $getmspencakerdata->JenisKelamin;
-                    $data['Email'] = $getmspencakerdata->Email;
-                    $data['Jurusan'] = $getmspencakerdata->Jurusan;
-                    $data['Telepon'] = $getmspencakerdata->Telepon;
-                    $data['Alamat'] = $getmspencakerdata->Alamat;
-                    $data['NamaKecamatan'] = $getmspencakerdata->NamaKecamatan;
-                    $data['NamaKelurahan'] = $getmspencakerdata->NamaKelurahan;
-                    $data['KodePos'] = $getmspencakerdata->KodePos;
-                    $data['Kewarganegaraan'] = $getmspencakerdata->Kewarganegaraan;
-                    $data['NamaAgama'] = $getmspencakerdata->NamaAgama;
-                    $data['NamaStatusPernikahan'] = $getmspencakerdata->NamaStatusPernikahan;
-                    $data['NamaStatusPendidikan'] = $getmspencakerdata->NamaStatusPendidikan;
-                    $data['Jurusan'] = $getmspencakerdata->Jurusan;
-                    $data['Keterampilan'] = $getmspencakerdata->Keterampilan;
-                    $data['NEMIPK'] = $getmspencakerdata->NEMIPK;
-                    $data['Nilai'] = $getmspencakerdata->Nilai;
-                    $data['TahunLulus'] = $getmspencakerdata->TahunLulus;
-                    $data['TinggiBadan'] = $getmspencakerdata->TinggiBadan;
-                    $data['BeratBadan'] = $getmspencakerdata->BeratBadan;
-                    $data['Keterangan'] = $getmspencakerdata->Keterangan;
-                    $data['NamaPosisiJabatan'] = $getmspencakerdata->NamaPosisiJabatan;
-                    $data['Lokasi'] = $getmspencakerdata->Lokasi;
-                    $data['UpahYangDicari'] = 'Rp ' . number_format($getmspencakerdata->UpahYangDicari);
-                    $data['Password'] = $getmspencakerdata->password;
                 }
                 else
                 {
-                    $data['exists'] = false;
+                    $data['BahasaData'] .= 'belum ada data';
                 }
-                echo json_encode($data);
+                $this->load->model('MsPengalaman');
+                $getmspengalamandata = $this->MsPengalaman->GetMsPengalamanByIDPencaker($getmspencakerdata->IDPencaker);
+                $data['PengalamanData'] = "";
+                if ($getmspengalamandata->num_rows() > 0)
+                {
+                    $data['PengalamanData'] .= '<ul>';
+                    foreach ($getmspengalamandata->result() as $getdata)
+                    {
+                        $lama = $getdata->lamabekerja;
+                        $lm = $lama . ' Hari';
+
+                        if($lama < 365)
+                        {
+                            $lama = floor($lama / 30);
+                            $lm = $lama . ' Bulan';
+                        }
+                        else if ($lama >= 365)
+                        {
+                            $lama = round($lama / 365, 1);
+                            $lm = $lama . ' Tahun';
+                        }
+
+                        $data['PengalamanData'] .=  '<li>'.$getdata->Jabatan . ', ' . $getdata->NamaPerusahaan.', '.$lm.'</li>';
+                    }
+                    $data['PengalamanData'] .= '</ul>';
+                }
+                else
+                {
+                    $data['PengalamanData'] .= 'belum ada data';
+                }
+                $data['IDPencaker'] = $getmspencakerdata->IDPencaker;
+                $data['NomorIndukPencaker'] = $getmspencakerdata->NomorIndukPencaker;
+                $data['NamaPencaker'] = $getmspencakerdata->NamaPencaker;
+                $data['TempatLahir'] = $getmspencakerdata->TempatLahir;
+                $data['TglLahir'] = $getmspencakerdata->TglLahir;
+                $data['JenisKelamin'] = $getmspencakerdata->JenisKelamin;
+                $data['Email'] = $getmspencakerdata->Email;
+                $data['Jurusan'] = $getmspencakerdata->Jurusan;
+                $data['Telepon'] = $getmspencakerdata->Telepon;
+                $data['Alamat'] = $getmspencakerdata->Alamat;
+                $data['NamaKecamatan'] = $getmspencakerdata->NamaKecamatan;
+                $data['NamaKelurahan'] = $getmspencakerdata->NamaKelurahan;
+                $data['KodePos'] = $getmspencakerdata->KodePos;
+                $data['Kewarganegaraan'] = $getmspencakerdata->Kewarganegaraan;
+                $data['NamaAgama'] = $getmspencakerdata->NamaAgama;
+                $data['NamaStatusPernikahan'] = $getmspencakerdata->NamaStatusPernikahan;
+                $data['NamaStatusPendidikan'] = $getmspencakerdata->NamaStatusPendidikan;
+                $data['Jurusan'] = $getmspencakerdata->Jurusan;
+                $data['Keterampilan'] = $getmspencakerdata->Keterampilan;
+                $data['NEMIPK'] = $getmspencakerdata->NEMIPK;
+                $data['Nilai'] = $getmspencakerdata->Nilai;
+                $data['TahunLulus'] = $getmspencakerdata->TahunLulus;
+                $data['TinggiBadan'] = $getmspencakerdata->TinggiBadan;
+                $data['BeratBadan'] = $getmspencakerdata->BeratBadan;
+                $data['Keterangan'] = $getmspencakerdata->Keterangan;
+                $data['NamaPosisiJabatan'] = $getmspencakerdata->NamaPosisiJabatan;
+                $data['Lokasi'] = $getmspencakerdata->Lokasi;
+                $data['UpahYangDicari'] = 'Rp ' . number_format($getmspencakerdata->UpahYangDicari);
+                $data['Password'] = $getmspencakerdata->password;
             }
-            else if ($this->uri->segment(3) == 'lowongan')
+            else
             {
-                $idpencaker = $this->uri->segment(4);
+                $data['exists'] = false;
+            }
+            echo json_encode($data);
+        }
+        else if ($this->uri->segment(3) == 'lowongan')
+        {
+            $idpencaker = $this->uri->segment(4);
+            if ($idpencaker != '')
+            {
                 if ($idpencaker != '')
                 {
-                    if ($idpencaker != '')
+
+                    $this->load->model('MsPencaker');
+                    $getmspencakerdata = $this->MsPencaker->GetMsPencakerByIDPencaker($idpencaker);
+                    if ($getmspencakerdata != NULL)
+                    {
+                        $data['MsPencakerData'] = $getmspencakerdata;
+                        $page = $this->uri->segment(5);
+                        $this->load->model('MsLowongan');
+                        $getmslowongan = $this->MsLowongan->GetGridMsLowonganByIDPencaker($idpencaker,10,$page);
+                        $data['MsLowonganData'] = $getmslowongan->result();
+                        $config['uri_segment'] = 5;
+                        $config['base_url'] = site_url('admin/pencaker/lowongan/'.$idpencaker);
+                        $config['total_rows'] = $this->MsLowongan->GetCountMsLowonganByIDPencaker($idpencaker)->total_rows;
+                        $config['per_page'] = 10;
+                        $this->pagination->initialize($config);
+                        $data['route'] = $this->uri->segment(2).'/'.$this->uri->segment(3);
+                            // $this->load->view('index',$data);
+                        $this->template->load('backend', 'admin/pencaker/daftar_lowongan', $data);
+                    }
+                    else
                     {
 
+                    }
+                }
+            }
+        }
+        else if ($this->uri->segment(3) == 'registerlowongan')
+        {
+            $idpencaker = $this->uri->segment(4);
+            if ($idpencaker != '')
+            {
+                $idlowongan = $this->uri->segment(5);
+                $this->load->model('MsLowongan');
+                $getmslowongandata = $this->MsLowongan->GetMsLowonganByIDLowongan($idlowongan);
+                if ($getmslowongandata != NULL)
+                {
+                    $this->load->model('MsPerusahaan');
+                    $getmsperusahaandata = $this->MsPerusahaan->GetMsPerusahaanByIDLowongan($idlowongan);
+                    if ($getmsperusahaandata != NULL)
+                    {
+                        $iduser = $this->session->userdata('iduser');
                         $this->load->model('MsPencaker');
                         $getmspencakerdata = $this->MsPencaker->GetMsPencakerByIDPencaker($idpencaker);
                         if ($getmspencakerdata != NULL)
                         {
-                            $data['MsPencakerData'] = $getmspencakerdata;
-                            $page = $this->uri->segment(5);
-                            $this->load->model('MsLowongan');
-                            $getmslowongan = $this->MsLowongan->GetGridMsLowonganByIDPencaker($idpencaker,10,$page);
-                            $data['MsLowonganData'] = $getmslowongan->result();
-                            $config['uri_segment'] = 5;
-                            $config['base_url'] = site_url('admin/pencaker/lowongan/'.$idpencaker);
-                            $config['total_rows'] = $this->MsLowongan->GetCountMsLowonganByIDPencaker($idpencaker)->total_rows;
-                            $config['per_page'] = 10;
-                            $this->pagination->initialize($config);
-                            $data['route'] = $this->uri->segment(2).'/'.$this->uri->segment(3);
-                            // $this->load->view('index',$data);
-                            $this->template->load('backend', 'admin/pencaker/daftar_lowongan', $data);
-                        }
-                        else
-                        {
-
-                        }
-                    }
-                }
-            }
-            else if ($this->uri->segment(3) == 'registerlowongan')
-            {
-                $idpencaker = $this->uri->segment(4);
-                if ($idpencaker != '')
-                {
-                    $idlowongan = $this->uri->segment(5);
-                    $this->load->model('MsLowongan');
-                    $getmslowongandata = $this->MsLowongan->GetMsLowonganByIDLowongan($idlowongan);
-                    if ($getmslowongandata != NULL)
-                    {
-                        $this->load->model('MsPerusahaan');
-                        $getmsperusahaandata = $this->MsPerusahaan->GetMsPerusahaanByIDLowongan($idlowongan);
-                        if ($getmsperusahaandata != NULL)
-                        {
-                            $iduser = $this->session->userdata('iduser');
-                            $this->load->model('MsPencaker');
-                            $getmspencakerdata = $this->MsPencaker->GetMsPencakerByIDPencaker($idpencaker);
-                            if ($getmspencakerdata != NULL)
+                            $this->load->model('TrLowonganMasuk');
+                            if ($this->TrLowonganMasuk->Insert($idlowongan,$getmspencakerdata->IDPencaker))
                             {
-                                $this->load->model('TrLowonganMasuk');
-                                if ($this->TrLowonganMasuk->Insert($idlowongan,$getmspencakerdata->IDPencaker))
-                                {
-                                    $fromdate = explode("-", $getmslowongandata->TglBerlaku);
-                                    $todate = explode("-", $getmslowongandata->TglBerakhir);
-                                    $this->load->model('EmailModel');
-                                    @$this->EmailModel->sendEmail($getmsperusahaandata->EmailPemberiKerja,'Pendaftaran Lowongan Masuk','No Loker : '.$getmslowongandata->IDLowongan.'<br/>Nama Pekerjaan : '.$getmslowongandata->NamaLowongan.'<br/>Tanggal Berlaku : '.$fromdate[2].'-'.$fromdate[1].'-'.$fromdate[0].' s/d '.$todate[2].'-'.$todate[1].'-'.$todate[0].'<br/>Nama Pencaker : '.$getmspencakerdata->NamaPencaker);
-                                    $this->session->set_flashdata('notifikasi', '<script>
-                                        notifikasi("CV anda berhasil dikirim ke '.$getmsperusahaandata->NamaPerusahaan.'", "success", "fa fa-check")
+                                $fromdate = explode("-", $getmslowongandata->TglBerlaku);
+                                $todate = explode("-", $getmslowongandata->TglBerakhir);
+                                $this->load->model('EmailModel');
+                                @$this->EmailModel->sendEmail($getmsperusahaandata->EmailPemberiKerja,'Pendaftaran Lowongan Masuk','No Loker : '.$getmslowongandata->IDLowongan.'<br/>Nama Pekerjaan : '.$getmslowongandata->NamaLowongan.'<br/>Tanggal Berlaku : '.$fromdate[2].'-'.$fromdate[1].'-'.$fromdate[0].' s/d '.$todate[2].'-'.$todate[1].'-'.$todate[0].'<br/>Nama Pencaker : '.$getmspencakerdata->NamaPencaker);
+                                $this->session->set_flashdata('notifikasi', '<script>
+                                    notifikasi("CV anda berhasil dikirim ke '.$getmsperusahaandata->NamaPerusahaan.'", "success", "fa fa-check")
                                     </script>');
-                                }
-                                else
-                                {
-                                    $this->session->set_flashdata('notifikasi', '<script>notifikasi("CV anda gagal dikirim", "danger", "fa fa-exclamation")</script>');
-                                }
-                                redirect('admin/pencaker/lowongan/'.$idpencaker);
                             }
                             else
                             {
-                                redirect();
+                                $this->session->set_flashdata('notifikasi', '<script>notifikasi("CV anda gagal dikirim", "danger", "fa fa-exclamation")</script>');
                             }
+                            redirect('admin/pencaker/lowongan/'.$idpencaker);
                         }
-                    }
-                }
-                else
-                {
-                    redirect();
-                }
-            }
-            else if ($this->uri->segment(3) == 'aktivasi')
-            {
-                $input = $this->input->post();
-                if ($input['IDPencaker'] == '')
-                {
-                    $data['valid'] = false;
-                    $data['error'] = "Pencaker belum dipilih";
-                }
-                else
-                {
-                    $data['valid'] = false;
-                    $data['error'] = "Pencaker gagal diaktifkan";
-                    $this->load->model('MsPencaker');
-                    $getmspencaker = $this->MsPencaker->GetMsPencakerByIDPencaker($input['IDPencaker']);
-                    if ($getmspencaker != NULL)
-                    {
-                        if ($this->MsPencaker->UpdateExpiredDate($input['IDPencaker']))
+                        else
                         {
-                            $this->load->model('MsUser');
-                            $getmsuser= $this->MsUser->GetMsUserByIDUser($getmspencaker->IDUser);
-                            if ($getmsuser != NULL)
-                            {
-                                $this->load->model('MsAktivasi');
-                                if ($this->MsAktivasi->DeleteByIDPencaker($input['IDPencaker']))
-                                {
-                                    $data['valid'] = true;
-                                    $data['error'] = "Pencaker berhasil diaktifkan";
-                                }
-                                $this->load->model('EmailModel');
-                                @$this->EmailModel->sendEmail($getmspencaker->Email,'[Aktivasi] Pencaker','Data Pencaker anda telah diaktifkan.<br/>Nama Pengguna : '.$getmsuser->Username.'<br/>Kata Sandi : '.$getmsuser->Password);
-                            }
+                            redirect();
                         }
                     }
                 }
-                echo json_encode($data);
             }
-            else if ($this->uri->segment(3) == 'cekaktivasi')
+            else
             {
-                $page = $this->uri->segment(4);
-                $this->load->model('MsAktivasi');
-                $getmsaktivasidata = $this->MsAktivasi->GetGridMsAktivasi(10,$page);
-                $getcount = $this->MsAktivasi->GetCountMsAktivasi();
-                $data['MsAktivasiData'] = $getmsaktivasidata->result();
-                $config['base_url'] = site_url('admin/pencaker/cekaktivasi');
-                $config['total_rows'] = $getcount->total_rows;
-                $config['per_page']     = 10;
+                redirect();
+            }
+        }
+        else if ($this->uri->segment(3) == 'aktivasi')
+        {
+            $input = $this->input->post();
+            if ($input['IDPencaker'] == '')
+            {
+                $data['valid'] = false;
+                $data['error'] = "Pencaker belum dipilih";
+            }
+            else
+            {
+                $data['valid'] = false;
+                $data['error'] = "Pencaker gagal diaktifkan";
+                $this->load->model('MsPencaker');
+                $getmspencaker = $this->MsPencaker->GetMsPencakerByIDPencaker($input['IDPencaker']);
+                if ($getmspencaker != NULL)
+                {
+                    if ($this->MsPencaker->UpdateExpiredDate($input['IDPencaker']))
+                    {
+                        $this->load->model('MsUser');
+                        $getmsuser= $this->MsUser->GetMsUserByIDUser($getmspencaker->IDUser);
+                        if ($getmsuser != NULL)
+                        {
+                            $this->load->model('MsAktivasi');
+                            if ($this->MsAktivasi->DeleteByIDPencaker($input['IDPencaker']))
+                            {
+                                $data['valid'] = true;
+                                $data['error'] = "Pencaker berhasil diaktifkan";
+                            }
+                            $this->load->model('EmailModel');
+                            @$this->EmailModel->sendEmail($getmspencaker->Email,'[Aktivasi] Pencaker','Data Pencaker anda telah diaktifkan.<br/>Nama Pengguna : '.$getmsuser->Username.'<br/>Kata Sandi : '.$getmsuser->Password);
+                        }
+                    }
+                }
+            }
+            echo json_encode($data);
+        }
+        else if ($this->uri->segment(3) == 'cekaktivasi')
+        {
+            $page = $this->uri->segment(4);
+            $this->load->model('MsAktivasi');
+            $getmsaktivasidata = $this->MsAktivasi->GetGridMsAktivasi(10,$page);
+            $getcount = $this->MsAktivasi->GetCountMsAktivasi();
+            $data['MsAktivasiData'] = $getmsaktivasidata->result();
+            $config['base_url'] = site_url('admin/pencaker/cekaktivasi');
+            $config['total_rows'] = $getcount->total_rows;
+            $config['per_page']     = 10;
                 $config["uri_segment"] = 3;  // uri parameter
                 $choice = $config["total_rows"] / $config["per_page"];
                 $config["num_links"]        = 3;
@@ -1943,8 +1943,348 @@ class admin extends CI_Controller {
             redirect();
         }
     }
+    public function lowonganBaru()
+    {
+        if ($this->isadmin())
+        {
+            $page = $this->uri->segment(3);
+            $this->load->model('MsLowongan');
+            $getmslowongan = $this->MsLowongan->GetGridMsLowongan(10,$page);
+            $data['MsLowonganData'] = $getmslowongan->result();
+            $config['base_url'] = site_url('admin/lowongan');
+            $config['total_rows'] = $this->MsLowongan->GetCountMsLowongan()->total_rows;
+            $config['per_page'] = 10;
+            $this->pagination->initialize($config);
+            $data['route'] = $this->uri->segment(2);
+            // $this->load->view('index',$data);
+            $this->template->load('backend', 'admin/daftar_lowongan', $data);
+        }
+        else
+        {
+            redirect();
+        }
+    }
 
     public function berita()
+    {
+        if ($this->isadmin())
+        {
+            if ($this->uri->segment(3) == 'getdata')
+            {
+                $idberita = $this->uri->segment(4);
+                $input = $this->input->post();
+                $this->load->model('MsBerita');
+                $getmsberita = $this->MsBerita->GetMsBeritaByIDBerita($idberita);
+                if ($getmsberita != NULL)
+                {
+                    $data['IDBerita'] = $getmsberita->IDBerita;
+                    $data['TglBerita'] = $getmsberita->TglBerita;
+                    $data['JudulBerita'] = $getmsberita->JudulBerita;
+                    $data['IsiBerita'] = $getmsberita->IsiBerita;
+                    $data['exists'] = true;
+                }
+                else
+                {
+                    $data['exists'] = false;
+                }
+                echo json_encode($data);
+            }
+            else if ($this->uri->segment(3) == 'tambahdata')
+            {
+                if (($this->input->post())) 
+                {
+                    $post = $this->input->post();
+
+                    $config = array(
+                        array(
+                            'field' => 'tanggalberita',
+                            'label' => 'Tanggal Berita',
+                            'rules' => 'required',
+                            'errors' => array(
+                                'required' => 'Tanggal Lowongan Harus diisi '
+                            )
+                        ),
+                        array(
+                            'field' => 'judulberita',
+                            'label' => 'Judul Lowongan Pekerjaan',
+                            'rules' => 'required|min_length[10]',
+                            'errors' => array(
+                                'required' => 'Judul Lowongan Harus diisi ',
+                                'min_length' => 'Judul Lowongan Setidaknya Minimal 10 Karakter'
+                            )
+                        ),
+                        array(
+                            'field'  => 'isiberita',
+                            'label'  => 'Isi Berita',
+                            'rules'  => 'required|min_length[20]',
+                            'errors' => array(
+                                'required' => 'Isi Berita Harus diisi ',
+                                'min_length' => 'Isi Berita Setidaknya Minimal 20 Karakter'
+                            )
+                        )
+                    );
+
+                    
+                    $this->form_validation->set_rules($config);
+
+                    if ($this->form_validation->run() == FALSE)
+                    {
+                        $data['post'] = $post;
+                        $this->template->load('backend', 'admin/berita/tambahdata', $data);
+                    }
+                    else
+                    { 
+                        $data = array(
+                            'TglBerita'     => $post['tanggalberita'],
+                            'JudulBerita'   => $post['judulberita'],
+                            'IsiBerita'     => $post['isiberita']
+                        );
+                        $this->load->model('MsBerita');
+
+                        if($this->MsBerita->Insert($data) != NULL)
+                        {
+                            $this->session->set_flashdata('notifikasi', '<script>notifikasi("Berita Berhasil Ditambahkan", "success", "fa fa-check")</script>');
+                        }
+                        else
+                        {
+                            $this->session->set_flashdata('notifikasi', '<script>notifikasi("Berita Gagal Ditambahkan", "danger", "fa fa-exclamation")</script>');
+                        }
+
+                        redirect('admin/berita');
+                    }
+                }
+                else
+                {
+                    $data['post'] = [];
+                    $this->template->load('backend', 'admin/berita/tambahdata', $data);
+                }
+            }
+            else if ($this->uri->segment(3) == 'updatedata')
+            {
+                $idberita = $this->uri->segment(4);
+                $this->load->model('MsBerita');
+
+                if ($this->input->post()) 
+                {
+                    $post = $this->input->post();
+
+                    $config = array(
+                        array(
+                            'field' => 'tanggalberita',
+                            'label' => 'Tanggal Berita',
+                            'rules' => 'required',
+                            'errors' => array(
+                                'required' => 'Tanggal Lowongan Harus diisi '
+                            )
+                        ),
+                        array(
+                            'field' => 'judulberita',
+                            'label' => 'Judul Lowongan Pekerjaan',
+                            'rules' => 'required|min_length[10]',
+                            'errors' => array(
+                                'required' => 'Judul Lowongan Harus diisi ',
+                                'min_length' => 'Judul Lowongan Setidaknya Minimal 10 Karakter'
+                            )
+                        ),
+                        array(
+                            'field'  => 'isiberita',
+                            'label'  => 'Isi Berita',
+                            'rules'  => 'required|min_length[20]',
+                            'errors' => array(
+                                'required' => 'Isi Berita Harus diisi ',
+                                'min_length' => 'Isi Berita Setidaknya Minimal 20 Karakter'
+                            )
+                        )
+                    );
+
+                    $this->form_validation->set_rules($config);
+
+                    if ($this->form_validation->run() == FALSE)
+                    {
+                        $data['post'] = $post;
+                        $this->template->load('backend', 'admin/berita/tambahdata', $data);
+                    }
+                    else
+                    { 
+                        $data = array(
+                            'TglBerita'     => $post['tanggalberita'],
+                            'JudulBerita'   => $post['judulberita'],
+                            'IsiBerita'     => $post['isiberita']
+                        );
+
+                        if($this->MsBerita->Update($data,$idberita))
+                        {
+                            $this->session->set_flashdata('notifikasi', '<script>notifikasi("Berita Berhasil Diubah", "success", "fa fa-check")</script>');
+                        }
+                        else
+                        {
+                            $this->session->set_flashdata('notifikasi', '<script>notifikasi("Berita Gagal Diubah", "danger", "fa fa-exclamation")</script>');
+                        }
+
+                        redirect('admin/berita');
+                    }
+                }
+                else
+                {
+                    $getmsberita = $this->MsBerita->GetMsBeritaByIDBerita($idberita);
+                    if ($getmsberita != NULL)
+                    {
+                        $tglberita = explode('-', $getmsberita->TglBerita);
+                        $data['post'] = array(
+                            'idberita'      => $getmsberita->IDBerita,
+                            'tanggalberita' => $tglberita[2] . '-' . $tglberita[1] . '-' . $tglberita[0],
+                            'judulberita'   => $getmsberita->JudulBerita,
+                            'isiberita'     => $getmsberita->IsiBerita
+                        );
+                        
+                        $this->template->load('backend', 'admin/berita/updatedata', $data);
+                    }
+                }
+            }
+            else if ($this->uri->segment(3) == 'deletedata')
+            {
+                $input = $this->input->post();
+                if ($input['IDBerita'] == '')
+                {
+                    $data['valid'] = false;
+                    $data['error'] = "Berita belum dipilih";
+                }
+                else
+                {
+                    $this->load->model('MsBerita');
+                    if ($this->MsBerita->Delete($input['IDBerita']))
+                    {
+                        unlink('assets/file/berita/'.$input['IDBerita'].'.jpg');
+                        $data['valid'] = true;
+                        $this->session->set_flashdata('notifikasi', '<script>notifikasi("Berita Berhasil Dihapus", "success", "fa fa-check")</script>');
+                    }
+                    else
+                    {
+                        $data['valid'] = false;
+                        $data['error'] = "Berita gagal dihapus";
+                    }
+                }
+                echo json_encode($data);
+            }
+            else if ($this->uri->segment(3) == 'foto')
+            {
+                $input = $this->input->post();
+                if ($this->uri->segment(4) != NULL)
+                {
+                    $data['route'] = $this->uri->segment(2).'/'.$this->uri->segment(3);
+                    $this->load->view('index',$data);
+                }
+                else
+                {
+                    redirect('admin/berita');
+                }
+            }
+            else if ($this->uri->segment(3) == 'upload')
+            {
+                $input = $this->input->post();
+                $idberita = $input['idberita'];
+                if ($_FILES['photo']['error'] > 0)
+                {
+                    switch ($_FILES['photo']['error'])
+                    {
+                        case 1:
+                        $this->seterrormsg($input,"Ukuran file foto maksimal 2 MB");
+                        break;
+                        case 2:
+                        $this->seterrormsg($input,"Ukuran file foto maksimal 2 MB");
+                        break;
+                        case 3:
+                        $this->seterrormsg($input,"Foto belum diupload sepenuhnya");
+                        break;
+                        case 4:
+                        $this->seterrormsg($input,"Foto belum diupload");
+                        break;
+                    }
+                }
+                else if (end(explode(".", $_FILES["photo"]["name"])) != 'jpg')
+                {
+                    $this->seterrormsg($input,"File harus berformat *.jpg");
+                }
+                else if ($_FILES['photo']['size'] > 2097152)
+                {
+                    $this->seterrormsg($input,"Ukuran file foto maksimal 2 MB");
+                }
+                else
+                {
+                    list($width, $height, $type, $attr) = getimagesize($_FILES['photo']['tmp_name']);
+                    if(in_array($type , array(IMAGETYPE_GIF , IMAGETYPE_JPEG ,IMAGETYPE_PNG , IMAGETYPE_BMP)))
+                    {
+                        if ($_FILES['photo']['size'] != null)
+                        {
+                            $this->load->model('UploadModel');
+                            $this->UploadModel->Upload('photo', $idberita, 'assets/file/berita');
+                            $this->seterrormsg($input,"Foto berhasil diupload");
+                        }
+                    }
+                    else
+                    {
+                        $this->seterrormsg($input,"File yang diupload harus berupa gambar");
+                    }
+                }
+                redirect('admin/berita/foto/'.$idberita);
+            }
+            else if ($this->uri->segment(3) == 'deleteimage')
+            {
+                $input = $this->input->post();
+                if ($input['IDBerita'] == '')
+                {
+                    $data['valid'] = false;
+                    $data['error'] = "Foto belum dipilih";
+                }
+                else
+                {
+                    unlink('assets/file/berita/'.$input['IDBerita'].'.jpg');
+                    $data['valid'] = true;
+                    $data['error'] = "Foto berhasil dihapus";
+                }
+                $this->seterrormsg(NULL,$data['error']);
+                echo json_encode($data);
+            }
+            else
+            {
+                $page = $this->uri->segment(3);
+                $this->load->model('MsBerita');
+                $getmsberita = $this->MsBerita->GetGridMsBerita(10,$page);
+                $data['MsBeritaData'] = $getmsberita->result();
+                $config['base_url'] = site_url('admin/berita');
+                $config['total_rows'] = $this->MsBerita->GetCountMsBerita()->total_rows;
+                $config['per_page']         = 10;
+                $config["uri_segment"]      = 3;  // uri parameter
+                $config["num_links"]        = 3;
+
+                $config['next_link']        = '&raquo;';
+                $config['prev_link']        = '&laquo;';
+                $config['full_tag_open']    = '<div class="box-tools"><nav><ul class="pagination no-margin pull-right">';
+                $config['full_tag_close']   = '</ul></nav></div>';
+                $config['num_tag_open']     = '<li>';
+                $config['num_tag_close']    = '</li>';
+                $config['cur_tag_open']     = '<li class="page-item active"><span class="page-link">';
+                $config['cur_tag_close']    = '<span class="sr-only">(current)</span></span></li>';
+                $config['next_tag_open']    = '<li>';
+                $config['next_tagl_close']  = '&raquo;</li>';
+                $config['prev_tag_open']    = '<li>';
+                $config['prev_tagl_close']  = '&laquo;</li>';
+                $config['first_tag_open']   = '<li>';
+                $config['first_tagl_close'] = '</li>';
+                $config['last_tag_open']    = '<li>';
+                $config['last_tagl_close']  = '</li>';
+                $this->pagination->initialize($config);
+                $data['route'] = $this->uri->segment(2);
+                // $this->load->view('index',$data);
+                $this->template->load('backend', 'admin/berita/daftar_berita', $data);
+            }
+        }
+        else
+        {
+            redirect();
+        }
+    }
+    public function beritaBaru()
     {
         if ($this->isadmin())
         {
@@ -2929,7 +3269,7 @@ class admin extends CI_Controller {
                 }
                 $data['summary'] = $this->TrLowonganMasuk->GetCountByPeriod($type, $start, $end, $cat);
                 $data['jenis'] = 0;
-        } else if($jenis == 1)
+            } else if($jenis == 1)
             {
                 $this->load->model('TrLowonganMasuk');
                 $data['detail'] = $this->TrLowonganMasuk->GetByRangeDate($start, $end);
@@ -3016,7 +3356,7 @@ class admin extends CI_Controller {
 
                 if($jenis == 0)
                 {
-                
+                    
                     $excel->setActiveSheetIndex(0)->setCellValue('A1', "REKAP JUMLAH PENCAKER BKOL DEPOK");
                     $excel->setActiveSheetIndex(0)->setCellValue('A2', "PERIODE " . $periode);
                     $excel->setActiveSheetIndex(0)->setCellValue('A3', $jenispencaker);
@@ -3153,13 +3493,13 @@ class admin extends CI_Controller {
                     $excel->setActiveSheetIndex(0)->setCellValue('A4', 'Kategori Pencaker : Berdasarkan '.$kategori);
 
                     $excel->getProperties()->setCreator('Disnaker Kota Depok')
-                        ->setLastModifiedBy('Disnaker Kota Depok')                 
-                        ->setTitle('Rekap Jumlah Pencaker Berdasarkan ' .$kategori)                 
-                        ->setSubject("Jumlah Pencaker")                 
-                        ->setDescription("Laporan Jumlah Pencaker")                 
-                        ->setKeywords("Data Pencaker");
+                    ->setLastModifiedBy('Disnaker Kota Depok')                 
+                    ->setTitle('Rekap Jumlah Pencaker Berdasarkan ' .$kategori)                 
+                    ->setSubject("Jumlah Pencaker")                 
+                    ->setDescription("Laporan Jumlah Pencaker")                 
+                    ->setKeywords("Data Pencaker");
 
-                        
+                    
                     $excel->getActiveSheet(0)->setTitle('Rekap Pencaker');    
                     $excel->setActiveSheetIndex(0);  
                     $write = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');  
@@ -3230,13 +3570,13 @@ class admin extends CI_Controller {
                     $excel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
 
                     $excel->getProperties()->setCreator('Disnaker Kota Depok')
-                        ->setLastModifiedBy('Disnaker Kota Depok')                 
-                        ->setTitle('Rekap Lamaran yang di proses')                 
-                        ->setSubject("Lamaran Diproses")                 
-                        ->setDescription("Laporan Lamaran Diproses")                 
-                        ->setKeywords("Data Pencaker");
+                    ->setLastModifiedBy('Disnaker Kota Depok')                 
+                    ->setTitle('Rekap Lamaran yang di proses')                 
+                    ->setSubject("Lamaran Diproses")                 
+                    ->setDescription("Laporan Lamaran Diproses")                 
+                    ->setKeywords("Data Pencaker");
 
-                        
+                    
                     $excel->getActiveSheet(0)->setTitle('Rekap Lamaran Di Proses');
                     $excel->getActiveSheet(0)->getPageSetup()->setPaperSize(PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);    
                     $excel->setActiveSheetIndex(0);  
@@ -3325,13 +3665,13 @@ class admin extends CI_Controller {
                     $excel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
 
                     $excel->getProperties()->setCreator('Disnaker Kota Depok')
-                        ->setLastModifiedBy('Disnaker Kota Depok')                 
-                        ->setTitle('Laporan Penempatan Pencaker')                 
-                        ->setSubject("Penempatan Pencaker")                 
-                        ->setDescription("Laporan Penempatan Pencaker")                 
-                        ->setKeywords("Data Penempatan Pencaker");
+                    ->setLastModifiedBy('Disnaker Kota Depok')                 
+                    ->setTitle('Laporan Penempatan Pencaker')                 
+                    ->setSubject("Penempatan Pencaker")                 
+                    ->setDescription("Laporan Penempatan Pencaker")                 
+                    ->setKeywords("Data Penempatan Pencaker");
 
-                        
+                    
                     $excel->getActiveSheet(0)->setTitle('Laporan Penempatan Pencaker');
                     $excel->getActiveSheet(0)->getPageSetup()->setPaperSize(PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);    
                     $excel->setActiveSheetIndex(0);  

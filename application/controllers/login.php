@@ -142,43 +142,43 @@ public function dosendpassword()
         {
             $this->load->model('EmailModel');
             if (@$this->EmailModel->sendEmail($input['email'],'[Lupa Sandi] Pengguna '.($getmsuserdata->IDJenisUser == "000001" ? "Perusahaan" : "Pencaker"),'Data Pencaker anda telah diaktifkan.<br/>Nama Pengguna : '.$getmsuserdata->Username.'<br/>Kata Sandi : '.$getmsuserdata->Password))
-            {
-                $this->seterrormsg(NULL,"Kata Sandi telah dikirimkan ke ".$input['email']);
+                {
+                    $this->seterrormsg(NULL,"Kata Sandi telah dikirimkan ke ".$input['email']);
+                }
+                else
+                {
+                    $this->seterrormsg(NULL,"Kata Sandi gagal dikirimkan");
+                }
             }
             else
             {
-                $this->seterrormsg(NULL,"Kata Sandi gagal dikirimkan");
+                $this->seterrormsg(NULL,"Email belum terdaftar");
             }
         }
-        else
+        redirect("lupasandi");
+    }
+
+    function clearsession()
+    {
+        $user_data = $this->session->all_userdata();
+        foreach ($user_data as $key => $value)
         {
-            $this->seterrormsg(NULL,"Email belum terdaftar");
+            if ($key != 'session_id' && $key != 'ip_address' && $key != 'user_agent' && $key != 'last_activity')
+            {
+                $this->session->unset_userdata($key);
+            }
         }
     }
-    redirect("lupasandi");
-}
 
-function clearsession()
-{
-    $user_data = $this->session->all_userdata();
-    foreach ($user_data as $key => $value)
+    function seterrormsg($input,$msg)
     {
-        if ($key != 'session_id' && $key != 'ip_address' && $key != 'user_agent' && $key != 'last_activity')
+        if ($input != NULL)
         {
-            $this->session->unset_userdata($key);
+            $this->session->set_flashdata('input',$input);
+        }
+        if ($msg != NULL)
+        {
+            $this->session->set_flashdata('error',$msg);
         }
     }
-}
-
-function seterrormsg($input,$msg)
-{
-    if ($input != NULL)
-    {
-        $this->session->set_flashdata('input',$input);
-    }
-    if ($msg != NULL)
-    {
-        $this->session->set_flashdata('error',$msg);
-    }
-}
 }

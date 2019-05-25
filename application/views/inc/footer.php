@@ -21,8 +21,8 @@
   })
 </script>
 <script>
-function notifikasi(pesan,tipe, ico = '') {
-  $.notify({
+  function notifikasi(pesan,tipe, ico = '') {
+    $.notify({
     // options
     icon: ico,
     message: pesan,
@@ -31,10 +31,10 @@ function notifikasi(pesan,tipe, ico = '') {
     type: tipe,
     z_index: 9999
   });
-}
+  }
 </script>
 <?php if ($this->session->flashdata('notifikasi')): ?>
-<?php echo $this->session->flashdata('notifikasi') ?>
+  <?php echo $this->session->flashdata('notifikasi') ?>
 <?php endif ?>
 </body>
 </html>

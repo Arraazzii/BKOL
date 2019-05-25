@@ -3,45 +3,52 @@ To change this template, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta property="og:site_name" content="BKOL DEPOK">
+<meta property="og:title" content="Bursa Lowongan Kerja Online KOTA DEPOK" />
+<meta property="og:description" content="Lowongan Dan Data Pekerjaan Kota Depok" />
+<meta property="og:image" itemprop="image" content="<?php echo site_url();?>assets/depok.png">
+<meta property="og:type" content="website" />
+<link rel="shortcut icon" href="<?php echo base_url();?>assets/depok.png" type="image/x-icon">
 <table width="100%" class="table-form">
-        <tr>
-                <th align="center" colspan="3">
-                        <div align="center">
-                                GALERY FOTO
-                        </div>
-                </th>
-        </tr>
-        <tr>
-                <td align="left">
-                        <div id="gallery">
-                                <a href="#" class="show">
-                                        <img src="<?php echo base_url();?>assets/css/slides/foto1.png" alt="Foto 1" width="698" height="238" title="" alt="" rel="<h3>Judul Gambar 1</h3>Keterangan Gambar 1."/>
-                                </a>
-                                <a href="#">
-                                        <img src="<?php echo base_url();?>assets/css/slides/foto2.png" alt="Foto 2" width="698" height="238" title="" alt="" rel="<h3>Judul Gambar 2</h3>Keterangan Gambar 2."/>
-                                </a>
-                                <a href="#">
-                                        <img src="<?php echo base_url();?>assets/css/slides/foto3.png" alt="Foto 3" width="698" height="238" title="" alt="" rel="<h3>Judul Gambar 3</h3>Keterangan Gambar 3."/>
-                                </a>
-                                <div class="caption">
-                                        <div class="content">
-                                        </div>
-                                </div>
-                        </div>
-                        <div class="clear"></div>
-                </td>
-        </tr>
+	<tr>
+		<th align="center" colspan="3">
+			<div align="center">
+				GALERY FOTO
+			</div>
+		</th>
+	</tr>
+	<tr>
+		<td align="left">
+			<div id="gallery">
+				<a href="#" class="show">
+					<img src="<?php echo base_url();?>assets/css/slides/foto1.png" alt="Foto 1" width="698" height="238" title="" alt="" rel="<h3>Judul Gambar 1</h3>Keterangan Gambar 1."/>
+				</a>
+				<a href="#">
+					<img src="<?php echo base_url();?>assets/css/slides/foto2.png" alt="Foto 2" width="698" height="238" title="" alt="" rel="<h3>Judul Gambar 2</h3>Keterangan Gambar 2."/>
+				</a>
+				<a href="#">
+					<img src="<?php echo base_url();?>assets/css/slides/foto3.png" alt="Foto 3" width="698" height="238" title="" alt="" rel="<h3>Judul Gambar 3</h3>Keterangan Gambar 3."/>
+				</a>
+				<div class="caption">
+					<div class="content">
+					</div>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</td>
+	</tr>
 </table>
 <script>
-$(document).ready(function() {		
-	
+	$(document).ready(function() {		
+		
 	//Execute the slideShow
 	slideShow();
 
 });
 
-function slideShow() {
+	function slideShow() {
 
 	//Set the opacity of all images to 0
 	$('#gallery a').css({opacity: 0.0});

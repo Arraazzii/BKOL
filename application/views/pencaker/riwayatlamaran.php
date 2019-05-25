@@ -35,7 +35,7 @@
                             $i=0 ?>
                             <?php if ($lowongandata != null): ?>
                                 <?php foreach ($lowongandata->result() as $row): ?>
-                                <?php $i++; 
+                                    <?php $i++; 
                                     $status = '';
                                     $tgl = '';
                                     if ($row->StatusLowongan == 0)
@@ -49,14 +49,14 @@
 
                                     $tgl = date('d-m-Y', strtotime($row->RegisterDate));
                                     
-                                ?>
-                                <tr>
-                                    <td><?php echo $i+$this->uri->segment(3) ?></td>
-                                    <td><?php echo $row->NamaPerusahaan ?></td>
-                                    <td><?php echo $row->NamaLowongan ?></td>
-                                    <td><?php echo $tgl ?></td>
-                                    <td><?php echo $status ?></td>
-                                </tr>
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $i+$this->uri->segment(3) ?></td>
+                                        <td><?php echo $row->NamaPerusahaan ?></td>
+                                        <td><?php echo $row->NamaLowongan ?></td>
+                                        <td><?php echo $tgl ?></td>
+                                        <td><?php echo $status ?></td>
+                                    </tr>
                                 <?php endforeach ?>
                             <?php else: ?>
                                 <tr>

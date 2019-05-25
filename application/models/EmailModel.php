@@ -6,33 +6,33 @@ class EmailModel extends CI_Model
         
 	function __construct()
         {
-		parent::__construct();
-		
-                $this->config = Array(
+              parent::__construct();
+              
+              $this->config = Array(
                 'protocol'  => 'smtp',
-		'smtp_host' => 'smtp.gmail.com',
+                'smtp_host' => 'smtp.gmail.com',
                 'smtp_port' =>  465,
-		'smtp_user' => 'disnaker.depok@gmail.com',
-		'smtp_pass' => '2014umar',
+                'smtp_user' => 'disnaker.depok@gmail.com',
+                'smtp_pass' => '2014umar',
                 'mailtype'  => 'html'
-                );
-	}
-	
-	function sendEmail($to, $subject, $msg)
-        {
-                $this->load->library('email', $this->config);
-                $this->email->set_newline("\r\n");
+        );
+      }
+      
+      function sendEmail($to, $subject, $msg)
+      {
+        $this->load->library('email', $this->config);
+        $this->email->set_newline("\r\n");
 
-                $this->email->from($this->config['smtp_user'], 'Disnaker Kota Depok');
-                $this->email->to($to);
+        $this->email->from($this->config['smtp_user'], 'Disnaker Kota Depok');
+        $this->email->to($to);
 
-                $this->email->subject($subject);
-                $this->email->message($msg);
+        $this->email->subject($subject);
+        $this->email->message($msg);
 
-                if ($this->email->send()){
-                        return true;
-                } else {
-                        return $this->email->print_debugger();
-                }
-	}
+        if ($this->email->send()){
+                return true;
+        } else {
+                return $this->email->print_debugger();
+        }
+}
 }

@@ -55,10 +55,10 @@
                             </tr>
                             <tr>
                                 <td align="left">
-                                        Kecamatan
+                                    Kecamatan
                                 </td>
                                 <td align="left">
-                                        <?= $MsKecamatanData->NamaKecamatan ?>
+                                    <?= $MsKecamatanData->NamaKecamatan ?>
                                 </td>
                             </tr>
                         </table>
@@ -69,22 +69,22 @@
                             <button type="button" class="btn btn-default btn-sm" id="kembali"><i class="fa fa-arrow-left"></i> Kembali</button>
                         </div>
                     </div>
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th width="10">No</th>
-                                    <th width="200" class="text-center">Nama Kelurahan</th>
-                                    <th width="250" class="text-center">Detail</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php if ($this->pagination->total_rows > 0): ?>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th width="10">No</th>
+                                <th width="200" class="text-center">Nama Kelurahan</th>
+                                <th width="250" class="text-center">Detail</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if ($this->pagination->total_rows > 0): ?>
                                 <?php $i = 0; ?>
                                 <?php foreach ($MsKelurahanData as $getdata): ?>
                                     <?php 
-                                        $i++;
-                                        $detailbtn = '<a class="btn btn-default btn-sm" onclick="DoEdit(\''.$getdata->IDKelurahan.'\') ">Detail</a>';
-                                        $deletebtn = '<a class="btn btn-default btn-sm" onclick="DoDeleteConfirm(\''.$getdata->IDKelurahan.'\') ">Hapus</a>';
+                                    $i++;
+                                    $detailbtn = '<a class="btn btn-primary btn-sm" onclick="DoEdit(\''.$getdata->IDKelurahan.'\') ">Detail</a>';
+                                    $deletebtn = '<a class="btn btn-danger btn-sm" onclick="DoDeleteConfirm(\''.$getdata->IDKelurahan.'\') ">Hapus</a>';
                                     ?>
                                     <tr>
                                         <td class="text-center"><?php echo $i+$this->uri->segment(4) ?></td>
@@ -92,14 +92,14 @@
                                         <td class="text-center"><?php echo $detailbtn.$deletebtn ?></td>
                                     </tr>
                                 <?php endforeach ?>
-                                <?php else: ?>
-                                    <tr>
-                                        <td colspan="3" class="text-center">Belum ada data</td>
-                                    </tr>
-                                <?php endif ?>
-                            </tbody>
-                        </table>
-                        
+                            <?php else: ?>
+                                <tr>
+                                    <td colspan="3" class="text-center">Belum ada data</td>
+                                </tr>
+                            <?php endif ?>
+                        </tbody>
+                    </table>
+                    
                 </div>
                 <?php if ($this->pagination->create_links()): ?>
                     <div class="box-footer">
@@ -179,7 +179,7 @@
                 });
             }
         }
-            
+        
     });
 
     function clearmodaljenis() {
@@ -207,9 +207,9 @@
                 else
                 {
                     swal({
-                     type: 'error',
-                     title: 'Oops...',
-                     text: 'Kelurahan Tidak Ditemukan!'
+                       type: 'error',
+                       title: 'Oops...',
+                       text: 'Kelurahan Tidak Ditemukan!'
                    })
                 }
             },'json')
@@ -256,12 +256,23 @@
                 else
                 {
                     swal({
-                     type: 'error',
-                     title: 'Oops...',
-                     text: 'Kelurahan Tidak Ditemukan!'
+                       type: 'error',
+                       title: 'Oops...',
+                       text: 'Kelurahan Tidak Ditemukan!'
                    })
                 }
             },'json')
     }
 
+</script>
+</script>
+<script type="text/javascript">
+    window.addEventListener( "pageshow", function ( event ) {
+      var historyTraversal = event.persisted || 
+      ( typeof window.performance != "undefined" && 
+          window.performance.navigation.type === 2 );
+      if ( historyTraversal ) {
+        window.location.reload();
+    }
+});
 </script>

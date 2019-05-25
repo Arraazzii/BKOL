@@ -12,12 +12,12 @@ class MsAktivasi extends CI_Model
         function GetGridMsAktivasi($num, $offset)
         {
                 $query = $this->db->query("SELECT a.IDAktivasi,b.IDPencaker,b.IDUser,b.IDKelurahan,b.IDAgama,b.IDStatusPernikahan,b.IDStatusPendidikan,b.IDPosisiJabatan,b.NomorIndukPencaker,b.NamaPencaker,b.TempatLahir,b.TglLahir,b.JenisKelamin,b.Email,b.Telepon,b.Alamat,b.KodePos,b.Kewarganegaraan,b.Jurusan,b.Keterampilan,b.NEMIPK,b.Nilai,b.TahunLulus,b.TinggiBadan,b.BeratBadan,b.Keterangan,b.Lokasi,b.UpahYangDicari,b.ExpiredDate,b.RegisterDate,e.NamaStatusPendidikan FROM ".strtolower("MsAktivasi")." AS a
-                INNER JOIN ".strtolower("MsPencaker")." AS b ON a.IDPencaker=b.IDPencaker
-                INNER JOIN ".strtolower("MsKelurahan")." AS c ON b.IDKelurahan=c.IDKelurahan
-                INNER JOIN ".strtolower("MsKecamatan")." AS d ON c.IDKecamatan=d.IDKecamatan
-                INNER JOIN ".strtolower("MsStatusPendidikan")." AS e ON b.IDStatusPendidikan=e.IDStatusPendidikan
-                ORDER BY a.RegisterDate
-                LIMIT ".($offset != "" ? $offset."," : "")." ".$num);
+                        INNER JOIN ".strtolower("MsPencaker")." AS b ON a.IDPencaker=b.IDPencaker
+                        INNER JOIN ".strtolower("MsKelurahan")." AS c ON b.IDKelurahan=c.IDKelurahan
+                        INNER JOIN ".strtolower("MsKecamatan")." AS d ON c.IDKecamatan=d.IDKecamatan
+                        INNER JOIN ".strtolower("MsStatusPendidikan")." AS e ON b.IDStatusPendidikan=e.IDStatusPendidikan
+                        ORDER BY a.RegisterDate
+                        LIMIT ".($offset != "" ? $offset."," : "")." ".$num);
                 return $query;
         }
 

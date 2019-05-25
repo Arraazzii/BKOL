@@ -63,7 +63,7 @@ class root extends CI_Controller {
         else 
         {
             $this->load->model('MsLowongan');
-            $getmslowongan = $this->MsLowongan->GetGridMsLowongan(5,NULL);
+            $getmslowongan = $this->MsLowongan->GetGridMsLowongan(6,NULL);
             $data['MsLowonganData'] = $getmslowongan->result();
             $data['CountMsLowonganData'] = $this->MsLowongan->GetCountMsLowongan()->total_rows;
             
@@ -78,6 +78,21 @@ class root extends CI_Controller {
             $data['CountMsEventData'] = $this->MsEvent->GetCountMsEvent()->total_rows;
             $this->template->load('frontend', 'master/home', $data);
         }
+    }
+
+    public function LowonganPekerjaan(){
+        $idlowongan = $this->input->get('lowongan');
+        $this->load->model('MsLowongan');
+        $datalowongan = $this->MsLowongan->LowonganByIDLowongan($idlowongan);
+        if($datalowongan != NULL)
+        {
+            $data['MsLowonganData'] = $datalowongan;
+        }
+        else
+        {
+            redirect('', 'refresh');
+        }
+        $this->load->view('master/detailLowongan', $data);
     }
 
     public function getlowongan()

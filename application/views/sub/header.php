@@ -5,27 +5,27 @@ and open the template in the editor.
 <!DOCTYPE html>
 <?php
 $hari = array(
-"1" => "Senin",
-"2" => "Selasa",
-"3" => "Rabu",
-"4" => "Kamis",
-"5" => "Jumat",
-"6" => "Sabtu",
-"7" => "Minggu"
+        "1" => "Senin",
+        "2" => "Selasa",
+        "3" => "Rabu",
+        "4" => "Kamis",
+        "5" => "Jumat",
+        "6" => "Sabtu",
+        "7" => "Minggu"
 );
 $bulan = array(
-"01" => "Januari",
-"02" => "Februari",
-"03" => "Maret",
-"04" => "April",
-"05" => "Mei",
-"06" => "Juni",
-"07" => "Juli",
-"08" => "Agustus",
-"09" => "September",
-"10" => "Oktober",
-"11" => "November",
-"12" => "Desember"
+        "01" => "Januari",
+        "02" => "Februari",
+        "03" => "Maret",
+        "04" => "April",
+        "05" => "Mei",
+        "06" => "Juni",
+        "07" => "Juli",
+        "08" => "Agustus",
+        "09" => "September",
+        "10" => "Oktober",
+        "11" => "November",
+        "12" => "Desember"
 );
 ?>
 <div align="center" class="header roundedCorners">

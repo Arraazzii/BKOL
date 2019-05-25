@@ -54,8 +54,8 @@ and open the template in the editor.
                                                         <a class="button" href="<?= site_url('pemberikerja/edit') ?>">Edit</a>
                                                 </td>
                                         </tr>
-                                <tbody>
-                        </table>
-                </td>
-        </tr>
-</table>
+                                        <tbody>
+                                        </table>
+                                </td>
+                        </tr>
+                </table>

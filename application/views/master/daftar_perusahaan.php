@@ -19,32 +19,36 @@
             <h3 class="box-title">DAFTAR PERUSAHAAN</h3>
         </div>
         <div class="box-body">
-            <table class="table table-bordered table-hover">
+            <table class="table table-bordered table-hover table-striped">
                 <thead>
                     <tr>
                         <th width="15">No</th>
                         <th>Nama Perusahaan</th>
+                        <th>Alamat Perusahaan</th>
                     </tr>
                 </thead>
                 <?php if ($MsPerusahaanData->num_rows > 0): ?>
-                <tbody>
-                    <?php foreach ($MsPerusahaanData->result() as $getdata): ?>
-                    <?php $i++; ?>
-                    <tr>
-                        <td><?php echo $i+$this->uri->segment(2) ?></td>
-                        <td><?php echo $getdata->NamaPerusahaan.'<br />'.$getdata->Alamat ?></td>
-                    </tr>
-                    <?php endforeach ?>
-                </tbody>    
+                    <tbody>
+                        <?php foreach ($MsPerusahaanData->result() as $getdata): ?>
+                            <?php $i++; ?>
+                            <tr>
+                                <td><?php echo $i+$this->uri->segment(2) ?></td>
+                                <td><?php echo $getdata->NamaPerusahaan;?></td>
+                                <td><?php echo $getdata->Alamat; ?></td>
+                            </tr>
+                        <?php endforeach ?>
+                    </tbody>    
                 <?php else: ?>
-                <tbody>
-                    <tr>
-                        <td colspan="2" class="text-center">Belum Ada Data</td>
-                    </tr>
-                </tbody>
+                    <tbody>
+                        <tr>
+                            <td colspan="2" class="text-center">Belum Ada Data</td>
+                        </tr>
+                    </tbody>
                 <?php endif ?>
             </table>
-            <?php echo $this->pagination->create_links(); ?>
+            <div class="pull-right">
+                <?php echo $this->pagination->create_links(); ?>
+            </div>
         </div>
     </div>
 </div>

@@ -96,25 +96,25 @@
                         </thead>
                         <tbody>
                             <?php if ($MsLowonganData->num_rows > 0): ?>
-                            <?php foreach ($MsLowonganData->result() as $getdata): ?>
-                            <?php  
-                                $this->load->model('MsLowongan');
-                                $count = $this->MsLowongan->GetCountStatusByIDLowongan($getdata->IDLowongan);
-                            ?>
-                            <tr>
-                                <td class="text-center"><?php echo $getdata->IDLowongan ?></td>
-                                <td class="text-center"><?php echo $getdata->NamaLowongan ?></td>
-                                <td class="text-center"><?php echo $getdata->TglBerlaku ?></td>
-                                <td class="text-center"><?php echo $getdata->TglBerakhir ?></td>
-                                <td class="text-center"><?php echo (date("Ymd") >= str_replace('-','',$getdata->TglBerlaku) && date("Ymd") <= str_replace('-','',$getdata->TglBerakhir) ? 'Aktif' : 'Tidak Aktif')?></td>
-                                <td class="text-center"><?php echo $count->PencakerMasuk ?></td>
-                                <td class="text-center"><?php echo '<a href="'.site_url('perusahaan/pencaker/'.$getdata->IDLowongan).'" class="btn btn-default btn-sm">Lihat Pencaker</a>' ?></td>
-                            </tr>
-                            <?php endforeach ?>
+                                <?php foreach ($MsLowonganData->result() as $getdata): ?>
+                                    <?php  
+                                    $this->load->model('MsLowongan');
+                                    $count = $this->MsLowongan->GetCountStatusByIDLowongan($getdata->IDLowongan);
+                                    ?>
+                                    <tr>
+                                        <td class="text-center"><?php echo $getdata->IDLowongan ?></td>
+                                        <td class="text-center"><?php echo $getdata->NamaLowongan ?></td>
+                                        <td class="text-center"><?php echo $getdata->TglBerlaku ?></td>
+                                        <td class="text-center"><?php echo $getdata->TglBerakhir ?></td>
+                                        <td class="text-center"><?php echo (date("Ymd") >= str_replace('-','',$getdata->TglBerlaku) && date("Ymd") <= str_replace('-','',$getdata->TglBerakhir) ? 'Aktif' : 'Tidak Aktif')?></td>
+                                        <td class="text-center"><?php echo $count->PencakerMasuk ?></td>
+                                        <td class="text-center"><?php echo '<a href="'.site_url('perusahaan/pencaker/'.$getdata->IDLowongan).'" class="btn btn-default btn-sm">Lihat Pencaker</a>' ?></td>
+                                    </tr>
+                                <?php endforeach ?>
                             <?php else: ?>
-                            <tr>
-                                <td colspan="7" class="text-center">Belum Ada Data</td>
-                            </tr> 
+                                <tr>
+                                    <td colspan="7" class="text-center">Belum Ada Data</td>
+                                </tr> 
                             <?php endif ?>
                         </tbody>
                     </table>

@@ -20,15 +20,27 @@
                 <div class="text-center">Klik Backup Untuk mencadangkan file database</div>
                 <br>
                 <form action="<?php echo site_url('admin/dbtools/backup') ?>" method="POST" class="form-horizontal" role="form">
-            		<div class="form-group">
-            			<div class="text-center">
-            				<input type="hidden" name="submit">
-            				<button type="submit" class="btn btn-primary">Backup</button>
-            			</div>
-            		</div>
-                </form>
-                <br>
-        	</div>
-    	</div>
+                  <div class="form-group">
+                     <div class="text-center">
+                        <input type="hidden" name="submit">
+                        <button type="submit" class="btn btn-primary">Backup</button>
+                    </div>
+                </div>
+            </form>
+            <br>
+        </div>
     </div>
+</div>
 </section>
+
+</script>
+<script type="text/javascript">
+    window.addEventListener( "pageshow", function ( event ) {
+      var historyTraversal = event.persisted || 
+      ( typeof window.performance != "undefined" && 
+          window.performance.navigation.type === 2 );
+      if ( historyTraversal ) {
+        window.location.reload();
+    }
+});
+</script>

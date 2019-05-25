@@ -1,254 +1,254 @@
 <div class="modal fade" id="modal-detail">
-   <div class="modal-dialog">
-      <div class="modal-content">
-         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title text-center">DATA PENCARI KERJA</h4>
-         </div>
-         <div class="modal-body">
-            <div class="table-responsive">
-               <table class="table table-hover">
-                  <tbody>
-                     <tr>
-                        <input type="hidden" name="idlowonganmasuk" id="idlowonganmasuk">
-                        <td align="left" valign="top" rowspan="4" width="120px">
-                           <img id="photo" src="<?= site_url('assets/file/temp') ?>" width="120px" height="160px">
-                        </td>
-                        <td align="left" valign="top" width="140px">
-                           Nomor Induk Pencaker
-                        </td>
-                        <td align="left" valign="top">
-                           <span id="nomorindukpencaker"></span>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td nowrap="nowrap" align="left" valign="top">
-                           Nama Pencari Kerja
-                        </td>
-                        <td align="left" valign="top">
-                           <span id="namapencaker"></span>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td nowrap="nowrap" align="left" valign="top">
-                           Tempat/Tanggal Lahir
-                        </td>
-                        <td align="left" valign="top">
-                           <span id="tempattgllahir"></span>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td nowrap="nowrap" align="left" valign="top">
-                           Jenis Kelamin
-                        </td>
-                        <td align="left" valign="top">
-                           <span id="jeniskelamin"></span>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td nowrap="nowrap" align="left" valign="top">
-                           Email
-                        </td>
-                        <td align="left" valign="top" colspan="2">
-                           <span id="email"></span>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td nowrap="nowrap" align="left" valign="top">
-                           Telepon
-                        </td>
-                        <td align="left" valign="top" colspan="2">
-                           <span id="telepon"></span>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td nowrap="nowrap" align="left" valign="top">
-                           Alamat
-                        </td>
-                        <td align="left" valign="top" colspan="2">
-                           <span id="alamat"></span>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td nowrap="nowrap" align="left" valign="top">
-                           Kecamatan
-                        </td>
-                        <td align="left" valign="top" colspan="2">
-                           <span id="namakecamatan"></span>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td nowrap="nowrap" align="left" valign="top">
-                           Kelurahan
-                        </td>
-                        <td align="left" valign="top" colspan="2">
-                           <span id="namakelurahan"></span>
-                        </td>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td nowrap="nowrap" align="left" valign="top">
-                        Kode Pos
-                     </td>
-                     <td align="left" valign="top" colspan="2">
-                        <span id="kodepos"></span>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td nowrap="nowrap" align="left" valign="top">
-                        Kewarganegaraan
-                     </td>
-                     <td align="left" valign="top" colspan="2">
-                        <span id="kewarganegaraan"></span>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td nowrap="nowrap" align="left" valign="top">
-                        Agama
-                     </td>
-                     <td align="left" valign="top" colspan="2">
-                        <span id="namaagama"></span>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td nowrap="nowrap" align="left" valign="top">
-                        Status Pernikahan
-                     </td>
-                     <td align="left" valign="top" colspan="2">
-                        <span id="namastatuspernikahan"></span>
-                     </td>
-                  </tr>
-                  <tr>
-                     <th class="text-center" colspan="3">
-                        DATA PENDIDIKAN FORMAL
-                     </th>
-                  </tr>
-                  <tr>
-                     <td nowrap="nowrap" align="left" valign="top">
-                        Pendidikan Terakhir
-                     </td>
-                     <td align="left" valign="top" colspan="2">
-                        <span id="namastatuspendidikan"></span>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td nowrap="nowrap" align="left" valign="top">
-                        Jurusan
-                     </td>
-                     <td align="left" valign="top" colspan="2">
-                        <span id="jurusan"></span>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td nowrap="nowrap" align="left" valign="top">
-                        Keterampilan
-                     </td>
-                     <td align="left" valign="top" colspan="2">
-                        <span id="keterampilan"></span>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td nowrap="nowrap" align="left" valign="top">
-                        NEM/IPK
-                     </td>
-                     <td align="left" valign="top" colspan="2">
-                        <span id="nemipk"></span>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td nowrap="nowrap" align="left" valign="top">
-                        Nilai
-                     </td>
-                     <td align="left" valign="top" colspan="2">
-                        <span id="nilai"></span>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td nowrap="nowrap" align="left" valign="top">
-                        Tahun Lulus
-                     </td>
-                     <td align="left" valign="top" colspan="2">
-                        <span id="tahunlulus"></span>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td nowrap="nowrap" align="left" valign="top">
-                        Tinggi Badan
-                     </td>
-                     <td align="left" valign="top" colspan="2">
-                        <span id="tinggibadan"></span>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td nowrap="nowrap" align="left" valign="top">
-                        Berat Badan
-                     </td>
-                     <td align="left" valign="top" colspan="2">
-                        <span id="beratbadan"></span>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td nowrap="nowrap" align="left" valign="top">
-                        Penguasaan Bahasa
-                     </td>
-                     <td align="left" valign="top" colspan="2">
-                        <span id="bahasa"></span>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td nowrap="nowrap" align="left" valign="top">
-                        Pengalaman Kerja
-                     </td>
-                     <td align="left" valign="top" colspan="2">
-                        <span id="pengalaman"></span>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td nowrap="nowrap" align="left" valign="top">
-                        Keterangan
-                     </td>
-                     <td align="left" valign="top" colspan="2">
-                        <span id="keterangan"></span>
-                     </td>
-                  </tr>
-                  <tr>
-                     <th class="text-center" colspan="3">
-                        JABATAN YANG DIINGINKAN
-                     </th>
-                  </tr>
-                  <tr>
-                     <td nowrap="nowrap" align="left" valign="top">
-                        Posisi Jabatan
-                     </td>
-                     <td align="left" valign="top" colspan="2">
-                        <span id="namaposisijabatan"></span>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td nowrap="nowrap" align="left" valign="top">
-                        Lokasi
-                     </td>
-                     <td align="left" valign="top" colspan="2">
-                        <span id="lokasi"></span>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td nowrap="nowrap" align="left" valign="top">
-                        Besar upah yang diinginkan
-                     </td>
-                     <td align="left" valign="top" colspan="2">
-                        <span id="upahyangdicari"></span>
-                     </td>
-                  </tr>
-               </tbody>
-               </table>
-            </div>
-         </div>
-         <div class="modal-footer" id="btnAction">
-            <button id="modaldiss" type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
-         </div>
-      </div>
-    </div>
+ <div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title text-center">DATA PENCARI KERJA</h4>
+</div>
+<div class="modal-body">
+    <div class="table-responsive">
+     <table class="table table-hover">
+      <tbody>
+       <tr>
+        <input type="hidden" name="idlowonganmasuk" id="idlowonganmasuk">
+        <td align="left" valign="top" rowspan="4" width="120px">
+         <img id="photo" src="<?= site_url('assets/file/temp') ?>" width="120px" height="160px">
+     </td>
+     <td align="left" valign="top" width="140px">
+         Nomor Induk Pencaker
+     </td>
+     <td align="left" valign="top">
+         <span id="nomorindukpencaker"></span>
+     </td>
+ </tr>
+ <tr>
+    <td nowrap="nowrap" align="left" valign="top">
+     Nama Pencari Kerja
+ </td>
+ <td align="left" valign="top">
+     <span id="namapencaker"></span>
+ </td>
+</tr>
+<tr>
+    <td nowrap="nowrap" align="left" valign="top">
+     Tempat/Tanggal Lahir
+ </td>
+ <td align="left" valign="top">
+     <span id="tempattgllahir"></span>
+ </td>
+</tr>
+<tr>
+    <td nowrap="nowrap" align="left" valign="top">
+     Jenis Kelamin
+ </td>
+ <td align="left" valign="top">
+     <span id="jeniskelamin"></span>
+ </td>
+</tr>
+<tr>
+    <td nowrap="nowrap" align="left" valign="top">
+     Email
+ </td>
+ <td align="left" valign="top" colspan="2">
+     <span id="email"></span>
+ </td>
+</tr>
+<tr>
+    <td nowrap="nowrap" align="left" valign="top">
+     Telepon
+ </td>
+ <td align="left" valign="top" colspan="2">
+     <span id="telepon"></span>
+ </td>
+</tr>
+<tr>
+    <td nowrap="nowrap" align="left" valign="top">
+     Alamat
+ </td>
+ <td align="left" valign="top" colspan="2">
+     <span id="alamat"></span>
+ </td>
+</tr>
+<tr>
+    <td nowrap="nowrap" align="left" valign="top">
+     Kecamatan
+ </td>
+ <td align="left" valign="top" colspan="2">
+     <span id="namakecamatan"></span>
+ </td>
+</tr>
+<tr>
+    <td nowrap="nowrap" align="left" valign="top">
+     Kelurahan
+ </td>
+ <td align="left" valign="top" colspan="2">
+     <span id="namakelurahan"></span>
+ </td>
+</td>
+</tr>
+<tr>
+   <td nowrap="nowrap" align="left" valign="top">
+    Kode Pos
+</td>
+<td align="left" valign="top" colspan="2">
+    <span id="kodepos"></span>
+</td>
+</tr>
+<tr>
+   <td nowrap="nowrap" align="left" valign="top">
+    Kewarganegaraan
+</td>
+<td align="left" valign="top" colspan="2">
+    <span id="kewarganegaraan"></span>
+</td>
+</tr>
+<tr>
+   <td nowrap="nowrap" align="left" valign="top">
+    Agama
+</td>
+<td align="left" valign="top" colspan="2">
+    <span id="namaagama"></span>
+</td>
+</tr>
+<tr>
+   <td nowrap="nowrap" align="left" valign="top">
+    Status Pernikahan
+</td>
+<td align="left" valign="top" colspan="2">
+    <span id="namastatuspernikahan"></span>
+</td>
+</tr>
+<tr>
+   <th class="text-center" colspan="3">
+    DATA PENDIDIKAN FORMAL
+</th>
+</tr>
+<tr>
+   <td nowrap="nowrap" align="left" valign="top">
+    Pendidikan Terakhir
+</td>
+<td align="left" valign="top" colspan="2">
+    <span id="namastatuspendidikan"></span>
+</td>
+</tr>
+<tr>
+   <td nowrap="nowrap" align="left" valign="top">
+    Jurusan
+</td>
+<td align="left" valign="top" colspan="2">
+    <span id="jurusan"></span>
+</td>
+</tr>
+<tr>
+   <td nowrap="nowrap" align="left" valign="top">
+    Keterampilan
+</td>
+<td align="left" valign="top" colspan="2">
+    <span id="keterampilan"></span>
+</td>
+</tr>
+<tr>
+   <td nowrap="nowrap" align="left" valign="top">
+    NEM/IPK
+</td>
+<td align="left" valign="top" colspan="2">
+    <span id="nemipk"></span>
+</td>
+</tr>
+<tr>
+   <td nowrap="nowrap" align="left" valign="top">
+    Nilai
+</td>
+<td align="left" valign="top" colspan="2">
+    <span id="nilai"></span>
+</td>
+</tr>
+<tr>
+   <td nowrap="nowrap" align="left" valign="top">
+    Tahun Lulus
+</td>
+<td align="left" valign="top" colspan="2">
+    <span id="tahunlulus"></span>
+</td>
+</tr>
+<tr>
+   <td nowrap="nowrap" align="left" valign="top">
+    Tinggi Badan
+</td>
+<td align="left" valign="top" colspan="2">
+    <span id="tinggibadan"></span>
+</td>
+</tr>
+<tr>
+   <td nowrap="nowrap" align="left" valign="top">
+    Berat Badan
+</td>
+<td align="left" valign="top" colspan="2">
+    <span id="beratbadan"></span>
+</td>
+</tr>
+<tr>
+   <td nowrap="nowrap" align="left" valign="top">
+    Penguasaan Bahasa
+</td>
+<td align="left" valign="top" colspan="2">
+    <span id="bahasa"></span>
+</td>
+</tr>
+<tr>
+   <td nowrap="nowrap" align="left" valign="top">
+    Pengalaman Kerja
+</td>
+<td align="left" valign="top" colspan="2">
+    <span id="pengalaman"></span>
+</td>
+</tr>
+<tr>
+   <td nowrap="nowrap" align="left" valign="top">
+    Keterangan
+</td>
+<td align="left" valign="top" colspan="2">
+    <span id="keterangan"></span>
+</td>
+</tr>
+<tr>
+   <th class="text-center" colspan="3">
+    JABATAN YANG DIINGINKAN
+</th>
+</tr>
+<tr>
+   <td nowrap="nowrap" align="left" valign="top">
+    Posisi Jabatan
+</td>
+<td align="left" valign="top" colspan="2">
+    <span id="namaposisijabatan"></span>
+</td>
+</tr>
+<tr>
+   <td nowrap="nowrap" align="left" valign="top">
+    Lokasi
+</td>
+<td align="left" valign="top" colspan="2">
+    <span id="lokasi"></span>
+</td>
+</tr>
+<tr>
+   <td nowrap="nowrap" align="left" valign="top">
+    Besar upah yang diinginkan
+</td>
+<td align="left" valign="top" colspan="2">
+    <span id="upahyangdicari"></span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="modal-footer" id="btnAction">
+    <button id="modaldiss" type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+</div>
+</div>
+</div>
 </div>
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -322,45 +322,45 @@
                         </thead>
                         <tbody>
                             <?php if ($MsPencakerData->num_rows > 0): ?>
-                            <?php $i = 0; 
+                                <?php $i = 0; 
                                 
-                            ?>
-                            <?php foreach ($MsPencakerData->result() as $getdata): ?>
-                            <?php 
-                            if ($getdata->StatusLowongan == 1) 
-                            {
-                                $status = 'Diproses';
-                            } 
-                            else if ($getdata->StatusLowongan == 2)
-                            {
-                                $status = 'Diterima';
-                            }
-                            else if ($getdata->StatusLowongan == 3)
-                            {
-                                $status = 'Tidak Diterima';
-                            }
-                            else 
-                            {
-                                $status = 'Belum Diproses';
-                            }
-                            $i++;
-                            $detailbtn = '<btn class="btn btn-default btn-sm" onclick="DoEdit(\''.$getdata->IDLowonganMasuk.'\') "><i class="fa fa-file-text"></i> Lihat CV</btn>';
-                            $tgllahir = explode("-", $getdata->TglLahir);
-                             ?>
-                            <tr>
-                                <td class="text-center"><?php echo $i+$this->uri->segment(4) ?></td>
-                                <td class="text-left"><?php echo $getdata->NomorIndukPencaker ?></td>
-                                <td class="text-left"><?php echo $getdata->NamaPencaker ?></td>
-                                <td class="text-left"><?php echo $getdata->NamaStatusPendidikan ?></td>
-                                <td class="text-left"><?php echo (date("md", date("U", mktime(0, 0, 0, $tgllahir[2], $tgllahir[1], $tgllahir[0]))) > date("md") ? ((date("Y")-$tgllahir[0])-1):(date("Y")-$tgllahir[0])).' tahun' ?></td>
-                                <td class="text-left"><?php echo $status ?></td>
-                                <td class="text-center"><?php echo $detailbtn ?></td>
-                            </tr>
-                            <?php endforeach ?>
+                                ?>
+                                <?php foreach ($MsPencakerData->result() as $getdata): ?>
+                                    <?php 
+                                    if ($getdata->StatusLowongan == 1) 
+                                    {
+                                        $status = 'Diproses';
+                                    } 
+                                    else if ($getdata->StatusLowongan == 2)
+                                    {
+                                        $status = 'Diterima';
+                                    }
+                                    else if ($getdata->StatusLowongan == 3)
+                                    {
+                                        $status = 'Tidak Diterima';
+                                    }
+                                    else 
+                                    {
+                                        $status = 'Belum Diproses';
+                                    }
+                                    $i++;
+                                    $detailbtn = '<btn class="btn btn-default btn-sm" onclick="DoEdit(\''.$getdata->IDLowonganMasuk.'\') "><i class="fa fa-file-text"></i> Lihat CV</btn>';
+                                    $tgllahir = explode("-", $getdata->TglLahir);
+                                    ?>
+                                    <tr>
+                                        <td class="text-center"><?php echo $i+$this->uri->segment(4) ?></td>
+                                        <td class="text-left"><?php echo $getdata->NomorIndukPencaker ?></td>
+                                        <td class="text-left"><?php echo $getdata->NamaPencaker ?></td>
+                                        <td class="text-left"><?php echo $getdata->NamaStatusPendidikan ?></td>
+                                        <td class="text-left"><?php echo (date("md", date("U", mktime(0, 0, 0, $tgllahir[2], $tgllahir[1], $tgllahir[0]))) > date("md") ? ((date("Y")-$tgllahir[0])-1):(date("Y")-$tgllahir[0])).' tahun' ?></td>
+                                        <td class="text-left"><?php echo $status ?></td>
+                                        <td class="text-center"><?php echo $detailbtn ?></td>
+                                    </tr>
+                                <?php endforeach ?>
                             <?php else: ?>
-                            <tr>
-                                <td colspan="7" class="text-center">Belum Ada Data</td>
-                            </tr> 
+                                <tr>
+                                    <td colspan="7" class="text-center">Belum Ada Data</td>
+                                </tr> 
                             <?php endif ?>
                         </tbody>
                     </table>
@@ -459,11 +459,11 @@
         },'json');
     }
 
-function clearButton() {
-    $("#btnAction").find('button').remove();
-}
+    function clearButton() {
+        $("#btnAction").find('button').remove();
+    }
 
-function createButton(arr) {
+    function createButton(arr) {
     // console.log(arr);
     // var container = document.getElementById('btnAction');
     // for (var i = 0; i < arr.length; i++) {

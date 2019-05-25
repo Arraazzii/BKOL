@@ -4,29 +4,29 @@
 $input = $this->session->flashdata('input');
 if ($input == NULL)
 {
-$tglberlaku = explode("-", $MsLowonganData->TglBerlaku);
-$tglberakhir = explode("-", $MsLowonganData->TglBerakhir);
-$IDLowongan = $MsLowonganData->IDLowongan;
-$input['idposisijabatan'] = $MsLowonganData->IDPosisiJabatan;
-$input['idjenislowongan'] = $MsLowonganData->IDJenisLowongan;
-$input['idkeahlian'] = $MsLowonganData->IDKeahlian;
-$input['idstatuspendidikan'] = $MsLowonganData->IDStatusPendidikan;
-$input['idjenispengupahan'] = $MsLowonganData->IDJenisPengupahan;
-$input['idstatushubungankerja'] = $MsLowonganData->IDStatusHubunganKerja;
-$input['tglberlaku'] = $tglberlaku[2].'-'.$tglberlaku[1].'-'.$tglberlaku[0];
-$input['tglberakhir'] = $tglberakhir[2].'-'.$tglberakhir[1].'-'.$tglberakhir[0];
-$input['namalowongan'] = $MsLowonganData->NamaLowongan;
-$input['uraianpekerjaan'] = $MsLowonganData->UraianPekerjaan;
-$input['uraiantugas'] = $MsLowonganData->UraianTugas;
-$input['penempatan'] = $MsLowonganData->Penempatan;
-$input['batasumur'] = $MsLowonganData->BatasUmur;
-$input['jmlpria'] = $MsLowonganData->JmlPria;
-$input['jmlwanita'] = $MsLowonganData->JmlWanita;
-$input['jurusan'] = $MsLowonganData->Jurusan;
-$input['pengalaman'] = $MsLowonganData->Pengalaman;
-$input['syaratkhusus'] = $MsLowonganData->SyaratKhusus;
-$input['gajiperbulan'] = $MsLowonganData->GajiPerbulan;
-$input['jamkerjaseminggu'] = $MsLowonganData->JamKerjaSeminggu;
+    $tglberlaku = explode("-", $MsLowonganData->TglBerlaku);
+    $tglberakhir = explode("-", $MsLowonganData->TglBerakhir);
+    $IDLowongan = $MsLowonganData->IDLowongan;
+    $input['idposisijabatan'] = $MsLowonganData->IDPosisiJabatan;
+    $input['idjenislowongan'] = $MsLowonganData->IDJenisLowongan;
+    $input['idkeahlian'] = $MsLowonganData->IDKeahlian;
+    $input['idstatuspendidikan'] = $MsLowonganData->IDStatusPendidikan;
+    $input['idjenispengupahan'] = $MsLowonganData->IDJenisPengupahan;
+    $input['idstatushubungankerja'] = $MsLowonganData->IDStatusHubunganKerja;
+    $input['tglberlaku'] = $tglberlaku[2].'-'.$tglberlaku[1].'-'.$tglberlaku[0];
+    $input['tglberakhir'] = $tglberakhir[2].'-'.$tglberakhir[1].'-'.$tglberakhir[0];
+    $input['namalowongan'] = $MsLowonganData->NamaLowongan;
+    $input['uraianpekerjaan'] = $MsLowonganData->UraianPekerjaan;
+    $input['uraiantugas'] = $MsLowonganData->UraianTugas;
+    $input['penempatan'] = $MsLowonganData->Penempatan;
+    $input['batasumur'] = $MsLowonganData->BatasUmur;
+    $input['jmlpria'] = $MsLowonganData->JmlPria;
+    $input['jmlwanita'] = $MsLowonganData->JmlWanita;
+    $input['jurusan'] = $MsLowonganData->Jurusan;
+    $input['pengalaman'] = $MsLowonganData->Pengalaman;
+    $input['syaratkhusus'] = $MsLowonganData->SyaratKhusus;
+    $input['gajiperbulan'] = $MsLowonganData->GajiPerbulan;
+    $input['jamkerjaseminggu'] = $MsLowonganData->JamKerjaSeminggu;
 }
 ?>
 <section class="content-header">
@@ -291,7 +291,7 @@ $input['jamkerjaseminggu'] = $MsLowonganData->JamKerjaSeminggu;
     </form>
 </section>
 <script type="text/javascript">
-        function NumericHandleKey(e)
+    function NumericHandleKey(e)
     {
         if(e.which!=8 && e.which!=0 && (e.which<48 || e.which>57))
         {

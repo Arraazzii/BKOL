@@ -47,6 +47,6 @@
         </li>
         <li>
             <a href="<?= site_url('admin/event') ?>">DATA KEGIATAN</a>
-                                                            </li>
+        </li>
     </ul>
 </li>

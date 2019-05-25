@@ -6,22 +6,22 @@
                 <h4 class="modal-title" id="judulmodal"></h4>
             </div>
             <div class="modal-body">
-                    <form action="" method="POST" class="form-horizontal" role="form">
-                        <div class="form-group">
-                            <label for="" class="col-md-3">Pendidikan</label>
-                            <div class="col-md-9">
-                                <?php echo combo_pendidikan(0, 'Pilih', 'IDStatusPendidikan != "000001" AND IDStatusPendidikan != "000002" AND IDStatusPendidikan != "000003"') ?>
-                            </div>
+                <form action="" method="POST" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="" class="col-md-3">Pendidikan</label>
+                        <div class="col-md-9">
+                            <?php echo combo_pendidikan(0, 'Pilih', 'IDStatusPendidikan != "000001" AND IDStatusPendidikan != "000002" AND IDStatusPendidikan != "000003"') ?>
                         </div>
-                        <div class="form-group">
-                            <label for="" class="col-md-3">Nama Jurusan</label>
-                            <div class="col-md-9">
-                                <input type="hidden" name="modemodal" id="modemodal">
-                                <input type="hidden" name="idjurusan" id="idjurusan">
-                                <input type="text" name="namajurusan" id="namajurusan" class="form-control" value="" required="required" pattern="" placeholder="Masukan Nama Jurusan">
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="col-md-3">Nama Jurusan</label>
+                        <div class="col-md-9">
+                            <input type="hidden" name="modemodal" id="modemodal">
+                            <input type="hidden" name="idjurusan" id="idjurusan">
+                            <input type="text" name="namajurusan" id="namajurusan" class="form-control" value="" required="required" pattern="" placeholder="Masukan Nama Jurusan">
                         </div>
-                    </form>
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
@@ -54,23 +54,23 @@
                 <!-- /.box-header -->
                 <!-- form start -->
                 <div class="box-body table-responsive">
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th width="10">No</th>
-                                    <th class="text-left">Tingkat Pendidikan</th>
-                                    <th class="text-center">Nama Jurusan</th>
-                                    <th class="text-center">Detail</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php if ($this->pagination->total_rows > 0): ?>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th width="10">No</th>
+                                <th class="text-left">Tingkat Pendidikan</th>
+                                <th class="text-center">Nama Jurusan</th>
+                                <th class="text-center">Detail</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if ($this->pagination->total_rows > 0): ?>
                                 <?php $i = 0; ?>
                                 <?php foreach ($MsJurusanData as $getdata): ?>
                                     <?php 
-                                        $i++;
-                                        $detailbtn = '<a class="btn btn-default btn-sm" onclick="DoEdit(\''.$getdata->IDjurusan.'\') "><i class="fa fa-edit"></i> Edit</a>';
-                                        $deletebtn = '<a class="btn btn-default btn-sm" onclick="DoDeleteConfirm(\''.$getdata->IDjurusan.'\') "><i class="fa fa-trash"></i> Hapus</a>';
+                                    $i++;
+                                    $detailbtn = '<a class="btn btn-warning btn-sm" onclick="DoEdit(\''.$getdata->IDjurusan.'\') "><i class="fa fa-edit"></i> Edit</a> '; 
+                                    $deletebtn = '<a class="btn btn-danger btn-sm" onclick="DoDeleteConfirm(\''.$getdata->IDjurusan.'\') "><i class="fa fa-trash"></i> Hapus</a>';
                                     ?>
                                     <tr>
                                         <td class="text-center"><?php echo $i+$this->uri->segment(3) ?></td>
@@ -79,13 +79,13 @@
                                         <td class="text-center"><?php echo $detailbtn.$deletebtn ?></td>
                                     </tr>
                                 <?php endforeach ?>
-                                <?php else: ?>
-                                    <tr>
-                                        <td colspan="4" class="text-center">Belum ada data</td>
-                                    </tr>
-                                <?php endif ?>
-                            </tbody>
-                        </table>
+                            <?php else: ?>
+                                <tr>
+                                    <td colspan="4" class="text-center">Belum ada data</td>
+                                </tr>
+                            <?php endif ?>
+                        </tbody>
+                    </table>
                 </div>
                 <?php if ($this->pagination->create_links()): ?>
                     <div class="box-footer">
@@ -100,7 +100,7 @@
     </div>
 </section>
 <script>
-   
+ 
     $("#tambahdata").click(function() {
         clearmodaljenis();
         var tmodal = $("#modal-jurusan");
@@ -156,7 +156,7 @@
                 }
             });
         }
-            
+        
     });
 
     function clearmodaljenis() {
@@ -186,9 +186,9 @@
                 else
                 {
                     swal({
-                     type: 'error',
-                     title: 'Oops...',
-                     text: 'Jurusan Tidak Ditemukan!'
+                       type: 'error',
+                       title: 'Oops...',
+                       text: 'Jurusan Tidak Ditemukan!'
                    })
                 }
             },'json')
@@ -235,12 +235,23 @@
                 else
                 {
                     swal({
-                     type: 'error',
-                     title: 'Oops...',
-                     text: 'Jurusan Tidak Ditemukan!'
+                       type: 'error',
+                       title: 'Oops...',
+                       text: 'Jurusan Tidak Ditemukan!'
                    })
                 }
             },'json')
     }
 
+</script>
+</script>
+<script type="text/javascript">
+    window.addEventListener( "pageshow", function ( event ) {
+      var historyTraversal = event.persisted || 
+      ( typeof window.performance != "undefined" && 
+          window.performance.navigation.type === 2 );
+      if ( historyTraversal ) {
+        window.location.reload();
+    }
+});
 </script>

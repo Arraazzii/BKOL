@@ -69,7 +69,7 @@ class MsLowongan extends CI_Model
                 $this->datatables->join('msjenispengupahan as f', 'a.IDJenisPengupahan=f.IDJenisPengupahan');
                 $this->datatables->join('msstatushubungankerja as g', 'a.IDStatusHubunganKerja=g.IDStatusHubunganKerja');
                 $this->datatables->where('a.IDPerusahaan', $idperusahaan);
-                $this->datatables->add_column('view', '<a href="'.site_url().'perusahaan/lowongan/detail/$1" class="btn btn-default btn-sm"><i class="fa fa-edit"></i> Edit</a><button type="button" onclick="DoDeleteConfirm(\''.'$1'.'\')" class="btn btn-default btn-sm"><i class="fa fa-trash"></i> Hapus</button>','IDLowongan');
+                $this->datatables->add_column('view', '<a href="'.site_url().'perusahaan/lowongan/detail/$1" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit</a> <button type="button" onclick="DoDeleteConfirm(\''.'$1'.'\')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</button>','IDLowongan');
                 return $this->datatables->generate();
         }
         
@@ -180,6 +180,19 @@ class MsLowongan extends CI_Model
                 if ($query->num_rows() > 0)
                 {
                         return $query->row();
+                }
+                else
+                {
+                        return NULL;
+                }
+        }
+
+        function LowonganByIDLowongan($idlowongan)
+        {
+                $query = $this->db->query("SELECT a.IDLowongan,a.IDPerusahaan,a.IDPosisiJabatan,a.IDKeahlian,a.IDStatusPendidikan,a.IDJenisPengupahan,a.IDStatusHubunganKerja,a.TglBerlaku,a.TglBerakhir,a.NamaLowongan,a.UraianPekerjaan,a.UraianTugas,a.Penempatan,a.BatasUmur,a.JmlPria,a.JmlWanita,a.Jurusan,a.Pengalaman,a.SyaratKhusus,a.GajiPerbulan,a.JamKerjaSeminggu,a.RegisterDate,b.NamaPerusahaan,b.Alamat,b.KodePos,b.EmailPemberiKerja,c.NamaPosisiJabatan,e.NamaStatusPendidikan,d.IDJenisLowongan FROM ".strtolower("MsLowongan")." AS a INNER JOIN ".strtolower("MsPerusahaan")." AS b ON a.IDPerusahaan=b.IDPerusahaan INNER JOIN ".strtolower("MsPosisiJabatan")." AS c ON a.IDPosisiJabatan=c.IDPosisiJabatan INNER JOIN ".strtolower("MsKeahlian")." AS d ON a.IDKeahlian=d.IDKeahlian INNER JOIN ".strtolower("MsStatusPendidikan")." AS e ON a.IDStatusPendidikan=e.IDStatusPendidikan INNER JOIN ".strtolower("MsJenisPengupahan")." AS f ON a.IDJenisPengupahan=f.IDJenisPengupahan INNER JOIN ".strtolower("MsStatusHubunganKerja")." AS g ON a.IDStatusHubunganKerja=g.IDStatusHubunganKerja WHERE a.IDLowongan='".$this->db->escape_like_str($idlowongan)."'");
+                if ($query->num_rows() > 0)
+                {
+                        return $query->result_array();
                 }
                 else
                 {

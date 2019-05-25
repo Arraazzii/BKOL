@@ -18,7 +18,7 @@ class MsPerusahaan extends CI_Model
         {
                 $this->datatables->select("IDPerusahaan,IDUser,IDBidangPerusahaan,IDKelurahan,NamaPerusahaan,Email,Telepon,Alamat,KodePos,Kota,Propinsi,NamaPemberiKerja,JabatanPemberiKerja,TeleponPemberiKerja,EmailPemberiKerja,RegisterDate");
                 $this->datatables->from('msperusahaan');
-                $this->datatables->add_column('view', '<a class="btn btn-default btn-sm" onclick="DoView(\''.'$1'.'\')" href="javascript:void(0);"><i class="fa fa-eye"></i> Detail</a><a class="btn btn-default btn-sm" onclick="DoDelete(\''.'$1'.'\')"><i class="fa fa-trash"></i> Hapus</a>', 'IDPerusahaan');
+                $this->datatables->add_column('view', '<a class="btn btn-primary btn-sm" onclick="DoView(\''.'$1'.'\')" href="javascript:void(0);"><i class="fa fa-eye"></i> Detail</a> <a class="btn btn-danger btn-sm" onclick="DoDelete(\''.'$1'.'\')"><i class="fa fa-trash"></i> Hapus</a>', 'IDPerusahaan');
                 return $this->datatables->generate();
         }
 
@@ -69,10 +69,10 @@ class MsPerusahaan extends CI_Model
         function GetMsPerusahaanByIDUser($iduser)
         {
                 $query = $this->db->query("SELECT a.IDPerusahaan,a.IDUser,a.IDBidangPerusahaan,a.IDKelurahan,a.NamaPerusahaan,a.Email,a.Telepon,a.Alamat,a.KodePos,a.Kota,a.Propinsi,a.NamaPemberiKerja,a.JabatanPemberiKerja,a.TeleponPemberiKerja,a.EmailPemberiKerja,a.RegisterDate,b.NamaBidangPerusahaan,c.NamaKelurahan,d.NamaKecamatan,c.IDKecamatan FROM ".strtolower("MsPerusahaan")." AS a
-                INNER JOIN ".strtolower("MsBidangPerusahaan")." AS b ON a.IDBidangPerusahaan=b.IDBidangPerusahaan
-                INNER JOIN ".strtolower("MsKelurahan")." AS c ON a.IDKelurahan=c.IDKelurahan
-                INNER JOIN ".strtolower("MsKecamatan")." AS d ON c.IDKecamatan=d.IDKecamatan
-                WHERE a.IDUser='".$this->db->escape_like_str($iduser)."'");
+                        INNER JOIN ".strtolower("MsBidangPerusahaan")." AS b ON a.IDBidangPerusahaan=b.IDBidangPerusahaan
+                        INNER JOIN ".strtolower("MsKelurahan")." AS c ON a.IDKelurahan=c.IDKelurahan
+                        INNER JOIN ".strtolower("MsKecamatan")." AS d ON c.IDKecamatan=d.IDKecamatan
+                        WHERE a.IDUser='".$this->db->escape_like_str($iduser)."'");
                 if ($query->num_rows() > 0)
                 {
                         return $query->row();
@@ -86,10 +86,10 @@ class MsPerusahaan extends CI_Model
         function GetMsPerusahaanByEmailPemberiKerja($emailpemberikerja)
         {
                 $query = $this->db->query("SELECT a.IDPerusahaan,a.IDUser,a.IDBidangPerusahaan,a.IDKelurahan,a.NamaPerusahaan,a.Email,a.Telepon,a.Alamat,a.KodePos,a.Kota,a.Propinsi,a.NamaPemberiKerja,a.JabatanPemberiKerja,a.TeleponPemberiKerja,a.EmailPemberiKerja,a.RegisterDate,b.NamaBidangPerusahaan,c.NamaKelurahan,d.NamaKecamatan,c.IDKecamatan FROM ".strtolower("MsPerusahaan")." AS a
-                INNER JOIN ".strtolower("MsBidangPerusahaan")." AS b ON a.IDBidangPerusahaan=b.IDBidangPerusahaan
-                INNER JOIN ".strtolower("MsKelurahan")." AS c ON a.IDKelurahan=c.IDKelurahan
-                INNER JOIN ".strtolower("MsKecamatan")." AS d ON c.IDKecamatan=d.IDKecamatan
-                WHERE a.EmailPemberiKerja='".$this->db->escape_like_str($emailpemberikerja)."'");
+                        INNER JOIN ".strtolower("MsBidangPerusahaan")." AS b ON a.IDBidangPerusahaan=b.IDBidangPerusahaan
+                        INNER JOIN ".strtolower("MsKelurahan")." AS c ON a.IDKelurahan=c.IDKelurahan
+                        INNER JOIN ".strtolower("MsKecamatan")." AS d ON c.IDKecamatan=d.IDKecamatan
+                        WHERE a.EmailPemberiKerja='".$this->db->escape_like_str($emailpemberikerja)."'");
                 if ($query->num_rows() > 0)
                 {
                         return $query->row();
@@ -103,11 +103,11 @@ class MsPerusahaan extends CI_Model
         function GetMsPerusahaanByIDLowongan($idlowongan)
         {
                 $query = $this->db->query("SELECT b.IDPerusahaan,b.IDUser,b.IDBidangPerusahaan,b.IDKelurahan,b.NamaPerusahaan,b.Email,b.Telepon,b.Alamat,b.KodePos,b.Kota,b.Propinsi,b.NamaPemberiKerja,b.JabatanPemberiKerja,b.TeleponPemberiKerja,b.EmailPemberiKerja,b.RegisterDate,c.NamaBidangPerusahaan,d.NamaKelurahan,e.NamaKecamatan,d.IDKecamatan FROM ".strtolower("MsLowongan")." AS a
-                INNER JOIN ".strtolower("MsPerusahaan")." AS b ON a.IDPerusahaan=b.IDPerusahaan
-                INNER JOIN ".strtolower("MsBidangPerusahaan")." AS c ON b.IDBidangPerusahaan=c.IDBidangPerusahaan
-                INNER JOIN ".strtolower("MsKelurahan")." AS d ON b.IDKelurahan=d.IDKelurahan
-                INNER JOIN ".strtolower("MsKecamatan")." AS e ON d.IDKecamatan=e.IDKecamatan
-                WHERE a.IDLowongan='".$this->db->escape_like_str($idlowongan)."'");
+                        INNER JOIN ".strtolower("MsPerusahaan")." AS b ON a.IDPerusahaan=b.IDPerusahaan
+                        INNER JOIN ".strtolower("MsBidangPerusahaan")." AS c ON b.IDBidangPerusahaan=c.IDBidangPerusahaan
+                        INNER JOIN ".strtolower("MsKelurahan")." AS d ON b.IDKelurahan=d.IDKelurahan
+                        INNER JOIN ".strtolower("MsKecamatan")." AS e ON d.IDKecamatan=e.IDKecamatan
+                        WHERE a.IDLowongan='".$this->db->escape_like_str($idlowongan)."'");
                 if ($query->num_rows() > 0)
                 {
                         return $query->row();

@@ -56,8 +56,8 @@ if($this->input->post() == NULL)
     <form method="POST" class="form-horizontal" role="form" action="<?= site_url('perusahaan/editprofil') ?>" enctype="multipart/form-data">
         <div class="box box-default">
             <div class="box-header with-border">
-                    <h3 class="box-title">EDIT PROFIL PERUSAHAAN</h3>
-                </div>
+                <h3 class="box-title">EDIT PROFIL PERUSAHAAN</h3>
+            </div>
             <div class="box-body">
                 <div class="form-group <?php echo form_error('logoperusahaan') ? 'has-error' : '' ?>">
                     <label for="nomorindukpencaker" class="control-label col-md-3">Logo perusahaan</label>
@@ -71,11 +71,11 @@ if($this->input->post() == NULL)
                             <input type="text" class="form-control" readonly>
                         </div>
                         <img id='img-upload'
-                            <?php  
-                                if (file_exists(BASEPATH.'/../assets/file/perusahaan/'.$MsPerusahaanData->IDPerusahaan.'.jpg')) {
-                                    echo "src='".site_url('assets/file/perusahaan')."/".$MsPerusahaanData->IDPerusahaan.".jpg'";
-                                }
-                            ?>
+                        <?php  
+                        if (file_exists(BASEPATH.'/../assets/file/perusahaan/'.$MsPerusahaanData->IDPerusahaan.'.jpg')) {
+                            echo "src='".site_url('assets/file/perusahaan')."/".$MsPerusahaanData->IDPerusahaan.".jpg'";
+                        }
+                        ?>
                         />
                         <?php echo form_error('logoperusahaan', '<span class="help-block">', '</span>'); ?>
                     </div>

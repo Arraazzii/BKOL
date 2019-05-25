@@ -46,51 +46,51 @@
               <?php
               $yend = date('Y');
               for($ystart = 2018; $ystart <= $yend; $ystart++): ?>
-                <option value="<?=$ystart; ?>"><?=$ystart; ?></option>
-              <?php endfor; ?>
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-md-5 col-md-offset-3">
-            <input id="simpan" class="btn btn-primary btn-sm" name="simpan" type="submit" value="Filter">
-          </div>
+              <option value="<?=$ystart; ?>"><?=$ystart; ?></option>
+            <?php endfor; ?>
+          </select>
         </div>
       </div>
-    </div>
-  </form>
-
-  <div class="box box-default">
-    <div class="box-body">
-      <div class="table-responsive">
-        <table id="table" class="table table-striped table-bordered">
-          <thead>
-            <tr>
-              <th rowspan="2">No</th>
-              <th rowspan="2">Sektor Lapangan Usaha</th>
-              <th colspan="2">Yang belum<br>ditempatan<br>s/d akhir<br>bulan lalu</th>
-              <th colspan="2">Yang<br>terdaftar s/d<br>bulan ini</th>
-              <th colspan="2">Yang<br>ditempatkan s/d<br>bulan ini</th>
-              <th colspan="2">Yang belum<br>ditempatkan<br>s/d bulan ini</th>
-            </tr>
-            <tr>
-              <th>L</th>
-              <th>P</th>
-              <th>L</th>
-              <th>P</th>
-              <th>L</th>
-              <th>P</th>
-              <th>L</th>
-              <th>P</th>
-            </tr>
-          </thead>
-          <tbody>
-
-          </tbody>
-        </table>
+      <div class="form-group">
+        <div class="col-md-5 col-md-offset-3">
+          <input id="simpan" class="btn btn-primary btn-sm" name="simpan" type="submit" value="Filter">
+        </div>
       </div>
     </div>
   </div>
+</form>
+
+<div class="box box-default">
+  <div class="box-body">
+    <div class="table-responsive">
+      <table id="table" class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th rowspan="2">No</th>
+            <th rowspan="2">Sektor Lapangan Usaha</th>
+            <th colspan="2">Yang belum<br>ditempatan<br>s/d akhir<br>bulan lalu</th>
+            <th colspan="2">Yang<br>terdaftar s/d<br>bulan ini</th>
+            <th colspan="2">Yang<br>ditempatkan s/d<br>bulan ini</th>
+            <th colspan="2">Yang belum<br>ditempatkan<br>s/d bulan ini</th>
+          </tr>
+          <tr>
+            <th>L</th>
+            <th>P</th>
+            <th>L</th>
+            <th>P</th>
+            <th>L</th>
+            <th>P</th>
+            <th>L</th>
+            <th>P</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 </section>
 <!-- /.content -->
 
@@ -108,5 +108,16 @@
       }
       tbody.html(content);
     })
+  });
+</script>
+</script>
+<script type="text/javascript">
+  window.addEventListener( "pageshow", function ( event ) {
+    var historyTraversal = event.persisted || 
+    ( typeof window.performance != "undefined" && 
+      window.performance.navigation.type === 2 );
+    if ( historyTraversal ) {
+      window.location.reload();
+    }
   });
 </script>

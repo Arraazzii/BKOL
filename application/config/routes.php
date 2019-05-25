@@ -58,6 +58,8 @@ $route['login'] = "login";
 $route['logout'] = "login/dologout";
 $route['lupasandi'] = "root/lupasandi";
 $route['ubahsandi'] = "root/ubahsandi";
+$route['detailLowonganPekerjaan'] = "root/LowonganPekerjaan";
+
 $route['api_lowongan'] = "root/api_lowongan";
 
 $route['GetKelurahan(.*)'] = "root/GetKelurahan$1";

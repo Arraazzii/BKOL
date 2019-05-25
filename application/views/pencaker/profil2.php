@@ -56,7 +56,7 @@ and open the template in the editor.
                                                 </td>
                                                 <td align="left" valign="top" colspan="2">
                                                         <label id="tempattgllahir">
-                                                        <?php
+                                                                <?php
                                                                 $tgllahir = explode("-", $MsPencakerData->TglLahir);
                                                                 $bulan = array(
                                                                         "Januari",
@@ -72,8 +72,8 @@ and open the template in the editor.
                                                                         "November",
                                                                         "Desember"
                                                                 );
-                                                        ?>
-                                                        <?= $MsPencakerData->TempatLahir.', '.(int)$tgllahir[2].' '.$bulan[$tgllahir[1]-1].' '.$tgllahir[0] ?>
+                                                                ?>
+                                                                <?= $MsPencakerData->TempatLahir.', '.(int)$tgllahir[2].' '.$bulan[$tgllahir[1]-1].' '.$tgllahir[0] ?>
                                                         </label>
                                                 </td>
                                         </tr>
@@ -226,10 +226,10 @@ and open the template in the editor.
                                                                                 $out = $interval->format("Years:%Y,Months:%M,Days:%d");
                                                                                 $result = array();
                                                                                 array_walk(explode(',',$out),
-                                                                                function($val,$key) use(&$result){
-                                                                                    $v=explode(':',$val);
-                                                                                    $result[$v[0]] = $v[1];
-                                                                                });
+                                                                                        function($val,$key) use(&$result){
+                                                                                            $v=explode(':',$val);
+                                                                                            $result[$v[0]] = $v[1];
+                                                                                    });
                                                                                 echo '<td align="left">'.((int)$result['Years'] > 0 ? (int)$result['Years'].' tahun' : '').((int)$result['Months'] > 0 ? ' '.(int)$result['Months'].' bulan' : ((int)$result['Days'] > 0 ? ' '.(int)$result['Days'].' hari' : ' 0 hari')).'</td>';
                                                                                 echo '</tr>';
                                                                                 

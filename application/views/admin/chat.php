@@ -23,14 +23,14 @@ if($id_penerima!=""){?>
 
     <tr>
         <td nowrap="nowrap" align="left" valign="top" style="width: 70%;">
-         <textarea id="pesan" name="pesan" cols="30" rows="3" maxlength="400" style="margin: 0px;width: 611px;height: 52px;" placeholder="Isi Pesan...!"></textarea>
-     </td>
-     <td align="left" valign="top">
-      <div align="center"><br />
-        <button class="button" onclick="kirim_now();">Kirim</button>
+           <textarea id="pesan" name="pesan" cols="30" rows="3" maxlength="400" style="margin: 0px;width: 611px;height: 52px;" placeholder="Isi Pesan...!"></textarea>
+       </td>
+       <td align="left" valign="top">
+          <div align="center"><br />
+            <button class="button" onclick="kirim_now();">Kirim</button>
 
-    </div>
-</td>
+        </div>
+    </td>
 </tr>
 </table>
 </div>
@@ -46,12 +46,12 @@ if($id_penerima!=""){?>
             if(data.jum_message>jum){
               $.each(data.message,function(key,val) {
               //  alert(i);
-                if(i>jum){
+              if(i>jum){
                 output_scroll(val.pengirim,val.date,val.pesan);
                 console.log(val.pesan);
-                 }
-                i=i+1;
-            });
+            }
+            i=i+1;
+        });
               $("#jum").val(data.jum_message);
           }
       });
@@ -70,7 +70,7 @@ if($id_penerima!=""){?>
     }
     function kirim_now(){
         var isi=$("#pesan").val();
-       $.get("<?php echo base_url();?>admin/send_chat/<?php echo $id_penerima;?>/"+isi, function(data, status){
+        $.get("<?php echo base_url();?>admin/send_chat/<?php echo $id_penerima;?>/"+isi, function(data, status){
         //alert("Data: " + data + "\nStatus: " + status);
         console.log(data);
     });
@@ -80,12 +80,12 @@ if($id_penerima!=""){?>
         if(e.which == 13) {
             var isi=$("#pesan").val();
             if(isi!=""){
-             kirim_now(); 
-         }
+               kirim_now(); 
+           }
 
-         $("#pesan").val("");
-     }
- });
+           $("#pesan").val("");
+       }
+   });
 </script>
 <?php } else {?>
 <!--
@@ -94,83 +94,94 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <table width="100%">
-        <tr>
-                <td align="center">
-                        <table width="100%" class="table-form">
-                                <thead>
-                                        <tr>
-                                                <th align="center">
-                                                        <div align="center">
-                                                                PESAN MASUK
-                                                        </div>
-                                                </th>
-                                        </tr>
-                                </thead>
-                                <tbody>
-                                        <tr>
-                                                <td align="center">
-                                                        <div align="center">
-<?php
-$this->table->set_heading(
-        array('data'=>'No', 'style'=>'width:0px; text-align:center;'),
-        array('data'=>'Nama Pencaker', 'style'=>'text-align:center;'),
-        array('data'=>'Info', 'style'=>'text-align:center;'),
-        array('data'=>'Detail', 'style'=>'width:0px; text-align:center;')
-);
-if ($pesan_masuk->num_rows() > 0)
-{
-        $i = 0;
-        foreach ($pesan_masuk->result() as $getdata)
-        {
-                $i++;
-                $detailbtn = '<a class="button" href="'.site_url('admin/chat/'.$getdata->pengirim).'">Balas Pesan</a>';
-                $this->table->add_row(
-                        array('data'=>$i+$this->uri->segment(3)),
-                        array('data'=>strtoupper($this->_ci->MsUser->GetMsUserByIDUser($getdata->pengirim)->Username), 'style'=>'text-align:center;'),
-                        array('data'=>$this->_ci->MsChat->GetJumChatPeng($getdata->pengirim)." Pesan", 'style'=>'text-align:center;'),
-                        array('data'=>$detailbtn, 'style'=>'text-align:center;')
-                );
-        }
-}
-else
-{
-        $this->table->add_row(array('data'=>'belum ada data', 'align'=>'center', 'colspan'=>6));
-}
-$tmpl = array (
-                'table_open'          => '<table width="100%" cellpadding="2" cellspacing="1" class="table-form">',
+    <tr>
+        <td align="center">
+            <table width="100%" class="table-form">
+                <thead>
+                    <tr>
+                        <th align="center">
+                            <div align="center">
+                                PESAN MASUK
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td align="center">
+                            <div align="center">
+                                <?php
+                                $this->table->set_heading(
+                                    array('data'=>'No', 'style'=>'width:0px; text-align:center;'),
+                                    array('data'=>'Nama Pencaker', 'style'=>'text-align:center;'),
+                                    array('data'=>'Info', 'style'=>'text-align:center;'),
+                                    array('data'=>'Detail', 'style'=>'width:0px; text-align:center;')
+                                );
+                                if ($pesan_masuk->num_rows() > 0)
+                                {
+                                    $i = 0;
+                                    foreach ($pesan_masuk->result() as $getdata)
+                                    {
+                                        $i++;
+                                        $detailbtn = '<a class="button" href="'.site_url('admin/chat/'.$getdata->pengirim).'">Balas Pesan</a>';
+                                        $this->table->add_row(
+                                            array('data'=>$i+$this->uri->segment(3)),
+                                            array('data'=>strtoupper($this->_ci->MsUser->GetMsUserByIDUser($getdata->pengirim)->Username), 'style'=>'text-align:center;'),
+                                            array('data'=>$this->_ci->MsChat->GetJumChatPeng($getdata->pengirim)." Pesan", 'style'=>'text-align:center;'),
+                                            array('data'=>$detailbtn, 'style'=>'text-align:center;')
+                                        );
+                                    }
+                                }
+                                else
+                                {
+                                    $this->table->add_row(array('data'=>'belum ada data', 'align'=>'center', 'colspan'=>6));
+                                }
+                                $tmpl = array (
+                                    'table_open'          => '<table width="100%" cellpadding="2" cellspacing="1" class="table-form">',
 
-                'heading_row_start'   => '<tr>',
-                'heading_row_end'     => '</tr>',
-                'heading_cell_start'  => '<th>',
-                'heading_cell_end'    => '</th>',
+                                    'heading_row_start'   => '<tr>',
+                                    'heading_row_end'     => '</tr>',
+                                    'heading_cell_start'  => '<th>',
+                                    'heading_cell_end'    => '</th>',
 
-                'row_start'           => '<tr>',
-                'row_end'             => '</tr>',
-                'cell_start'          => '<td nowrap="nowrap" align="left" valign="top">',
-                'cell_end'            => '</td>',
+                                    'row_start'           => '<tr>',
+                                    'row_end'             => '</tr>',
+                                    'cell_start'          => '<td nowrap="nowrap" align="left" valign="top">',
+                                    'cell_end'            => '</td>',
 
-                'row_alt_start'       => '<tr>',
-                'row_alt_end'         => '</tr>',
-                'cell_alt_start'      => '<td align="left" valign="top">',
-                'cell_alt_end'        => '</td>',
+                                    'row_alt_start'       => '<tr>',
+                                    'row_alt_end'         => '</tr>',
+                                    'cell_alt_start'      => '<td align="left" valign="top">',
+                                    'cell_alt_end'        => '</td>',
 
-                'table_close'         => '</table>'
-);
-$this->table->set_template($tmpl); 
-echo $this->table->generate();
-$this->table->clear();
+                                    'table_close'         => '</table>'
+                                );
+                                $this->table->set_template($tmpl); 
+                                echo $this->table->generate();
+                                $this->table->clear();
 
 //echo $this->pagination->create_links();
-?>
-                                                        </div>
-                                                </td>
-                                        </tr>
-                                </tbody>
-                        </table>
-                </td>
-        </tr>
+                                ?>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
 </table>
 
 
 
 <?php } ?>
+</script>
+<script type="text/javascript">
+    window.addEventListener( "pageshow", function ( event ) {
+      var historyTraversal = event.persisted || 
+      ( typeof window.performance != "undefined" && 
+          window.performance.navigation.type === 2 );
+      if ( historyTraversal ) {
+        window.location.reload();
+    }
+});
+</script>

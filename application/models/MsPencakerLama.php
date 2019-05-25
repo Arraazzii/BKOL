@@ -20,43 +20,43 @@ class MsPencakerLama extends CI_Model {
         }
         else if ($cat == 1) {
             if ($wh['umur']['batasatas'] != 0) {
-               $this->db2->where('TIMESTAMPDIFF(YEAR, TglLahir, CURDATE()) <=', $wh['umur']['batasatas']);
-               $this->db2->where('TIMESTAMPDIFF(YEAR, TglLahir, CURDATE()) >=', $wh['umur']['batasbawah']);
-            }
-            else {
-                $this->db2->where('TIMESTAMPDIFF(YEAR, TglLahir, CURDATE()) >=', $wh['umur']['batasbawah']);
-            }
-                
+             $this->db2->where('TIMESTAMPDIFF(YEAR, TglLahir, CURDATE()) <=', $wh['umur']['batasatas']);
+             $this->db2->where('TIMESTAMPDIFF(YEAR, TglLahir, CURDATE()) >=', $wh['umur']['batasbawah']);
+         }
+         else {
+            $this->db2->where('TIMESTAMPDIFF(YEAR, TglLahir, CURDATE()) >=', $wh['umur']['batasbawah']);
         }
-        else if ($cat == 2) {
-            $this->db2->where('IDTingkatPendidikan', $wh['pendidikan']);
-        }
-
-        $this->db2->where('JenisKelamin', $wh['jk']);
-        $query = $this->db2->get('mspencaker');
-        return $query->num_rows();
+        
+    }
+    else if ($cat == 2) {
+        $this->db2->where('IDTingkatPendidikan', $wh['pendidikan']);
     }
 
-    function GetCount()
-    {
+    $this->db2->where('JenisKelamin', $wh['jk']);
+    $query = $this->db2->get('mspencaker');
+    return $query->num_rows();
+}
 
-        $query = $this->db2->query("SELECT COUNT(IF(JenisKelamin=0, IDPencaker, NULL)) as pria, COUNT(IF(JenisKelamin=1, IDPencaker, NULL)) as wanita, COUNT(IDPencaker) as total FROM mspencaker");
-        return $query->result();
-    }
+function GetCount()
+{
 
-    public function GetMsKecamatan()
-    {
-    	$this->db2->select('*');
-    	$this->db2->from('mskecamatan');
-    	return $this->db2->get()->result();
-    }
+    $query = $this->db2->query("SELECT COUNT(IF(JenisKelamin=0, IDPencaker, NULL)) as pria, COUNT(IF(JenisKelamin=1, IDPencaker, NULL)) as wanita, COUNT(IDPencaker) as total FROM mspencaker");
+    return $query->result();
+}
 
-    public function GetMsStatusPendidikan()
-    {
-    	$this->db2->select('*');
-    	$this->db2->from('mstingkatpendidikan');
-    	return $this->db2->get()->result();
-    }
+public function GetMsKecamatan()
+{
+   $this->db2->select('*');
+   $this->db2->from('mskecamatan');
+   return $this->db2->get()->result();
+}
+
+public function GetMsStatusPendidikan()
+{
+   $this->db2->select('*');
+   $this->db2->from('mstingkatpendidikan');
+   return $this->db2->get()->result();
+}
 
 }
 
