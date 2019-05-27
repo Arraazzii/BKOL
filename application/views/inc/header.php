@@ -34,6 +34,7 @@
    <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/summernote/summernote.css">
    <!-- jQuery 3 -->
    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.18/r-2.2.2/datatables.min.css"/>
+   <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/styleadmin.css">
    
 
    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

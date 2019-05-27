@@ -1,5 +1,5 @@
 <!-- Content Header (Page header) -->
-<section class="content-header">
+<section class="content-header container">
     <h1>
         Daftar
         <small>Riwayat Lamaran</small>
@@ -11,10 +11,10 @@
     </ol>
 </section>
 <!-- Main content -->
-<section class="content">
+<section class="content container">
     <div class="box box-primary box-solid">
         <div class="box-header">
-            <h3 class="box-title">&nbsp; Daftar Riwayat Lamaran</h3>
+            <h3 class="box-title" style="color: #fff;">&nbsp; Daftar Riwayat Lamaran</h3>
         </div>
         <div class="box-body">
             <!-- row -->

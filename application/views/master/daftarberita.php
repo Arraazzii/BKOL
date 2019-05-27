@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/styleBaru.css">
 <!-- /.content -->
 <!-- Content Header (Page header) -->
 <section class="content-header">

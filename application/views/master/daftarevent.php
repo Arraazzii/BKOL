@@ -1,6 +1,7 @@
-<!-- /.content -->
+<!--content -->
 <!-- Content Header (Page header) -->
-<section class="content-header">
+
+<!-- <section class="content-header">
     <h1>
         Daftar
         <small>Kegiatan</small>
@@ -10,9 +11,11 @@
         <li><a href="#">Daftar</a></li>
         <li class="active">Kegiatan</li>
     </ol>
-</section>
+</section> -->
 
 <!-- Main content -->
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/styleBaru.css">
+
 <section class="content">
     <?php 
     $i = 0;
@@ -58,8 +61,8 @@
                 <div class="box-body">
                     <h3 class="text-primary page-header"><?php echo $getdata->JudulEvent; ?></h3>
                     <div class="box-description">     
-                        <?php $viewbtn = '<a href="'.site_url('event/view').'/'.$getdata->IDEvent.'">Selengkapnya</a>';
-                        echo (strlen($getdata->IsiEvent) > 150 ? substr($getdata->IsiEvent,0,150)." ...... " : $getdata->IsiEvent).$viewbtn; ?>
+                        <?php $viewbtn = ' <a class="btn btn-primary" href="'.site_url('event/view').'/'.$getdata->IDEvent.'">Selengkapnya</a>';
+                        echo (strlen($getdata->IsiEvent) > 150 ? substr($getdata->IsiEvent,0,150)." ......  " : $getdata->IsiEvent).$viewbtn; ?>
                     </div>
                 </div>
             </div>
@@ -77,4 +80,4 @@
         </div>        
     <?php endif ?>
 </section>
-<!-- /.content -->
+<!-- /.content

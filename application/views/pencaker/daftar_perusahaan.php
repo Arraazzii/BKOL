@@ -1,6 +1,6 @@
 <!-- /.content -->
 <!-- Content Header (Page header) -->
-<section class="content-header">
+<section class="content-header container">
     <h1>
         Daftar
         <small>Perusahaan</small>
@@ -13,7 +13,7 @@
 </section>
 <?php $i = 0; ?>
 <!-- Main content -->
-<section class="content">
+<section class="content container">
     <div class="box box-default">
         <div class="box-header">
             <h3 class="box-title">DAFTAR PERUSAHAAN</h3>

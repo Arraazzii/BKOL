@@ -61,7 +61,7 @@
 </div>
 </div>
 </div>
-<section class="content-header">
+<section class="content-header container">
     <h1>
         Profil
         <small>Pencaker</small>
@@ -73,7 +73,7 @@
     </ol>
 </section>
 <!-- Main content -->
-<section class="content">
+<section class="content container">
     <div class="box">
       <div class="box-header">
         <h3 class="box-title">Pengalaman Kerja</h3>

@@ -1,11 +1,12 @@
 <!-- /.content -->
 <!-- Content Header (Page header) -->
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/styleBaru.css">
 <?php 
 $prias = (isset($TotalPria)?$TotalPria:0);
 $wanitas = (isset($TotalWanita)?$TotalWanita:0);
 $GTotal = $prias + $wanitas;
 ?>
-<section class="content-header">
+<!-- <section class="content-header">
     <h1>
         Daftar
         <small>Pencari Kerja</small>
@@ -15,7 +16,7 @@ $GTotal = $prias + $wanitas;
         <li><a href="#">Daftar</a></li>
         <li class="active">Pencari Kerja</li>
     </ol>
-</section>
+</section> -->
 <?php $i = 0; ?>
 <!-- Main content -->
 <section class="content">

@@ -89,8 +89,97 @@
     </div>
   </div>
 </div>
+<div class="modal fade" id="modal-lowonganEx">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Lowongan Pekerjaan (Expired)</h4>
+      </div>
+      <div class="modal-body">
+        <form action="" method="POST" class="form-horizontal" role="form">
+          <div class="form-group">
+            <label class="col-md-4" >Lowongan Pekerjaan </label>
+            <div class="col-md-8">
+              <span id="namalowonganEX">    </span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4" >Posisi Jabatan </label>
+            <div class="col-md-8">
+              <span id="posisijabatanEX">    </span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4" >Nama Perusahaan </label>
+            <div class="col-md-8">
+              <span id="namaperusahaanEX">    </span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4" >Alamat Perusahaan </label>
+            <div class="col-md-8">
+              <span id="alamatEX">    </span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4" >Pendidikan Minimal </label>
+            <div class="col-md-8">
+              <span id="statuspendidikanEX">    </span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4" >Jml Pria Dibutuhkan </label>
+            <div class="col-md-8">
+              <span id="jmlpriaEX">    </span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4" >Jml Wanita Dibutuhkan </label>
+            <div class="col-md-8">
+              <span id="jmlwanitaEX">    </span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4" >Batas Umur </label>
+            <div class="col-md-8">
+              <span id="batasumurEX">    </span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4" >Syarat Khusus </label>
+            <div class="col-md-8">
+              <span id="syaratkhususEX">    </span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4" >Jam Kerja Seminggu </label>
+            <div class="col-md-8">
+              <span id="jamkerjasemingguEX">    </span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4" >Gaji Perbulan </label>
+            <div class="col-md-8">
+              <span id="gajiperbulanEX">    </span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4" >Lokasi Penempatan </label>
+            <div class="col-md-8">
+              <span id="penempatanEX">    </span>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- Content Header (Page header) -->
-<section class="content-header">
+<section class="content-header container">
   <h1>
     Daftar
     <small>Lowongan Kerja</small>
@@ -102,10 +191,10 @@
   </ol>
 </section>
 <!-- Main content -->
-<section class="content">
+<section class="content container">
   <div class="box">
-    <div class="box-header">
-      <h3 class="box-title"><i class="fa fa-map-marker"></i> &nbsp; Daftar Lowongan Pekerjaan</h3>
+    <div class="box-header text-center">
+      <h3 class="box-title">Daftar Lowongan Pekerjaan</h3>
     </div>
     <div class="box-body">
       <!-- row -->
@@ -114,24 +203,31 @@
           <!-- The time line -->
           <ul class="timeline">
             <?php if ($MsLowonganData->num_rows > 0): ?>
-              <?php foreach ($MsLowonganData->result() as $getdata): ?>
+              <?php 
+              date_default_timezone_get('Asia/Jakarta');
+                  $timeLimit = date('Y-m-d');
+              foreach ($MsLowonganData->result() as $getdata): ?>
                 <!-- timeline time label -->
-                <li class="time-label">
+               <!--  <li class="time-label">
                   <span class="bg-green">
                     <?php echo $getdata->TglBerlaku ?>
                   </span>
-                </li>
+                </li> -->
                 <!-- /.timeline-label -->
                 <!-- timeline item -->
-                <li>
-                  <i class="fa fa-bullhorn bg-blue"></i>
+                <li class="col-lg-6 col-md-6 col-sm-12 col-xs-12 height-250">
+                  <!-- <i class="fa fa-bullhorn bg-blue"></i> -->
                   <div class="timeline-item">
-                    <span class="time">Tanggal Berakhir : <?php echo $getdata->TglBerakhir ?></span>
+                    <span class="time">Tanggal Berakhir : <?php echo $getdata->TglBerakhir ?>
+                      <?php if ($getdata->TglBerakhir <= $timeLimit){ ?>                            
+                          <span class="label label-danger time">EXPIRED</span>
+                          <?php } ?>
+                    </span>
 
                     <h3 class="timeline-header"><?php echo $getdata->NamaLowongan ?></h3>
                     <?php if (file_exists(BASEPATH .'/../assets/file/perusahaan/'.$getdata->IDPerusahaan.'.jpg')): ?>
                       <div class="col-md-2">
-                        <img width="90" src="<?php echo site_url('assets/file/perusahaan/'.$getdata->IDPerusahaan.'.jpg') ?>">
+                        <img class="img-responsive" src="<?php echo site_url('assets/file/perusahaan/'.$getdata->IDPerusahaan.'.jpg') ?>">
                       </div>
                     <?php endif ?>
                     <div class="timeline-body col-md-9">
@@ -139,8 +235,15 @@
                       Alamat : <?php echo $getdata->Alamat ?><br>
                       Jumlah Dibutuhkan : <?php echo $getdata->JmlPria+$getdata->JmlWanita ?> Orang
                     </div>
-                    <div class="timeline-footer col-md-12">
-                      <a class="btn btn-primary btn-xs" onclick="viewLowongan('<?php echo $getdata->IDLowongan ?>')">Baca Selengkapnya</a>
+                    <div class="timeline-footer col-md-12  text-right">
+                       <?php if ($getdata->TglBerakhir >= $timeLimit){ ?>
+                            <a class="btn btn-success btn-sm" onclick="viewLowongan('<?php echo $getdata->IDLowongan ?>')">Baca Selengkapnya</a>
+                            <a href="https://wa.me/?text=<?php echo site_url();?>detailLowonganPekerjaan?lowongan=<?php echo $getdata->IDLowongan;?>" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Share Jobs To Whatsapp!" target="_blank"><i class="fa fa-whatsapp"></i></a>
+                            <?php }else{?>
+                            <a class="btn btn-success btn-sm" onclick="viewLowonganEx('<?php echo $getdata->IDLowongan ?>')">Baca Selengkapnya (EXPIRED)</a>
+                            <a href="#" class="btn btn-primary btn-sm disabled" target="_blank"><i class="fa fa-whatsapp"></i></a>
+                            <?php } ?>
+                      <!-- <a class="btn btn-primary btn-xs" onclick="viewLowongan('<?php echo $getdata->IDLowongan ?>')">Baca Selengkapnya</a> -->
                     </div>
                   </div>
                 </li>
@@ -149,9 +252,9 @@
             <?php else: ?>
               
             <?php endif ?>
-            <li>
+            <!-- <li>
               <i class="fa fa-clock-o bg-gray"></i>
-            </li>
+            </li> -->
           </ul>
         </div>
         <!-- /.col -->
@@ -187,6 +290,31 @@
           $("#send").show();
         }
 
+      }
+      else
+      {
+        notifikasi('Lowongan tidak ditemukan', 'danger', 'fa fa-exclamation-triagle');
+      }
+    }, 'json');
+  }
+  function viewLowonganEx(IDLowongan) {
+    $.get('<?php echo site_url('root/getlowongan') ?>/'+IDLowongan, function(getdata) {
+      if (getdata.exists) 
+      {
+        $("#modal-lowonganEx").modal('show');
+        $("#idlowonganEX").val(getdata.IDLowongan);
+        $("#namalowonganEX").html(getdata.NamaLowongan);
+        $("#posisijabatanEX").html(getdata.NamaPosisiJabatan);
+        $("#namaperusahaanEX").html(getdata.NamaPerusahaan);
+        $("#alamatEX").html(getdata.Alamat);
+        $("#statuspendidikanEX").html(getdata.NamaStatusPendidikan + ' / ' + getdata.Jurusan);
+        $("#jmlpriaEX").html(getdata.JmlPria+' Orang');
+        $("#jmlwanitaEX").html(getdata.JmlWanita+' Orang');
+        $("#batasumurEX").html(getdata.BatasUmur+' Tahun');
+        $("#syaratkhususEX").html(getdata.SyaratKhusus);
+        $("#jamkerjasemingguEX").html(getdata.JamKerjaSeminggu + ' Jam Per Minggu');
+        $("#gajiperbulanEX").html('Rp. '+getdata.GajiPerbulan);
+        $("#penempatanEX").html(getdata.Penempatan);
       }
       else
       {

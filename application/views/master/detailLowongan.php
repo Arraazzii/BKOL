@@ -51,6 +51,7 @@
   	folder instead of downloading all of them to reduce the load. -->
   	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/skins/_all-skins.min.css">
   	<link rel="shortcut icon" href="<?php echo base_url();?>assets/depok.png" type="image/x-icon">
+  	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/styleBaru.css">
   	<!-- jQuery 3 -->
   	<script src="<?php echo base_url(); ?>assets/plugins/jquery/dist/jquery.min.js"></script>
 

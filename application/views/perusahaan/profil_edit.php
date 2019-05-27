@@ -176,20 +176,20 @@ if($this->input->post() == NULL)
                 </div>
                 <div class="form-group <?php echo form_error('kodepos') ? 'has-error' : '' ?>">
                     <label for="kodepos" class="control-label col-md-3">Kode pos</label>
-                    <div class="col-md-4">
+                    <div class="col-md-5">
                         <input id="kodepos" name="kodepos" class="form-control input-sm" type="text" value="<?= $input != null ? $input['kodepos'] : '' ?>" size="5" maxlength="5">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="kota" class="control-label col-md-3">Kota</label>
-                    <div class="col-md-4">
+                    <div class="col-md-5">
                         <input id="kota" class="form-control input-sm" name="kota" type="text" value="<?= $input != null ? $input['kota'] : '' ?>" size="20" maxlength="20">
                         <?php echo form_error('kota', '<span class="help-block">', '</span>'); ?>
                     </div>
                 </div>
                 <div class="form-group <?php echo form_error('propinsi') ? 'has-error' : '' ?>">
                     <label for="propinsi" class="control-label col-md-3">Provinsi</label>
-                    <div class="col-md-4">
+                    <div class="col-md-5">
                         <input id="propinsi" class="form-control input-sm" name="propinsi" type="text" value="<?= $input != null ? $input['propinsi'] : '' ?>" size="20" maxlength="20">
                         <?php echo form_error('propinsi', '<span class="help-block">', '</span>'); ?>
                     </div>

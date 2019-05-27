@@ -17,7 +17,7 @@ if (!$this->input->post())
 ?>
 
 <!-- Content Header (Page header) -->
-<section class="content-header">
+<section class="content-header container">
     <h1>
         Profil
         <small>Pencaker</small>
@@ -29,7 +29,7 @@ if (!$this->input->post())
     </ol>
 </section>
 <!-- Main content -->
-<section class="content">
+<section class="content container">
     <form action="<?php echo site_url('pencaker/editcv') ?>" method="POST" class="form-horizontal" role="form">
         <div class="row">
             <div class="col-md-6">

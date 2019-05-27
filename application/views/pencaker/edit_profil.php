@@ -21,7 +21,7 @@ if (!$this->input->post())
 ?>
 
 <!-- Content Header (Page header) -->
-<section class="content-header">
+<section class="content-header container">
   <h1>
     Profil
     <small>Pencaker</small>
@@ -33,7 +33,7 @@ if (!$this->input->post())
   </ol>
 </section>
 <!-- Main content -->
-<section class="content">
+<section class="content container">
   <form class="form-horizontal" method="post" id="formedit" action="<?php echo site_url('pencaker/edit') ?>" enctype="multipart/form-data">
     <div class="panel panel-default">
       <div class="panel-body text-center">
@@ -88,7 +88,7 @@ if (!$this->input->post())
         </div>
         <div class="form-group <?php echo form_error('tgllahir') ? 'has-error' : '' ?>">
           <label for="tgllahir" class="control-label col-md-3 col-md-offset-1">Tanggal Lahir</label>
-          <div class="col-md-3">
+          <div class="col-md-5">
             <input id="tgllahir" name="tgllahir" class="form-control input-sm" type="text" value="<?= isset($input) ? $input['tgllahir'] : date('d-m-Y', mktime(0, 0, 0, 1, 1, 1990)) ?>" readonly size="10" maxlength="10">
             <?php echo form_error('tgllahir', '<span class="help-block">', '</span>') ?>
           </div>
@@ -165,7 +165,7 @@ if (!$this->input->post())
         </div>
         <div class="form-group <?php echo form_error('kodepos') ? 'has-error' : '' ?>">
           <label for="kodepos" class="control-label col-md-3 col-md-offset-1">Kode pos</label>
-          <div class="col-md-4">
+          <div class="col-md-5">
             <input id="kodepos" name="kodepos" class="form-control" type="text" value="<?= $input != null ? $input['kodepos'] : '' ?>" size="5" maxlength="5">
             <?php echo form_error('kodepos', '<span class="help-block">', '</span>') ?>
           </div>

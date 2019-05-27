@@ -23,14 +23,14 @@
             <div class="box-body">
                 <div class="form-group <?php echo form_error('tglberlaku') ? 'has-error' : '' ?>">
                     <label for="tglberlaku" class="control-label col-md-3">Tanggal berlaku</label>
-                    <div class="col-md-3">
+                    <div class="col-md-5">
                         <input id="tglberlaku" name="tglberlaku" class="form-control input-sm" type="text" value="<?= $input != null ? $input['tglberlaku'] : date('d-m-Y') ?>" size="10" maxlength="10" readonly="true">
                         <?php echo form_error('tglberlaku', '<span class="help-block">', '</span>'); ?>
                     </div>
                 </div>
                 <div class="form-group <?php echo form_error('tglberakhir') ? 'has-error' : '' ?>">
                     <label for="tglberakhir" class="control-label col-md-3">Tanggal berakhir</label>
-                    <div class="col-md-3">
+                    <div class="col-md-5">
                         <input id="tglberakhir" name="tglberakhir" class="form-control input-sm" type="text" value="<?= $input != null ? $input['tglberakhir'] : date('d-m-Y') ?>" size="10" maxlength="10" readonly="true">
                         <?php echo form_error('tglberakhir', '<span class="help-block">', '</span>'); ?>
                     </div>
@@ -72,14 +72,14 @@
             <div class="box-body">
                 <div class="form-group <?php echo form_error('jmlpria') ? 'has-error' : '' ?>">
                     <label for="jmlpria" class="control-label col-md-3">Jumlah laki-laki</label>
-                    <div class="col-md-3">
+                    <div class="col-md-5">
                         <input id="jmlpria" name="jmlpria" class="form-control input-sm" type="text" value="<?= $input != null ? $input['jmlpria'] : '0' ?>" size="20">
                         <?php echo form_error('jmlpria', '<span class="help-block">', '</span>'); ?>
                     </div>
                 </div>
                 <div class="form-group <?php echo form_error('jmlwanita') ? 'has-error' : '' ?>">
                     <label for="jmlwanita" class="control-label col-md-3">Jumlah perempuan</label>
-                    <div class="col-md-3">
+                    <div class="col-md-5">
                         <input id="jmlwanita" name="jmlwanita" class="form-control input-sm" type="text" value="<?= $input != null ? $input['jmlwanita'] : '0' ?>" size="20">
                         <?php echo form_error('jmlwanita', '<span class="help-block">', '</span>'); ?>
                     </div>
@@ -93,14 +93,14 @@
             <div class="box-body">
                 <div class="form-group <?php echo form_error('batasumur') ? 'has-error' : '' ?>">
                     <label for="batasumur" class="control-label col-md-3">Batas umur</label>
-                    <div class="col-md-3">
+                    <div class="col-md-5">
                         <input id="batasumur" name="batasumur" class="form-control input-sm" type="text" value="<?= $input != null ? $input['batasumur'] : '0' ?>" size="20">
                         <?php echo form_error('batasumur', '<span class="help-block">', '</span>'); ?>
                     </div>
                 </div>
                 <div class="form-group <?php echo form_error('idstatuspendidikan') ? 'has-error' : '' ?>">
                     <label for="idstatuspendidikan" class="control-label col-md-3">Pendidikan formal</label>
-                    <div class="col-md-4">
+                    <div class="col-md-5">
                         <select id="idstatuspendidikan" name="idstatuspendidikan" class="form-control input-sm">
                             <option value="">(Pilih Status Pendidikan)</option>
                             <?php
@@ -122,7 +122,7 @@
                 </div>
                 <div class="form-group <?php echo form_error('idposisijabatan') ? 'has-error' : '' ?>">
                     <label for="idposisijabatan" class="control-label col-md-3">Posisi jabatan</label>
-                    <div class="col-md-4">
+                    <div class="col-md-5">
                         <select id="idposisijabatan" name="idposisijabatan" class="form-control input-sm">
                             <option value="">(Pilih Jabatan)</option>
                             <?php
@@ -151,7 +151,7 @@
                 </div>
                 <div class="form-group <?php echo form_error('idjenislowongan') ? 'has-error' : '' ?>">
                     <label for="idjenislowongan" class="control-label col-md-3">Kategori</label>
-                    <div class="col-md-3">
+                    <div class="col-md-5">
                         <select id="idjenislowongan" name="idjenislowongan" class="form-control input-sm" onchange="GetKeahlian(this)">
                             <option value="">(Pilih Kategori)</option>
                             <?php
@@ -173,7 +173,7 @@
                 </div>
                 <div class="form-group <?php echo form_error('idkeahlian') ? 'has-error' : '' ?>">
                     <label for="idkeahlian" class="control-label col-md-3">Keahlian</label>
-                    <div class="col-md-3">
+                    <div class="col-md-5">
                         <select id="idkeahlian" name="idkeahlian" class="form-control input-sm">
                             <option value="">(Pilih Keahlian)</option>
                             <?php
@@ -216,7 +216,7 @@
             <div class="box-body">
                 <div class="form-group <?php echo form_error('idjenispengupahan') ? 'has-error' : '' ?>">
                     <label for="idjenispengupahan" class="control-label col-md-3">Jenis pengupahan</label>
-                    <div class="col-md-3">
+                    <div class="col-md-5">
                         <select id="idjenispengupahan" name="idjenispengupahan" class="form-control input-sm">
                             <option value="">(Pilih Sistem Pengupahan)</option>
                             <?php
@@ -245,7 +245,7 @@
                 </div>
                 <div class="form-group <?php echo form_error('idstatushubungankerja') ? 'has-error' : '' ?>">
                     <label for="idstatushubungankerja" class="control-label col-md-3">Status Hub. Kerja</label>
-                    <div class="col-md-3">
+                    <div class="col-md-5">
                         <select id="idstatushubungankerja" name="idstatushubungankerja" class="form-control input-sm">
                             <option value="">(Pilih Status Hubungan Kerja)</option>
                             <?php
@@ -267,7 +267,7 @@
                 </div>
                 <div class="form-group <?php echo form_error('jamkerjaseminggu') ? 'has-error' : '' ?>">
                     <label for="jamkerjaseminggu" class="control-label col-md-3">Jam Kerja (jam/minggu)</label>
-                    <div class="col-md-3">
+                    <div class="col-md-5">
                         <input id="jamkerjaseminggu" name="jamkerjaseminggu" class="form-control input-sm" type="text" value="<?= $input != null ? $input['jamkerjaseminggu'] : '0' ?>" size="20">
                         <?php echo form_error('jamkerjaseminggu', '<span class="help-block">', '</span>'); ?>
                     </div>

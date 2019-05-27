@@ -1,5 +1,5 @@
 <!-- Content Header (Page header) -->
-<section class="content-header">
+<section class="content-header container">
     <h1>
         Profil
         <small>Pencaker</small>
@@ -11,7 +11,7 @@
     </ol>
 </section>
 <!-- Main content -->
-<section class="content">
+<section class="content container">
     <div class="row">
         <div class="col-md-6">
             <div class="box box-solid box-default">

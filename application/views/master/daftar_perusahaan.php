@@ -1,6 +1,7 @@
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/styleBaru.css">
 <!-- /.content -->
 <!-- Content Header (Page header) -->
-<section class="content-header">
+<!-- <section class="content-header">
     <h1>
         Daftar
         <small>Perusahaan</small>
@@ -10,7 +11,7 @@
         <li><a href="#">Daftar</a></li>
         <li class="active">Perusahaan</li>
     </ol>
-</section>
+</section> -->
 <?php $i = 0; ?>
 <!-- Main content -->
 <section class="content">

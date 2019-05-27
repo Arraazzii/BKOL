@@ -265,7 +265,8 @@
 
 <!-- Main content -->
 <section class="content">
-    <div class="col-md-6">
+    <div class="row">
+    <div class="col-md-12">
         <div class="box box-default">
             <div class="box-header with-border">
                 <h3 class="box-title text-center">Detail Lowongan</h3>
@@ -298,6 +299,8 @@
             </div>
         </div>
     </div>
+    </div>
+    <div class="row">
     <div class="col-md-12">
         <div class="box box-default">
             <div class="box-header">
@@ -375,6 +378,7 @@
                 <!-- /.box-footer -->    
             <?php endif ?>
         </div>
+    </div>
     </div>
 </section>
 <!-- /.content -->

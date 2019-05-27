@@ -91,7 +91,7 @@ $route['admin/deleteperusahaantemp(.*)'] = "admin/deleteperusahaantemp$1";
 $route['pemberikerja(.*)'] = "perusahaan/pemberikerja$1";
 $route['statuslowongan'] = "perusahaan/statuslowongan";
 $route['perusahaan/lowongan(.*)'] = "perusahaan/lowongan$1";
-$route['perusahaan/tambahdatalowongan'] = "perusahaan/lowongan/tambahdata";
+// $route['perusahaan/tambahdatalowongan'] = "perusahaan/lowongan/tambahdata";
 $route['perusahaan/addlowongan(.*)'] = "perusahaan/addlowongan$1";
 $route['perusahaan/deletelowongan(.*)'] = "perusahaan/deletelowongan$1";
 

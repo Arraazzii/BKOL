@@ -41,6 +41,7 @@
 
 <!-- Custom Style -->
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/footer.css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/styleBaru.css">
 <!-- Google Font -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
@@ -49,7 +50,7 @@
   <div class="wrapper">
 
     <header class="main-header">
-      <nav class="navbar navbar-static-top">
+      <nav class="navbar navbar-fixed-top">
         <div class="container">
           <div class="navbar-header">
             <a href="<?php echo base_url(); ?>" class="navbar-brand"><b>BKOL</b>Depok</a>
@@ -130,7 +131,7 @@
         </div>
       </div>
     </div> -->
-    <div class="container">
+    <div class="sectiontop">
       <?php echo $contents ?>
     </div>
     <!-- /.container -->

@@ -1,6 +1,6 @@
 <!-- /.content -->
 <!-- Content Header (Page header) -->
-<section class="content-header">
+<!-- <section class="content-header">
     <h1>
         Persyaratan 
         <small>Pencari Kerja</small>
@@ -9,10 +9,10 @@
         <li><a href="#">Home</a></li>
         <li class="active"><a href="#">Persyaratan</a></li>
     </ol>
-</section>
+</section> -->
 
 <!-- Main content -->
-<section class="content">
+<section class="content container">
     <div class="box box-default box-solid">
         <div class="box-header">
             <h3 class="box-title">Persyaratan</h3>

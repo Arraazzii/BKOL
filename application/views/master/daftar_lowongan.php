@@ -1,3 +1,8 @@
+<style type="text/css">
+  .text-left{
+    text-align: center;
+  }
+</style>
 <div class="modal fade" id="modal-lowongan">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -180,7 +185,8 @@
 </div>
 <!-- /.content -->
 <!-- Content Header (Page header) -->
-<section class="content-header">
+<div class="container">
+<!-- <section class="content-header">
   <h1>
     Daftar
     <small>Lowongan Kerja</small>
@@ -190,13 +196,13 @@
     <li><a href="#">Daftar</a></li>
     <li class="active">Lowongan Kerja</li>
   </ol>
-</section>
+</section> -->
 
 <!-- Main content -->
 <section class="content">
   <div class="box box-primary">
-    <div class="box-header">
-      <h3 class="box-title"><i class="fa fa-map-marker"></i> &nbsp; Daftar Lowongan Pekerjaan</h3>
+    <div class="box-header text-center">
+      <h3 class="box-title">Daftar Lowongan Pekerjaan</h3>
     </div>
     <div class="box-body">
       <!-- row -->
@@ -211,7 +217,7 @@
             <?php foreach ($MsLowonganData->result() as $getdata): ?>
               <!-- /.timeline-label -->
               <!-- timeline item -->
-              <li class="col-lg-6 col-xs-12">
+              <li class="col-lg-6 col-md-6 col-sm-12 col-xs-12 height-250">
                 <div class="timeline-item">
                   <?php if ($getdata->TglBerakhir <= $timeLimit){ ?>                            
                   <span class="label label-danger time">EXPIRED</span>
@@ -250,7 +256,7 @@
           <?php else: ?>
 
           <?php endif ?>
-          <div class="pull-right">
+          <div class="text-center">
             <?php echo $this->pagination->create_links(); ?>
           </div>
         </ul>
@@ -259,17 +265,18 @@
     </div>
     <!-- /.row -->
   </div>
-</div>
-<div class="box box-primary">
-  <div class="box-footer">
+  <!-- </div> -->
+  <!-- <div class="box box-primary"> -->
+  <!-- <div class="box-footer">
     <div class="text-center">
-      <?php echo
-      'Jika Anda Sudah Mempunyai Account dan Berminat Mengisi Jabatan Pada Perusahaan Ini.<br />Silahkan Login <a href="'.site_url('login').'">disini</a> dan Jika Belum Mempunyai Account Silahkan <a href="'.site_url('register/2').'">Daftar</a> Terlebih Dahulu';
+      <?php //echo
+      //'Jika Anda Sudah Mempunyai Account dan Berminat Mengisi Jabatan Pada Perusahaan Ini.<br />Silahkan Login <a href="'.site_url('login').'">disini</a> dan Jika Belum Mempunyai Account Silahkan <a href="'.site_url('register/2').'">Daftar</a> Terlebih Dahulu';
       ?>
     </div>
-  </div>
-</div>
+  </div> -->
+  <!-- </div> -->
 </section>
+</div>
 <!-- /.content -->
 
 <script>
@@ -306,7 +313,7 @@
     }, 'json');
   }
 
-   function viewLowonganEx(IDLowongan) {
+  function viewLowonganEx(IDLowongan) {
     $.get('<?php echo site_url('root/getlowongan') ?>/'+IDLowongan, function(getdata) {
       if (getdata.exists) 
       {

@@ -1,5 +1,7 @@
-<!-- Content Header (Page header) -->
-<section class="content-header">
+<!--Content Header (Page header) -->
+
+
+<!-- <section class="content-header">
   <h1>
     Pendaftaran
     <small>Pencari Kerja</small>
@@ -9,10 +11,15 @@
     <li><a href="#">Pendaftaran</a></li>
     <li class="active">Pencaker</li>
   </ol>
-</section>
+</section> -->
 
 <!-- Main content -->
-<section class="content">
+<style type="text/css">
+  .box-title{
+    color: #fff;
+  }
+</style>
+<section class="content container">
   <form action="<?= site_url('register/2')?>" method="POST" class="form-horizontal" role="form" enctype="multipart/form-data">
     <div class="alert alert-warning">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -696,4 +703,4 @@
                       }
 
                     </script>
-<!-- /.content -->
+<!-- /.content

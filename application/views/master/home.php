@@ -178,10 +178,11 @@
       </div>
     </div>
   </div>
-</div>
+</div><br>
+<div class="container">
 <div class="row">
   <div class="nav-tabs-custom">
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-pills nav-justified">
       <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true">Loker Depok</a></li>
       <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false">Loker Luar Depok</a></li>
       <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="false">Kegiatan</a></li>
@@ -189,8 +190,8 @@
     <div class="tab-content">
       <div class="tab-pane active" id="tab_1">
         <div class="box box-primary">
-          <div class="box-header">
-            <h3 class="box-title"><i class="fa fa-map-marker"></i> &nbsp; Daftar Lowongan Pekerjaan</h3>
+          <div class="box-header text-center">
+            <h2 class="box-title">Daftar Lowongan Pekerjaan</h2>
           </div>
           <div class="box-body">
             <!-- row -->
@@ -205,7 +206,7 @@
                   <?php foreach ($MsLowonganData as $getdata): ?>
                     <!-- /.timeline-label -->
                     <!-- timeline item -->
-                    <li class="col-lg-6 col-xs-12">
+                    <li class="col-lg-6 col-md-6 col-sm-12 col-xs-12 height-250">
                       <div class="timeline-item">
                         <!-- <div class="timeline-item" onclick="viewLowongan('<?php //echo $getdata->IDLowongan ?>')"> -->
                           <?php if ($getdata->TglBerakhir <= $timeLimit){ ?>                            
@@ -214,14 +215,14 @@
                           <span class="time">Tanggal Berakhir : <?php echo $getdata->TglBerakhir ?></span>
                           <h3 class="timeline-header"><?php echo $getdata->NamaLowongan ?></h3>
                           <?php if (file_exists(BASEPATH .'/../assets/file/perusahaan/'.$getdata->IDPerusahaan.'.jpg')): ?>
-                            <div class="col-md-2">
-                              <img class="img-responsive" src="<?php echo site_url('assets/file/perusahaan/'.$getdata->IDPerusahaan.'.jpg') ?>">
+                            <div class="col-md-3 col-sm-12 col-xs-12">
+                              <img class="img-responsive" src="<?php echo site_url('assets/file/perusahaan/'.$getdata->IDPerusahaan.'.jpg') ?>" style="margin-top: 5px;">
                             </div>
                           <?php endif ?>
                           <?php  
 
                           ?>
-                          <div class="timeline-body col-md-9">
+                          <div class="timeline-body col-md-9 col-sm-12 col-xs-12">
                             <i class="fa fa-building"></i> <?php echo $getdata->NamaPerusahaan ?><br>    
                             <i class="fa fa-map-marker"></i> <?php echo $getdata->Penempatan ?><br>
                             - <?php echo $getdata->JamKerjaSeminggu . ' Jam Per Minggu' ?><br>
@@ -248,32 +249,22 @@
                   <?php endif ?>
                 </ul>
               </div>
+              <div class="text-center">
+              <?php echo '<a class="btn btn-primary" href="'.site_url('datalowongan').'">Lowongan Lainnya</a>'; ?>
+              </div>
               <!-- /.col -->
             </div>
             <!-- /.row -->
           </div>
         </div>
-        <div class="box box-default">
-          <div class="box-body">
-            <div class="text-center">
-              <?php echo '<a class="btn btn-primary" href="'.site_url('datalowongan').'">Selengkapnya</a>'; ?>
-            </div>
-          </div>
-          <div class="box-footer">
-            <div class="text-center">
-              <?php echo
-              'Jika Anda Sudah Mempunyai Account dan Berminat Mengisi Jabatan Pada Perusahaan Ini.<br />Silahkan Login <a href="'.site_url('login').'">disini</a> dan Jika Belum Mempunyai Account Silahkan <a href="'.site_url('register/2').'">Daftar</a> Terlebih Dahulu';
-              ?>
-            </div>
-          </div>
-        </div>
+
       </div>
       <!-- /.tab-pane -->
       <div class="tab-pane" id="tab_2">
         <?php
         if ($CountMsBeritaData > 0)
         {
-          echo '<ul style="list-style:none;">';
+          echo '<ul style="list-style:none;padding-inline-start: 15px;" class="row">';
           foreach ($MsBeritaData as $getdata)
           {
             $hari = array(
@@ -307,13 +298,13 @@
             }
             $tglberita = explode("-", $getdata->TglBerita);
             $gettgl = mktime(0, 0, 0, $tglberita[1], $tglberita[2], $tglberita[0]);
-            echo '<li style="background: #fff;padding: 10px;box-shadow: 0 2px 6px #f1f1f1;border-radius: 3px;margin: 10px 0px;">
+            echo '<li style="background: #fff;padding: 10px;box-shadow: 0 2px 6px #f1f1f1;border-radius: 3px;margin: 10px 10px;" class="li-content col-lg-6 col-md-6 col-sm-12 col-xs-12" ><div class="li-card-padding-media">
             <font>
             <b>Lowongan Kerja : </b><i>'.$hari[(int)date("w", $gettgl)].', '.(int)date("d", $gettgl).' '.$bulan[(int)date("m", $gettgl)].' '.(int)date("Y", $gettgl).'</i>'. $labelEx .'<br />' . $hrefGo . '    </font>';
-            echo '</li>';
+            echo '</div></li>';
           }
           echo '</ul>';
-          echo '<div class="text-center"><a class="btn btn-primary" href="'.site_url('berita').'">Selengkapnya</a></div>';
+          echo '<div class="text-center row"><a class="btn btn-primary" href="'.site_url('berita').'">Selengkapnya</a></div>';
         }
         else
         {
@@ -326,7 +317,7 @@
         <?php
         if ($CountMsEventData > 0)
         {
-          echo '<ul style="list-style:none;">';
+          echo '<ul style="list-style:none;padding-inline-start: 0px;">';
           foreach ($MsEventData as $getdata)
           {
             $hari = array(
@@ -372,6 +363,7 @@
     </div>
     <!-- /.tab-content -->
   </div>
+</div>
 </div>
 <script>
 

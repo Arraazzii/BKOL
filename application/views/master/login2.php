@@ -1,6 +1,8 @@
 <?php
 $input = $this->session->flashdata('input');
 ?>
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/styleBaru.css">
+
 <style type="text/css" media="screen">
     /*
      * Specific styles of signin component
@@ -14,9 +16,15 @@ $input = $this->session->flashdata('input');
         background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
     }
 
+    .wrapper{
+        background: #f4f6f9 !important;
+
+    }
     .card-container.card {
         max-width: 350px;
         padding: 40px 40px;
+         border-radius: 3px;
+        box-shadow: 0 2px 6px rgb(0,0,0,0.1);
     }
 
     .btn {

@@ -1,5 +1,5 @@
 <!-- Content Header (Page header) -->
-<section class="content-header">
+<!-- <section class="content-header">
   <h1>
     Pendaftaran
     <small>Perusahaan</small>
@@ -9,10 +9,15 @@
     <li><a href="#">Pendaftaran</a></li>
     <li class="active">Perusahaan</li>
   </ol>
-</section>
+</section> -->
 
 <!-- Main content -->
-<section class="content">
+<style type="text/css">
+  .box-title{
+    color: #fff;
+  }
+</style>
+<section class="content container">
   <form method="POST" class="form-horizontal" role="form" action="<?= site_url('register/1')?>" enctype="multipart/form-data">
     <div class="box box-primary box-solid">
       <div class="box-header with-border">
