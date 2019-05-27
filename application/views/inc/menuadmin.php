@@ -66,11 +66,11 @@
             <i class="fa fa-circle-o"></i> Data Perusahaan
         </a>
     </li>
-    <li class="<?php echo $this->uri->segment(2) == 'lowongan' ? 'active' : '' ?>">
-        <a href="<?php echo base_url('admin/lowongan') ?>">
+   <!--  <li class="<?php //echo $this->uri->segment(2) == 'lowongan' ? 'active' : '' ?>">
+        <a href="<?php //echo base_url('admin/lowongan') ?>">
             <i class="fa fa-circle-o"></i> Data Lowongan
         </a>
-    </li>
+    </li> -->
     <li class="<?php echo in_array($this->uri->segment(2), array('jenislowongan', 'keahlian')) ? 'active' : '' ?>">
         <a href="<?php echo base_url('admin/jenislowongan') ?>">
             <i class="fa fa-circle-o"></i> Data Jenis Lowongan
@@ -86,11 +86,11 @@
             <i class="fa fa-circle-o"></i> Data Jurusan
         </a>
     </li>
-    <li class="<?php echo $this->uri->segment(2) == 'berita' ? 'active' : '' ?>">
-        <a href="<?php echo base_url('admin/berita') ?>">
+   <!--  <li class="<?php //echo $this->uri->segment(2) == 'berita' ? 'active' : '' ?>">
+        <a href="<?php //echo base_url('admin/berita') ?>">
             <i class="fa fa-circle-o"></i> Data Loker Luar Depok
         </a>
-    </li>
+    </li> -->
     <li class="<?php echo $this->uri->segment(2) == 'event' ? 'active' : '' ?>">
         <a href="<?php echo base_url('admin/event') ?>"> 
             <i class="fa fa-circle-o"></i> Data Kegiatan

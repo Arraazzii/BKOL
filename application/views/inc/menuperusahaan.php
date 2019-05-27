@@ -10,6 +10,9 @@
     <li class="<?php echo $this->uri->segment(2) == 'lowongan' || $this->uri->segment(2) == 'carilowongan' ? 'active' : '' ?>">
         <a href="<?php echo site_url('perusahaan/lowongan') ?>"><i class="fa fa-list-alt"></i> <span>Daftar Lowongan Kerja</span></a>
     </li>
+     <li class="<?php echo $this->uri->segment(2) == 'tambahdatalowongan' ? 'active' : '' ?>">
+        <a href="<?php echo site_url('perusahaan/tambahdatalowongan') ?>"><i class="fa fa-plus"></i> <span>Tambah Lowongan Kerja</span></a>
+    </li>
     <li class="<?php echo $this->uri->segment(2) == 'statuslowongan' || $this->uri->segment(2) == 'caristatuslowongan' ? 'active' : '' ?>">
         <a href="<?php echo site_url('perusahaan/statuslowongan') ?>"><i class="fa fa-slack"></i> <span>Daftar Status Lowongan Kerja</span></a>
     </li>

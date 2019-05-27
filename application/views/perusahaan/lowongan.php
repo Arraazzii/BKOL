@@ -20,6 +20,7 @@
     <!-- /.box-header -->
     <!-- form start -->
     <div class="box-body table-responsive">
+      <a href="<?php echo base_url();?>perusahaan/tambahdatalowongan" class="btn btn-default pull-right"><i class="fa fa-plus"></i></a><br><br>
       <table class="table table-bordered table-striped" id="tabel-lowongan">
         <thead>
           <tr>

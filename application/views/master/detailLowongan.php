@@ -229,9 +229,9 @@
 						<button type="button" id="send" class="btn btn-success" onclick="SendLowongan()"><i class="fa fa-send"></i> Kirim Lowongan</button>
 					</div>
 					<?php }else{ ?>
-					<div class="pull-right">
+					<!-- <div class="pull-right">
 						<button type="button" id="send" class="btn btn-danger disabled"><i class="fa fa-send"></i> Kirim Lowongan (Expired)</button>
-					</div>
+					</div> -->
 					<?php } ?>
 					<br><br><br>
 				</div>

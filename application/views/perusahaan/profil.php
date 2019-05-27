@@ -12,7 +12,7 @@
 <!-- Main content -->
 <section class="content">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 col-md-offset-3">
             <div class="box">
                 <div class="box-header with-border text-center">
                     <h3 class="box-title">PROFIL PERUSAHAAN</h3>
