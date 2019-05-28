@@ -16,7 +16,7 @@ class perusahaan extends CI_Controller {
             }
             else
             {
-                
+
             }
         }
         else
@@ -109,7 +109,7 @@ class perusahaan extends CI_Controller {
 
             if ($this->input->post()) 
             {
-                
+
                 $input = $this->input->post();
                 $this->load->model('MsUser');
                 $this->load->model('MsKelurahan');
@@ -787,19 +787,77 @@ if ($this->form_validation->run() == FALSE)
 }
 else
 { 
-    
+
     $insert = $this->MsLowongan->Insert($idperusahaan,$input,$registerdate);
     
     if ($insert) 
     {
         $this->session->set_flashdata('notifikasi', '<script>notifikasi("Lowongan Berhasil Di Tambah", "success", "fa fa-check")</script>');
-        redirect('perusahaan/lowongan');
-    }
-    else
-    {
-        $this->session->set_flashdata('notifikasi', '<script>notifikasi("Lowongan Gagal Di Tambah", "danger", "fa fa-exclamation")</script>');
-        redirect('perusahaan/lowongan/tambahdata');
-    }
+        $pendidikanNeed = $this->input->post('idstatuspendidikan');
+        $posisiNeed = $this->input->post('idposisijabatan');
+        $selectUser = $this->db->query("SELECT NamaPencaker, Email from mspencaker WHERE IDStatusPendidikan = '$pendidikanNeed' AND IDPosisiJabatan = '$posisiNeed'")->result_array();
+        $selectPerusahaan = $this->db->query("SELECT NamaPerusahaan from msperusahaan WHERE IDPerusahaan = '$idperusahaan'")->result_array();
+        if ($selectUser != NULL) {
+            // var_dump($selectUser);
+            foreach ($selectUser as $userGet) {
+                $emailUser = $userGet['Email'];
+                $nameUser = $userGet['NamaPencaker'];
+            }
+
+            $this->load->library('PHPMailer');
+            $this->load->library('SMTP');
+
+            $email_admin = 'disnaker.depok@gmail.com';
+            $nama_admin = 'BKOL';
+            $password_admin = '2014umar';
+
+            $mail = new PHPMailer();
+            $mail->isSMTP();  
+            $mail->SMTPKeepAlive = true;
+            $mail->Charset  = 'UTF-8';
+            $mail->IsHTML(true);
+                        // $mail->SMTPDebug = 2;
+            $mail->SMTPAuth = true;
+            $mail->Host = 'smtp.gmail.com'; 
+            $mail->Port = 587;
+            $mail->SMTPSecure = 'ssl';
+            $mail->Username = $email_admin;
+            $mail->Password = $password_admin;
+            $mail->Mailer   = 'smtp';
+            $mail->WordWrap = 100;       
+
+            $mail->setFrom($email_admin);
+            $mail->FromName = $nama_admin;
+            $mail->addAddress($emailUser);
+            $mail->AddEmbeddedImage('assets/img-lowongan.png', 'lowongan');
+            $mail->Subject          = 'Lowongan Pekerjaan Baru';
+            $mail_data['subject']   = 'Dear '.$nameUser;
+            $mail_data['link'] = base_url('detailLowonganPekerjaan?lowongan='.$insert);
+            $mail_data['perusahaan'] = $selectPerusahaan[0]['NamaPerusahaan'];
+            $mail_data['posisi']  = $input['namalowongan'];
+            $mail_data['gaji']  = $input['gajiperbulan'];
+            $message = $this->load->view('email_lowongan', $mail_data, TRUE);
+            $mail->Body = $message;
+
+            if ($mail->send()) {
+             $this->session->set_flashdata('notifikasi', '<script>notifikasi("Pencaker Berhasil Ditambahkan", "success", "fa fa-check")</script>');
+         } else {
+          echo 'Message could not be sent.';
+          echo 'Mailer Error: ' . $mail->ErrorInfo;
+          $this->session->set_flashdata('notifikasi', '<script>notifikasi("Lowongan Gagal Di Tambah", "danger", "fa fa-exclamation")</script>');
+          redirect('perusahaan/lowongan/tambahdata');
+      }
+  }else{
+    $this->session->set_flashdata('notifikasi', '<script>notifikasi("Lowongan Gagal Di Tambah", "danger", "fa fa-exclamation")</script>');
+    redirect('perusahaan/lowongan/tambahdata');
+}
+redirect('perusahaan/lowongan');
+}
+else
+{
+    $this->session->set_flashdata('notifikasi', '<script>notifikasi("Lowongan Gagal Di Tambah", "danger", "fa fa-exclamation")</script>');
+    redirect('perusahaan/lowongan/tambahdata');
+}
 }
 }
 else

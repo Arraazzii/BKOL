@@ -106,9 +106,11 @@
                             <?php
                             foreach ($MsStatusPendidikanData as $getcmb)
                             {
-                                if ($input['idstatuspendidikan'] == $getcmb->IDStatusPendidikan)
-                                {
-                                    echo "<option value='".$getcmb->IDStatusPendidikan."' selected=\"selected\">".$getcmb->NamaStatusPendidikan."</option>";
+                                if ($this->uri->segment(4) == "detail") {
+                                    if ($input['idstatuspendidikan'] == $getcmb->IDStatusPendidikan)
+                                    {
+                                        echo "<option value='".$getcmb->IDStatusPendidikan."' selected=\"selected\">".$getcmb->NamaStatusPendidikan."</option>";
+                                    }
                                 }
                                 else
                                 {
@@ -128,9 +130,11 @@
                             <?php
                             foreach ($MsPosisiJabatanData as $getcmb)
                             {
-                                if ($input['idposisijabatan'] == $getcmb->IDPosisiJabatan)
-                                {
-                                    echo "<option value='".$getcmb->IDPosisiJabatan."' selected=\"selected\">".$getcmb->NamaPosisiJabatan."</option>";
+                                if ($this->uri->segment(4) == "detail") {
+                                    if ($input['idposisijabatan'] == $getcmb->IDPosisiJabatan)
+                                    {
+                                        echo "<option value='".$getcmb->IDPosisiJabatan."' selected=\"selected\">".$getcmb->NamaPosisiJabatan."</option>";
+                                    }
                                 }
                                 else
                                 {
@@ -156,10 +160,12 @@
                             <option value="">(Pilih Kategori)</option>
                             <?php
                             foreach ($MsJenisLowonganData as $getcmb)
-                            {
-                                if ($input['idjenislowongan'] == $getcmb->IDJenisLowongan)
-                                {
-                                    echo "<option value='".$getcmb->IDJenisLowongan."' selected=\"selected\">".$getcmb->NamaJenisLowongan."</option>";
+                            {   
+                                if ($this->uri->segment(4) == "detail") {
+                                    if ($input['idjenislowongan'] == $getcmb->IDJenisLowongan)
+                                    {
+                                        echo "<option value='".$getcmb->IDJenisLowongan."' selected=\"selected\">".$getcmb->NamaJenisLowongan."</option>";
+                                    }
                                 }
                                 else
                                 {
@@ -179,9 +185,11 @@
                             <?php
                             foreach ($MsKeahlianData as $getcmb)
                             {
-                                if ($input['idkeahlian'] == $getcmb->IDKeahlian)
-                                {
-                                    echo "<option value='".$getcmb->IDKeahlian."' selected=\"selected\">".$getcmb->NamaKeahlian."</option>";
+                                if ($this->uri->segment(4) == "detail") {
+                                    if ($input['idkeahlian'] == $getcmb->IDKeahlian)
+                                    {
+                                        echo "<option value='".$getcmb->IDKeahlian."' selected=\"selected\">".$getcmb->NamaKeahlian."</option>";
+                                    }
                                 }
                                 else
                                 {
@@ -222,9 +230,11 @@
                             <?php
                             foreach ($MsJenisPengupahanData as $getcmb)
                             {
-                                if ($input['idjenispengupahan'] == $getcmb->IDJenisPengupahan)
-                                {
-                                    echo "<option value='".$getcmb->IDJenisPengupahan."' selected=\"selected\">".$getcmb->NamaJenisPengupahan."</option>";
+                                if ($this->uri->segment(4) == "detail") {
+                                    if ($input['idjenispengupahan'] == $getcmb->IDJenisPengupahan)
+                                    {
+                                        echo "<option value='".$getcmb->IDJenisPengupahan."' selected=\"selected\">".$getcmb->NamaJenisPengupahan."</option>";
+                                    }
                                 }
                                 else
                                 {
@@ -251,9 +261,11 @@
                             <?php
                             foreach ($MsStatusHubunganKerjaData as $getcmb)
                             {
-                                if ($input['idstatushubungankerja'] == $getcmb->IDStatusHubunganKerja)
-                                {
-                                    echo "<option value='".$getcmb->IDStatusHubunganKerja."' selected=\"selected\">".$getcmb->NamaStatusHubunganKerja."</option>";
+                                if ($this->uri->segment(4) == "detail") {
+                                    if ($input['idstatushubungankerja'] == $getcmb->IDStatusHubunganKerja)
+                                    {
+                                        echo "<option value='".$getcmb->IDStatusHubunganKerja."' selected=\"selected\">".$getcmb->NamaStatusHubunganKerja."</option>";
+                                    }
                                 }
                                 else
                                 {

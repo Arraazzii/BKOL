@@ -77,10 +77,10 @@ public function dologin()
                 $todate = explode("-", $getmspencaker->ExpiredDate);
                 $this->session->set_userdata("aktif", (date('Ymd') >= $fromdate[0].$fromdate[1].$fromdate[2] && date('Ymd') <= $todate[0].$todate[1].$todate[2]));
             }
-            redirect();
+            redirect("pencaker/lowongan", "refresh");
         }
         else
-        {
+    {
             if($input['idjenisuser'] == '000001')
             {
                 $this->load->model('MsPerusahaanTemp');

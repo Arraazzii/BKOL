@@ -211,7 +211,7 @@
 							<div class="row">
 								<label class="col-md-4" >Gaji Perbulan :</label>
 								<div class="col-md-8">
-									<span id="gajiperbulan">Rp <?php echo $gajiPekerjaan; ?></span>
+									<span id="gajiperbulan">Rp <?php echo number_format($gajiPekerjaan,0,",","."); ?></span>
 								</div>
 							</div>
 

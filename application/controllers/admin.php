@@ -316,7 +316,7 @@ class admin extends CI_Controller {
                     $mail->Subject          = 'Akun Verifikasi '.$getmspencakerdata->NamaPencaker;
                     $mail_data['subject']   = $getmspencakerdata->NamaPencaker;
                     $mail_data['induk']     = $getmspencakerdata->NomorIndukPencaker;
-                    $mail_data['username']  = $$getmsuserdata->Username;
+                    $mail_data['username']  = $getmsuserdata->Username;
                     $mail_data['password']  = $getmsuserdata->Password;
                     
                     $message = $this->load->view('email_temp', $mail_data, TRUE);

@@ -160,7 +160,7 @@ class MsLowongan extends CI_Model
                 {
                         $this->db->where('a.IDStatusPendidikan', $pencaker->IDStatusPendidikan);
                 }
-                
+                $this->db->order_by("a.TglBerakhir", "DESC");
                 $this->db->limit($num, $offset);
                 return $this->db->get();
         }
