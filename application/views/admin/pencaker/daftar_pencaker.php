@@ -90,7 +90,7 @@
   <td nowrap="nowrap" align="left" valign="top">
    Jenis Kelamin
  </td>
- <td align="left" valign="top">
+ <td align="left" valign="top" colspan="2">
    <span id="jeniskelamin"></span>
  </td>
 </tr>
@@ -496,7 +496,6 @@
         }
 
       </script>
-    </script>
     <script type="text/javascript">
       window.addEventListener( "pageshow", function ( event ) {
         var historyTraversal = event.persisted || 

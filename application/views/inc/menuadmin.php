@@ -31,7 +31,7 @@
         </ul>
     </li>
     <li class="treeview <?php 
-    $arrmaster = array('pencaker', 'perusahaan', 'lowongan', 'jenislowongan', 'keahlian', 'kabupaten', 'kecamatan', 'kelurahan', 'posisijabatan', 'jurusan', 'berita', 'event');
+    $arrmaster = array('pencaker', 'perusahaan', 'jenislowongan', 'keahlian', 'kabupaten', 'kecamatan', 'kelurahan', 'posisijabatan', 'jurusan', 'event');
 
     if(in_array($this->uri->segment(2), $arrmaster))
     {
@@ -133,7 +133,7 @@ if($this->uri->segment(2) == 'report_lama')
 </ul>
 </li>
 <li class="treeview <?php 
-    $arrmaster2 = array('lowonganBaru', 'beritaBaru');
+    $arrmaster2 = array('lowonganBaru','lowongan', 'berita', 'beritaBaru');
 
     if(in_array($this->uri->segment(2), $arrmaster2))
     {
@@ -150,12 +150,12 @@ if($this->uri->segment(2) == 'report_lama')
         </span>
     </a>
     <ul class="treeview-menu">
-    <li class="<?php echo $this->uri->segment(2) == 'lowonganBaru' ? 'active' : '' ?>">
+    <li class="<?php echo $this->uri->segment(2) == 'lowonganBaru' || $this->uri->segment(2) == 'lowongan' ? 'active' : '' ?>">
         <a href="<?php echo base_url('admin/lowonganBaru') ?>">
             <i class="fa fa-circle-o"></i> Data Lowongan
         </a>
     </li>
-    <li class="<?php echo $this->uri->segment(2) == 'beritaBaru' ? 'active' : '' ?>">
+    <li class="<?php echo $this->uri->segment(2) == 'beritaBaru' || $this->uri->segment(2) == 'berita' ? 'active' : '' ?>">
         <a href="<?php echo base_url('admin/beritaBaru') ?>">
             <i class="fa fa-circle-o"></i> Data Loker Luar Depok
         </a>

@@ -44,7 +44,7 @@
 							</div>
 						</div>
 						<hr>
-						<div class="col-md-6">
+						<div class="pull-right">
 							<a type="button" class="btn btn-default" href="<?php echo base_url('admin/berita') ?>">Kembali</a>
 							<input type="hidden" name="submit">
 							<button type="submit" class="btn btn-primary">Update</button>
@@ -82,7 +82,6 @@
     });
 		});
 	</script>
-</script>
 <script type="text/javascript">
 	window.addEventListener( "pageshow", function ( event ) {
 		var historyTraversal = event.persisted || 

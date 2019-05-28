@@ -479,7 +479,6 @@
         }
 
       </script>
-    </script>
     <script type="text/javascript">
       window.addEventListener( "pageshow", function ( event ) {
         var historyTraversal = event.persisted || 

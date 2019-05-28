@@ -12,15 +12,20 @@
         <li class="active">Perusahaan</li>
     </ol>
 </section> -->
+<style type="text/css">
+    .text-left{
+        text-align: center !important;
+    }
+</style>
 <?php $i = 0; ?>
 <!-- Main content -->
 <section class="content">
-    <div class="box box-default box-solid">
-        <div class="box-header">
+    <div class="box box-primary">
+        <div class="box-header text-center">
             <h3 class="box-title">DAFTAR PERUSAHAAN</h3>
         </div>
         <div class="box-body">
-            <table class="table table-bordered table-hover table-striped">
+            <table class="table table-hover table-striped">
                 <thead>
                     <tr>
                         <th width="15">No</th>
@@ -47,7 +52,7 @@
                     </tbody>
                 <?php endif ?>
             </table>
-            <div class="pull-right">
+            <div class="text-center">
                 <?php echo $this->pagination->create_links(); ?>
             </div>
         </div>

@@ -223,11 +223,11 @@
 
                           ?>
                           <div class="timeline-body col-md-9 col-sm-12 col-xs-12">
-                            <i class="fa fa-building"></i> <?php echo $getdata->NamaPerusahaan ?><br>    
-                            <i class="fa fa-map-marker"></i> <?php echo $getdata->Penempatan ?><br>
+                            <!-- <i class="fa fa-building"></i> --><b>Perusahaan : </b> <?php echo $getdata->NamaPerusahaan ?><br>    
+                            <!-- <i class="fa fa-map-marker"></i> --><b>Lokasi : </b> <?php echo $getdata->Penempatan ?><br>
+                            <b>Gaji : </b><?php echo 'Rp ' . number_format($getdata->GajiPerbulan) . ' / Bulan' ?><br>
                             - <?php echo $getdata->JamKerjaSeminggu . ' Jam Per Minggu' ?><br>
                             - <?php echo $getdata->UraianTugas ?><br>
-                            <?php echo 'Rp. ' . number_format($getdata->GajiPerbulan) . ' / Bulan' ?>
                           </div>                          
                           <div class="timeline-footer col-md-12 text-right">
                             <?php if ($getdata->TglBerakhir >= $timeLimit){ ?>
@@ -383,7 +383,7 @@
         $("#batasumur").html(getdata.BatasUmur+' Tahun');
         $("#syaratkhusus").html(getdata.SyaratKhusus);
         $("#jamkerjaseminggu").html(getdata.JamKerjaSeminggu + ' Jam Per Minggu');
-        $("#gajiperbulan").html('Rp. '+getdata.GajiPerbulan);
+        $("#gajiperbulan").html('Rp '+ noRupiah(getdata.GajiPerbulan));
         $("#penempatan").html(getdata.Penempatan);
         if(getdata.NamaPerusahaan == 'Pemprov Kota Depok') {
           $("#send").hide();
@@ -415,7 +415,7 @@
         $("#batasumurEX").html(getdata.BatasUmur+' Tahun');
         $("#syaratkhususEX").html(getdata.SyaratKhusus);
         $("#jamkerjasemingguEX").html(getdata.JamKerjaSeminggu + ' Jam Per Minggu');
-        $("#gajiperbulanEX").html('Rp. '+getdata.GajiPerbulan);
+        $("#gajiperbulanEX").html('Rp '+ noRupiah(getdata.GajiPerbulan));
         $("#penempatanEX").html(getdata.Penempatan);
       }
       else
@@ -424,6 +424,12 @@
       }
     }, 'json');
   }
+
+function noRupiah(value) {
+  value = value.split(/(?=(?:...)*$)/);
+  value = value.join('.');
+  return value;
+}
 
   function SendLowongan() {
     $('#modal-lowongan').modal('hide');

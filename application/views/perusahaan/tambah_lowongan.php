@@ -87,7 +87,7 @@
             </div>
         </div>
         <div class="box box-default">
-            <div class="box-header">
+            <div class="box-header with-border">
                 <h3 class="box-title">Persyaratan Jabatan</h3>
             </div>
             <div class="box-body">
@@ -284,7 +284,7 @@
                         <?php echo form_error('jamkerjaseminggu', '<span class="help-block">', '</span>'); ?>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group text-right">
                     <div class="col-md-5 col-md-offset-3">
                         <a class="btn btn-default btn-sm" href="<?= site_url('perusahaan/lowongan') ?>">Batal</a>
                         <input id="simpan" class="btn btn-primary btn-sm" name="simpan" type="submit" value="Simpan">
@@ -356,3 +356,13 @@
     });
 </script>
 <!-- /.content -->
+<script type="text/javascript">
+    window.addEventListener( "pageshow", function ( event ) {
+      var historyTraversal = event.persisted || 
+      ( typeof window.performance != "undefined" && 
+          window.performance.navigation.type === 2 );
+      if ( historyTraversal ) {
+        window.location.reload();
+    }
+});
+</script>

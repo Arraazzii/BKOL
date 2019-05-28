@@ -21,7 +21,7 @@ $GTotal = $prias + $wanitas;
 <!-- Main content -->
 <section class="content">
     <div class="box">
-        <div class="box-header with-border">
+        <div class="box-header text-center">
             <h3 class="box-title">DAFTAR PENCARI KERJA</h3>
         </div>
         <!-- /.box-header -->

@@ -48,7 +48,7 @@
                                     <?php 
                                     $i++;
                                     $detailbtn = '<a class="btn btn-warning btn-sm" onclick="DoEdit(\''.$getdata->IDKeahlian.'\') "><i class="fa fa-edit"></i> Edit</a>';
-                                    $deletebtn = '<a class="btn btn-danger btn-sm" onclick="DoDeleteConfirm(\''.$getdata->IDKeahlian.'\') "><i class="fa fa-trash"></i> Hapus</a>';
+                                    $deletebtn = ' <a class="btn btn-danger btn-sm" onclick="DoDeleteConfirm(\''.$getdata->IDKeahlian.'\') "><i class="fa fa-trash"></i> Hapus</a>';
                                     ?>
                                     <tr>
                                         <td class="text-center"><?php echo $i+$this->uri->segment(4) ?></td>
@@ -255,7 +255,6 @@
         </div>
     </div>
 </div>
-</script>
 <script type="text/javascript">
     window.addEventListener( "pageshow", function ( event ) {
       var historyTraversal = event.persisted || 

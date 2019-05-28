@@ -150,7 +150,6 @@ $input = $this->session->flashdata('input');
         <input class="btn btn-danger btn-block btn-flat" type="button" value="Batal" onclick="window.location.href='<?php echo site_url() ?>'">
     </form><!-- /form -->
 </div><!-- /card-container -->
-</script>
 <script type="text/javascript">
     window.addEventListener( "pageshow", function ( event ) {
       var historyTraversal = event.persisted || 

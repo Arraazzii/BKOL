@@ -13,9 +13,9 @@
 
 <!-- Main content -->
 <section class="content container">
-    <div class="box box-default box-solid">
+    <div class="box box-primary box-solid">
         <div class="box-header">
-            <h3 class="box-title">Persyaratan</h3>
+            <h3 class="box-title" style="color:#fff;">Persyaratan</h3>
         </div>
         <div class="box-body">
             <table width="100%" class="table-form">

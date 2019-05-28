@@ -199,12 +199,13 @@ $input = $this->session->flashdata('input');
     /* The Close Button */
     .close {
         position: absolute;
-        top: 55px;
+        top: 90px;
         right: 35px;
-        color: #f1f1f1;
+        color: #fff;
         font-size: 40px;
         font-weight: bold;
         transition: 0.3s;
+        opacity: 1;
     }
 
     .close:hover,
@@ -279,4 +280,14 @@ $input = $this->session->flashdata('input');
     span.onclick = function() {
       modal.style.display = "none";
   } 
+</script>
+<script type="text/javascript">
+    window.addEventListener( "pageshow", function ( event ) {
+      var historyTraversal = event.persisted || 
+      ( typeof window.performance != "undefined" && 
+          window.performance.navigation.type === 2 );
+      if ( historyTraversal ) {
+        window.location.reload();
+    }
+});
 </script>

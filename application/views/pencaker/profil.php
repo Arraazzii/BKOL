@@ -14,9 +14,9 @@
 <section class="content container">
     <div class="row">
         <div class="col-md-6">
-            <div class="box box-solid box-default">
+            <div class="box box-solid box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">Profil Pencari Kerja</h3>
+                    <h3 class="box-title" style="color:white;">Profil Pencari Kerja</h3>
                 </div>
                 <div class="box-body table-responsive">
                     <table width="100%" class="table table-condensed">
@@ -169,16 +169,16 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="box-footer">
+                <div class="box-footer text-right">
                     <a class="btn btn-default btn-sm" href="<?php echo base_url();?>pencaker/edit"><i class="fa fa-edit"></i> Edit Profil</a>
                     <a class="btn btn-default btn-sm" href="<?php echo base_url();?>pencaker/editcv"><i class="fa fa-file-text"></i> Detail CV</a>
                 </div>
             </div>
         </div>
         <div class="col-md-6">
-            <div class="box box-solid box-default">
+            <div class="box box-solid box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">Penggunaan Bahasa</h3>
+                    <h3 class="box-title" style="color:white;">Penggunaan Bahasa</h3>
                 </div>
                 <div class="box-body table-responsive">
                     <table class="table table-condensed">
@@ -205,13 +205,13 @@
                         </tr>
                     </table>
                 </div>
-                <div class="box-footer">
+                <div class="box-footer text-right">
                     <a class="btn btn-default btn-sm" href="<?php echo base_url();?>pencaker/editbahasa"><i class="fa fa-edit"></i> Detail Bahasa</a>
                 </div>
             </div>
-            <div class="box box-solid box-default">
+            <div class="box box-solid box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">PENGALAMAN KERJA</h3>
+                    <h3 class="box-title" style="color:white;">PENGALAMAN KERJA</h3>
                 </div>
                 <div class="box-body table-responsive">
                     <?php if ($MsPengalamanData->num_rows > 0): $i=1; ?>
@@ -237,10 +237,21 @@
                             <p>Belum Ada Data</p>
                         <?php endif ?>
                     </div>
-                    <div class="box-footer">
+                    <div class="box-footer text-right">
                        <a class="btn btn-default btn-sm" href="<?php echo base_url();?>pencaker/pengalaman"><i class="fa fa-edit"></i> Detail Pengalaman</a>
                    </div>
                </div>
            </div>
        </div>
    </section>
+
+<script type="text/javascript">
+    window.addEventListener( "pageshow", function ( event ) {
+      var historyTraversal = event.persisted || 
+      ( typeof window.performance != "undefined" && 
+          window.performance.navigation.type === 2 );
+      if ( historyTraversal ) {
+        window.location.reload();
+    }
+});
+</script>

@@ -86,7 +86,7 @@
             </div>
         </div>
         <div class="box box-default">
-            <div class="box-header">
+            <div class="box-header with-border">
                 <h3 class="box-title">Persyaratan Jabatan</h3>
             </div>
             <div class="box-body">
@@ -272,7 +272,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-5 col-md-offset-3">
+                    <div class="col-md-5 col-md-offset-3 text-right">
                         <a class="btn btn-default btn-sm" href="<?= site_url('perusahaan/lowongan') ?>">Batal</a>
                         <input id="simpan" class="btn btn-primary btn-sm" name="simpan" type="submit" value="Simpan">
                     </div>
@@ -343,3 +343,13 @@
     });
 </script>
 <!-- /.content -->
+<script type="text/javascript">
+    window.addEventListener( "pageshow", function ( event ) {
+      var historyTraversal = event.persisted || 
+      ( typeof window.performance != "undefined" && 
+          window.performance.navigation.type === 2 );
+      if ( historyTraversal ) {
+        window.location.reload();
+    }
+});
+</script>

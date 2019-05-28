@@ -15,9 +15,9 @@
 
 <!-- Main content -->
 <style type="text/css">
-  .box-title{
-    color: #fff;
-  }
+.box-title{
+  color: #fff;
+}
 </style>
 <section class="content container">
   <form action="<?= site_url('register/2')?>" method="POST" class="form-horizontal" role="form" enctype="multipart/form-data">
@@ -104,7 +104,7 @@
             </div>
             <div class="form-group <?php echo form_error('tgllahir') ? 'has-error' : '' ?>">
               <label for="tgllahir" class="control-label col-md-3">*Tanggal Lahir</label>
-              <div class="col-md-2">
+              <div class="col-md-5">
                 <input id="tgllahir" name="tgllahir" class="form-control input-sm" type="text" value="<?= isset($input) ? $input['tgllahir'] : date('d-m-Y', mktime(0, 0, 0, 1, 1, 1990)) ?>" readonly size="10" maxlength="10" required="">
                 <?php echo form_error('tgllahir', '<span class="help-block">', '</span>'); ?>
               </div>
@@ -150,7 +150,7 @@
             </div>
             <div class="form-group <?php echo form_error('kodepos') ? 'has-error' : '' ?>">
               <label for="kodepos" class="control-label col-md-3">Kode pos</label>
-              <div class="col-md-4">
+              <div class="col-md-5">
                 <input id="kodepos" name="kodepos" class="form-control input-sm" type="text" value="<?= isset($input) ? $input['kodepos'] : '' ?>" size="5" maxlength="5">
                 <?php echo form_error('kodepos', '<span class="help-block">', '</span>'); ?>
               </div>
@@ -238,7 +238,7 @@
               <div class="box-body" id="datapendidikan">
                 <div class="form-group">
                   <label for="idstatuspendidikan" class="control-label col-md-3">*Pendidikan Terakhir</label>
-                  <div class="col-md-4">
+                  <div class="col-md-5">
                     <select id="idstatuspendidikan" class="form-control input-sm" name="idstatuspendidikan" required="">
                       <option value="">- Pilih Status Pendidikan -</option>
                       <?php
@@ -259,7 +259,7 @@
                 </div>
                 <div class="form-group">
                   <label for="jurusan" class="control-label col-md-3">*Jurusan</label>
-                  <div class="col-md-4">
+                  <div class="col-md-5">
                     <select id="jurusan" class="form-control input-sm" name="jurusan" required="">
                       <option value="">- Pilih Jurusan -</option>
                     </select>
@@ -294,13 +294,13 @@
                     </div>
                     <div class="form-group">
                       <label for="nilai" class="control-label col-md-3">Nilai</label>
-                      <div class="col-md-2">
+                      <div class="col-md-5">
                         <input id="nilai" name="nilai" class="form-control input-sm" type="text" size="20">
                       </div>
                     </div>
                     <div class="form-group">
                       <label for="tahunlulus" class="control-label col-md-3">Tahun lulus</label>
-                      <div class="col-md-3">
+                      <div class="col-md-5">
                         <select id="tahunlulus" class="form-control input-sm" name="tahunlulus">
                           <?php
                           $tahun = date('Y');
@@ -321,7 +321,7 @@
                       </div>
                       <div class="form-group">
                         <label for="tinggibadan" class="control-label col-md-3">Tinggi badan</label>
-                        <div class="col-md-2">
+                        <div class="col-md-5">
                           <div class="input-group">
                             <input id="tinggibadan" name="tinggibadan" class="form-control input-sm" type="text"  size="3" maxlength="3">
                             <span class="input-group-addon">cm</span>
@@ -330,7 +330,7 @@
                       </div>
                       <div class="form-group">
                         <label for="beratbadan" class="control-label col-md-3">Berat badan</label>
-                        <div class="col-md-2">
+                        <div class="col-md-5">
                           <div class="input-group">
                             <input id="beratbadan" name="beratbadan" class="form-control input-sm" type="text" size="3" maxlength="3">
                             <span class="input-group-addon">Kg</span>
@@ -352,7 +352,7 @@
                     <div class="box-body">
                       <div class="form-group">
                         <label for="posisijabatan" class="control-label col-md-3">*Posisi / Jabatan</label>
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                           <select id="idposisijabatan" class="form-control input-sm" name="idposisijabatan" required="">
                             <option value="">(Pilih Jabatan)</option>
                             <?php
@@ -403,7 +403,7 @@
                             </div>
                             <div class="form-group">
                               <label for="upahyangdicari" class="control-label col-md-3">Upah yang diinginkan</label>
-                              <div class="col-md-4">
+                              <div class="col-md-5">
                                 <input id="upahyangdicari" class="form-control input-sm" name="upahyangdicari" type="text" size="20">
                               </div>
                             </div>
@@ -524,17 +524,13 @@
                               </div>
                             </div>
                           </div>
-                          
+                          <div class="text-center">
+                            <input type="hidden" name="submit" value="submit">
+                            <a href="<?= site_url() ?>" class="btn btn-default btn-sm">Batal</a>
+                            <button type="submit" class="btn btn-success btn-sm">Simpan</button>
+                          </div><br>
                         </div>
-                        <div class="box box-primary box-solid">
-                          <div class="box-body">
-                            <div class="text-center">
-                              <input type="hidden" name="submit" value="submit">
-                              <a href="<?= site_url() ?>" class="btn btn-default btn-sm">Batal</a>
-                              <button type="submit" class="btn btn-success btn-sm">Simpan</button>
-                            </div>
-                          </div>
-                        </div>
+
                       </form>
                     </section>
                     <script type="text/javascript">
@@ -703,4 +699,14 @@
                       }
 
                     </script>
-<!-- /.content
+<!-- /.content -->
+  <script type="text/javascript">
+    window.addEventListener( "pageshow", function ( event ) {
+      var historyTraversal = event.persisted || 
+      ( typeof window.performance != "undefined" && 
+          window.performance.navigation.type === 2 );
+      if ( historyTraversal ) {
+        window.location.reload();
+    }
+});
+</script>

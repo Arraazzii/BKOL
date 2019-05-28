@@ -282,7 +282,7 @@
         $("#batasumur").html(getdata.BatasUmur+' Tahun');
         $("#syaratkhusus").html(getdata.SyaratKhusus);
         $("#jamkerjaseminggu").html(getdata.JamKerjaSeminggu + ' Jam Per Minggu');
-        $("#gajiperbulan").html('Rp. '+getdata.GajiPerbulan);
+        $("#gajiperbulan").html('Rp. '+ noRupiah(getdata.GajiPerbulan));
         $("#penempatan").html(getdata.Penempatan);
         if(getdata.NamaPerusahaan == 'Pemprov Kota Depok') {
           $("#send").hide();
@@ -313,7 +313,7 @@
         $("#batasumurEX").html(getdata.BatasUmur+' Tahun');
         $("#syaratkhususEX").html(getdata.SyaratKhusus);
         $("#jamkerjasemingguEX").html(getdata.JamKerjaSeminggu + ' Jam Per Minggu');
-        $("#gajiperbulanEX").html('Rp. '+getdata.GajiPerbulan);
+        $("#gajiperbulanEX").html('Rp. '+ noRupiah(getdata.GajiPerbulan));
         $("#penempatanEX").html(getdata.Penempatan);
       }
       else
@@ -322,8 +322,22 @@
       }
     }, 'json');
   }
-
+ function noRupiah(value) {
+  value = value.split(/(?=(?:...)*$)/);
+  value = value.join('.');
+  return value;
+}
   function KirimLamaran(IDLowongan) {
     window.location.href='<?php echo site_url('pencaker/registerlowongan') ?>/'+IDLowongan;
   }
+</script>
+<script type="text/javascript">
+    window.addEventListener( "pageshow", function ( event ) {
+      var historyTraversal = event.persisted || 
+      ( typeof window.performance != "undefined" && 
+          window.performance.navigation.type === 2 );
+      if ( historyTraversal ) {
+        window.location.reload();
+    }
+});
 </script>

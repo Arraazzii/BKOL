@@ -234,3 +234,13 @@ if (!$this->input->post())
   GetJurusan('<?php echo $input['idstatuspendidikan'] ?>', '<?php echo $input['idjurusan'] ?>');
   <?php endif ?>
 </script>
+<script type="text/javascript">
+    window.addEventListener( "pageshow", function ( event ) {
+      var historyTraversal = event.persisted || 
+      ( typeof window.performance != "undefined" && 
+          window.performance.navigation.type === 2 );
+      if ( historyTraversal ) {
+        window.location.reload();
+    }
+});
+</script>

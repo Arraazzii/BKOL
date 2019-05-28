@@ -61,14 +61,15 @@ if($this->input->post() == NULL)
             <div class="box-body">
                 <div class="form-group <?php echo form_error('logoperusahaan') ? 'has-error' : '' ?>">
                     <label for="nomorindukpencaker" class="control-label col-md-3">Logo perusahaan</label>
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <div class="input-group">
+                            
+                            <input type="text" class="form-control input-sm" readonly>
                             <span class="input-group-btn">
-                                <span class="btn btn-default btn-file">
+                                <span class="btn btn-primary btn-file">
                                     Pilih File... <input type="file" id="logoperusahaan" name="logoperusahaan">
                                 </span>
-                            </span>
-                            <input type="text" class="form-control" readonly>
+                            </span> 
                         </div>
                         <img id='img-upload'
                         <?php  
@@ -82,14 +83,14 @@ if($this->input->post() == NULL)
                 </div>
                 <div class="form-group <?php echo form_error('namaperusahaan') ? 'has-error' : '' ?>">
                     <label for="nomorindukpencaker" class="control-label col-md-3">Nama perusahaan</label>
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <input id="namaperusahaan" class="form-control input-sm" name="namaperusahaan" type="text" value="<?= $input != null ? $input['namaperusahaan'] : '' ?>" size="20" maxlength="50">
                         <?php echo form_error('namaperusahaan', '<span class="help-block">', '</span>'); ?>
                     </div>
                 </div>
                 <div class="form-group <?php echo form_error('idbidangperusahaan') ? 'has-error' : '' ?>">
                     <label for="jeniskelamin" class="control-label col-md-3">Bidang perusahaan</label>
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <select id="idbidangperusahaan" class="form-control input-sm" name="idbidangperusahaan">
                             <option value="">(Pilih Bidang)</option>
                             <?php
@@ -111,28 +112,28 @@ if($this->input->post() == NULL)
                 </div>
                 <div class="form-group <?php echo form_error('email') ? 'has-error' : '' ?>">
                     <label for="tgllahir" class="control-label col-md-3">Email</label>
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <input id="email" name="email" class="form-control input-sm" type="text" value="<?= $input != null ? $input['email'] : '' ?>" size="20" maxlength="100">
                         <?php echo form_error('email', '<span class="help-block">', '</span>'); ?>
                     </div>
                 </div>
                 <div class="form-group <?php echo form_error('telepon') ? 'has-error' : '' ?>">
                     <label for="telepon" class="control-label col-md-3">Telepon</label>
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <input id="telepon" name="telepon" class="form-control input-sm" type="text" value="<?= $input != null ? $input['telepon'] : '' ?>" size="20" maxlength="20">
                         <?php echo form_error('telepon', '<span class="help-block">', '</span>'); ?>
                     </div>
                 </div>
                 <div class="form-group <?php echo form_error('alamat') ? 'has-error' : '' ?>">
                     <label for="alamant" class="control-label col-md-3">Alamat</label>
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <textarea id="alamat" name="alamat" class="form-control input-sm" cols="30" rows="3" maxlength="400"><?= $input != null ? $input['alamat'] : '' ?></textarea>
                         <?php echo form_error('alamat', '<span class="help-block">', '</span>'); ?>
                     </div>
                 </div>
                 <div class="form-group <?php echo form_error('idkecamatan') ? 'has-error' : '' ?>">
                     <label for="kecamatan" class="control-label col-md-3">Kecamatan</label>
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <select id="idkecamatan" class="form-control input-sm" name="idkecamatan" onchange="GetKelurahan(this)">
                             <option value="">(Pilih Kecamatan)</option>
                             <?php
@@ -154,7 +155,7 @@ if($this->input->post() == NULL)
                 </div>
                 <div class="form-group <?php echo form_error('idkelurahan') ? 'has-error' : '' ?>">
                     <label for="kelurahan" class="control-label col-md-3">Kelurahan</label>
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <select id="idkelurahan" class="form-control input-sm" name="idkelurahan">
                             <option value="">(Pilih Kelurahan)</option>
                             <?php
@@ -176,26 +177,26 @@ if($this->input->post() == NULL)
                 </div>
                 <div class="form-group <?php echo form_error('kodepos') ? 'has-error' : '' ?>">
                     <label for="kodepos" class="control-label col-md-3">Kode pos</label>
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <input id="kodepos" name="kodepos" class="form-control input-sm" type="text" value="<?= $input != null ? $input['kodepos'] : '' ?>" size="5" maxlength="5">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="kota" class="control-label col-md-3">Kota</label>
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <input id="kota" class="form-control input-sm" name="kota" type="text" value="<?= $input != null ? $input['kota'] : '' ?>" size="20" maxlength="20">
                         <?php echo form_error('kota', '<span class="help-block">', '</span>'); ?>
                     </div>
                 </div>
                 <div class="form-group <?php echo form_error('propinsi') ? 'has-error' : '' ?>">
                     <label for="propinsi" class="control-label col-md-3">Provinsi</label>
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <input id="propinsi" class="form-control input-sm" name="propinsi" type="text" value="<?= $input != null ? $input['propinsi'] : '' ?>" size="20" maxlength="20">
                         <?php echo form_error('propinsi', '<span class="help-block">', '</span>'); ?>
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-5 col-md-offset-3">
+                    <div class="col-md-6 col-md-offset-3 text-right">
                         <a class="btn btn-default btn-sm" href="<?= site_url() ?>">Kembali</a>
                         <input id="simpan" class="btn btn-primary btn-sm" name="simpan" type="submit" value="Simpan">
                     </div>
@@ -266,3 +267,13 @@ if($this->input->post() == NULL)
     });
 </script>
 <!-- /.content -->
+<script type="text/javascript">
+    window.addEventListener( "pageshow", function ( event ) {
+      var historyTraversal = event.persisted || 
+      ( typeof window.performance != "undefined" && 
+          window.performance.navigation.type === 2 );
+      if ( historyTraversal ) {
+        window.location.reload();
+    }
+});
+</script>

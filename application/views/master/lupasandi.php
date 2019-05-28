@@ -1,6 +1,7 @@
 <?php
 $input = $this->session->flashdata('input');
 ?>
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/styleBaru.css">
 <style type="text/css" media="screen">
     /*
      * Specific styles of signin component
@@ -17,6 +18,7 @@ $input = $this->session->flashdata('input');
     .card-container.card {
         max-width: 350px;
         padding: 40px 40px;
+        box-shadow: 0 2px 6px rgb(0,0,0,0.1);
     }
 
     .btn {
@@ -148,4 +150,7 @@ $input = $this->session->flashdata('input');
         <input id="email" class="form-control" name="email" type="email" value="<?= $input != null ? $input['email'] : '' ?>" placeholder="Email Pengguna" autofocus>
         <input class="btn btn-lg btn-primary btn-block btn-signin" id="login" name="login" type="submit" value="Kirim Sandi">
     </form><!-- /form -->
+    <a href="<?= site_url('login') ?>" class="forgot-password">
+        Sudah Punya Akun?
+    </a>
 </div><!-- /card-container -->

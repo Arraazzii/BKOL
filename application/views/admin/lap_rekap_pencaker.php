@@ -14,14 +14,14 @@
 <!-- Main content -->
 <section class="content">
   <form method="POST" class="form-horizontal" role="form" id="formFilter">
-    <div class="box box-default box-solid">
+    <div class="box box-primary box-solid">
       <div class="box-header with-border">
         <h3 class="box-title">Filter</h3>
       </div>
       <div class="box-body">
         <div class="form-group">
           <label for="jenisfilter" class="control-label col-md-3">Jenis Filter</label>
-          <div class="col-md-5">
+          <div class="col-md-6">
             <select name="jenisfilter" id="jenisfilter" class="form-control input-sm">
               <option value="0">Jumlah Pencaker</option>
               <option value="1">Lamaran Diproses</option>
@@ -32,7 +32,7 @@
         <div  id="filterjumlah">
           <div class="form-group">
             <label for="jenispencaker" class="control-label col-md-3">Jenis Pencaker</label>
-            <div class="col-md-5">
+            <div class="col-md-6">
               <select name="jenispencaker" id="jenispencaker" class="form-control input-sm">
                 <option value="0">Terdaftar</option>
                 <!-- <option value="2">Diproses</option> -->
@@ -42,7 +42,7 @@
           </div>
           <div class="form-group">
             <label for="kategori" class="control-label col-md-3">Kategori</label>
-            <div class="col-md-5">
+            <div class="col-md-6">
               <select name="kategori" id="kategori" class="form-control input-sm">
                 <option value="0">Kecamatan</option>
                 <option value="1">Umur</option>
@@ -54,18 +54,18 @@
         </div>
         <div class="form-group">
           <label for="date_from" class="control-label col-md-3">Dari</label>
-          <div class="col-md-5">
+          <div class="col-md-6">
             <input type="text" readonly required name="date_from" placeholder="dd-mm-yyyy" id="date_from" class="form-control input-sm">
           </div>
         </div>
         <div class="form-group">
           <label for="date_to" class="control-label col-md-3">Sampai</label>
-          <div class="col-md-5">
+          <div class="col-md-6">
             <input type="text" readonly required name="date_to" id="date_to" placeholder="dd-mm-yyyy" class="form-control input-sm">
           </div>
         </div>
         <div class="form-group">
-          <div class="col-md-6 col-md-offset-6">
+          <div class="col-md-7 col-md-offset-7">
             <input id="simpan" class="btn btn-primary btn-sm" name="simpan" type="submit" value="Filter">
             <button type="button" id="excel" class="btn btn-success btn-sm"><i class="fa fa-file-excel-o"></i> Export Excel</button>
           </div>
@@ -308,7 +308,6 @@
     container.appendChild(table);
     filter();
   }
-</script>
 </script>
 <script type="text/javascript">
   window.addEventListener( "pageshow", function ( event ) {
