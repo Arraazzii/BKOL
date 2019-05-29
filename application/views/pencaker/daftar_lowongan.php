@@ -205,9 +205,9 @@
             <?php if ($MsLowonganData->num_rows > 0): ?>
               <?php 
               date_default_timezone_get('Asia/Jakarta');
-                  $timeLimit = date('Y-m-d');
+              $timeLimit = date('Y-m-d');
               foreach ($MsLowonganData->result() as $getdata): ?>
-                <!-- timeline time label -->
+              <!-- timeline time label -->
                <!--  <li class="time-label">
                   <span class="bg-green">
                     <?php echo $getdata->TglBerlaku ?>
@@ -220,8 +220,8 @@
                   <div class="timeline-item">
                     <span class="time">Tanggal Berakhir : <?php echo $getdata->TglBerakhir ?>
                       <?php if ($getdata->TglBerakhir <= $timeLimit){ ?>                            
-                          <span class="label label-danger time">EXPIRED</span>
-                          <?php } ?>
+                      <span class="label label-danger time">EXPIRED</span>
+                      <?php } ?>
                     </span>
 
                     <h3 class="timeline-header"><?php echo $getdata->NamaLowongan ?></h3>
@@ -231,27 +231,30 @@
                       </div>
                     <?php endif ?>
                     <div class="timeline-body col-md-9">
-                      <?php echo $getdata->NamaPerusahaan ?><br>    
-                      Alamat : <?php echo $getdata->Alamat ?><br>
-                      Jumlah Dibutuhkan : <?php echo $getdata->JmlPria+$getdata->JmlWanita ?> Orang
+                      <b>Perusahaan : </b><?php echo $getdata->NamaPerusahaan ?><br>    
+                      <b>Alamat : </b><?php echo $getdata->Alamat ?><br>
+                      <b>Jumlah Dibutuhkan : </b><?php echo $getdata->JmlPria;?> Orang Pria, <?php echo $getdata->JmlWanita ?> Orang Wanita <br>
+                      <b>Gaji : </b>Rp <?php echo number_format($getdata->GajiPerbulan); ?><br>
+                      - <?php echo $getdata->JamKerjaSeminggu . ' Jam Per Minggu' ?><br>
+                      - <?php echo $getdata->UraianTugas ?><br>
                     </div>
                     <div class="timeline-footer col-md-12  text-right">
-                       <?php if ($getdata->TglBerakhir >= $timeLimit){ ?>
-                            <a class="btn btn-success btn-sm" onclick="viewLowongan('<?php echo $getdata->IDLowongan ?>')">Baca Selengkapnya</a>
-                            <a href="https://wa.me/?text=<?php echo site_url();?>detailLowonganPekerjaan?lowongan=<?php echo $getdata->IDLowongan;?>" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Share Jobs To Whatsapp!" target="_blank"><i class="fa fa-whatsapp"></i></a>
-                            <?php }else{?>
-                            <a class="btn btn-success btn-sm" onclick="viewLowonganEx('<?php echo $getdata->IDLowongan ?>')">Baca Selengkapnya (EXPIRED)</a>
-                            <a href="#" class="btn btn-primary btn-sm disabled" target="_blank"><i class="fa fa-whatsapp"></i></a>
-                            <?php } ?>
-                      <!-- <a class="btn btn-primary btn-xs" onclick="viewLowongan('<?php echo $getdata->IDLowongan ?>')">Baca Selengkapnya</a> -->
-                    </div>
-                  </div>
-                </li>
-                <!-- END timeline item -->
-              <?php endforeach ?>
-            <?php else: ?>
-              
-            <?php endif ?>
+                     <?php if ($getdata->TglBerakhir >= $timeLimit){ ?>
+                     <a class="btn btn-success btn-sm" onclick="viewLowongan('<?php echo $getdata->IDLowongan ?>')">Baca Selengkapnya</a>
+                     <a href="https://wa.me/?text=<?php echo site_url();?>detailLowonganPekerjaan?lowongan=<?php echo $getdata->IDLowongan;?>" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Share Jobs To Whatsapp!" target="_blank"><i class="fa fa-whatsapp"></i></a>
+                     <?php }else{?>
+                     <a class="btn btn-success btn-sm" onclick="viewLowonganEx('<?php echo $getdata->IDLowongan ?>')">Baca Selengkapnya (EXPIRED)</a>
+                     <a href="#" class="btn btn-primary btn-sm disabled" target="_blank"><i class="fa fa-whatsapp"></i></a>
+                     <?php } ?>
+                     <!-- <a class="btn btn-primary btn-xs" onclick="viewLowongan('<?php echo $getdata->IDLowongan ?>')">Baca Selengkapnya</a> -->
+                   </div>
+                 </div>
+               </li>
+               <!-- END timeline item -->
+             <?php endforeach ?>
+           <?php else: ?>
+
+           <?php endif ?>
             <!-- <li>
               <i class="fa fa-clock-o bg-gray"></i>
             </li> -->
@@ -322,22 +325,22 @@
       }
     }, 'json');
   }
- function noRupiah(value) {
-  value = value.split(/(?=(?:...)*$)/);
-  value = value.join('.');
-  return value;
-}
+  function noRupiah(value) {
+    value = value.split(/(?=(?:...)*$)/);
+    value = value.join('.');
+    return value;
+  }
   function KirimLamaran(IDLowongan) {
     window.location.href='<?php echo site_url('pencaker/registerlowongan') ?>/'+IDLowongan;
   }
 </script>
 <script type="text/javascript">
-    window.addEventListener( "pageshow", function ( event ) {
-      var historyTraversal = event.persisted || 
-      ( typeof window.performance != "undefined" && 
-          window.performance.navigation.type === 2 );
-      if ( historyTraversal ) {
-        window.location.reload();
+  window.addEventListener( "pageshow", function ( event ) {
+    var historyTraversal = event.persisted || 
+    ( typeof window.performance != "undefined" && 
+      window.performance.navigation.type === 2 );
+    if ( historyTraversal ) {
+      window.location.reload();
     }
-});
+  });
 </script>

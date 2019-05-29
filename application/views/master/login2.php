@@ -235,7 +235,7 @@ $input = $this->session->flashdata('input');
             ?>
         </span>
         <select id="idjenisuser" class="form-control" required name="idjenisuser">
-            <option value="">-- Login sebagai --</option>
+            <option value="">Login Sebagai</option>
             <?php
             foreach ($MsJenisUserData->result() as $getcmb)
             {
@@ -268,13 +268,13 @@ $input = $this->session->flashdata('input');
     var modal = document.getElementById('myModal');
     var modalImg = document.getElementById("img01");
 
-    $("#idjenisuser").change(function(event) {
-        if($("#idjenisuser").val() == '000002')
-        {
-            modal.style.display = "block";
-            modalImg.src = '<?php echo site_url('assets/css/images/notiflogin.jpg') ?>';
-        }
-    });
+    // $("#idjenisuser").change(function(event) {
+    //     if($("#idjenisuser").val() == '000002')
+    //     {
+    //         modal.style.display = "block";
+    //         modalImg.src = '<?php echo site_url('assets/css/images/notiflogin.jpg') ?>';
+    //     }
+    // });
 
     var span = document.getElementsByClassName("close")[0];
     span.onclick = function() {

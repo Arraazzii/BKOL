@@ -1,23 +1,23 @@
 <!-- Content Header (Page header) -->
-<section class="content-header">
+<!-- <section class="content-header">
     <h1>
         Lowongan Kerja
         <small>Luar Depok</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="<?php echo site_url() ?>">Home</a></li>
-        <li><a href="<?php echo site_url('berita') ?>">Loker Luar Depok</a></li>
+        <li><a href="<?php //echo site_url() ?>">Home</a></li>
+        <li><a href="<?php //echo site_url('berita') ?>">Loker Luar Depok</a></li>
         <li class="active">Lihat Loker</li>
     </ol>
-</section>
+</section> -->
 
 <!-- Main content -->
-<section class="content">
+<section class="content container">
 
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Lihat Loker</h3>
+            <h3 class="box-title"><?= $MsBeritaData->JudulBerita ?></h3>
         </div>
         <div class="box-body">
             <?php
@@ -48,9 +48,14 @@
             $gettgl = mktime(0, 0, 0, $tglberita[1], $tglberita[2], $tglberita[0]);
             echo '</b><i>'.$hari[(int)date("w", $gettgl)].', '.(int)date("d", $gettgl).' '.$bulan[(int)date("m", $gettgl)].' '.(int)date("Y", $gettgl).'</i></b>';
             ?>
-            <strong class="text-center"><h2><?= $MsBeritaData->JudulBerita ?></h2></strong>
+            <!-- <strong class="text-center"><h2></h2></strong> -->
             <?php if (file_exists(BASEPATH.'/../assets/file/berita/'.$MsBeritaData->IDBerita.'.jpg')): ?>
-                <center><img class="" src="<?= site_url('assets/file/berita/'.$MsBeritaData->IDBerita.'.jpg') ?>"></center>
+                <div class="row">
+                    <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-12 col-md-offset-0">
+                         <center><img class="img-responsive" src="<?= site_url('assets/file/berita/'.$MsBeritaData->IDBerita.'.jpg') ?>"></center>
+                    </div>
+                </div>
+               
             <?php endif ?>
             <p><font size="3" style="line-height: 100%;"><?= $MsBeritaData->IsiBerita ?></font><p>
             </div>
