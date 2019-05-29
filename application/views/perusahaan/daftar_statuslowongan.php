@@ -13,7 +13,7 @@
 </section>
 
 <!-- Main content -->
-<section class="content">
+<section class="content" style="min-height: 280px;">
     <div class="col-md-6">
         <form method="POST" class="form-horizontal" role="form" action="<?= site_url('perusahaan/carilowongan') ?>">
             <div class="box box-default">

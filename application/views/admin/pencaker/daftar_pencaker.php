@@ -363,7 +363,7 @@
   });
   function DoView(IDPencaker)
   {
-    
+
     var src = '<?= site_url('assets/file/pencaker') ?>';
     $.get('<?= site_url('admin/pencaker/getdata') ?>/'+IDPencaker,
       function(getdata)
@@ -375,7 +375,19 @@
           ClearAddInput();
           var bulan = new Array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
           var tgllahir = getdata.TglLahir.split("-");
-          $("#photo").attr('src',src+'/'+getdata.IDPencaker+'.jpg');
+          // var cari = src+'/'+getdata.IDPencakerTemp+'.jpg';
+          $.ajax({
+            url: '<?php echo site_url();?>assets/file/pencaker'+'/'+getdata.IDPencaker+'.jpg',
+            type:'HEAD',
+            error: function()
+            {
+              $("#photo").attr('src','http://ssl.gstatic.com/accounts/ui/avatar_2x.png');
+            },
+            success: function()
+            {
+              $("#photo").attr('src',src+'/'+getdata.IDPencaker+'.jpg');
+            }
+          });
           $('#idpencaker').html(getdata.IDPencaker);
           $('#nomorindukpencaker').html(getdata.NomorIndukPencaker);
           $('#namapencaker').html(getdata.NamaPencaker);
@@ -405,8 +417,8 @@
           $('#namaposisijabatan').html(getdata.NamaPosisiJabatan);
           $('#lokasi').html(getdata.Lokasi == 0 ? 'Dalam Negeri' : 'Luar Negeri');
           $('#upahyangdicari').html(getdata.UpahYangDicari);
-          $('#dialog-view').dialog('option', 'title', 'Data Pencaker');
-          $("#dialog-view").dialog("open");
+          // $('#dialog-view').dialog('option', 'title', 'Data Pencaker');
+          // $("#dialog-view").dialog("open");
         }
         else
         {
@@ -496,13 +508,13 @@
         }
 
       </script>
-    <script type="text/javascript">
-      window.addEventListener( "pageshow", function ( event ) {
-        var historyTraversal = event.persisted || 
-        ( typeof window.performance != "undefined" && 
-          window.performance.navigation.type === 2 );
-        if ( historyTraversal ) {
-          window.location.reload();
-        }
-      });
-    </script>
+      <script type="text/javascript">
+        window.addEventListener( "pageshow", function ( event ) {
+          var historyTraversal = event.persisted || 
+          ( typeof window.performance != "undefined" && 
+            window.performance.navigation.type === 2 );
+          if ( historyTraversal ) {
+            window.location.reload();
+          }
+        });
+      </script>

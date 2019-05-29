@@ -426,7 +426,18 @@ function DoView(IDPencaker)
      ClearAddInput();
      var bulan = new Array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
      var tgllahir = getdata.TglLahir.split("-");
-     $("#photo").attr('src',src+'/'+getdata.IDPencakerTemp+'.jpg');
+     $.ajax({
+      url: '<?php echo site_url();?>assets/file/pencaker'+'/'+getdata.IDPencakerTemp+'.jpg',
+      type:'HEAD',
+      error: function()
+      {
+        $("#photo").attr('src','http://ssl.gstatic.com/accounts/ui/avatar_2x.png');
+      },
+      success: function()
+      {
+        $("#photo").attr('src',src+'/'+getdata.IDPencakerTemp+'.jpg');
+      }
+    });
      $('#nomorindukpencaker').html(getdata.NomorIndukPencaker);
      $('#namapencaker').html(getdata.NamaPencaker);
      $('#tempattgllahir').html(getdata.TempatLahir+', '+parseInt(tgllahir[2])+' '+bulan[parseInt(tgllahir[1]-1)]+' '+tgllahir[0]);
@@ -454,8 +465,8 @@ function DoView(IDPencaker)
      $('#namaposisijabatan').html(getdata.NamaPosisiJabatan);
      $('#lokasi').html(getdata.Lokasi == 0 ? 'Dalam Negeri' : 'Luar Negeri');
      $('#upahyangdicari').html('Rp '+getdata.UpahYangDicari);
-     $('#dialog-view').dialog('option', 'title', 'Data Pencaker');
-     $("#dialog-view").dialog("open");
+     // $('#dialog-view').dialog('option', 'title', 'Data Pencaker');
+     // $("#dialog-view").dialog("open");
    }
    else
    {
