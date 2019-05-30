@@ -75,12 +75,12 @@
 <!-- Main content -->
 <section class="content container">
     <div class="box">
-      <div class="box-header">
+      <div class="box-header text-center">
         <h3 class="box-title">Pengalaman Kerja</h3>
     </div>
     <div class="box-body table-responsive">
-        <div class="col-md-12" style="margin-bottom: 10px">
-          <button type="button" class="btn btn-default btn-sm" id="btn-tambah">Tambah Pengalaman</button>
+        <div class="pull-right" style="margin-bottom: 10px">
+          <button type="button" class="btn btn-primary btn-sm" id="btn-tambah">Tambah Pengalaman</button>
           <button type="button" class="btn btn-default btn-sm" onclick="window.location.href='<?php echo base_url() ?>'">Kembali</button>
       </div>
 
@@ -101,8 +101,8 @@
                 <?php foreach ($MsPengalamanData->result() as $getdata): ?>
                   <?php 
                   $i++;
-                  $detailbtn = '<a class="btn btn-default btn-sm" onclick="DoEdit(\''.$getdata->IDPengalaman.'\') "><i class="fa fa-edit"></i> Detail</a>';
-                  $deletebtn = '<a class="btn btn-default btn-sm" onclick="DoDeleteConfirm(\''.$getdata->IDPengalaman.'\') "><i class="fa fa-trash"></i> Hapus</a>';
+                  $detailbtn = '<a class="btn btn-primary btn-sm" onclick="DoEdit(\''.$getdata->IDPengalaman.'\') "><i class="fa fa-edit"></i> Detail</a>';
+                  $deletebtn = '<a class="btn btn-danger btn-sm" onclick="DoDeleteConfirm(\''.$getdata->IDPengalaman.'\') "><i class="fa fa-trash"></i> Hapus</a>';
                   $interval = date_diff(date_create($getdata->TglMasuk), date_create($getdata->TglBerhenti));
                   $out = $interval->format("Years:%Y,Months:%M,Days:%d");
                   $result = array();

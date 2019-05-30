@@ -35,7 +35,7 @@ if (!$this->input->post())
 <!-- Main content -->
 <section class="content container">
   <form class="form-horizontal" method="post" id="formedit" action="<?php echo site_url('pencaker/edit') ?>" enctype="multipart/form-data">
-    <div class="panel panel-default">
+    <div class="panel panel-primary">
       <div class="panel-body text-center">
         <?php $filename = '/assets/file/pencaker/' . $MsPencakerData->IDPencaker .'.jpg' ?>
         <?php if (file_exists(BASEPATH.'/..'.$filename)): ?>
@@ -47,7 +47,7 @@ if (!$this->input->post())
         <p class="text-muted text-center"><?= $input != null ? $input['email'] : '' ?></p>
       </div>
     </div>
-    <div class="panel panel-default">
+    <div class="panel panel-primary">
       <div class="panel-heading">
         <h4 class="panel-title">Edit Data Profil</h4>
       </div>
@@ -222,7 +222,7 @@ if (!$this->input->post())
           </div>
         </div>
         <div class="form-group">
-          <div class="col-md-5 col-md-offset-4">
+          <div class="col-md-5 pull-right">
             <a class="btn btn-default" href="<?= site_url() ?>">Kembali</a>
             <input id="simpan" name="simpan" class="btn btn-primary" type="submit" value="Simpan">
           </div>

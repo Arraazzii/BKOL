@@ -427,7 +427,7 @@ function DoView(IDPencaker)
      var bulan = new Array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
      var tgllahir = getdata.TglLahir.split("-");
      $.ajax({
-      url: '<?php echo site_url();?>assets/file/pencaker'+'/'+getdata.IDPencakerTemp+'.jpg',
+      url: '<?php echo site_url();?>assets/file/temp'+'/'+getdata.IDPencakerTemp+'.jpg',
       type:'HEAD',
       error: function()
       {
@@ -435,7 +435,7 @@ function DoView(IDPencaker)
       },
       success: function()
       {
-        $("#photo").attr('src',src+'/'+getdata.IDPencakerTemp+'.jpg');
+        $("#photo").attr('src', src+'/'+getdata.IDPencakerTemp+'.jpg');
       }
     });
      $('#nomorindukpencaker').html(getdata.NomorIndukPencaker);

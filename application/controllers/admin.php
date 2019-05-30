@@ -323,28 +323,28 @@ class admin extends CI_Controller {
                     $mail->Body = $message;
                     
                     if ($mail->send()) {
-                     $this->session->set_flashdata('notifikasi', '<script>notifikasi("Pencaker Berhasil Ditambahkan", "success", "fa fa-check")</script>');
-                 } else {
-                  echo 'Message could not be sent.';
-                  echo 'Mailer Error: ' . $mail->ErrorInfo;
-              }
+                       $this->session->set_flashdata('notifikasi', '<script>notifikasi("Pencaker Berhasil Ditambahkan", "success", "fa fa-check")</script>');
+                   } else {
+                      echo 'Message could not be sent.';
+                      echo 'Mailer Error: ' . $mail->ErrorInfo;
+                  }
                     // $this->EmailModel->sendEmail($getmspencakerdata->Email,'[Aktivasi] Pendaftaran Pencaker Baru','Data Pencaker anda telah diaktifkan.<br/>Terimakasih atas pastisipasi anda dalam menggunakan aplikasi ini,<br/>Data pendaftaran anda adalah sebagai berikut :<br/><br/>Nomer ID : '.$getmsuserdata->NomorIndukPencaker.'<br/>Nama Pengguna : '.$getmsuserdata->Username.'<br/>Kata Sandi : '.$getmsuserdata->Password.'<br/><br/>Untuk aktivasi akun dan pencetakan kartu AK-1 mohon untuk membawa dokumen-dokumen sebagai berikut :<br/><br/>1. Foto kopi KTP Depok yang masih berlaku<br/>2. Ijazah SD, SMP, SLTA Sampai Terakhir/ Asli/ Fotocopy Yang dilegalisir<br/>3. Pas Foto 3 x 4 Sebanyak 2 (dua) Lembar<br/>4. Kartu AK-I yang masih berlaku<br/><br/>ke pusat pelayanan terpadu Dinas Tenaga Kerja Kota Depok<br/>Jl. Margonda Raya No.54 Kec.Pancoran Mas, Depok - JABAR<br/>Telp. 021-77204211,Fax. 021-77211866');
                     // $this->session->set_flashdata('notifikasi', '<script>notifikasi("Pencaker Berhasil Ditambahkan", "success", "fa fa-check")</script>');
+              }
           }
-      }
-      else if ($iduser == 'exists') {
-        $this->session->set_flashdata('notifikasi', '<script>notifikasi("Pencaker Sudah Terdaftar", "danger", "fa fa-exclamation")</script>');
+          else if ($iduser == 'exists') {
+            $this->session->set_flashdata('notifikasi', '<script>notifikasi("Pencaker Sudah Terdaftar", "danger", "fa fa-exclamation")</script>');
+        }
+        else
+        {
+            $this->session->set_flashdata('notifikasi', '<script>notifikasi("Pencaker Gagal Ditambah", "danger", "fa fa-exclamation")</script>');
+        }
+        redirect('admin/newpencaker');
     }
     else
     {
-        $this->session->set_flashdata('notifikasi', '<script>notifikasi("Pencaker Gagal Ditambah", "danger", "fa fa-exclamation")</script>');
+        redirect();
     }
-    redirect('admin/newpencaker');
-}
-else
-{
-    redirect();
-}
 }
 
 public function deletepencakertemp()
@@ -356,8 +356,17 @@ public function deletepencakertemp()
         $getmspencakertempdata = $this->MsPencakerTemp->GetMsPencakerTempByIDPencakerTemp($idpencakertemp);
         if ($getmspencakertempdata != NULL)
         {
+            var_dump($getmspencakertempdata->IDPencakerTemp);
+            $path = 'assets/file/temp'.'/'.$getmspencakertempdata->IDPencakerTemp.'.jpg';
+
+            $this->db->delete('mspencakertemp',array('IDPencakerTemp'=>$getmspencakertempdata->IDPencakerTemp));
+            $this->db->delete('mspengalaman',array('IDPencakerTemp'=>$getmspencakertempdata->IDPencakerTemp));
+
+            if(file_exists($path)){
+                unlink($path);
+            }
             $this->MsPencakerTemp->DeleteByIDPencakerTemp($getmspencakertempdata->IDPencakerTemp);
-                                //unlink('assets/file/temp/'.$getmspencakertempdata->IDPencakerTemp.'.jpg');
+            unlink('assets/file/temp/'.$getmspencakertempdata->IDPencakerTemp.'.jpg');
             $this->load->model('EmailModel');
             @$this->EmailModel->sendEmail($getmspencakertempdata->Email,'Pembatalan Pendaftaran Pencaker Baru','Maaf Data Pencaker yang anda berikan tidak valid.<br/>Silakan mendaftar kembali, pastikan nomor induk pencaker sesuai dengan nomor yang ada di kartu kuning anda.');
         }
@@ -670,21 +679,32 @@ public function pencaker()
             }
             else if ($this->uri->segment(3) == 'delete') 
             {
+                $this->load->helper("file");
                 $this->load->model('MsPencaker');
                 $idpencaker = $this->uri->segment(4);
                 $dataPencaker = $this->MsPencaker->GetMsPencakerByIDPencaker($idpencaker);
-                $IDUser = $dataPencaker->IDUser;
+                // $IDUser = $dataPencaker->IDUser;
+                $path = 'assets/file/pencaker'.'/'.$idpencaker.'.jpg';
+
+                $this->db->delete('msbahasa',array('IDPencaker'=>$idpencaker));
+                $this->db->delete('mschat',array('pengirim'=>$idpencaker));
+                $this->db->delete('mschat',array('penerima'=>$idpencaker));
+                $this->db->delete('mspencaker',array('IDPencaker'=>$idpencaker));
+                $this->db->delete('mspengalaman',array('IDPencaker'=>$idpencaker));
+                $this->db->delete('msuser',array('IDUser'=>$IDUser));
+                $this->db->delete('trlowonganmasuk',array('IDPencaker'=>$idpencaker));
+
+                // $this->load->model('MsUser');
+                // $this->load->model('MsPengalaman');
+                // $this->load->model('MsBahasa');
+                // $this->MsUser->delete($IDUser);
+                // $this->MsPengalaman->DeletePengalamanByIDPencaker($idpencaker);
+                // $this->MsBahasa->DeleteByIDPencaker($idpencaker);
+                // $this->MsPencaker->DeleteByIDPencaker($idpencaker);
+                if(file_exists($path)){
+                    unlink($path);
+                }
                 
-                $this->load->model('MsUser');
-                $this->load->model('MsPengalaman');
-                $this->load->model('MsBahasa');
-                $this->MsUser->delete($IDUser);
-                $this->MsPengalaman->DeletePengalamanByIDPencaker($idpencaker);
-                $this->MsBahasa->DeleteByIDPencaker($idpencaker);
-                $this->MsPencaker->DeleteByIDPencaker($idpencaker);
-                
-                if(file_exists(realpath('assets/file/pencaker/'.$idpencaker.'.jpg')))
-                    unlink(realpath('assets/file/pencaker/'.$idpencaker.'.jpg'));
 
                 $this->session->set_flashdata('notifikasi', '<script>notifikasi("Pencaker Berhasil Dihapus", "success", "fa fa-check")</script>');
                 redirect('admin/pencaker');

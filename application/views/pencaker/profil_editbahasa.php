@@ -11,7 +11,7 @@ and open the template in the editor.
                     <tbody>
                         <tr>
                             <th align="center" colspan="2">
-                                <div align="center">
+                                <div align="center" class="text-center">
                                     PENGUASAAN BAHASA
                                 </div>
                             </th>
@@ -26,7 +26,7 @@ and open the template in the editor.
                                     ?>
                                 </div>
                                 <div align="left">
-                                    <button id="tambahbahasa">Tambah Bahasa</button>
+                                    <button id="tambahbahasa" class="btn btn-pr">Tambah Bahasa</button>
                                     <a class="button" href="<?= site_url() ?>">Kembali</a>
                                 </div>
                                 <div id="dialog-add" title="Tambah Bahasa">

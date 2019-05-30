@@ -1,3 +1,11 @@
+<style type="text/css">
+  .text-left{
+    text-align: center;
+  }
+  .height-275 {
+    height: 275px;
+}
+</style>
 <div class="modal fade" id="modal-lowongan">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -215,7 +223,7 @@
                 </li> -->
                 <!-- /.timeline-label -->
                 <!-- timeline item -->
-                <li class="col-lg-6 col-md-6 col-sm-12 col-xs-12 height-250">
+                <li class="col-lg-6 col-md-6 col-sm-12 col-xs-12 height-275">
                   <!-- <i class="fa fa-bullhorn bg-blue"></i> -->
                   <div class="timeline-item">
                     <span class="time">Tanggal Berakhir : <?php echo $getdata->TglBerakhir ?>
@@ -260,6 +268,9 @@
             </li> -->
           </ul>
         </div>
+        <div class="text-center">
+            <?php echo $this->pagination->create_links(); ?>
+          </div>
         <!-- /.col -->
       </div>
       <!-- /.row -->

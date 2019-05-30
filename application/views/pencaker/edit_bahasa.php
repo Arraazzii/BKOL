@@ -43,43 +43,46 @@
 </section>
 <!-- Main content -->
 <section class="content container">
-  <div class="box">
-    <div class="box-header">
+  <div class="box-header">
+    <div class="box-header text-center">
       <h3 class="box-title">Penguasaan Bahasa</h3>
     </div>
-    <div class="box-body table-responsive">
-      <div class="col-md-12" style="margin-bottom: 10px">
-        <button type="button" class="btn btn-default btn-sm" id="btn-tambah">Tambah Bahasa</button>
-        <button type="button" class="btn btn-default btn-sm" onclick="window.location.href='<?php echo base_url() ?>'">Kembali</button>
+    <div class="box-body">
+      <div class="row">
+        <div class="pull-right" style="margin-bottom: 10px">
+          <button type="button" class="btn btn-primary btn-sm" id="btn-tambah">Tambah Bahasa</button>
+          <button type="button" class="btn btn-default btn-sm" onclick="window.location.href='<?php echo base_url() ?>'">Kembali</button>
+        </div>
       </div>
-
-      <div class="col-md-6">
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th width="10">No</th>
-              <th>Nama Bahasa</th>
-              <th width="50"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php if ($MsBahasaData->num_rows() > 0): ?>
-              <?php $i = 0; ?>
-              <?php foreach ($MsBahasaData->result() as $getdata): ?>
-                <?php $i++ ?>
-                <tr>
-                  <td><?php echo $i+$this->uri->segment(3) ?></td>
-                  <td><?php echo $getdata->NamaBahasa ?></td>
-                  <td class="text-center"><?php echo '<a class="btn btn-default btn-sm" href="'.site_url('pencaker/dodeletebahasa').'/'.$getdata->IDBahasa.'">Hapus Bahasa</a>' ?></td>
-                </tr>
-              <?php endforeach ?>
-            <?php else: ?>
+<div class="row">
+        <div class="col-md-12">
+          <table class="table table-bordered">
+            <thead>
               <tr>
-                <td class="text-center" colspan="3">Belum ada data</td>
+                <th width="10">No</th>
+                <th>Nama Bahasa</th>
+                <th width="50"></th>
               </tr>
-            <?php endif ?>
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              <?php if ($MsBahasaData->num_rows() > 0): ?>
+                <?php $i = 0; ?>
+                <?php foreach ($MsBahasaData->result() as $getdata): ?>
+                  <?php $i++ ?>
+                  <tr>
+                    <td><?php echo $i+$this->uri->segment(3) ?></td>
+                    <td><?php echo $getdata->NamaBahasa ?></td>
+                    <td class="text-center"><?php echo '<a class="btn btn-danger btn-sm" href="'.site_url('pencaker/dodeletebahasa').'/'.$getdata->IDBahasa.'">Hapus Bahasa</a>' ?></td>
+                  </tr>
+                <?php endforeach ?>
+              <?php else: ?>
+                <tr>
+                  <td class="text-center" colspan="3">Belum ada data</td>
+                </tr>
+              <?php endif ?>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -113,12 +116,12 @@
   });
 </script>
 <script type="text/javascript">
-    window.addEventListener( "pageshow", function ( event ) {
-      var historyTraversal = event.persisted || 
-      ( typeof window.performance != "undefined" && 
-          window.performance.navigation.type === 2 );
-      if ( historyTraversal ) {
-        window.location.reload();
+  window.addEventListener( "pageshow", function ( event ) {
+    var historyTraversal = event.persisted || 
+    ( typeof window.performance != "undefined" && 
+      window.performance.navigation.type === 2 );
+    if ( historyTraversal ) {
+      window.location.reload();
     }
-});
+  });
 </script>

@@ -615,7 +615,7 @@ class pencaker extends CI_Controller {
             {
                 if ($getmspencakerdata != NULL)
                 {
-                    
+
                     $this->template->load('frontend', 'pencaker/edit_profil', $data);
                 }
             }
@@ -1059,6 +1059,23 @@ class pencaker extends CI_Controller {
                 $config['uri_segment'] = 3;
                 $config['base_url'] = site_url('pencaker/lowongan');
                 $config['per_page'] = 10;
+                $config["num_links"]        = 3;
+                $config['next_link']        = '&raquo;';
+                $config['prev_link']        = '&laquo;';
+                $config['full_tag_open']    = '<div class="pagging text-left"><nav><ul class="pagination justify-content-center">';
+                $config['full_tag_close']   = '</ul></nav></div>';
+                $config['num_tag_open']     = '<li class="page-item"><span class="page-link">';
+                $config['num_tag_close']    = '</span></li>';
+                $config['cur_tag_open']     = '<li class="page-item active"><span class="page-link">';
+                $config['cur_tag_close']    = '<span class="sr-only">(current)</span></span></li>';
+                $config['next_tag_open']    = '<li class="page-item"><span class="page-link">';
+                $config['next_tagl_close']  = '<span aria-hidden="true">&raquo;</span></span></li>';
+                $config['prev_tag_open']    = '<li class="page-item"><span class="page-link">';
+                $config['prev_tagl_close']  = '</span>Selanjutnya</li>';
+                $config['first_tag_open']   = '<li class="page-item"><span class="page-link">';
+                $config['first_tagl_close'] = '</span></li>';
+                $config['last_tag_open']    = '<li class="page-item"><span class="page-link">';
+                $config['last_tagl_close']  = '</span></li>';
                 $this->pagination->initialize($config);
                 // $data['route'] = $this->uri->segment(2);
                 // $this->load->view('index',$data);
@@ -1142,12 +1159,12 @@ class pencaker extends CI_Controller {
                         }
                         else
                         {   
-                         $this->session->set_flashdata('notifikasi', '<script>notifikasi("Anda sudah pernah mengirimkan CV untuk loker '.$getmslowongandata->NamaLowongan.'", "warning", "fa fa-warning")</script>');
-                     }
-                     redirect('pencaker/lowongan');
-                 }
-                 else
-                 {
+                           $this->session->set_flashdata('notifikasi', '<script>notifikasi("Anda sudah pernah mengirimkan CV untuk loker '.$getmslowongandata->NamaLowongan.'", "warning", "fa fa-warning")</script>');
+                       }
+                       redirect('pencaker/lowongan');
+                   }
+                   else
+                   {
                     redirect();
                 }
             }
