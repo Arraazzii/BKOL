@@ -2,8 +2,8 @@
   .text-left{
     text-align: center;
   }
-  .height-275 {
-    height: 275px;
+  .height-300 {
+    height: 300px;
 }
 </style>
 <div class="modal fade" id="modal-lowongan">
@@ -223,7 +223,7 @@
                 </li> -->
                 <!-- /.timeline-label -->
                 <!-- timeline item -->
-                <li class="col-lg-6 col-md-6 col-sm-12 col-xs-12 height-275">
+                <li class="col-lg-6 col-md-6 col-sm-12 col-xs-12 height-300">
                   <!-- <i class="fa fa-bullhorn bg-blue"></i> -->
                   <div class="timeline-item">
                     <span class="time">Tanggal Berakhir : <?php echo $getdata->TglBerakhir ?>

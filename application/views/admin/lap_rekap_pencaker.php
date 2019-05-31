@@ -47,7 +47,7 @@
                 <option value="0">Kecamatan</option>
                 <option value="1">Umur</option>
                 <option value="2">Tingkat Pendidikan</option>
-                <!-- <option value="3">Semua</option> -->
+                <option value="3">Posisi Pekerjaan</option>
               </select>
             </div>
           </div>
@@ -103,7 +103,7 @@
       } else if (cat == 2) {
         var columns = new Array('Tingkat Pendidikan', 'Jml. Pria', 'Jml. Wanita', 'Total');
       } else if (cat == 3) {
-        var columns = new Array('Semua', 'Jml. Pria', 'Jml. Wanita', 'Total');
+        var columns = new Array('Posisi Pekerjaan', 'Jml. Pria', 'Jml. Wanita', 'Total');
       }
       createTable(columns);
     });
@@ -122,7 +122,7 @@
         } else if (cat == 2) {
           var columns = new Array('Tingkat Pendidikan', 'Jml. Pria', 'Jml. Wanita', 'Total');
         } else if (cat == 3) {
-          var columns = new Array('Semua', 'Jml. Pria', 'Jml. Wanita', 'Total');
+          var columns = new Array('Posisi Pekerjaan', 'Jml. Pria', 'Jml. Wanita', 'Total');
         }
         createTable(columns);
       }

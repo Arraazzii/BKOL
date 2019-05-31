@@ -149,17 +149,17 @@ class MsLowongan extends CI_Model
                 $this->db->join('msstatuspendidikan as e', 'a.IDStatusPendidikan=e.IDStatusPendidikan');
                 $this->db->join('msjenispengupahan as f', 'a.IDJenisPengupahan=f.IDJenisPengupahan');
                 $this->db->join('msstatushubungankerja as g', 'a.IDStatusHubunganKerja=g.IDStatusHubunganKerja');
-                $this->db->where('a.BatasUmur >=', $diff->y);
+                // $this->db->where('a.BatasUmur >=', $diff->y);
 
-                if ($pencaker->IDStatusPendidikan == '000004' || $pencaker->IDStatusPendidikan == '000005') 
-                {
-                        $this->db->where('a.IDStatusPendidikan', '000004');
-                        $this->db->or_where('a.IDStatusPendidikan', '000005');
-                }
-                else
-                {
-                        $this->db->where('a.IDStatusPendidikan', $pencaker->IDStatusPendidikan);
-                }
+                // if ($pencaker->IDStatusPendidikan == '000004' || $pencaker->IDStatusPendidikan == '000005') 
+                // {
+                //         $this->db->where('a.IDStatusPendidikan', '000004');
+                //         $this->db->or_where('a.IDStatusPendidikan', '000005');
+                // }
+                // else
+                // {
+                //         $this->db->where('a.IDStatusPendidikan', $pencaker->IDStatusPendidikan);
+                // }
                 $this->db->order_by("a.TglBerakhir", "DESC");
                 $this->db->limit($num, $offset);
                 return $this->db->get();
