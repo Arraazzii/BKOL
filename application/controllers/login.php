@@ -155,7 +155,7 @@ public function dosendpassword()
                 $this->seterrormsg(NULL,"Email belum terdaftar");
             }
         }
-        redirect("lupasandi");
+        redirect("login");
     }
 
     function clearsession()

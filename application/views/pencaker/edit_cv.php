@@ -34,9 +34,10 @@ if (!$this->input->post())
         <div class="row">
             <div class="col-md-6">
                 <div class="box">
-                    <div class="box-header">
+                    <div class="box-header text-center">
                         <h3 class="box-title">Data Pendidikan Formal</h3>
                     </div>
+                    <br>
                     <div class="box-body">
                         <div class="form-group <?php echo form_error('idstatuspendidikan') ? 'has-error' : '' ?>">
                             <label class="col-md-4 control-label">Pendidikan Terakhir</label>
@@ -98,7 +99,7 @@ if (!$this->input->post())
                     </div>
                     <div class="form-group <?php echo form_error('tahunlulus') ? 'has-error' : '' ?>">
                         <label class="col-md-4 control-label">Tahun Lulus</label>
-                        <div class="col-md-4">
+                        <div class="col-md-7">
                             <select id="tahunlulus" name="tahunlulus" class="form-control">
                                 <?php
                                 $tahun = date('Y');
@@ -150,9 +151,9 @@ if (!$this->input->post())
             </div>
             <div class="col-md-6">
                 <div class="box">
-                    <div class="box-header">
+                    <div class="box-header text-center">
                         <h3 class="box-title">Jabatan yang diinginkan</h3>
-                    </div>
+                    </div><br>
                     <div class="box-body">
                         <div class="form-group <?php echo form_error('idposisijabatan') ? 'has-error' : '' ?>">
                             <label class="col-md-4 control-label">Posisi Jabatan</label>

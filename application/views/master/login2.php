@@ -23,7 +23,7 @@ $input = $this->session->flashdata('input');
     .card-container.card {
         max-width: 350px;
         padding: 40px 40px;
-         border-radius: 3px;
+        border-radius: 3px;
         box-shadow: 0 2px 6px rgb(0,0,0,0.1);
     }
 
@@ -226,37 +226,70 @@ $input = $this->session->flashdata('input');
     <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
     <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
     <p id="profile-name" class="profile-name-card"></p>
-    <form method="post" class="form-signin" action="<?= site_url('login/dologin') ?>">
-        <span id="reauth-email" class="reauth-email">
-            <?php
-            if ($this->session->flashdata('error') != null){
-                echo $this->session->flashdata('error');
-            }
-            ?>
-        </span>
-        <select id="idjenisuser" class="form-control" required name="idjenisuser">
-            <option value="">Login Sebagai</option>
-            <?php
-            foreach ($MsJenisUserData->result() as $getcmb)
-            {
-                if ($input['idjenisuser'] == $getcmb->IDJenisUser)
-                {
-                    echo "<option value='".$getcmb->IDJenisUser."' selected=\"selected\">".$getcmb->NamaJenisUser ."</option>";
+    <ul class="nav nav-pills nav-justified">
+      <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true">Login</a></li>
+      <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false">Lupa Password</a></li>
+  </ul>
+  <div class="tab-content">
+      <div class="tab-pane active" id="tab_1">
+        <h4 class="text-center"><b>Silahkan Login</b></h4>
+        <form method="post" class="form-signin" action="<?= site_url('login/dologin') ?>" >
+            <span id="reauth-email" class="reauth-email">
+                <?php
+                if ($this->session->flashdata('error') != null){
+                    echo "<span class='callout callout-danger'>";
+                    echo $this->session->flashdata('error');
+                    echo "</span>";
                 }
-                else
+                ?>
+            </span>
+            <select id="idjenisuser" class="form-control" required name="idjenisuser">
+                <option value="">Login Sebagai</option>
+                <?php
+                foreach ($MsJenisUserData->result() as $getcmb)
                 {
-                    echo "<option value='".$getcmb->IDJenisUser."'>".$getcmb->NamaJenisUser ."</option>";
+                    if ($input['idjenisuser'] == $getcmb->IDJenisUser)
+                    {
+                        echo "<option value='".$getcmb->IDJenisUser."' selected=\"selected\">".$getcmb->NamaJenisUser ."</option>";
+                    }
+                    else
+                    {
+                        echo "<option value='".$getcmb->IDJenisUser."'>".$getcmb->NamaJenisUser ."</option>";
+                    }
                 }
-            }
-            ?>
-        </select>
-        <input id="username" name="username" placeholder="Nama pengguna" required class="form-control" type="text" value="<?= $input != null ? $input['username'] : '' ?>" size="20">
-        <input id="password" name="password" placeholder="Kata sandi" class="form-control" required type="password" value="" size="20">
-        <input class="btn btn-lg btn-primary btn-block btn-signin" id="login" name="login" type="submit" value="Sign in">
-    </form><!-- /form -->
-    <a href="<?= site_url('lupasandi') ?>" class="forgot-password">
+                ?>
+            </select>
+            <input id="username" name="username" placeholder="Nama pengguna" required class="form-control" type="text" value="<?= $input != null ? $input['username'] : '' ?>" size="20" autofocus="">
+            <input id="password" name="password" placeholder="Kata sandi" class="form-control" required type="password" value="" size="20">
+            <input class="btn btn-lg btn-primary btn-block btn-signin" id="login" name="login" type="submit" value="Sign in">
+        </form>
+        <!-- <a href="#" class="forgot-password">
+            Lupa kata sandi?
+        </a> -->
+    </div>
+    <!-- <div id="formlupa"> -->
+       <div class="tab-pane" id="tab_2">
+        <h4 class="text-center"><b>Lupa Password</b></h4>
+        <form method="post" class="form-signin" action="<?= site_url('login/dosendpassword') ?>">
+            <span id="reauth-email" class="reauth-email">
+                <?php if ($this->session->flashdata('error') != null): ?>
+                    <span class="callout callout-danger">
+                        <?php echo $this->session->flashdata('error'); ?>
+                    </span>   
+                <?php endif ?>
+            </span>
+            <input id="email" class="form-control" name="email" type="email" value="<?= $input != null ? $input['email'] : '' ?>" placeholder="Email Pengguna" autofocus>
+            <input class="btn btn-lg btn-primary btn-block btn-signin" id="login" name="login" type="submit" value="Kirim Sandi">
+        </form>
+        <!-- <a href="#" class="login-password">
+            Sudah Punya Akun?
+        </a> -->
+    </div>
+</div>
+    <!-- <a href="<?= site_url('lupasandi');?>" class="forgot-password">
         Lupa kata sandi?
-    </a>
+    </a> -->
+    
 </div><!-- /card-container -->
 
 <div id="myModal" class="modal">
@@ -264,6 +297,35 @@ $input = $this->session->flashdata('input');
   <a href="<?php echo site_url('persyaratan/2') ?>"><img class="modal-content" id="img01"></a>
   <div id="caption"></div>
 </div> 
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#formlupa").hide();
+        $(".forgot-password").click(function(){
+           $("#formlupa").show();
+           $("#formLogin").hide();
+       });
+
+        $(".login-password").click(function(){
+           $("#formlupa").hide();
+           $("#formLogin").show();
+       });
+        var timer = setInterval( showDiv, 7000);
+
+        var counter = 0;
+
+        function showDiv() {
+            if (counter ==0) { counter++; return; }
+
+            $('.callout')
+            .stop()
+            .fadeOut()
+            .filter( function() { return this.id.match('div' + counter); })   
+            .show('fast');
+            counter == 3? counter = 0 : counter++; 
+
+        }
+    });
+</script>
 <script type="text/javascript">
     var modal = document.getElementById('myModal');
     var modalImg = document.getElementById("img01");

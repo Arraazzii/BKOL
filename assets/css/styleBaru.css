@@ -25,7 +25,9 @@ body, .content-wrapper{
 .nav-pills>li.active>a {
 	font-weight: 600;
 	border-top-left-radius: 3px;
-	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+	border-top-right-radius: 3px;
 	background: #11111107;
 	color: #337ab7;
 	transition: 0.3s;
