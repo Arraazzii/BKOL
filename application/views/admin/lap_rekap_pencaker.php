@@ -10,7 +10,7 @@
     <li class="active">Rekap Pencaker</li>
   </ol>
 </section>
-
+<?php date_default_timezone_get("Asia/Jakarta"); ?>
 <!-- Main content -->
 <section class="content">
   <form method="POST" class="form-horizontal" role="form" id="formFilter">
@@ -23,6 +23,7 @@
           <label for="jenisfilter" class="control-label col-md-3">Jenis Filter</label>
           <div class="col-md-6">
             <select name="jenisfilter" id="jenisfilter" class="form-control input-sm">
+              <option value="all">--Silahkan Pilih--</option>
               <option value="0">Jumlah Pencaker</option>
               <option value="1">Lamaran Diproses</option>
               <option value="2">Laporan Penempatan</option>
@@ -34,6 +35,7 @@
             <label for="jenispencaker" class="control-label col-md-3">Jenis Pencaker</label>
             <div class="col-md-6">
               <select name="jenispencaker" id="jenispencaker" class="form-control input-sm">
+                <option value="all">--Silahkan Pilih--</option>
                 <option value="0">Terdaftar</option>
                 <!-- <option value="2">Diproses</option> -->
                 <option value="1">Ditempatkan</option>
@@ -44,10 +46,11 @@
             <label for="kategori" class="control-label col-md-3">Kategori</label>
             <div class="col-md-6">
               <select name="kategori" id="kategori" class="form-control input-sm">
-                <option value="0">Kecamatan</option>
-                <option value="1">Umur</option>
-                <option value="2">Tingkat Pendidikan</option>
-                <option value="3">Posisi Pekerjaan</option>
+                <option value="all">--Silahkan Pilih--</option>
+                <option value="kecamatan">Kecamatan</option>
+                <option value="umur">Umur</option>
+                <option value="pendidikan">Tingkat Pendidikan</option>
+                <option value="posisi">Posisi Pekerjaan</option>
               </select>
             </div>
           </div>
@@ -66,7 +69,7 @@
         </div>
         <div class="form-group">
           <div class="col-md-7 col-md-offset-7">
-            <input id="simpan" class="btn btn-primary btn-sm" name="simpan" type="submit" value="Filter">
+            <input id="simpan" class="btn btn-primary btn-sm" name="simpan" type="button" value="Filter">
             <button type="button" id="excel" class="btn btn-success btn-sm"><i class="fa fa-file-excel-o"></i> Export Excel</button>
           </div>
         </div>
@@ -83,232 +86,307 @@
   <div class="box box-default">
     <div class="box-body">
       <div id="table-container" class="table-responsive">
-        
+
       </div>
     </div>
   </div>
 </section>
 <!-- /.content -->
-
 <script type="text/javascript">
-  document.addEventListener("DOMContentLoaded", function() {
-    //initial table structure
-    createTable(['Kecamatan', 'Jml. Pria', 'Jml. Wanita', 'Total']);
-    $('#kategori').change(function() {
-      var cat = this.value;
-      if (cat == 0) {
-        var columns = new Array('Kecamatan', 'Jml. Pria', 'Jml. Wanita', 'Total');
-      } else if (cat == 1) {
-        var columns = new Array('Kelompok Umur', 'Jml. Pria', 'Jml. Wanita', 'Total');
-      } else if (cat == 2) {
-        var columns = new Array('Tingkat Pendidikan', 'Jml. Pria', 'Jml. Wanita', 'Total');
-      } else if (cat == 3) {
-        var columns = new Array('Posisi Pekerjaan', 'Jml. Pria', 'Jml. Wanita', 'Total');
-      }
-      createTable(columns);
-    });
-
-    $("#jenisfilter").change(function() {
-      var jenis = $("#jenisfilter").val();
-
-      if(jenis == 0)
-      {
-        $("#filterjumlah").show(50);
-        var cat = $("#kategori").val();
-        if (cat == 0) {
-          var columns = new Array('Kecamatan', 'Jml. Pria', 'Jml. Wanita', 'Total');
-        } else if (cat == 1) {
-          var columns = new Array('Kelompok Umur', 'Jml. Pria', 'Jml. Wanita', 'Total');
-        } else if (cat == 2) {
-          var columns = new Array('Tingkat Pendidikan', 'Jml. Pria', 'Jml. Wanita', 'Total');
-        } else if (cat == 3) {
-          var columns = new Array('Posisi Pekerjaan', 'Jml. Pria', 'Jml. Wanita', 'Total');
-        }
-        createTable(columns);
-      }
-      else if(jenis == 1)
-      {
-        $("#filterjumlah").hide(50);
-        createTable(new Array('No', 'Nama Pencaker', 'Nama Lowongan', 'Nama Perusahaan', 'Status'));
-      }
-      else if(jenis == 2)
-      {
-        $("#filterjumlah").hide(50);
-        createTable(new Array('No', 'No KTP', 'Nama Pencaker','Alamat', 'Nama Perusahaan', 'Jabatan', 'Pendidikan','Jenis Kelamin'));
-      }
-    });
-
-    $('#date_from').datepicker({
-      format: "dd-mm-yyyy", 
-      orientation: 'bottom',
-      autoclose: true,
-      endDate: getFormattedDate()
-    });
-    
-    $('#date_to').datepicker({
-      format: "dd-mm-yyyy",
-      autoclose: true,
-      endDate: getFormattedDate()
-    });
-
-    $('#date_to').change(function() {
-      filter();
-    });
-    
-    $("#excel").click(function(e) {
-      e.preventDefault();
-      var jenisfilter = $("#jenisfilter").val();
-      var jenispencaker = $("#jenispencaker").val();
-      var kategori = $("#kategori").val();
-      var date_from = $("#date_from").val();
-      var date_to = $("#date_to").val();
-
-      $("#xjenisfilter").val(jenisfilter);
-      $("#xjenispencaker").val(jenispencaker);
-      $("#xkategori").val(kategori);
-      $("#xdate_from").val(date_from);
-      $("#xdate_to").val(date_to);
-
-      if(date_from == '' || date_to == '')
-      {
-        alert('Periode Tidak Boleh Kosong');
-      }
-      else
-      {
-        $("#exform").submit(); 
-      }
-    });
-    $("#jenispencaker").change(function() {
-      filter();
-    });
-    $("#kategori").change(function() {
-      filter();
-    });
-    $('#formFilter').submit(function(e) {
-      e.preventDefault();
-      filter();
-    });
+  $(document).ready(function(){
+   $('#date_from').datepicker({
+    format: "dd-mm-yyyy", 
+    orientation: 'bottom',
+    autoclose: true,
+    endDate: getFormattedDate()
   });
 
-  function filter() {
-    var myForm = document.getElementById('formFilter');
-    $.ajax({
-      type: 'post',
-      dataType: 'json',
-      url: '<?php echo base_url('admin/report/lap_rekap_pencaker/submit') ?>',
-      contentType: false,
-      processData: false,
-      cache: false,
-      data: new FormData(myForm),
-      success: function(res) {
-        var tbody = document.getElementById('data-body');
-        var tfoot = document.getElementById('data-foot');
-        
-        tbody.innerHTML = '';
-        tfoot.innerHTML = '';
-        detail = res.detail;
-        summ = res.summary;
-        jenis = res.jenis;
+   $('#date_to').datepicker({
+    format: "dd-mm-yyyy",
+    autoclose: true,
+    endDate: getFormattedDate()
+  });
+ });  
+  $("#filterjumlah").hide();
 
-        if(detail == null)
-        {
-          var tr = document.createElement('tr');
-          var td = document.createElement('td');
-          td.appendChild(document.createTextNode('Tidak ada data'));
-          td.setAttribute('class', 'text-center');
-          if(jenis == 0) {
-            td.setAttribute('colspan', '4');
-          } else if(jenis == 1) {
-            td.setAttribute('colspan', '5');
-          } else if(jenis == 2) {
-            td.setAttribute('colspan', '8');
-          }
-          tr.appendChild(td);
-          tbody.appendChild(tr);
+  $("#jenisfilter").change(function(){
+    if ($("#jenisfilter").val() != "0") {
+      $("#filterjumlah").hide();
+    }else{
+      $("#filterjumlah").show();
+    }
+  });
+
+  $("#simpan").click(function(){
+    var jenisfilter = $("#jenisfilter").val();
+    var date_from = $("#date_from").val();
+    var date_to = $("#date_to").val();
+    if (date_from != '' && date_to != '') {
+      if (jenisfilter == "0") {
+        var jenispencaker = $("#jenispencaker").val();
+        var kategori = $("#kategori").val();
+        if (kategori != 'all' && jenispencaker != 'all') {
+
+          if (kategori == 'kecamatan') {
+           $.ajax({
+            url: "<?php echo base_url();?>newLaporan/ajaxKecamatan",
+            type: "post",
+            data: {date_from: date_from, date_to: date_to, kategori: jenispencaker} ,
+            dataType: "JSON",
+            success: function (response) {
+              $("#table-container").find("#dataTable").remove();
+              $("#table-container").find("#dataTable_wrapper").remove();
+              if ($.fn.DataTable.isDataTable('#dataTable')) {
+                $('#dataTable').DataTable().destroy();
+              }
+              var laki = 0;
+              var cewe = 0;
+              var total = 0;
+              var html = "<table class='table table-bordered table-hover table-striped' id='dataTable'><thead><tr><th>Kecamatan</th><th  class='text-center'>Jml. Pria</th><th class='text-center'>Jml. Wanita</th><th class='text-center'>Total</th></tr></thead><tbody>";
+              $.each(response.data, function(i, resultKecamatan){
+                html += "<tr>";
+                html += "<td>"+ resultKecamatan.NamaKecamatan +"</td>";
+                html += "<td class='text-center'>"+ resultKecamatan.laki +"</td>";
+                html += "<td class='text-center'>"+ resultKecamatan.cewe +"</td>";
+                html += "<td class='text-center'>"+ resultKecamatan.total +"</td>";
+                html += "</tr>";
+                laki += parseFloat(resultKecamatan.laki);
+                cewe += parseFloat(resultKecamatan.cewe);
+                total += parseFloat(resultKecamatan.total);
+              });
+              html += "</tbody>";
+              html += "<tfoot><tr><td><b>Total</b></td><td class='text-center'><b>"+ laki +"</b></td><td class='text-center'><b>"+ cewe +"</b></td><td class='text-center'><b>"+ total +"</b></td></tr></tfoot>";
+              html += "</table>"
+              
+              $("#table-container").append(html);
+              $("#dataTable").dataTable();
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+              console.log(textStatus, errorThrown);
+            }
+          });
+         }else if(kategori == 'umur') {
+          $.ajax({
+            url: "<?php echo base_url();?>newLaporan/ajaxUmur",
+            type: "post",
+            data: {date_from: date_from, date_to: date_to, kategori: jenispencaker} ,
+            dataType: "JSON",
+            success: function (response) {
+              $("#table-container").find("#dataTable").remove();
+              $("#table-container").find("#dataTable_wrapper").remove();
+              if ($.fn.DataTable.isDataTable('#dataTable')) {
+                $('#dataTable').DataTable().destroy();
+              }
+              var laki = 0;
+              var cewe = 0;
+              var total = 0;
+              var html = "<table class='table table-bordered table-hover table-striped' id='dataTable'><thead><tr><th>Kelompok Umur</th><th  class='text-center'>Jml. Pria</th><th class='text-center'>Jml. Wanita</th><th class='text-center'>Total</th></tr></thead><tbody>";
+              $.each(response.data, function(i, resultUmur){
+                html += "<tr>";
+                html += "<td>"+ resultUmur.age +"</td>";
+                html += "<td class='text-center'>"+ resultUmur.laki +"</td>";
+                html += "<td class='text-center'>"+ resultUmur.cewe +"</td>";
+                html += "<td class='text-center'>"+ resultUmur.Total +"</td>";
+                html += "</tr>";
+                laki += parseFloat(resultUmur.laki);
+                cewe += parseFloat(resultUmur.cewe);
+                total += parseFloat(resultUmur.Total);
+              });
+              html += "</tbody>";
+              html += "<tfoot><tr><td><b>Total</b></td><td class='text-center'><b>"+ laki +"</b></td><td class='text-center'><b>"+ cewe +"</b></td><td class='text-center'><b>"+ total +"</b></td></tr></tfoot>";
+              html += "</table>"
+              
+              $("#table-container").append(html);
+              $("#dataTable").dataTable();
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+              console.log(textStatus, errorThrown);
+            }
+          });
+        }else if(kategori == 'pendidikan') {
+          $.ajax({
+            url: "<?php echo base_url();?>newLaporan/ajaxPendidikan",
+            type: "post",
+            data: {date_from: date_from, date_to: date_to, kategori: jenispencaker} ,
+            dataType: "JSON",
+            success: function (response) {
+              $("#table-container").find("#dataTable").remove();
+              $("#table-container").find("#dataTable_wrapper").remove();
+              if ($.fn.DataTable.isDataTable('#dataTable')) {
+                $('#dataTable').DataTable().destroy();
+              }
+              var laki = 0;
+              var cewe = 0;
+              var total = 0;
+              var html = "<table class='table table-bordered table-hover table-striped' id='dataTable'><thead><tr><th>Tingkat Pendidikan</th><th  class='text-center'>Jml. Pria</th><th class='text-center'>Jml. Wanita</th><th class='text-center'>Total</th></tr></thead><tbody>";
+              $.each(response.data, function(i, resultPendidikan){
+                html += "<tr>";
+                html += "<td>"+ resultPendidikan.NamaStatusPendidikan  +"</td>";
+                html += "<td class='text-center'>"+ resultPendidikan.laki +"</td>";
+                html += "<td class='text-center'>"+ resultPendidikan.cewe +"</td>";
+                html += "<td class='text-center'>"+ resultPendidikan.total +"</td>";
+                html += "</tr>";
+                laki += parseFloat(resultPendidikan.laki);
+                cewe += parseFloat(resultPendidikan.cewe);
+                total += parseFloat(resultPendidikan.total);
+              });
+              html += "</tbody>";
+              html += "<tfoot><tr><td><b>Total</b></td><td class='text-center'><b>"+ laki +"</b></td><td class='text-center'><b>"+ cewe +"</b></td><td class='text-center'><b>"+ total +"</b></td></tr></tfoot>";
+              html += "</table>"
+              
+              $("#table-container").append(html);
+              $("#dataTable").dataTable();
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+              console.log(textStatus, errorThrown);
+            }
+          });
+        }else if(kategori == 'posisi') {
+         $.ajax({
+            url: "<?php echo base_url();?>newLaporan/ajaxPosisiJabatan",
+            type: "post",
+            data: {date_from: date_from, date_to: date_to, kategori: jenispencaker} ,
+            dataType: "JSON",
+            success: function (response) {
+              $("#table-container").find("#dataTable").remove();
+              $("#table-container").find("#dataTable_wrapper").remove();
+              if ($.fn.DataTable.isDataTable('#dataTable')) {
+                $('#dataTable').DataTable().destroy();
+              }
+              var laki = 0;
+              var cewe = 0;
+              var total = 0;
+              var html = "<table class='table table-bordered table-hover table-striped' id='dataTable'><thead><tr><th>Posisi Jabatan</th><th  class='text-center'>Jml. Pria</th><th class='text-center'>Jml. Wanita</th><th class='text-center'>Total</th></tr></thead><tbody>";
+              $.each(response.data, function(i, resultPosisiJabatan){
+                html += "<tr>";
+                html += "<td>"+ resultPosisiJabatan.NamaPosisiJabatan  +"</td>";
+                html += "<td class='text-center'>"+ resultPosisiJabatan.laki +"</td>";
+                html += "<td class='text-center'>"+ resultPosisiJabatan.cewe +"</td>";
+                html += "<td class='text-center'>"+ resultPosisiJabatan.total +"</td>";
+                html += "</tr>";
+                laki += parseFloat(resultPosisiJabatan.laki);
+                cewe += parseFloat(resultPosisiJabatan.cewe);
+                total += parseFloat(resultPosisiJabatan.total);
+              });
+              html += "</tbody>";
+              html += "<tfoot><tr><td><b>Total</b></td><td class='text-center'><b>"+ laki +"</b></td><td class='text-center'><b>"+ cewe +"</b></td><td class='text-center'><b>"+ total +"</b></td></tr></tfoot>";
+              html += "</table>"
+              
+              $("#table-container").append(html);
+              $("#dataTable").dataTable();
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+              console.log(textStatus, errorThrown);
+            }
+          });
+        }else{
+          swal('ERROR!', 'Silahkan Pilih Kategori Dan Jenis Pencaker Terlebih Dahulu!', 'warning');
         }
-        else
-        {
-          for(var k in detail)
-          {
-            obj = detail[k];
-            var tr = document.createElement('tr');
 
-            for (var i in obj)
-            {
-              var td = document.createElement('td');
-              td.appendChild(document.createTextNode(obj[i]));
-              if(i == 'kecamatan' || i == 'Kelompok Umur' || i == 'pendidikan') {
-                td.setAttribute('class', 'text-left');
-              } else {
-                td.setAttribute('class', 'text-center');
-              }
-              tr.appendChild(td);
-            }
-            tbody.appendChild(tr);
+      }else{
+        swal('ERROR!', 'Silahkan Pilih Kategori Dan Jenis Pencaker Terlebih Dahulu!', 'warning');
+      }
+    }else if(jenisfilter == "1"){
+      $.ajax({
+        url: "<?php echo base_url();?>newLaporan/ajaxLamaran",
+        type: "post",
+        data: {date_from: date_from, date_to: date_to} ,
+        dataType: "JSON",
+        success: function (response) {
+          $("#table-container").find("#dataTable").remove();
+          $("#table-container").find("#dataTable_wrapper").remove();
+          if ($.fn.DataTable.isDataTable('#dataTable')) {
+            $('#dataTable').DataTable().destroy();
           }
-
-          if(jenis == 0)
-          {
-              // for table footer
-              var tr = document.createElement('tr');
-              var th = document.createElement('th');
-              th.appendChild(document.createTextNode('Total'));
-              th.setAttribute('id', 'td-footer-title');
-              tr.appendChild(th);
-              for (var j in summ[0]) 
-              {
-                th = document.createElement('th');
-                th.appendChild(document.createTextNode(summ[0][j]));
-                th.setAttribute('class', 'text-center');
-                tr.appendChild(th);
-              }
-              tfoot.appendChild(tr);
+          var count = 1;
+          var html = "<table class='table table-bordered table-hover table-striped' id='dataTable'><thead><tr><th class='text-center'>No</th><th>Nama Pencaker</th><th>Nama Lowongan </th><th>Nama Perusahaan</th><th class='text-center'>Status</th></tr></thead><tbody>";
+          $.each(response.data, function(i, resultLamaran){
+            html += "<tr>";
+            html += "<td class='text-center'>"+ (count++) +"</td>";
+            html += "<td>"+ resultLamaran.NamaPencaker +"</td>";
+            if (resultLamaran.NamaLowongan == null) {
+              html += "<td>Lowongan Tidak Diketahui</td>";
+            }else{
+              html += "<td>"+ resultLamaran.NamaLowongan +"</td>";
             }
-          }
+            if (resultLamaran.NamaPerusahaan == null) {
+              html += "<td>Perusahaan Tidak Diketahui</td>";
+            }else{
+              html += "<td>"+ resultLamaran.NamaPerusahaan +"</td>";
+            }
+            if (resultLamaran.StatusLowongan == '0') {
+              html += "<td class='text-center'><span class='label label-warning'>Menunggu</span></td>";
+            }else{
+              html += "<td class='text-center'><span class='label label-primary'>Diproses</span></td>";
+            }
+            html += "</tr>";
+          });
+          html += "</tbody></table>"
+          $("#table-container").append(html);
+          $("#dataTable").dataTable();
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.log(textStatus, errorThrown);
         }
       });
-  }
-
-  function getFormattedDate()
-  {
-    var date = new Date();
-    var day = date.getDate();
-    var month = date.getMonth() + 1;
-    var year = date.getFullYear().toString();
-    return day + '-' + month + '-' + year;
-  }
-
-  function createTable(col) {
-    var container = document.getElementById('table-container');
-    var table = document.createElement('table');
-    var thead = document.createElement('thead');
-    var tbody = document.createElement('tbody');
-    var tfoot = document.createElement('tfoot');
-    var tr = document.createElement('tr');
-    
-    tbody.setAttribute('id', 'data-body');
-    tfoot.setAttribute('id', 'data-foot');
-    
-    container.innerHTML = "";
-    table.className = 'table table-bordered table-striped table-hover';
-    for (i = 0; i < col.length; i++) {
-      var th = document.createElement('th');
-      th.appendChild(document.createTextNode(col[i]));
-      if(col[i] == 'Kecamatan' || col[i] == 'Kelompok Umur' || col[i] == 'pendidikan') {
-        th.setAttribute('class', 'text-left');
-      } else {
-        th.setAttribute('class', 'text-center');
-      }
-      tr.appendChild(th);
+    }else if(jenisfilter == "2"){
+      $.ajax({
+        url: "<?php echo base_url();?>newLaporan/ajaxPenempatan",
+        type: "post",
+        data: {date_from: date_from, date_to: date_to} ,
+        dataType: "JSON",
+        success: function (response) {
+          $("#table-container").find("#dataTable").remove();
+          $("#table-container").find("#dataTable_wrapper").remove();
+          if ($.fn.DataTable.isDataTable('#dataTable')) {
+            $('#dataTable').DataTable().destroy();
+          }
+          var count = 1;
+          var html = "<table class='table table-bordered table-hover table-striped' id='dataTable'><thead><tr><th class='text-center'>No</th><th>No KTP</th><th>Nama Pencaker</th><th>Alamat</th><th>Nama Perusahaan</th><th>Jabatan</th><th>Pendidikan</th><th>Jenis Kelamin</th></tr></thead><tbody>";
+          $.each(response.data, function(i, resultPenempatan){
+            html += "<tr>";
+            html += "<td class='text-center'>"+ (count++) +"</td>";
+            html += "<td>"+ resultPenempatan.NomerPenduduk +"</td>";
+            html += "<td>"+ resultPenempatan.NamaPencaker +"</td>";
+            html += "<td>"+ resultPenempatan.alamat +"</td>";
+            html += "<td>"+ resultPenempatan.NamaPerusahaan +"</td>";
+            html += "<td>"+ resultPenempatan.Jabatan +"</td>";
+            html += "<td>"+ resultPenempatan.NamaStatusPendidikan +"</td>";
+            if (resultPenempatan.JenisKelamin == '0') {
+              html += "<td>Laki - laki</td>";
+            }else{
+              html += "<td>Perempuan</td>";
+            }
+            html += "</tr>";
+          });
+          html += "</tbody></table>"
+          $("#table-container").append(html);
+          $("#dataTable").dataTable();
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.log(textStatus, errorThrown);
+        }
+      });
+    }else if(jenisfilter == "all"){
+      swal('ERROR!', 'Silahkan Pilih Jenis Filter Terlebih Dahulu!', 'warning');
     }
-    thead.appendChild(tr);
-    table.appendChild(thead);
-    table.appendChild(tbody);
-    table.appendChild(tfoot);
-    container.appendChild(table);
-    filter();
+  }else{
+    swal('ERROR!', 'Silahkan Isi Range Tanggal Terlebih Dahulu!', 'warning');
   }
+
+});
+
+function getFormattedDate()
+{
+  var date = new Date();
+  var day = date.getDate();
+  var month = date.getMonth() + 1;
+  var year = date.getFullYear().toString();
+  return day + '-' + month + '-' + year;
+}
 </script>
+
+
 <script type="text/javascript">
   window.addEventListener( "pageshow", function ( event ) {
     var historyTraversal = event.persisted || 

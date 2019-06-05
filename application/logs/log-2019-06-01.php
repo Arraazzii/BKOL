@@ -188,3 +188,6 @@ ERROR - 2019-06-01 21:33:11 --> 404 Page Not Found --> assets
 ERROR - 2019-06-01 21:33:12 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
 ERROR - 2019-06-01 21:33:13 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
 ERROR - 2019-06-01 21:33:13 --> 404 Page Not Found --> assets
+ERROR - 2019-06-01 21:38:52 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2019-06-01 21:38:54 --> 404 Page Not Found --> assets
+ERROR - 2019-06-01 21:38:54 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
