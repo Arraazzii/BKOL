@@ -8,7 +8,7 @@ class MsLaporan extends CI_Model
 	}
 
 	public function dataByPendidikan($dateStart, $dateEnd, $statusPekerjaan){
-		$query = $this->db->query("SELECT sp.NamaStatusPendidikan, COUNT(p.IDPencaker) as total, SUM(COALESCE(p.JenisKelamin = 0, 0)) as laki, SUM(COALESCE(p.JenisKelamin = 1, 0) ) as cewe FROM msstatuspendidikan as sp LEFT JOIN mspencaker as p ON sp.IDStatusPendidikan = p.IDStatusPendidikan AND p.RegisterDate BETWEEN '2019-03-01' AND '2019-06-05' LEFT JOIN mspengalaman g ON g.IDPencaker = p.IDPencaker AND g.StatusPekerjaan = '0' GROUP BY sp.IDStatusPendidikan ORDER BY SP.IDStatusPendidikan ASC");
+		$query = $this->db->query("SELECT sp.NamaStatusPendidikan, COUNT(p.IDPencaker) as total, SUM(COALESCE(p.JenisKelamin = 0, 0)) as laki, SUM(COALESCE(p.JenisKelamin = 1, 0) ) as cewe FROM msstatuspendidikan as sp LEFT JOIN mspencaker as p ON sp.IDStatusPendidikan = p.IDStatusPendidikan AND p.RegisterDate BETWEEN '$dateStart' AND '$dateEnd' LEFT JOIN mspengalaman g ON g.IDPencaker = p.IDPencaker AND g.StatusPekerjaan = '$statusPekerjaan' GROUP BY sp.IDStatusPendidikan ORDER BY SP.IDStatusPendidikan ASC");
 		return $query->result_array();
 	}
 
@@ -23,7 +23,9 @@ class MsLaporan extends CI_Model
 	}
 
 	public function dataByLamaran($dateStart, $dateEnd){
-		$query = $this->db->query("SELECT a.NamaPencaker, b.NamaLowongan, c.NamaPerusahaan, a.StatusLowongan FROM trlowonganmasuk a LEFT JOIN mslowongan b ON b.IDLowongan = a.IDLowongan LEFT JOIN msperusahaan c ON c.IDPerusahaan = b.IDPerusahaan WHERE b.RegisterDate BETWEEN '$dateStart' AND '$dateEnd' ORDER BY a.NamaPencaker ASC");
+		$dateawal = $dateStart . ' ' . date("H:i:s");
+		$dateakhir = $dateEnd . ' ' . date("H:i:s");
+		$query = $this->db->query("SELECT a.NamaPencaker, b.NamaLowongan, c.NamaPerusahaan, a.StatusLowongan FROM trlowonganmasuk a JOIN mslowongan b ON b.IDLowongan = a.IDLowongan JOIN msperusahaan c ON c.IDPerusahaan = b.IDPerusahaan WHERE b.RegisterDate BETWEEN '$dateawal' AND '$dateakhir' ORDER BY a.NamaPencaker ASC");
 		return $query->result_array();
 	}
 
@@ -31,6 +33,27 @@ class MsLaporan extends CI_Model
 		$query = $this->db->query("SELECT a.NomerPenduduk, a.NamaPencaker, a.alamat, b.NamaPerusahaan, b.Jabatan, c.NamaStatusPendidikan, a.JenisKelamin FROM mspengalaman b JOIN mspencaker a ON a.IDPencaker = b.IDPencaker JOIN msstatuspendidikan c ON c.IDStatusPendidikan = a.IDStatusPendidikan WHERE b.StatusPekerjaan = '1' AND a.RegisterDate BETWEEN '$dateStart' AND '$dateEnd' ORDER BY a.NamaPencaker ASC");
 		return $query->result_array();
 	}
+
+	public function GetCountByPeriod($type, $start, $end, $cat){
+		if ($cat == 'kecamatan') 
+        {
+            $query = $this->db->query("SELECT SUM(COALESCE(p.JenisKelamin = 0, 0)) as laki, SUM(COALESCE(p.JenisKelamin = 1, 0) ) as cewe, COUNT(p.IDPencaker) as total FROM mskecamatan as a JOIN mskelurahan as sp ON a.IDKecamatan = sp.IDKecamatan LEFT JOIN mspencaker as p ON sp.IDKelurahan = p.IDKelurahan AND p.RegisterDate BETWEEN '$start' AND '$end' LEFT JOIN mspengalaman g ON g.IDPencaker = p.IDPencaker AND g.StatusPekerjaan = '$type' ");
+        }
+        else if($cat == 'umur')
+        {
+            $query = $this->db->query("SELECT IFNULL(t2.laki,0) as laki, IFNULL(t2.cewe,0) as cewe, IFNULL(t2.Total, 0) AS total  FROM ( SELECT '100' AS age) t1 LEFT JOIN ( SELECT COUNT(COALESCE(p.IDPencaker, 0)) as total, CASE WHEN TIMESTAMPDIFF(YEAR, p.TglLahir, CURDATE()) <= 100 THEN '100' END AS age, SUM(COALESCE(p.JenisKelamin = 0, 0)) as laki, SUM(COALESCE(p.JenisKelamin = 1, 0)) as cewe FROM mspencaker p LEFT JOIN mspengalaman g ON g.IDPencaker = p.IDPencaker AND g.StatusPekerjaan = '$type' WHERE p.RegisterDate BETWEEN '$start' AND '$end') t2 ON t1.age=t2.age");
+        }
+        else if($cat == 'pendidikan')
+        {
+            $query = $this->db->query("SELECT SUM(COALESCE(p.JenisKelamin = 0, 0)) as laki, SUM(COALESCE(p.JenisKelamin = 1, 0) ) as cewe, COUNT(p.IDPencaker) as total FROM msstatuspendidikan as sp LEFT JOIN mspencaker as p ON sp.IDStatusPendidikan = p.IDStatusPendidikan AND p.RegisterDate BETWEEN '$start' AND '$end' LEFT JOIN mspengalaman g ON g.IDPencaker = p.IDPencaker AND g.StatusPekerjaan = '$type'");
+        }
+        else if($cat == 'posisi')
+        {
+            $query = $this->db->query("SELECT SUM(COALESCE(p.JenisKelamin = 0, 0)) as laki, SUM(COALESCE(p.JenisKelamin = 1, 0) ) as cewe, COUNT(p.IDPencaker) as total FROM msposisijabatan as sp LEFT JOIN mspencaker as p ON sp.IDPosisiJabatan = p.IDPosisiJabatan AND p.RegisterDate BETWEEN '$start' AND '$end' LEFT JOIN mspengalaman g ON g.IDPencaker = p.IDPencaker AND g.StatusPekerjaan = '$type'");
+        }
+        return $query->result();
+    }
+	
 
 }
 ?>
