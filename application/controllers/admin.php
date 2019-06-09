@@ -3,8 +3,8 @@
 class admin extends CI_Controller {
 
 
-	public function index()
-	{
+    public function index()
+    {
         if (empty($this->session->userdata('iduser')))
         {
             $data['route'] = $this->uri->segment(1);
@@ -356,7 +356,7 @@ public function deletepencakertemp()
         $getmspencakertempdata = $this->MsPencakerTemp->GetMsPencakerTempByIDPencakerTemp($idpencakertemp);
         if ($getmspencakertempdata != NULL)
         {
-            var_dump($getmspencakertempdata->IDPencakerTemp);
+            // var_dump($getmspencakertempdata->IDPencakerTemp);
             $path = 'assets/file/temp'.'/'.$getmspencakertempdata->IDPencakerTemp.'.jpg';
 
             $this->db->delete('mspencakertemp',array('IDPencakerTemp'=>$getmspencakertempdata->IDPencakerTemp));
@@ -3135,70 +3135,6 @@ public function pencaker()
         }
     }
 
-    private function newReportPencaker($cat = '', $type = '', $jenis = '', $start = '', $end = '')
-    {
-        if($this->isadmin())
-        {
-            if($jenis == 0)
-            {
-                $data = array(
-                    'summary' => array(),
-                    'detail' => array()
-                );
-
-                // Report Berdasarkan Kecamatan
-                if ($cat == 'kecamatan')
-                {
-                    $this->load->model("MsLaporan");
-
-                    $data['detail'] = $this->MsLaporan->dataByKecamatan($start, $end, $type);
-                }
-                //Report Berdasarkan Kelompok Umur
-            if ($cat == 'umur')
-            {
-                $this->load->model("MsLaporan");
-
-                $data['detail'] = $this->MsLaporan->dataByUmur($start, $end, $type);
-            }
-            if($cat == 'pendidikan')
-            {
-                    // Report Berdasarkan Tingkat Pendidikan & Jurusan
-
-                    // Ambil data pendidikan
-                $this->load->model("MsLaporan");
-
-                $data['detail'] = $this->MsLaporan->dataByPendidikan($start, $end, $type);
-            }
-
-            if($cat == 'posisi')
-            {
-                    // Report Berdasarkan Tingkat Pendidikan & Jurusan
-
-                    // Ambil data pendidikan
-                $this->load->model("MsLaporan");
-
-                $data['detail'] = $this->MsLaporan->dataByPosisiJabatan($start, $end, $type);
-            }
-
-            $this->load->model("MsLaporan");
-            $data['jenis'] = 0;
-        } else if($jenis == 1)
-        {
-            $this->load->model("MsLaporan");
-            $data['detail'] = $this->MsLaporan->dataByLamaran($start, $end);
-            $data['jenis'] = 1;
-        }
-        else if($jenis == 2)
-        {
-            $this->load->model("MsLaporan");
-            $data['detail'] = $this->MsLaporan->dataByPenempatan($start, $end);
-            $data['jenis'] = 2;
-        }
-
-        return $data;
-    }
-}
-
 private function count_jumlahpencaker($cat = '', $type = '', $jenis = '', $start = '', $end = '')
 {
     if($this->isadmin())
@@ -3371,6 +3307,74 @@ private function count_jumlahpencaker($cat = '', $type = '', $jenis = '', $start
         return $data;
     }
 }
+
+    private function newReportPencaker($cat = '', $type = '', $jenis = '', $start = '', $end = '')
+    {
+        if($this->isadmin())
+        {
+            if($jenis == 0)
+            {
+                $data = array(
+                    'summary' => array(),
+                    'detail' => array()
+                );
+
+                // Report Berdasarkan Kecamatan
+                if ($cat == 'kecamatan')
+                {
+                    $this->load->model("MsLaporan");
+
+                    $data['detail'] = $this->MsLaporan->dataByKecamatan($start, $end, $type);
+                }
+                //Report Berdasarkan Kelompok Umur
+            if ($cat == 'umur')
+            {
+                $this->load->model("MsLaporan");
+
+                $data['detail'] = $this->MsLaporan->dataByUmur($start, $end, $type);
+            }
+            if($cat == 'pendidikan')
+            {
+                    // Report Berdasarkan Tingkat Pendidikan & Jurusan
+
+                    // Ambil data pendidikan
+                $this->load->model("MsLaporan");
+
+                $data['detail'] = $this->MsLaporan->dataByPendidikan($start, $end, $type);
+            }
+
+            if($cat == 'posisi')
+            {
+                    // Report Berdasarkan Tingkat Pendidikan & Jurusan
+
+                    // Ambil data pendidikan
+                $this->load->model("MsLaporan");
+
+                $data['detail'] = $this->MsLaporan->dataByPosisiJabatan($start, $end, $type);
+            }
+
+            $this->load->model("MsLaporan");
+            $data['summary'] = $this->MsLaporan->GetCountByPeriod($type, $start, $end, $cat);
+            $data['jenis'] = 0;
+        } else if($jenis == 1)
+        {
+            $this->load->model("MsLaporan");
+            $data['detail'] = $this->MsLaporan->dataByLamaran($start, $end);
+            $data['summary'] = $this->MsLaporan->GetCountByPeriod($type, $start, $end, $cat);
+            $data['jenis'] = 1;
+        }
+        else if($jenis == 2)
+        {
+            $this->load->model("MsLaporan");
+            $data['summary'] = $this->MsLaporan->GetCountByPeriod($type, $start, $end, $cat);
+            $data['detail'] = $this->MsLaporan->dataByPenempatan($start, $end);
+            $data['jenis'] = 2;
+        }
+
+        return $data;
+    }
+}
+
 public function export_laporan()
 {
     if ($this->isadmin()) 
@@ -3437,7 +3441,6 @@ public function export_laporan()
                     'left'  => array('style'  => PHPExcel_Style_Border::BORDER_THIN) 
                 )    
             );
-
             if($jenis == 0)
             {
 
@@ -3616,11 +3619,10 @@ public function export_laporan()
                 ->setDescription("Laporan Jumlah Pencaker")                 
                 ->setKeywords("Data Pencaker");
 
-
                 $excel->getActiveSheet(0)->setTitle('Rekap Pencaker');    
                 $excel->setActiveSheetIndex(0);  
                 $write = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');  
-                ob_end_clean(); 
+                if (ob_get_length()) ob_end_clean(); 
                 header('Last-Modified:'. gmdate("D, d M Y H:i:s").'GMT');
                 header('Chace-Control: no-store, no-cache, must-revalation');
                 header('Chace-Control: post-check=0, pre-check=0', FALSE);
@@ -3703,7 +3705,7 @@ public function export_laporan()
                 $excel->getActiveSheet(0)->getPageSetup()->setPaperSize(PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);    
                 $excel->setActiveSheetIndex(0);  
                 $write = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');  
-                ob_end_clean(); 
+                if (ob_get_length()) ob_end_clean(); 
                 header('Last-Modified:'. gmdate("D, d M Y H:i:s").'GMT');
                 header('Chace-Control: no-store, no-cache, must-revalation');
                 header('Chace-Control: post-check=0, pre-check=0', FALSE);
@@ -3803,7 +3805,7 @@ public function export_laporan()
                 $excel->getActiveSheet(0)->getPageSetup()->setPaperSize(PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);    
                 $excel->setActiveSheetIndex(0);  
                 $write = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');  
-                ob_end_clean(); 
+                if (ob_get_length()) ob_end_clean(); 
                 header('Last-Modified:'. gmdate("D, d M Y H:i:s").'GMT');
                 header('Chace-Control: no-store, no-cache, must-revalation');
                 header('Chace-Control: post-check=0, pre-check=0', FALSE);
@@ -3972,4 +3974,4 @@ public function report_lama()
 
 
 }
-
+?>
