@@ -31,9 +31,9 @@
         </ul>
     </li>
     <li class="treeview <?php 
-    $arrmaster = array('pencaker', 'perusahaan', 'jenislowongan', 'keahlian', 'kabupaten', 'kecamatan', 'kelurahan', 'posisijabatan', 'jurusan', 'event');
+    $arrmaster2 = array('lowonganBaru','lowongan', 'berita', 'beritaBaru');
 
-    if(in_array($this->uri->segment(2), $arrmaster))
+    if(in_array($this->uri->segment(2), $arrmaster2))
     {
         if($this->uri->segment(3) != 'cekaktivasi')
         {
@@ -42,30 +42,63 @@
     }
     ?>">
     <a href="#">
-        <i class="fa fa-database"></i> <span>DATA MASTER</span>
+        <i class="fa fa-group"></i> <span>DATA LOWONGAN</span>
         <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
         </span>
     </a>
     <ul class="treeview-menu">
-        <li class="<?php 
-        if($this->uri->segment(2) == 'pencaker')
+        <li class="<?php echo $this->uri->segment(2) == 'lowonganBaru' || $this->uri->segment(2) == 'lowongan' ? 'active' : '' ?>">
+            <a href="<?php echo base_url('admin/lowonganBaru') ?>">
+                <i class="fa fa-circle-o"></i> Data Lowongan
+            </a>
+        </li>
+        <li class="<?php echo $this->uri->segment(2) == 'beritaBaru' || $this->uri->segment(2) == 'berita' ? 'active' : '' ?>">
+            <a href="<?php echo base_url('admin/beritaBaru') ?>">
+                <i class="fa fa-circle-o"></i> Data Loker Luar Depok
+            </a>
+        </li>
+    </ul>
+</li>
+<li class="<?php echo $this->uri->segment(2) == 'dbtools' ? 'active' : '' ?>">
+    <a href="<?php echo site_url('admin/dbtools') ?>"><i class="fa fa-database"></i> <span>Backup Database</span></a>
+</li>
+<li class="treeview <?php 
+$arrmaster = array('pencaker', 'perusahaan', 'jenislowongan', 'keahlian', 'kabupaten', 'kecamatan', 'kelurahan', 'posisijabatan', 'jurusan', 'event');
+
+if(in_array($this->uri->segment(2), $arrmaster))
+{
+    if($this->uri->segment(3) != 'cekaktivasi')
+    {
+        echo 'active';
+    }
+}
+?>">
+<a href="#">
+    <i class="fa fa-database"></i> <span>DATA MASTER</span>
+    <span class="pull-right-container">
+        <i class="fa fa-angle-left pull-right"></i>
+    </span>
+</a>
+<ul class="treeview-menu">
+    <li class="<?php 
+    if($this->uri->segment(2) == 'pencaker')
+    {
+        if($this->uri->segment(3) != 'cekaktivasi')
         {
-            if($this->uri->segment(3) != 'cekaktivasi')
-            {
-                echo 'active';
-            }
+            echo 'active';
         }
-        ?>">
-        <a href="<?php echo base_url('admin/pencaker') ?>">
-            <i class="fa fa-circle-o"></i> Data Pencaker
-        </a>
-    </li>
-    <li class="<?php echo $this->uri->segment(2) == 'perusahaan' ? 'active' : '' ?>">
-        <a href="<?php echo base_url('admin/perusahaan') ?>"> 
-            <i class="fa fa-circle-o"></i> Data Perusahaan
-        </a>
-    </li>
+    }
+    ?>">
+    <a href="<?php echo base_url('admin/pencaker') ?>">
+        <i class="fa fa-circle-o"></i> Data Pencaker
+    </a>
+</li>
+<li class="<?php echo $this->uri->segment(2) == 'perusahaan' ? 'active' : '' ?>">
+    <a href="<?php echo base_url('admin/perusahaan') ?>"> 
+        <i class="fa fa-circle-o"></i> Data Perusahaan
+    </a>
+</li>
    <!--  <li class="<?php //echo $this->uri->segment(2) == 'lowongan' ? 'active' : '' ?>">
         <a href="<?php //echo base_url('admin/lowongan') ?>">
             <i class="fa fa-circle-o"></i> Data Lowongan
@@ -131,38 +164,5 @@ if($this->uri->segment(2) == 'report_lama')
 </a>
 </li>
 </ul>
-</li>
-<li class="treeview <?php 
-    $arrmaster2 = array('lowonganBaru','lowongan', 'berita', 'beritaBaru');
-
-    if(in_array($this->uri->segment(2), $arrmaster2))
-    {
-        if($this->uri->segment(3) != 'cekaktivasi')
-        {
-            echo 'active';
-        }
-    }
-    ?>">
-    <a href="#">
-        <i class="fa fa-group"></i> <span>DATA LOWONGAN</span>
-        <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-        </span>
-    </a>
-    <ul class="treeview-menu">
-    <li class="<?php echo $this->uri->segment(2) == 'lowonganBaru' || $this->uri->segment(2) == 'lowongan' ? 'active' : '' ?>">
-        <a href="<?php echo base_url('admin/lowonganBaru') ?>">
-            <i class="fa fa-circle-o"></i> Data Lowongan
-        </a>
-    </li>
-    <li class="<?php echo $this->uri->segment(2) == 'beritaBaru' || $this->uri->segment(2) == 'berita' ? 'active' : '' ?>">
-        <a href="<?php echo base_url('admin/beritaBaru') ?>">
-            <i class="fa fa-circle-o"></i> Data Loker Luar Depok
-        </a>
-    </li>
-</ul>
-</li>
-<li class="<?php echo $this->uri->segment(2) == 'dbtools' ? 'active' : '' ?>">
-    <a href="<?php echo site_url('admin/dbtools') ?>"><i class="fa fa-database"></i> <span>Backup Database</span></a>
 </li>
 </ul>

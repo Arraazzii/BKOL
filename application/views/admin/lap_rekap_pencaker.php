@@ -27,6 +27,7 @@
               <option value="0">Jumlah Pencaker</option>
               <option value="1">Lamaran Diproses</option>
               <option value="2">Laporan Penempatan</option>
+              <option value="3">Laporan Terdaftar</option>
             </select>
           </div>
         </div>
@@ -170,7 +171,7 @@
               html += "</table>"
               
               $("#table-container").append(html);
-              $("#dataTable").dataTable();
+              // $("#dataTable").dataTable();
             },
             error: function(jqXHR, textStatus, errorThrown) {
               console.log(textStatus, errorThrown);
@@ -208,7 +209,7 @@
               html += "</table>"
               
               $("#table-container").append(html);
-              $("#dataTable").dataTable();
+              // $("#dataTable").dataTable();
             },
             error: function(jqXHR, textStatus, errorThrown) {
               console.log(textStatus, errorThrown);
@@ -246,7 +247,7 @@
               html += "</table>"
               
               $("#table-container").append(html);
-              $("#dataTable").dataTable();
+              // $("#dataTable").dataTable();
             },
             error: function(jqXHR, textStatus, errorThrown) {
               console.log(textStatus, errorThrown);
@@ -284,7 +285,7 @@
             html += "</table>"
 
             $("#table-container").append(html);
-            $("#dataTable").dataTable();
+            // $("#dataTable").dataTable();
           },
           error: function(jqXHR, textStatus, errorThrown) {
             console.log(textStatus, errorThrown);
@@ -360,10 +361,64 @@
           html += "<td>"+ resultPenempatan.NomerPenduduk +"</td>";
           html += "<td>"+ resultPenempatan.NamaPencaker +"</td>";
           html += "<td>"+ resultPenempatan.alamat +"</td>";
-          html += "<td>"+ resultPenempatan.NamaPerusahaan +"</td>";
-          html += "<td>"+ resultPenempatan.Jabatan +"</td>";
+          if (resultPenempatan.NamaPerusahaan == null) {
+            html += "<td>Perusahaan Tidak Diketahui</td>";
+          }else{
+            html += "<td>"+ resultPenempatan.NamaPerusahaan +"</td>";
+          }
+          if (resultPenempatan.Jabatan == null) {
+            html += "<td>Jabatan Tidak Diketahui</td>";
+          }else{
+            html += "<td>"+ resultPenempatan.Jabatan +"</td>";
+          }
           html += "<td>"+ resultPenempatan.NamaStatusPendidikan +"</td>";
           if (resultPenempatan.JenisKelamin == '0') {
+            html += "<td>Laki - laki</td>";
+          }else{
+            html += "<td>Perempuan</td>";
+          }
+          html += "</tr>";
+        });
+        html += "</tbody></table>"
+        $("#table-container").append(html);
+        $("#dataTable").dataTable();
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log(textStatus, errorThrown);
+      }
+    });
+  }else if(jenisfilter == "3"){
+    $.ajax({
+      url: "<?php echo base_url();?>newLaporan/ajaxTerdaftar",
+      type: "post",
+      data: {date_from: date_from, date_to: date_to} ,
+      dataType: "JSON",
+      success: function (response) {
+        $("#table-container").find("#dataTable").remove();
+        $("#table-container").find("#dataTable_wrapper").remove();
+        if ($.fn.DataTable.isDataTable('#dataTable')) {
+          $('#dataTable').DataTable().destroy();
+        }
+        var count = 1;
+        var html = "<table class='table table-bordered table-hover table-striped' id='dataTable'><thead><tr><th class='text-center'>No</th><th>No KTP</th><th>Nama Pencaker</th><th>Alamat</th><th>Nama Perusahaan</th><th>Jabatan</th><th>Pendidikan</th><th>Jenis Kelamin</th></tr></thead><tbody>";
+        $.each(response.data, function(i, resultTerdaftar){
+          html += "<tr>";
+          html += "<td class='text-center'>"+ (count++) +"</td>";
+          html += "<td>"+ resultTerdaftar.NomerPenduduk +"</td>";
+          html += "<td>"+ resultTerdaftar.NamaPencaker +"</td>";
+          html += "<td>"+ resultTerdaftar.alamat +"</td>";
+          if (resultTerdaftar.NamaPerusahaan == null) {
+            html += "<td>Perusahaan Tidak Diketahui</td>";
+          }else{
+            html += "<td>"+ resultTerdaftar.NamaPerusahaan +"</td>";
+          }
+          if (resultTerdaftar.Jabatan == null) {
+            html += "<td>Jabatan Tidak Diketahui</td>";
+          }else{
+            html += "<td>"+ resultTerdaftar.Jabatan +"</td>";
+          }
+          html += "<td>"+ resultTerdaftar.NamaStatusPendidikan +"</td>";
+          if (resultTerdaftar.JenisKelamin == '0') {
             html += "<td>Laki - laki</td>";
           }else{
             html += "<td>Perempuan</td>";

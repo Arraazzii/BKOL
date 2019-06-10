@@ -3135,180 +3135,7 @@ public function pencaker()
         }
     }
 
-private function count_jumlahpencaker($cat = '', $type = '', $jenis = '', $start = '', $end = '')
-{
-    if($this->isadmin())
-    {
-        if($jenis == 0)
-        {
-            $data = array(
-                'summary' => array(),
-                'detail' => array()
-            );
-
-                // Report Berdasarkan Kecamatan
-            if ($cat == 0)
-            {
-                $this->load->model('MsKecamatan');
-                $this->load->model('MsKelurahan');
-                $this->load->model('TrLowonganMasuk');
-
-                $dataKec = $this->MsKecamatan->GetMsKecamatan();
-                foreach ($dataKec as $k)
-                {
-                    $row = array(
-                        'kecamatan' => $k->NamaKecamatan,
-                        'pria' => 0,
-                        'wanita' => 0,
-                        'total' => 0
-                    );
-
-                    $dataKel = $this->MsKelurahan->GetComboMsKelurahanByIDKecamatan($k->IDKecamatan);
-                    foreach ($dataKel as $l) 
-                    {
-                        $wh = array(
-                            'kelurahan' => $l->IDKelurahan,
-                            'from' => $start,
-                            'to' => $end
-                        );
-
-                            //get count for male
-                        $wh['jk'] = 0;
-                        $row['pria'] += $this->TrLowonganMasuk->GetCountCustom($cat, $type, $wh);
-
-                            //get count for female
-                        $wh['jk'] = 1;
-                        $row['wanita'] += $this->TrLowonganMasuk->GetCountCustom($cat, $type, $wh);
-
-                    }
-                    $row['total'] = $row['pria'] + $row['wanita'];
-
-                    $data['detail'][] = $row;
-                }
-            }
-
-                //Report Berdasarkan Kelompok Umur
-            if ($cat ==1)
-            {
-                $this->load->model('TrLowonganMasuk');
-
-                $umur = array(
-                    '0 s/d 14' =>array(
-                        'batasatas'=>14,
-                        'batasbawah'=>0
-                    ),
-                    '15 s/d 19'=>array(
-                        'batasatas'=>19,
-                        'batasbawah'=>15
-                    ),
-                    '20 s/d 29'=>array(
-                        'batasatas'=>29,
-                        'batasbawah'=>20
-                    ),
-                    '30 s/d 44'=>array(
-                        'batasatas'=>44,
-                        'batasbawah'=>30
-                    ),
-                    '45 s/d 54'=>array(
-                        'batasatas'=>54,
-                        'batasbawah'=>45
-                    ),
-                    '55 Keatas'=>array(
-                        'batasatas'=>0,
-                        'batasbawah'=>55
-                    )
-                );
-
-                foreach ($umur as $key => $value) {
-                    $row = array(
-                        'Kelompok Umur' => $key,
-                        'pria' => 0,
-                        'wanita' => 0,
-                        'total' => 0
-                    );
-
-                    $wh = array(
-                        'umur' => $value,
-                        'from' => $start,
-                        'to' => $end
-                    );
-
-                        //jumlah pria
-                    $wh['jk'] = 0;
-                    $row['pria'] += $this->TrLowonganMasuk->GetCountCustom($cat, $type, $wh);
-
-                        //jumlah wanita
-                    $wh['jk'] = 1;
-                    $row['wanita'] += $this->TrLowonganMasuk->GetCountCustom($cat, $type, $wh);
-
-                    $row['total'] = $row['pria'] + $row['wanita'];
-
-                    $data['detail'][] = $row;
-                }
-            }
-            if($cat == 2)
-            {
-                    // Report Berdasarkan Tingkat Pendidikan & Jurusan
-
-                    // Ambil data pendidikan
-                $this->load->model('MsStatusPendidikan');
-                $this->load->model('TrLowonganMasuk');
-                $this->load->model('MsJurusan');
-
-                $statusPendidikan = $this->MsStatusPendidikan->GetMsStatusPendidikan();
-                foreach ($statusPendidikan as $p) {
-
-                        // ambil data jurusan
-                    $jurusan = $this->MsJurusan->GetJurusanByIDStatusPendidikan($p->IDStatusPendidikan);
-
-                        // deklarasi nilai
-                    $row = array(
-                        'pendidikan' => $p->NamaStatusPendidikan,
-                        'pria' => 0,
-                        'wanita' => 0,
-                        'total' => 0 
-                    );
-
-                    $wh = array(
-                        'idpendidikan' => $p->IDStatusPendidikan,
-                        'from' => $start,
-                        'to' => $end
-                    );
-
-                        //jumlah pria
-                    $wh['jk'] = 0;
-                    $row['pria'] += $this->TrLowonganMasuk->GetCountCustom($cat, $type, $wh);
-
-                    $wh['jk'] = 1;
-                    $row['wanita'] += $this->TrLowonganMasuk->GetCountCustom($cat, $type, $wh);
-
-                    $row['total'] = $row['pria'] + $row['wanita'];
-
-                    $data['detail'][] = $row;
-                }
-            }
-            $data['summary'] = $this->TrLowonganMasuk->GetCountByPeriod($type, $start, $end, $cat);
-            $data['jenis'] = 0;
-        } else if($jenis == 1)
-        {
-            $this->load->model('TrLowonganMasuk');
-            $data['detail'] = $this->TrLowonganMasuk->GetByRangeDate($start, $end);
-            $data['jenis'] = 1;
-        }
-        else if($jenis == 2)
-        {
-            $this->load->model('TrLowonganMasuk');
-            $this->load->model('MsPencaker');
-            $ditempatkan = $this->TrLowonganMasuk->GetByRangeDate($start, $end, 1);
-            $data['detail'] = $ditempatkan;
-            $data['jenis'] = 2;
-        }
-
-        return $data;
-    }
-}
-
-    private function newReportPencaker($cat = '', $type = '', $jenis = '', $start = '', $end = '')
+    private function count_jumlahpencaker($cat = '', $type = '', $jenis = '', $start = '', $end = '')
     {
         if($this->isadmin())
         {
@@ -3320,528 +3147,13 @@ private function count_jumlahpencaker($cat = '', $type = '', $jenis = '', $start
                 );
 
                 // Report Berdasarkan Kecamatan
-                if ($cat == 'kecamatan')
-                {
-                    $this->load->model("MsLaporan");
-
-                    $data['detail'] = $this->MsLaporan->dataByKecamatan($start, $end, $type);
-                }
-                //Report Berdasarkan Kelompok Umur
-            if ($cat == 'umur')
-            {
-                $this->load->model("MsLaporan");
-
-                $data['detail'] = $this->MsLaporan->dataByUmur($start, $end, $type);
-            }
-            if($cat == 'pendidikan')
-            {
-                    // Report Berdasarkan Tingkat Pendidikan & Jurusan
-
-                    // Ambil data pendidikan
-                $this->load->model("MsLaporan");
-
-                $data['detail'] = $this->MsLaporan->dataByPendidikan($start, $end, $type);
-            }
-
-            if($cat == 'posisi')
-            {
-                    // Report Berdasarkan Tingkat Pendidikan & Jurusan
-
-                    // Ambil data pendidikan
-                $this->load->model("MsLaporan");
-
-                $data['detail'] = $this->MsLaporan->dataByPosisiJabatan($start, $end, $type);
-            }
-
-            $this->load->model("MsLaporan");
-            $data['summary'] = $this->MsLaporan->GetCountByPeriod($type, $start, $end, $cat);
-            $data['jenis'] = 0;
-        } else if($jenis == 1)
-        {
-            $this->load->model("MsLaporan");
-            $data['detail'] = $this->MsLaporan->dataByLamaran($start, $end);
-            $data['summary'] = $this->MsLaporan->GetCountByPeriod($type, $start, $end, $cat);
-            $data['jenis'] = 1;
-        }
-        else if($jenis == 2)
-        {
-            $this->load->model("MsLaporan");
-            $data['summary'] = $this->MsLaporan->GetCountByPeriod($type, $start, $end, $cat);
-            $data['detail'] = $this->MsLaporan->dataByPenempatan($start, $end);
-            $data['jenis'] = 2;
-        }
-
-        return $data;
-    }
-}
-
-public function export_laporan()
-{
-    if ($this->isadmin()) 
-    {
-        if ($this->input->post()) 
-        {
-            $this->load->library('PHPExcel');
-            $cat    = $this->input->post('xkategori');
-            $type   = $this->input->post('xjenispencaker');
-            $jenis  = $this->input->post('xjenisfilter');
-            $start  = date("Y-m-d", strtotime($this->input->post('xdate_from')));
-            $awal  = date("d-m-Y", strtotime($this->input->post('xdate_from')));
-            $end    = date("Y-m-d", strtotime($this->input->post('xdate_to')));
-            $akhir    = date("d-m-Y", strtotime($this->input->post('xdate_to')));
-            $periode = $awal . ' s/d ' . $akhir;
-            $data   = $this->newReportPencaker($cat, $type, $jenis, $start, $end);
-            $this->load->library('PHPExcel');
-            $excel    = new PHPExcel();
-
-            if($type == 0)
-                $typestr = 'Pencaker Terdaftar';
-            elseif($type == 1)
-                $typestr = 'Pencaker Ditempatkan';
-            elseif($type == 1)
-                $typestr = 'Pencaker Ditempatkan / Diterima';
-
-            $jenispencaker = 'Jenis Pencaker : ' . $typestr;
-
-            $style_col = array(      
-                'font' => array('bold' => true), 
-                'alignment' => array(        
-                    'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER, 
-                    'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER 
-                ),      
-                'borders' => array(        
-                    'top' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), 
-                    'right' => array('style'  => PHPExcel_Style_Border::BORDER_THIN),  
-                    'bottom' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), 
-                    'left' => array('style'  => PHPExcel_Style_Border::BORDER_THIN) 
-                )    
-            );
-
-            $style_num = array(      
-                'alignment' => array(        
-                    'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER,
-                    'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,    
-                ),      
-                'borders' => array(        
-                    'top'   => array('style'  => PHPExcel_Style_Border::BORDER_THIN), 
-                    'right' => array('style'  => PHPExcel_Style_Border::BORDER_THIN),
-                    'bottom'=> array('style'  => PHPExcel_Style_Border::BORDER_THIN), 
-                    'left'  => array('style'  => PHPExcel_Style_Border::BORDER_THIN) 
-                )    
-            );
-
-            $style_row = array(      
-                'alignment' => array(        
-                    'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER     
-                ),      
-                'borders' => array(        
-                    'top'   => array('style'  => PHPExcel_Style_Border::BORDER_THIN), 
-                    'right' => array('style'  => PHPExcel_Style_Border::BORDER_THIN),
-                    'bottom'=> array('style'  => PHPExcel_Style_Border::BORDER_THIN), 
-                    'left'  => array('style'  => PHPExcel_Style_Border::BORDER_THIN) 
-                )    
-            );
-            if($jenis == 0)
-            {
-
-                $excel->setActiveSheetIndex(0)->setCellValue('A1', "REKAP JUMLAH PENCAKER BKOL DEPOK");
-                $excel->setActiveSheetIndex(0)->setCellValue('A2', "PERIODE " . $periode);
-                $excel->setActiveSheetIndex(0)->setCellValue('A3', $jenispencaker);
-                $excel->getActiveSheet()->mergeCells('A1:E1');
-                $excel->getActiveSheet()->mergeCells('A2:E2');
-                $excel->getActiveSheet()->mergeCells('A3:E3');
-                $excel->getActiveSheet()->mergeCells('A4:E4');
-                $excel->getActiveSheet()->getStyle('A1')->getFont()->setBold(TRUE);
-                $excel->getActiveSheet()->getStyle('A1')->getFont()->setSize(15);
-                $excel->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-                $excel->getActiveSheet()->getStyle('A2')->getFont()->setBold(TRUE);
-                $excel->getActiveSheet()->getStyle('A2')->getFont()->setSize(12);
-                $excel->getActiveSheet()->getStyle('A2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-
-                if($cat == 'kecamatan')
-                {
-                    $kategori = 'Kecamatan';
-
-                    $excel->setActiveSheetIndex(0)->setCellValue('A6', "No.");
-                    $excel->setActiveSheetIndex(0)->setCellValue('B6', "Nama Kecamatan");
-                    $excel->setActiveSheetIndex(0)->setCellValue('C6', "Jml Pria");
-                    $excel->setActiveSheetIndex(0)->setCellValue('D6', "Jml Wanita");
-                    $excel->setActiveSheetIndex(0)->setCellValue('E6', "Total");
-                    $excel->getActiveSheet()->getStyle('A6')->applyFromArray($style_col);    
-                    $excel->getActiveSheet()->getStyle('B6')->applyFromArray($style_col);    
-                    $excel->getActiveSheet()->getStyle('C6')->applyFromArray($style_col);    
-                    $excel->getActiveSheet()->getStyle('D6')->applyFromArray($style_col);    
-                    $excel->getActiveSheet()->getStyle('E6')->applyFromArray($style_col);    
-
-                    $no = 1;
-                    $numrow = 7; 
-                    foreach($data['detail'] as $key => $val)
-                    {
-                        $excel->setActiveSheetIndex(0)->setCellValue('A'.$numrow, $no);      
-                        $excel->setActiveSheetIndex(0)->setCellValue('B'.$numrow, $val['NamaKecamatan']);
-                        $excel->setActiveSheetIndex(0)->setCellValue('C'.$numrow, $val['laki']);
-                        $excel->setActiveSheetIndex(0)->setCellValue('D'.$numrow, $val['cewe']);
-                        $excel->setActiveSheetIndex(0)->setCellValue('E'.$numrow, $val['total']);
-                        $excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_row);
-                        $excel->getActiveSheet()->getStyle('B'.$numrow)->applyFromArray($style_row);
-                        $excel->getActiveSheet()->getStyle('C'.$numrow)->applyFromArray($style_num);
-                        $excel->getActiveSheet()->getStyle('D'.$numrow)->applyFromArray($style_num);
-                        $excel->getActiveSheet()->getStyle('E'.$numrow)->applyFromArray($style_num);
-                        $numrow++;
-                        $no++; 
-
-                    }
-                }
-                elseif($cat == 'umur')
-                {
-                    $kategori = 'Kelompok Umur';
-                    $excel->setActiveSheetIndex(0)->setCellValue('A6', "No.");
-                    $excel->setActiveSheetIndex(0)->setCellValue('B6', "Kelompok Umur");
-                    $excel->setActiveSheetIndex(0)->setCellValue('C6', "Jml Pria");
-                    $excel->setActiveSheetIndex(0)->setCellValue('D6', "Jml Wanita");
-                    $excel->setActiveSheetIndex(0)->setCellValue('E6', "Total");
-                    $excel->getActiveSheet()->getStyle('A6')->applyFromArray($style_col);    
-                    $excel->getActiveSheet()->getStyle('B6')->applyFromArray($style_col);    
-                    $excel->getActiveSheet()->getStyle('C6')->applyFromArray($style_col);    
-                    $excel->getActiveSheet()->getStyle('D6')->applyFromArray($style_col);    
-                    $excel->getActiveSheet()->getStyle('E6')->applyFromArray($style_col);    
-
-                    $no = 1;
-                    $numrow = 7; 
-                    foreach($data['detail'] as $key => $val)
-                    {
-                        $excel->setActiveSheetIndex(0)->setCellValue('A'.$numrow, $no);      
-                        $excel->setActiveSheetIndex(0)->setCellValue('B'.$numrow, $val['age']);
-                        $excel->setActiveSheetIndex(0)->setCellValue('C'.$numrow, $val['laki']);
-                        $excel->setActiveSheetIndex(0)->setCellValue('D'.$numrow, $val['cewe']);
-                        $excel->setActiveSheetIndex(0)->setCellValue('E'.$numrow, $val['Total']);
-                        $excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_row);
-                        $excel->getActiveSheet()->getStyle('B'.$numrow)->applyFromArray($style_row);
-                        $excel->getActiveSheet()->getStyle('C'.$numrow)->applyFromArray($style_num);
-                        $excel->getActiveSheet()->getStyle('D'.$numrow)->applyFromArray($style_num);
-                        $excel->getActiveSheet()->getStyle('E'.$numrow)->applyFromArray($style_num);
-                        $numrow++;
-                        $no++; 
-
-                    }
-                }
-                elseif($cat == 'pendidikan')
-                {
-                    $kategori = 'Tingkat Pendidikan';
-                    $excel->setActiveSheetIndex(0)->setCellValue('A6', "No.");
-                    $excel->setActiveSheetIndex(0)->setCellValue('B6', "Tingkat Pendidikan");
-                    $excel->setActiveSheetIndex(0)->setCellValue('C6', "Jml Pria");
-                    $excel->setActiveSheetIndex(0)->setCellValue('D6', "Jml Wanita");
-                    $excel->setActiveSheetIndex(0)->setCellValue('E6', "Total");
-                    $excel->getActiveSheet()->getStyle('A6')->applyFromArray($style_col);    
-                    $excel->getActiveSheet()->getStyle('B6')->applyFromArray($style_col);    
-                    $excel->getActiveSheet()->getStyle('C6')->applyFromArray($style_col);    
-                    $excel->getActiveSheet()->getStyle('D6')->applyFromArray($style_col);    
-                    $excel->getActiveSheet()->getStyle('E6')->applyFromArray($style_col);    
-
-                    $no = 1;
-                    $numrow = 7; 
-                    foreach($data['detail'] as $key => $val)
-                    {
-                        $excel->setActiveSheetIndex(0)->setCellValue('A'.$numrow, $no);      
-                        $excel->setActiveSheetIndex(0)->setCellValue('B'.$numrow, $val['NamaStatusPendidikan']);
-                        $excel->setActiveSheetIndex(0)->setCellValue('C'.$numrow, $val['laki']);
-                        $excel->setActiveSheetIndex(0)->setCellValue('D'.$numrow, $val['cewe']);
-                        $excel->setActiveSheetIndex(0)->setCellValue('E'.$numrow, $val['total']);
-                        $excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_row);
-                        $excel->getActiveSheet()->getStyle('B'.$numrow)->applyFromArray($style_row);
-                        $excel->getActiveSheet()->getStyle('C'.$numrow)->applyFromArray($style_num);
-                        $excel->getActiveSheet()->getStyle('D'.$numrow)->applyFromArray($style_num);
-                        $excel->getActiveSheet()->getStyle('E'.$numrow)->applyFromArray($style_num);
-                        $numrow++;
-                        $no++; 
-
-                    }
-                }
-                elseif($cat == 'posisi')
-                {
-                    $kategori = 'Posisi Jabatan';
-                    $excel->setActiveSheetIndex(0)->setCellValue('A6', "No.");
-                    $excel->setActiveSheetIndex(0)->setCellValue('B6', "Posisi Jabatan");
-                    $excel->setActiveSheetIndex(0)->setCellValue('C6', "Jml Pria");
-                    $excel->setActiveSheetIndex(0)->setCellValue('D6', "Jml Wanita");
-                    $excel->setActiveSheetIndex(0)->setCellValue('E6', "Total");
-                    $excel->getActiveSheet()->getStyle('A6')->applyFromArray($style_col);    
-                    $excel->getActiveSheet()->getStyle('B6')->applyFromArray($style_col);    
-                    $excel->getActiveSheet()->getStyle('C6')->applyFromArray($style_col);    
-                    $excel->getActiveSheet()->getStyle('D6')->applyFromArray($style_col);    
-                    $excel->getActiveSheet()->getStyle('E6')->applyFromArray($style_col);    
-
-                    $no = 1;
-                    $numrow = 7; 
-                    foreach($data['detail'] as $key => $val)
-                    {
-                        $excel->setActiveSheetIndex(0)->setCellValue('A'.$numrow, $no);      
-                        $excel->setActiveSheetIndex(0)->setCellValue('B'.$numrow, $val['NamaPosisiJabatan']);
-                        $excel->setActiveSheetIndex(0)->setCellValue('C'.$numrow, $val['laki']);
-                        $excel->setActiveSheetIndex(0)->setCellValue('D'.$numrow, $val['cewe']);
-                        $excel->setActiveSheetIndex(0)->setCellValue('E'.$numrow, $val['total']);
-                        $excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_row);
-                        $excel->getActiveSheet()->getStyle('B'.$numrow)->applyFromArray($style_row);
-                        $excel->getActiveSheet()->getStyle('C'.$numrow)->applyFromArray($style_num);
-                        $excel->getActiveSheet()->getStyle('D'.$numrow)->applyFromArray($style_num);
-                        $excel->getActiveSheet()->getStyle('E'.$numrow)->applyFromArray($style_num);
-                        $numrow++;
-                        $no++; 
-
-                    }
-                }
-
-                $excel->getActiveSheet()->mergeCells('A'.$numrow.':B'.$numrow);
-                $excel->setActiveSheetIndex(0)->setCellValue('A'.$numrow, 'Total');      
-                $excel->setActiveSheetIndex(0)->setCellValue('C'.$numrow, $data['summary'][0]->laki);
-                $excel->setActiveSheetIndex(0)->setCellValue('D'.$numrow, $data['summary'][0]->cewe);
-                $excel->setActiveSheetIndex(0)->setCellValue('E'.$numrow, $data['summary'][0]->total);
-                $excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_col);
-                $excel->getActiveSheet()->getStyle('B'.$numrow)->applyFromArray($style_col);
-                $excel->getActiveSheet()->getStyle('C'.$numrow)->applyFromArray($style_col);
-                $excel->getActiveSheet()->getStyle('D'.$numrow)->applyFromArray($style_col);
-                $excel->getActiveSheet()->getStyle('E'.$numrow)->applyFromArray($style_col);
-
-                $excel->getActiveSheet()->getColumnDimension('A')->setWidth(5);
-                $excel->getActiveSheet()->getColumnDimension('B')->setWidth(30); 
-                $excel->getActiveSheet()->getColumnDimension('C')->setWidth(20); 
-                $excel->getActiveSheet()->getColumnDimension('D')->setWidth(20);
-                $excel->getActiveSheet()->getColumnDimension('E')->setWidth(20);
-                $excel->getActiveSheet()->getDefaultRowDimension()->setRowHeight(-1);
-                $excel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
-                $excel->setActiveSheetIndex(0)->setCellValue('A4', 'Kategori Pencaker : Berdasarkan '.$kategori);
-
-                $excel->getProperties()->setCreator('Disnaker Kota Depok')
-                ->setLastModifiedBy('Disnaker Kota Depok')                 
-                ->setTitle('Rekap Jumlah Pencaker Berdasarkan ' .$kategori)                 
-                ->setSubject("Jumlah Pencaker")                 
-                ->setDescription("Laporan Jumlah Pencaker")                 
-                ->setKeywords("Data Pencaker");
-
-                $excel->getActiveSheet(0)->setTitle('Rekap Pencaker');    
-                $excel->setActiveSheetIndex(0);  
-                $write = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');  
-                if (ob_get_length()) ob_end_clean(); 
-                header('Last-Modified:'. gmdate("D, d M Y H:i:s").'GMT');
-                header('Chace-Control: no-store, no-cache, must-revalation');
-                header('Chace-Control: post-check=0, pre-check=0', FALSE);
-                header('Pragma: no-cache');
-                header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-                header('Content-Disposition: attachment;filename="RekapPencaker-'. date('Ymd') .'.xlsx"');    
-                $write->save('php://output');
-            }
-            elseif($jenis == 1)
-            {
-                $excel->setActiveSheetIndex(0)->setCellValue('A1', "LAPORAN LAMARAN DIPROSES");
-                $excel->setActiveSheetIndex(0)->setCellValue('A2', "BKOL KOTA DEPOK");
-                $excel->setActiveSheetIndex(0)->setCellValue('A3', "PERIODE " . $periode);
-                $excel->getActiveSheet()->mergeCells('A1:E1');
-                $excel->getActiveSheet()->mergeCells('A2:E2');
-                $excel->getActiveSheet()->mergeCells('A3:E3');
-                $excel->getActiveSheet()->getStyle('A1')->getFont()->setBold(TRUE);
-                $excel->getActiveSheet()->getStyle('A1')->getFont()->setSize(14);
-                $excel->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-                $excel->getActiveSheet()->getStyle('A2')->getFont()->setBold(TRUE);
-                $excel->getActiveSheet()->getStyle('A2')->getFont()->setSize(14);
-                $excel->getActiveSheet()->getStyle('A2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-                $excel->getActiveSheet()->getStyle('A3')->getFont()->setBold(TRUE);
-                $excel->getActiveSheet()->getStyle('A3')->getFont()->setSize(12);
-                $excel->getActiveSheet()->getStyle('A3')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-
-                $excel->setActiveSheetIndex(0)->setCellValue('A5', "No.");
-                $excel->setActiveSheetIndex(0)->setCellValue('B5', "Nama Pencaker");
-                $excel->setActiveSheetIndex(0)->setCellValue('C5', "Nama Lowongan");
-                $excel->setActiveSheetIndex(0)->setCellValue('D5', "Nama Perusahaan");
-                $excel->setActiveSheetIndex(0)->setCellValue('E5', "Status");
-
-                $excel->getActiveSheet()->getStyle('A5')->applyFromArray($style_col);    
-                $excel->getActiveSheet()->getStyle('B5')->applyFromArray($style_col);    
-                $excel->getActiveSheet()->getStyle('C5')->applyFromArray($style_col);    
-                $excel->getActiveSheet()->getStyle('D5')->applyFromArray($style_col);    
-                $excel->getActiveSheet()->getStyle('E5')->applyFromArray($style_col);    
-
-                $no = 1;
-                $numrow = 6; 
-                foreach($data['detail'] as $key => $val)
-                {
-                    if ($val['StatusLowongan'] == '0') {
-                        $statusLowongan = 'Menunggu';
-                    }else{
-                        $statusLowongan = 'Diproses';
-                    }
-                    $excel->setActiveSheetIndex(0)->setCellValue('A'.$numrow, $no);      
-                    $excel->setActiveSheetIndex(0)->setCellValue('B'.$numrow, $val['NamaPencaker']);
-                    $excel->setActiveSheetIndex(0)->setCellValue('C'.$numrow, $val['NamaLowongan']);
-                    $excel->setActiveSheetIndex(0)->setCellValue('D'.$numrow, $val['NamaPerusahaan']);
-                    $excel->setActiveSheetIndex(0)->setCellValue('E'.$numrow, $statusLowongan);
-                    $excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_num);
-                    $excel->getActiveSheet()->getStyle('B'.$numrow)->applyFromArray($style_row);
-                    $excel->getActiveSheet()->getStyle('C'.$numrow)->applyFromArray($style_row);
-                    $excel->getActiveSheet()->getStyle('D'.$numrow)->applyFromArray($style_row);
-                    $excel->getActiveSheet()->getStyle('E'.$numrow)->applyFromArray($style_num);
-                    $numrow++;
-                    $no++; 
-
-                }
-
-                $excel->getActiveSheet()->getColumnDimension('A')->setWidth(5);
-                $excel->getActiveSheet()->getColumnDimension('B')->setWidth(40); 
-                $excel->getActiveSheet()->getColumnDimension('C')->setWidth(40); 
-                $excel->getActiveSheet()->getColumnDimension('D')->setWidth(40);
-                $excel->getActiveSheet()->getColumnDimension('E')->setWidth(15);
-                $excel->getActiveSheet()->getDefaultRowDimension()->setRowHeight(-1);
-                $excel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
-
-                $excel->getProperties()->setCreator('Disnaker Kota Depok')
-                ->setLastModifiedBy('Disnaker Kota Depok')                 
-                ->setTitle('Rekap Lamaran yang di proses')                 
-                ->setSubject("Lamaran Diproses")                 
-                ->setDescription("Laporan Lamaran Diproses")                 
-                ->setKeywords("Data Pencaker");
-
-
-                $excel->getActiveSheet(0)->setTitle('Rekap Lamaran Di Proses');
-                $excel->getActiveSheet(0)->getPageSetup()->setPaperSize(PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);    
-                $excel->setActiveSheetIndex(0);  
-                $write = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');  
-                if (ob_get_length()) ob_end_clean(); 
-                header('Last-Modified:'. gmdate("D, d M Y H:i:s").'GMT');
-                header('Chace-Control: no-store, no-cache, must-revalation');
-                header('Chace-Control: post-check=0, pre-check=0', FALSE);
-                header('Pragma: no-cache');
-                header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-                header('Content-Disposition: attachment;filename="LamaranDiproses-'. date('Ymd') .'.xlsx"');    
-                $write->save('php://output');
-            }
-            elseif($jenis == 2)
-            {
-
-                $excel->setActiveSheetIndex(0)->setCellValue('A1', "LAPORAN PENEMPATAN PENCAKER");
-                $excel->setActiveSheetIndex(0)->setCellValue('A2', "BKOL KOTA DEPOK");
-                $excel->setActiveSheetIndex(0)->setCellValue('A3', "PERIODE " . $periode);
-                $excel->getActiveSheet()->mergeCells('A1:H1');
-                $excel->getActiveSheet()->mergeCells('A2:H2');
-                $excel->getActiveSheet()->mergeCells('A3:H3');
-                $excel->getActiveSheet()->getStyle('A1')->getFont()->setBold(TRUE);
-                $excel->getActiveSheet()->getStyle('A1')->getFont()->setSize(14);
-                $excel->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-                $excel->getActiveSheet()->getStyle('A2')->getFont()->setBold(TRUE);
-                $excel->getActiveSheet()->getStyle('A2')->getFont()->setSize(14);
-                $excel->getActiveSheet()->getStyle('A2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-                $excel->getActiveSheet()->getStyle('A3')->getFont()->setBold(TRUE);
-                $excel->getActiveSheet()->getStyle('A3')->getFont()->setSize(12);
-                $excel->getActiveSheet()->getStyle('A3')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-
-                $excel->setActiveSheetIndex(0)->setCellValue('A5', "No.");
-                $excel->setActiveSheetIndex(0)->setCellValue('B5', "Nomor KTP");
-                $excel->setActiveSheetIndex(0)->setCellValue('C5', "Nama Pencaker");
-                $excel->setActiveSheetIndex(0)->setCellValue('D5', "Alamat");
-                $excel->setActiveSheetIndex(0)->setCellValue('E5', "Nama Perusahaan");
-                $excel->setActiveSheetIndex(0)->setCellValue('F5', "Jabatan");
-                $excel->setActiveSheetIndex(0)->setCellValue('G5', "Pendidikan");
-                $excel->setActiveSheetIndex(0)->setCellValue('H5', "Jenis Kelamin");
-
-                $excel->getActiveSheet()->getStyle('A5')->applyFromArray($style_col);    
-                $excel->getActiveSheet()->getStyle('B5')->applyFromArray($style_col);    
-                $excel->getActiveSheet()->getStyle('C5')->applyFromArray($style_col);    
-                $excel->getActiveSheet()->getStyle('D5')->applyFromArray($style_col);    
-                $excel->getActiveSheet()->getStyle('E5')->applyFromArray($style_col);    
-                $excel->getActiveSheet()->getStyle('F5')->applyFromArray($style_col);    
-                $excel->getActiveSheet()->getStyle('G5')->applyFromArray($style_col);    
-                $excel->getActiveSheet()->getStyle('H5')->applyFromArray($style_col);    
-
-                $no = 1;
-                $numrow = 6; 
-                foreach($data['detail'] as $key => $val)
-                {
-                    if ($val['JenisKelamin'] == '0') {
-                        $JKJK = 'Laki - Laki';
-                    }else{
-                        $JKJK = 'Perempuan';
-                    }
-                    $sheet = $excel->setActiveSheetIndex(0);  
-                    $excel->setActiveSheetIndex(0)->setCellValue('A'.$numrow, $no);      
-                    $excel->setActiveSheetIndex(0)->setCellValueExplicit('B'.$numrow, $val['NomerPenduduk'], PHPExcel_Cell_DataType::TYPE_STRING);
-                    $excel->setActiveSheetIndex(0)->setCellValue('C'.$numrow, $val['NamaPencaker']);
-                    $excel->setActiveSheetIndex(0)->setCellValue('D'.$numrow, $val['alamat']);
-                    $excel->setActiveSheetIndex(0)->setCellValue('E'.$numrow, $val['NamaPerusahaan']);
-                    $excel->setActiveSheetIndex(0)->setCellValue('F'.$numrow, $val['Jabatan']);
-                    $excel->setActiveSheetIndex(0)->setCellValue('G'.$numrow, $val['NamaStatusPendidikan']);
-                    $excel->setActiveSheetIndex(0)->setCellValue('H'.$numrow, $JKJK);
-                    $excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_num);
-                    $excel->getActiveSheet()->getStyle('B'.$numrow)->applyFromArray($style_row);
-                    $excel->getActiveSheet()->getStyle('C'.$numrow)->applyFromArray($style_row);
-                    $excel->getActiveSheet()->getStyle('D'.$numrow)->applyFromArray($style_row);
-                    $excel->getActiveSheet()->getStyle('E'.$numrow)->applyFromArray($style_row);
-                    $excel->getActiveSheet()->getStyle('F'.$numrow)->applyFromArray($style_num);
-                    $excel->getActiveSheet()->getStyle('G'.$numrow)->applyFromArray($style_num);
-                    $excel->getActiveSheet()->getStyle('H'.$numrow)->applyFromArray($style_num);
-                    $numrow++;
-                    $no++; 
-
-                }
-
-                $excel->getActiveSheet()->getColumnDimension('A')->setWidth(5);
-                $excel->getActiveSheet()->getColumnDimension('B')->setWidth(25); 
-                $excel->getActiveSheet()->getColumnDimension('C')->setWidth(35); 
-                $excel->getActiveSheet()->getColumnDimension('D')->setWidth(35);
-                $excel->getActiveSheet()->getColumnDimension('E')->setWidth(35);
-                $excel->getActiveSheet()->getColumnDimension('F')->setWidth(20);
-                $excel->getActiveSheet()->getColumnDimension('G')->setWidth(20);
-                $excel->getActiveSheet()->getColumnDimension('H')->setWidth(15);
-                $excel->getActiveSheet()->getDefaultRowDimension()->setRowHeight(-1);
-                $excel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
-
-                $excel->getProperties()->setCreator('Disnaker Kota Depok')
-                ->setLastModifiedBy('Disnaker Kota Depok')                 
-                ->setTitle('Laporan Penempatan Pencaker')                 
-                ->setSubject("Penempatan Pencaker")                 
-                ->setDescription("Laporan Penempatan Pencaker")                 
-                ->setKeywords("Data Penempatan Pencaker");
-
-
-                $excel->getActiveSheet(0)->setTitle('Laporan Penempatan Pencaker');
-                $excel->getActiveSheet(0)->getPageSetup()->setPaperSize(PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);    
-                $excel->setActiveSheetIndex(0);  
-                $write = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');  
-                if (ob_get_length()) ob_end_clean(); 
-                header('Last-Modified:'. gmdate("D, d M Y H:i:s").'GMT');
-                header('Chace-Control: no-store, no-cache, must-revalation');
-                header('Chace-Control: post-check=0, pre-check=0', FALSE);
-                header('Pragma: no-cache');
-                header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-                header('Content-Disposition: attachment;filename="LaporanPenempatan-'. date('Ymd') .'.xlsx"');    
-                $write->save('php://output');
-            }
-        }
-    }
-}
-public function report_lama()
-{
-    if ($this->isadmin())
-    {
-        $this->load->model('MsPencakerLama', 'pencaker');
-
-        $data = array();
-
-        if ($this->uri->segment(3) == 'lap_rekap_pencaker')
-        {
-            if ($this->uri->segment(4) == 'submit')
-            {
-                $cat = $this->input->post('kategori');
-                $type = 0;
-
-                $data = array(
-                    'summary' => array(),
-                    'detail' => array()
-                );
-
-                    // Report Berdasarkan Kecamatan
                 if ($cat == 0)
                 {
+                    $this->load->model('MsKecamatan');
+                    $this->load->model('MsKelurahan');
+                    $this->load->model('TrLowonganMasuk');
 
-                    $dataKec = $this->pencaker->GetMsKecamatan();
+                    $dataKec = $this->MsKecamatan->GetMsKecamatan();
                     foreach ($dataKec as $k)
                     {
                         $row = array(
@@ -3851,26 +3163,35 @@ public function report_lama()
                             'total' => 0
                         );
 
-                        $wh = array(
-                            'kecamatan' => $k->IDKecamatan,
-                        );
+                        $dataKel = $this->MsKelurahan->GetComboMsKelurahanByIDKecamatan($k->IDKecamatan);
+                        foreach ($dataKel as $l) 
+                        {
+                            $wh = array(
+                                'kelurahan' => $l->IDKelurahan,
+                                'from' => $start,
+                                'to' => $end
+                            );
 
                             //get count for male
-                        $wh['jk'] = 0;
-                        $row['pria'] += $this->pencaker->GetCountCustom($cat, $wh);
+                            $wh['jk'] = 0;
+                            $row['pria'] += $this->TrLowonganMasuk->GetCountCustom($cat, $type, $wh);
 
                             //get count for female
-                        $wh['jk'] = 1;
-                        $row['wanita'] += $this->pencaker->GetCountCustom($cat, $wh);
+                            $wh['jk'] = 1;
+                            $row['wanita'] += $this->TrLowonganMasuk->GetCountCustom($cat, $type, $wh);
+
+                        }
                         $row['total'] = $row['pria'] + $row['wanita'];
 
                         $data['detail'][] = $row;
                     }
                 }
 
-                    //Report Berdasarkan Kelompok Umur
+                //Report Berdasarkan Kelompok Umur
                 if ($cat ==1)
                 {
+                    $this->load->model('TrLowonganMasuk');
+
                     $umur = array(
                         '0 s/d 14' =>array(
                             'batasatas'=>14,
@@ -3907,16 +3228,18 @@ public function report_lama()
                         );
 
                         $wh = array(
-                            'umur' => $value
+                            'umur' => $value,
+                            'from' => $start,
+                            'to' => $end
                         );
 
-                            //jumlah pria
+                        //jumlah pria
                         $wh['jk'] = 0;
-                        $row['pria'] += $this->pencaker->GetCountCustom($cat, $wh);
+                        $row['pria'] += $this->TrLowonganMasuk->GetCountCustom($cat, $type, $wh);
 
-                            //jumlah wanita
+                        //jumlah wanita
                         $wh['jk'] = 1;
-                        $row['wanita'] += $this->pencaker->GetCountCustom($cat, $wh);
+                        $row['wanita'] += $this->TrLowonganMasuk->GetCountCustom($cat, $type, $wh);
 
                         $row['total'] = $row['pria'] + $row['wanita'];
 
@@ -3925,52 +3248,851 @@ public function report_lama()
                 }
                 if($cat == 2)
                 {
-                        // Report Berdasarkan Tingkat Pendidikan & Jurusan
+                    // Report Berdasarkan Tingkat Pendidikan & Jurusan
 
-                        // Ambil data pendidikan
+                    // Ambil data pendidikan
+                    $this->load->model('MsStatusPendidikan');
+                    $this->load->model('TrLowonganMasuk');
+                    $this->load->model('MsJurusan');
 
-                    $statusPendidikan = $this->pencaker->GetMsStatusPendidikan();
+                    $statusPendidikan = $this->MsStatusPendidikan->GetMsStatusPendidikan();
                     foreach ($statusPendidikan as $p) {
 
-                            // deklarasi nilai
+                        // ambil data jurusan
+                        $jurusan = $this->MsJurusan->GetJurusanByIDStatusPendidikan($p->IDStatusPendidikan);
+
+                        // deklarasi nilai
                         $row = array(
-                            'pendidikan' => $p->NamaTingkatPendidikan,
+                            'pendidikan' => $p->NamaStatusPendidikan,
                             'pria' => 0,
                             'wanita' => 0,
                             'total' => 0 
                         );
 
                         $wh = array(
-                            'pendidikan' => $p->IDTingkatPendidikan,
+                            'idpendidikan' => $p->IDStatusPendidikan,
+                            'from' => $start,
+                            'to' => $end
                         );
 
-                            //jumlah pria
+                        //jumlah pria
                         $wh['jk'] = 0;
-                        $row['pria'] += $this->pencaker->GetCountCustom($cat, $wh);
+                        $row['pria'] += $this->TrLowonganMasuk->GetCountCustom($cat, $type, $wh);
 
                         $wh['jk'] = 1;
-                        $row['wanita'] += $this->pencaker->GetCountCustom($cat, $wh);
+                        $row['wanita'] += $this->TrLowonganMasuk->GetCountCustom($cat, $type, $wh);
 
                         $row['total'] = $row['pria'] + $row['wanita'];
 
                         $data['detail'][] = $row;
                     }
                 }
-
-                $data['summary'] = $this->pencaker->GetCount();
-                echo json_encode($data);
-            }
-            else 
+                $data['summary'] = $this->TrLowonganMasuk->GetCountByPeriod($type, $start, $end, $cat);
+                $data['jenis'] = 0;
+            } else if($jenis == 1)
             {
-                $this->template->load('backend', 'admin/lap_rekap_pencaker_lama', array());
+                $this->load->model('TrLowonganMasuk');
+                $data['detail'] = $this->TrLowonganMasuk->GetByRangeDate($start, $end);
+                $data['jenis'] = 1;
+            }
+            else if($jenis == 2)
+            {
+                $this->load->model('TrLowonganMasuk');
+                $this->load->model('MsPencaker');
+                $ditempatkan = $this->TrLowonganMasuk->GetByRangeDate($start, $end, 1);
+                $data['detail'] = $ditempatkan;
+                $data['jenis'] = 2;
+            }
+
+            return $data;
+        }
+    }
+
+    private function newReportPencaker($cat = '', $type = '', $jenis = '', $start = '', $end = '')
+    {
+        if($this->isadmin())
+        {
+            if($jenis == 0)
+            {
+                $data = array(
+                    'summary' => array(),
+                    'detail' => array()
+                );
+
+                // Report Berdasarkan Kecamatan
+                if ($cat == 'kecamatan')
+                {
+                    $this->load->model("MsLaporan");
+
+                    $data['detail'] = $this->MsLaporan->dataByKecamatan($start, $end, $type);
+                }
+                //Report Berdasarkan Kelompok Umur
+                if ($cat == 'umur')
+                {
+                    $this->load->model("MsLaporan");
+
+                    $data['detail'] = $this->MsLaporan->dataByUmur($start, $end, $type);
+                }
+                if($cat == 'pendidikan')
+                {
+                    // Report Berdasarkan Tingkat Pendidikan & Jurusan
+
+                    // Ambil data pendidikan
+                    $this->load->model("MsLaporan");
+
+                    $data['detail'] = $this->MsLaporan->dataByPendidikan($start, $end, $type);
+                }
+
+                if($cat == 'posisi')
+                {
+                    // Report Berdasarkan Tingkat Pendidikan & Jurusan
+
+                    // Ambil data pendidikan
+                    $this->load->model("MsLaporan");
+
+                    $data['detail'] = $this->MsLaporan->dataByPosisiJabatan($start, $end, $type);
+                }
+
+                $this->load->model("MsLaporan");
+                $data['summary'] = $this->MsLaporan->GetCountByPeriod($type, $start, $end, $cat);
+                $data['jenis'] = 0;
+            } else if($jenis == 1)
+            {
+                $this->load->model("MsLaporan");
+                $data['detail'] = $this->MsLaporan->dataByLamaran($start, $end);
+                // $data['summary'] = $this->MsLaporan->GetCountByPeriod($type, $start, $end, $cat);
+                $data['jenis'] = 1;
+            }
+            else if($jenis == 2)
+            {
+                $this->load->model("MsLaporan");
+                // $data['summary'] = $this->MsLaporan->GetCountByPeriod($type, $start, $end, $cat);
+                $data['detail'] = $this->MsLaporan->dataByPenempatan($start, $end);
+                $data['jenis'] = 2;
+            }
+            else if($jenis == 3)
+            {
+                $this->load->model("MsLaporan");
+                // $data['summary'] = $this->MsLaporan->GetCountByPeriod($type, $start, $end, $cat);
+                $data['detail'] = $this->MsLaporan->dataByTerdaftar($start, $end);
+                $data['jenis'] = 3;
+            }
+
+            return $data;
+        }
+    }
+
+    public function export_laporan()
+    {
+        if ($this->isadmin()) 
+        {
+            if ($this->input->post()) 
+            {
+                $this->load->library('PHPExcel');
+                $cat    = $this->input->post('xkategori');
+                $type   = $this->input->post('xjenispencaker');
+                $jenis  = $this->input->post('xjenisfilter');
+                $start  = date("Y-m-d", strtotime($this->input->post('xdate_from')));
+                $awal  = date("d-m-Y", strtotime($this->input->post('xdate_from')));
+                $end    = date("Y-m-d", strtotime($this->input->post('xdate_to')));
+                $akhir    = date("d-m-Y", strtotime($this->input->post('xdate_to')));
+                $periode = $awal . ' s/d ' . $akhir;
+                $data   = $this->newReportPencaker($cat, $type, $jenis, $start, $end);
+                $this->load->library('PHPExcel');
+                $excel    = new PHPExcel();
+
+                if($type == 0)
+                    $typestr = 'Pencaker Terdaftar';
+                elseif($type == 1)
+                    $typestr = 'Pencaker Ditempatkan';
+                elseif($type == 1)
+                    $typestr = 'Pencaker Ditempatkan / Diterima';
+
+                $jenispencaker = 'Jenis Pencaker : ' . $typestr;
+
+                $style_col = array(      
+                    'font' => array('bold' => true), 
+                    'alignment' => array(        
+                        'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER, 
+                        'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER 
+                    ),      
+                    'borders' => array(        
+                        'top' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), 
+                        'right' => array('style'  => PHPExcel_Style_Border::BORDER_THIN),  
+                        'bottom' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), 
+                        'left' => array('style'  => PHPExcel_Style_Border::BORDER_THIN) 
+                    )    
+                );
+
+                $style_num = array(      
+                    'alignment' => array(        
+                        'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER,
+                        'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,    
+                    ),      
+                    'borders' => array(        
+                        'top'   => array('style'  => PHPExcel_Style_Border::BORDER_THIN), 
+                        'right' => array('style'  => PHPExcel_Style_Border::BORDER_THIN),
+                        'bottom'=> array('style'  => PHPExcel_Style_Border::BORDER_THIN), 
+                        'left'  => array('style'  => PHPExcel_Style_Border::BORDER_THIN) 
+                    )    
+                );
+
+                $style_row = array(      
+                    'alignment' => array(        
+                        'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER     
+                    ),      
+                    'borders' => array(        
+                        'top'   => array('style'  => PHPExcel_Style_Border::BORDER_THIN), 
+                        'right' => array('style'  => PHPExcel_Style_Border::BORDER_THIN),
+                        'bottom'=> array('style'  => PHPExcel_Style_Border::BORDER_THIN), 
+                        'left'  => array('style'  => PHPExcel_Style_Border::BORDER_THIN) 
+                    )    
+                );
+                if($jenis == 0)
+                {
+
+                    $excel->setActiveSheetIndex(0)->setCellValue('A1', "REKAP JUMLAH PENCAKER BKOL DEPOK");
+                    $excel->setActiveSheetIndex(0)->setCellValue('A2', "PERIODE " . $periode);
+                    $excel->setActiveSheetIndex(0)->setCellValue('A3', $jenispencaker);
+                    $excel->getActiveSheet()->mergeCells('A1:E1');
+                    $excel->getActiveSheet()->mergeCells('A2:E2');
+                    $excel->getActiveSheet()->mergeCells('A3:E3');
+                    $excel->getActiveSheet()->mergeCells('A4:E4');
+                    $excel->getActiveSheet()->getStyle('A1')->getFont()->setBold(TRUE);
+                    $excel->getActiveSheet()->getStyle('A1')->getFont()->setSize(15);
+                    $excel->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+                    $excel->getActiveSheet()->getStyle('A2')->getFont()->setBold(TRUE);
+                    $excel->getActiveSheet()->getStyle('A2')->getFont()->setSize(12);
+                    $excel->getActiveSheet()->getStyle('A2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+
+                    if($cat == 'kecamatan')
+                    {
+                        $kategori = 'Kecamatan';
+
+                        $excel->setActiveSheetIndex(0)->setCellValue('A6', "No.");
+                        $excel->setActiveSheetIndex(0)->setCellValue('B6', "Nama Kecamatan");
+                        $excel->setActiveSheetIndex(0)->setCellValue('C6', "Jml Pria");
+                        $excel->setActiveSheetIndex(0)->setCellValue('D6', "Jml Wanita");
+                        $excel->setActiveSheetIndex(0)->setCellValue('E6', "Total");
+                        $excel->getActiveSheet()->getStyle('A6')->applyFromArray($style_col);    
+                        $excel->getActiveSheet()->getStyle('B6')->applyFromArray($style_col);    
+                        $excel->getActiveSheet()->getStyle('C6')->applyFromArray($style_col);    
+                        $excel->getActiveSheet()->getStyle('D6')->applyFromArray($style_col);    
+                        $excel->getActiveSheet()->getStyle('E6')->applyFromArray($style_col);    
+
+                        $no = 1;
+                        $numrow = 7; 
+                        foreach($data['detail'] as $key => $val)
+                        {
+                            $excel->setActiveSheetIndex(0)->setCellValue('A'.$numrow, $no);      
+                            $excel->setActiveSheetIndex(0)->setCellValue('B'.$numrow, $val['NamaKecamatan']);
+                            $excel->setActiveSheetIndex(0)->setCellValue('C'.$numrow, $val['laki']);
+                            $excel->setActiveSheetIndex(0)->setCellValue('D'.$numrow, $val['cewe']);
+                            $excel->setActiveSheetIndex(0)->setCellValue('E'.$numrow, $val['total']);
+                            $excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_row);
+                            $excel->getActiveSheet()->getStyle('B'.$numrow)->applyFromArray($style_row);
+                            $excel->getActiveSheet()->getStyle('C'.$numrow)->applyFromArray($style_num);
+                            $excel->getActiveSheet()->getStyle('D'.$numrow)->applyFromArray($style_num);
+                            $excel->getActiveSheet()->getStyle('E'.$numrow)->applyFromArray($style_num);
+                            $numrow++;
+                            $no++; 
+
+                        }
+                    }
+                    elseif($cat == 'umur')
+                    {
+                        $kategori = 'Kelompok Umur';
+                        $excel->setActiveSheetIndex(0)->setCellValue('A6', "No.");
+                        $excel->setActiveSheetIndex(0)->setCellValue('B6', "Kelompok Umur");
+                        $excel->setActiveSheetIndex(0)->setCellValue('C6', "Jml Pria");
+                        $excel->setActiveSheetIndex(0)->setCellValue('D6', "Jml Wanita");
+                        $excel->setActiveSheetIndex(0)->setCellValue('E6', "Total");
+                        $excel->getActiveSheet()->getStyle('A6')->applyFromArray($style_col);    
+                        $excel->getActiveSheet()->getStyle('B6')->applyFromArray($style_col);    
+                        $excel->getActiveSheet()->getStyle('C6')->applyFromArray($style_col);    
+                        $excel->getActiveSheet()->getStyle('D6')->applyFromArray($style_col);    
+                        $excel->getActiveSheet()->getStyle('E6')->applyFromArray($style_col);    
+
+                        $no = 1;
+                        $numrow = 7; 
+                        foreach($data['detail'] as $key => $val)
+                        {
+                            $excel->setActiveSheetIndex(0)->setCellValue('A'.$numrow, $no);      
+                            $excel->setActiveSheetIndex(0)->setCellValue('B'.$numrow, $val['age']);
+                            $excel->setActiveSheetIndex(0)->setCellValue('C'.$numrow, $val['laki']);
+                            $excel->setActiveSheetIndex(0)->setCellValue('D'.$numrow, $val['cewe']);
+                            $excel->setActiveSheetIndex(0)->setCellValue('E'.$numrow, $val['Total']);
+                            $excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_row);
+                            $excel->getActiveSheet()->getStyle('B'.$numrow)->applyFromArray($style_row);
+                            $excel->getActiveSheet()->getStyle('C'.$numrow)->applyFromArray($style_num);
+                            $excel->getActiveSheet()->getStyle('D'.$numrow)->applyFromArray($style_num);
+                            $excel->getActiveSheet()->getStyle('E'.$numrow)->applyFromArray($style_num);
+                            $numrow++;
+                            $no++; 
+
+                        }
+                    }
+                    elseif($cat == 'pendidikan')
+                    {
+                        $kategori = 'Tingkat Pendidikan';
+                        $excel->setActiveSheetIndex(0)->setCellValue('A6', "No.");
+                        $excel->setActiveSheetIndex(0)->setCellValue('B6', "Tingkat Pendidikan");
+                        $excel->setActiveSheetIndex(0)->setCellValue('C6', "Jml Pria");
+                        $excel->setActiveSheetIndex(0)->setCellValue('D6', "Jml Wanita");
+                        $excel->setActiveSheetIndex(0)->setCellValue('E6', "Total");
+                        $excel->getActiveSheet()->getStyle('A6')->applyFromArray($style_col);    
+                        $excel->getActiveSheet()->getStyle('B6')->applyFromArray($style_col);    
+                        $excel->getActiveSheet()->getStyle('C6')->applyFromArray($style_col);    
+                        $excel->getActiveSheet()->getStyle('D6')->applyFromArray($style_col);    
+                        $excel->getActiveSheet()->getStyle('E6')->applyFromArray($style_col);    
+
+                        $no = 1;
+                        $numrow = 7; 
+                        foreach($data['detail'] as $key => $val)
+                        {
+                            $excel->setActiveSheetIndex(0)->setCellValue('A'.$numrow, $no);      
+                            $excel->setActiveSheetIndex(0)->setCellValue('B'.$numrow, $val['NamaStatusPendidikan']);
+                            $excel->setActiveSheetIndex(0)->setCellValue('C'.$numrow, $val['laki']);
+                            $excel->setActiveSheetIndex(0)->setCellValue('D'.$numrow, $val['cewe']);
+                            $excel->setActiveSheetIndex(0)->setCellValue('E'.$numrow, $val['total']);
+                            $excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_row);
+                            $excel->getActiveSheet()->getStyle('B'.$numrow)->applyFromArray($style_row);
+                            $excel->getActiveSheet()->getStyle('C'.$numrow)->applyFromArray($style_num);
+                            $excel->getActiveSheet()->getStyle('D'.$numrow)->applyFromArray($style_num);
+                            $excel->getActiveSheet()->getStyle('E'.$numrow)->applyFromArray($style_num);
+                            $numrow++;
+                            $no++; 
+
+                        }
+                    }
+                    elseif($cat == 'posisi')
+                    {
+                        $kategori = 'Posisi Jabatan';
+                        $excel->setActiveSheetIndex(0)->setCellValue('A6', "No.");
+                        $excel->setActiveSheetIndex(0)->setCellValue('B6', "Posisi Jabatan");
+                        $excel->setActiveSheetIndex(0)->setCellValue('C6', "Jml Pria");
+                        $excel->setActiveSheetIndex(0)->setCellValue('D6', "Jml Wanita");
+                        $excel->setActiveSheetIndex(0)->setCellValue('E6', "Total");
+                        $excel->getActiveSheet()->getStyle('A6')->applyFromArray($style_col);    
+                        $excel->getActiveSheet()->getStyle('B6')->applyFromArray($style_col);    
+                        $excel->getActiveSheet()->getStyle('C6')->applyFromArray($style_col);    
+                        $excel->getActiveSheet()->getStyle('D6')->applyFromArray($style_col);    
+                        $excel->getActiveSheet()->getStyle('E6')->applyFromArray($style_col);    
+
+                        $no = 1;
+                        $numrow = 7; 
+                        foreach($data['detail'] as $key => $val)
+                        {
+                            $excel->setActiveSheetIndex(0)->setCellValue('A'.$numrow, $no);      
+                            $excel->setActiveSheetIndex(0)->setCellValue('B'.$numrow, $val['NamaPosisiJabatan']);
+                            $excel->setActiveSheetIndex(0)->setCellValue('C'.$numrow, $val['laki']);
+                            $excel->setActiveSheetIndex(0)->setCellValue('D'.$numrow, $val['cewe']);
+                            $excel->setActiveSheetIndex(0)->setCellValue('E'.$numrow, $val['total']);
+                            $excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_row);
+                            $excel->getActiveSheet()->getStyle('B'.$numrow)->applyFromArray($style_row);
+                            $excel->getActiveSheet()->getStyle('C'.$numrow)->applyFromArray($style_num);
+                            $excel->getActiveSheet()->getStyle('D'.$numrow)->applyFromArray($style_num);
+                            $excel->getActiveSheet()->getStyle('E'.$numrow)->applyFromArray($style_num);
+                            $numrow++;
+                            $no++; 
+
+                        }
+                    }
+
+                    $excel->getActiveSheet()->mergeCells('A'.$numrow.':B'.$numrow);
+                    $excel->setActiveSheetIndex(0)->setCellValue('A'.$numrow, 'Total');      
+                    $excel->setActiveSheetIndex(0)->setCellValue('C'.$numrow, $data['summary'][0]->laki);
+                    $excel->setActiveSheetIndex(0)->setCellValue('D'.$numrow, $data['summary'][0]->cewe);
+                    $excel->setActiveSheetIndex(0)->setCellValue('E'.$numrow, $data['summary'][0]->total);
+                    $excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_col);
+                    $excel->getActiveSheet()->getStyle('B'.$numrow)->applyFromArray($style_col);
+                    $excel->getActiveSheet()->getStyle('C'.$numrow)->applyFromArray($style_col);
+                    $excel->getActiveSheet()->getStyle('D'.$numrow)->applyFromArray($style_col);
+                    $excel->getActiveSheet()->getStyle('E'.$numrow)->applyFromArray($style_col);
+
+                    $excel->getActiveSheet()->getColumnDimension('A')->setWidth(5);
+                    $excel->getActiveSheet()->getColumnDimension('B')->setWidth(30); 
+                    $excel->getActiveSheet()->getColumnDimension('C')->setWidth(20); 
+                    $excel->getActiveSheet()->getColumnDimension('D')->setWidth(20);
+                    $excel->getActiveSheet()->getColumnDimension('E')->setWidth(20);
+                    $excel->getActiveSheet()->getDefaultRowDimension()->setRowHeight(-1);
+                    $excel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
+                    $excel->setActiveSheetIndex(0)->setCellValue('A4', 'Kategori Pencaker : Berdasarkan '.$kategori);
+
+                    $excel->getProperties()->setCreator('Disnaker Kota Depok')
+                    ->setLastModifiedBy('Disnaker Kota Depok')                 
+                    ->setTitle('Rekap Jumlah Pencaker Berdasarkan ' .$kategori)                 
+                    ->setSubject("Jumlah Pencaker")                 
+                    ->setDescription("Laporan Jumlah Pencaker")                 
+                    ->setKeywords("Data Pencaker");
+
+                    $excel->getActiveSheet(0)->setTitle('Rekap Pencaker');    
+                    $excel->setActiveSheetIndex(0);  
+                    $write = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');  
+                    if (ob_get_length()) ob_end_clean(); 
+                    header('Last-Modified:'. gmdate("D, d M Y H:i:s").'GMT');
+                    header('Chace-Control: no-store, no-cache, must-revalation');
+                    header('Chace-Control: post-check=0, pre-check=0', FALSE);
+                    header('Pragma: no-cache');
+                    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+                    header('Content-Disposition: attachment;filename="RekapPencaker-'. date('Ymd') .'.xlsx"');    
+                    $write->save('php://output');
+                }
+                elseif($jenis == 1)
+                {
+                    $excel->setActiveSheetIndex(0)->setCellValue('A1', "LAPORAN LAMARAN DIPROSES");
+                    $excel->setActiveSheetIndex(0)->setCellValue('A2', "BKOL KOTA DEPOK");
+                    $excel->setActiveSheetIndex(0)->setCellValue('A3', "PERIODE " . $periode);
+                    $excel->getActiveSheet()->mergeCells('A1:E1');
+                    $excel->getActiveSheet()->mergeCells('A2:E2');
+                    $excel->getActiveSheet()->mergeCells('A3:E3');
+                    $excel->getActiveSheet()->getStyle('A1')->getFont()->setBold(TRUE);
+                    $excel->getActiveSheet()->getStyle('A1')->getFont()->setSize(14);
+                    $excel->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+                    $excel->getActiveSheet()->getStyle('A2')->getFont()->setBold(TRUE);
+                    $excel->getActiveSheet()->getStyle('A2')->getFont()->setSize(14);
+                    $excel->getActiveSheet()->getStyle('A2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+                    $excel->getActiveSheet()->getStyle('A3')->getFont()->setBold(TRUE);
+                    $excel->getActiveSheet()->getStyle('A3')->getFont()->setSize(12);
+                    $excel->getActiveSheet()->getStyle('A3')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+
+                    $excel->setActiveSheetIndex(0)->setCellValue('A5', "No.");
+                    $excel->setActiveSheetIndex(0)->setCellValue('B5', "Nama Pencaker");
+                    $excel->setActiveSheetIndex(0)->setCellValue('C5', "Nama Lowongan");
+                    $excel->setActiveSheetIndex(0)->setCellValue('D5', "Nama Perusahaan");
+                    $excel->setActiveSheetIndex(0)->setCellValue('E5', "Status");
+
+                    $excel->getActiveSheet()->getStyle('A5')->applyFromArray($style_col);    
+                    $excel->getActiveSheet()->getStyle('B5')->applyFromArray($style_col);    
+                    $excel->getActiveSheet()->getStyle('C5')->applyFromArray($style_col);    
+                    $excel->getActiveSheet()->getStyle('D5')->applyFromArray($style_col);    
+                    $excel->getActiveSheet()->getStyle('E5')->applyFromArray($style_col);    
+
+                    $no = 1;
+                    $numrow = 6; 
+                    foreach($data['detail'] as $key => $val)
+                    {
+                        if ($val['StatusLowongan'] == '0') {
+                            $statusLowongan = 'Menunggu';
+                        }else{
+                            $statusLowongan = 'Diproses';
+                        }
+                        $excel->setActiveSheetIndex(0)->setCellValue('A'.$numrow, $no);      
+                        $excel->setActiveSheetIndex(0)->setCellValue('B'.$numrow, $val['NamaPencaker']);
+                        $excel->setActiveSheetIndex(0)->setCellValue('C'.$numrow, $val['NamaLowongan']);
+                        $excel->setActiveSheetIndex(0)->setCellValue('D'.$numrow, $val['NamaPerusahaan']);
+                        $excel->setActiveSheetIndex(0)->setCellValue('E'.$numrow, $statusLowongan);
+                        $excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_num);
+                        $excel->getActiveSheet()->getStyle('B'.$numrow)->applyFromArray($style_row);
+                        $excel->getActiveSheet()->getStyle('C'.$numrow)->applyFromArray($style_row);
+                        $excel->getActiveSheet()->getStyle('D'.$numrow)->applyFromArray($style_row);
+                        $excel->getActiveSheet()->getStyle('E'.$numrow)->applyFromArray($style_num);
+                        $numrow++;
+                        $no++; 
+
+                    }
+
+                    $excel->getActiveSheet()->getColumnDimension('A')->setWidth(5);
+                    $excel->getActiveSheet()->getColumnDimension('B')->setWidth(40); 
+                    $excel->getActiveSheet()->getColumnDimension('C')->setWidth(40); 
+                    $excel->getActiveSheet()->getColumnDimension('D')->setWidth(40);
+                    $excel->getActiveSheet()->getColumnDimension('E')->setWidth(15);
+                    $excel->getActiveSheet()->getDefaultRowDimension()->setRowHeight(-1);
+                    $excel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
+
+                    $excel->getProperties()->setCreator('Disnaker Kota Depok')
+                    ->setLastModifiedBy('Disnaker Kota Depok')                 
+                    ->setTitle('Rekap Lamaran yang di proses')                 
+                    ->setSubject("Lamaran Diproses")                 
+                    ->setDescription("Laporan Lamaran Diproses")                 
+                    ->setKeywords("Data Pencaker");
+
+                    $excel->getActiveSheet(0)->setTitle('Rekap Lamaran Di Proses');
+                    $excel->getActiveSheet(0)->getPageSetup()->setPaperSize(PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);    
+                    $excel->setActiveSheetIndex(0);  
+                    $write = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');  
+                    if (ob_get_length()) ob_end_clean(); 
+                    header('Last-Modified:'. gmdate("D, d M Y H:i:s").'GMT');
+                    header('Chace-Control: no-store, no-cache, must-revalation');
+                    header('Chace-Control: post-check=0, pre-check=0', FALSE);
+                    header('Pragma: no-cache');
+                    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+                    header('Content-Disposition: attachment;filename="LamaranDiproses-'. date('Ymd') .'.xlsx"');    
+                    $write->save('php://output');
+                }
+                elseif($jenis == 2)
+                {
+
+                    $excel->setActiveSheetIndex(0)->setCellValue('A1', "LAPORAN PENEMPATAN PENCAKER");
+                    $excel->setActiveSheetIndex(0)->setCellValue('A2', "BKOL KOTA DEPOK");
+                    $excel->setActiveSheetIndex(0)->setCellValue('A3', "PERIODE " . $periode);
+                    $excel->getActiveSheet()->mergeCells('A1:H1');
+                    $excel->getActiveSheet()->mergeCells('A2:H2');
+                    $excel->getActiveSheet()->mergeCells('A3:H3');
+                    $excel->getActiveSheet()->getStyle('A1')->getFont()->setBold(TRUE);
+                    $excel->getActiveSheet()->getStyle('A1')->getFont()->setSize(14);
+                    $excel->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+                    $excel->getActiveSheet()->getStyle('A2')->getFont()->setBold(TRUE);
+                    $excel->getActiveSheet()->getStyle('A2')->getFont()->setSize(14);
+                    $excel->getActiveSheet()->getStyle('A2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+                    $excel->getActiveSheet()->getStyle('A3')->getFont()->setBold(TRUE);
+                    $excel->getActiveSheet()->getStyle('A3')->getFont()->setSize(12);
+                    $excel->getActiveSheet()->getStyle('A3')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+
+                    $excel->setActiveSheetIndex(0)->setCellValue('A5', "No.");
+                    $excel->setActiveSheetIndex(0)->setCellValue('B5', "Nomor KTP");
+                    $excel->setActiveSheetIndex(0)->setCellValue('C5', "Nama Pencaker");
+                    $excel->setActiveSheetIndex(0)->setCellValue('D5', "Alamat");
+                    $excel->setActiveSheetIndex(0)->setCellValue('E5', "Nama Perusahaan");
+                    $excel->setActiveSheetIndex(0)->setCellValue('F5', "Jabatan");
+                    $excel->setActiveSheetIndex(0)->setCellValue('G5', "Pendidikan");
+                    $excel->setActiveSheetIndex(0)->setCellValue('H5', "Jenis Kelamin");
+
+                    $excel->getActiveSheet()->getStyle('A5')->applyFromArray($style_col);    
+                    $excel->getActiveSheet()->getStyle('B5')->applyFromArray($style_col);    
+                    $excel->getActiveSheet()->getStyle('C5')->applyFromArray($style_col);    
+                    $excel->getActiveSheet()->getStyle('D5')->applyFromArray($style_col);    
+                    $excel->getActiveSheet()->getStyle('E5')->applyFromArray($style_col);    
+                    $excel->getActiveSheet()->getStyle('F5')->applyFromArray($style_col);    
+                    $excel->getActiveSheet()->getStyle('G5')->applyFromArray($style_col);    
+                    $excel->getActiveSheet()->getStyle('H5')->applyFromArray($style_col);    
+
+                    $no = 1;
+                    $numrow = 6; 
+                    foreach($data['detail'] as $key => $val)
+                    {
+                        if ($val['JenisKelamin'] == '0') {
+                            $JKJK = 'Laki - Laki';
+                        }else{
+                            $JKJK = 'Perempuan';
+                        }
+                        if($val['NamaPerusahaan'] == null){
+                            $namper = 'Perusahaan Tidak Diketahui';
+                        }else{
+                            $namper = $val['NamaPerusahaan'];
+                        }
+                        if($val['Jabatan'] == null){
+                            $jabatanper = 'Jabatan Tidak Diketahui';
+                        }else{
+                            $jabatanper = $val['Jabatan'];
+                        }
+                        $sheet = $excel->setActiveSheetIndex(0);  
+                        $excel->setActiveSheetIndex(0)->setCellValue('A'.$numrow, $no);      
+                        $excel->setActiveSheetIndex(0)->setCellValueExplicit('B'.$numrow, $val['NomerPenduduk'], PHPExcel_Cell_DataType::TYPE_STRING);
+                        $excel->setActiveSheetIndex(0)->setCellValue('C'.$numrow, $val['NamaPencaker']);
+                        $excel->setActiveSheetIndex(0)->setCellValue('D'.$numrow, $val['alamat']);
+                        $excel->setActiveSheetIndex(0)->setCellValue('E'.$numrow, $namper);
+                        $excel->setActiveSheetIndex(0)->setCellValue('F'.$numrow, $jabatanper);
+                        $excel->setActiveSheetIndex(0)->setCellValue('G'.$numrow, $val['NamaStatusPendidikan']);
+                        $excel->setActiveSheetIndex(0)->setCellValue('H'.$numrow, $JKJK);
+                        $excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_num);
+                        $excel->getActiveSheet()->getStyle('B'.$numrow)->applyFromArray($style_row);
+                        $excel->getActiveSheet()->getStyle('C'.$numrow)->applyFromArray($style_row);
+                        $excel->getActiveSheet()->getStyle('D'.$numrow)->applyFromArray($style_row);
+                        $excel->getActiveSheet()->getStyle('E'.$numrow)->applyFromArray($style_row);
+                        $excel->getActiveSheet()->getStyle('F'.$numrow)->applyFromArray($style_num);
+                        $excel->getActiveSheet()->getStyle('G'.$numrow)->applyFromArray($style_num);
+                        $excel->getActiveSheet()->getStyle('H'.$numrow)->applyFromArray($style_num);
+                        $numrow++;
+                        $no++; 
+
+                    }
+
+                    $excel->getActiveSheet()->getColumnDimension('A')->setWidth(5);
+                    $excel->getActiveSheet()->getColumnDimension('B')->setWidth(25); 
+                    $excel->getActiveSheet()->getColumnDimension('C')->setWidth(35); 
+                    $excel->getActiveSheet()->getColumnDimension('D')->setWidth(35);
+                    $excel->getActiveSheet()->getColumnDimension('E')->setWidth(35);
+                    $excel->getActiveSheet()->getColumnDimension('F')->setWidth(20);
+                    $excel->getActiveSheet()->getColumnDimension('G')->setWidth(20);
+                    $excel->getActiveSheet()->getColumnDimension('H')->setWidth(15);
+                    $excel->getActiveSheet()->getDefaultRowDimension()->setRowHeight(-1);
+                    $excel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
+
+                    $excel->getProperties()->setCreator('Disnaker Kota Depok')
+                    ->setLastModifiedBy('Disnaker Kota Depok')                 
+                    ->setTitle('Laporan Penempatan Pencaker')                 
+                    ->setSubject("Penempatan Pencaker")                 
+                    ->setDescription("Laporan Penempatan Pencaker")                 
+                    ->setKeywords("Data Penempatan Pencaker");
+
+                    $excel->getActiveSheet(0)->setTitle('Laporan Penempatan Pencaker');
+                    $excel->getActiveSheet(0)->getPageSetup()->setPaperSize(PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);    
+                    $excel->setActiveSheetIndex(0);  
+                    $write = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');  
+                    if (ob_get_length()) ob_end_clean(); 
+                    header('Last-Modified:'. gmdate("D, d M Y H:i:s").'GMT');
+                    header('Chace-Control: no-store, no-cache, must-revalation');
+                    header('Chace-Control: post-check=0, pre-check=0', FALSE);
+                    header('Pragma: no-cache');
+                    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+                    header('Content-Disposition: attachment;filename="LaporanPenempatan-'. date('Ymd') .'.xlsx"');    
+                    $write->save('php://output');
+                }
+                elseif($jenis == 3){
+
+                    $excel->setActiveSheetIndex(0)->setCellValue('A1', "LAPORAN PENCAKER TERDAFTAR");
+                    $excel->setActiveSheetIndex(0)->setCellValue('A2', "BKOL KOTA DEPOK");
+                    $excel->setActiveSheetIndex(0)->setCellValue('A3', "PERIODE " . $periode);
+                    $excel->getActiveSheet()->mergeCells('A1:H1');
+                    $excel->getActiveSheet()->mergeCells('A2:H2');
+                    $excel->getActiveSheet()->mergeCells('A3:H3');
+                    $excel->getActiveSheet()->getStyle('A1')->getFont()->setBold(TRUE);
+                    $excel->getActiveSheet()->getStyle('A1')->getFont()->setSize(14);
+                    $excel->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+                    $excel->getActiveSheet()->getStyle('A2')->getFont()->setBold(TRUE);
+                    $excel->getActiveSheet()->getStyle('A2')->getFont()->setSize(14);
+                    $excel->getActiveSheet()->getStyle('A2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+                    $excel->getActiveSheet()->getStyle('A3')->getFont()->setBold(TRUE);
+                    $excel->getActiveSheet()->getStyle('A3')->getFont()->setSize(12);
+                    $excel->getActiveSheet()->getStyle('A3')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+
+                    $excel->setActiveSheetIndex(0)->setCellValue('A5', "No.");
+                    $excel->setActiveSheetIndex(0)->setCellValue('B5', "Nomor KTP");
+                    $excel->setActiveSheetIndex(0)->setCellValue('C5', "Nama Pencaker");
+                    $excel->setActiveSheetIndex(0)->setCellValue('D5', "Alamat");
+                    $excel->setActiveSheetIndex(0)->setCellValue('E5', "Nama Perusahaan");
+                    $excel->setActiveSheetIndex(0)->setCellValue('F5', "Jabatan");
+                    $excel->setActiveSheetIndex(0)->setCellValue('G5', "Pendidikan");
+                    $excel->setActiveSheetIndex(0)->setCellValue('H5', "Jenis Kelamin");
+
+                    $excel->getActiveSheet()->getStyle('A5')->applyFromArray($style_col);    
+                    $excel->getActiveSheet()->getStyle('B5')->applyFromArray($style_col);    
+                    $excel->getActiveSheet()->getStyle('C5')->applyFromArray($style_col);    
+                    $excel->getActiveSheet()->getStyle('D5')->applyFromArray($style_col);    
+                    $excel->getActiveSheet()->getStyle('E5')->applyFromArray($style_col);    
+                    $excel->getActiveSheet()->getStyle('F5')->applyFromArray($style_col);    
+                    $excel->getActiveSheet()->getStyle('G5')->applyFromArray($style_col);    
+                    $excel->getActiveSheet()->getStyle('H5')->applyFromArray($style_col);    
+
+                    $no = 1;
+                    $numrow = 6; 
+                    foreach($data['detail'] as $key => $val)
+                    {
+                        if ($val['JenisKelamin'] == '0') {
+                            $JKJK = 'Laki - Laki';
+                        }else{
+                            $JKJK = 'Perempuan';
+                        }
+                        if($val['NamaPerusahaan'] == null){
+                            $namper = 'Perusahaan Tidak Diketahui';
+                        }else{
+                            $namper = $val['NamaPerusahaan'];
+                        }
+                        if($val['Jabatan'] == null){
+                            $jabatanper = 'Jabatan Tidak Diketahui';
+                        }else{
+                            $jabatanper = $val['Jabatan'];
+                        }
+                        $sheet = $excel->setActiveSheetIndex(0);  
+                        $excel->setActiveSheetIndex(0)->setCellValue('A'.$numrow, $no);      
+                        $excel->setActiveSheetIndex(0)->setCellValueExplicit('B'.$numrow, $val['NomerPenduduk'], PHPExcel_Cell_DataType::TYPE_STRING);
+                        $excel->setActiveSheetIndex(0)->setCellValue('C'.$numrow, $val['NamaPencaker']);
+                        $excel->setActiveSheetIndex(0)->setCellValue('D'.$numrow, $val['alamat']);
+                        $excel->setActiveSheetIndex(0)->setCellValue('E'.$numrow, $namper);
+                        $excel->setActiveSheetIndex(0)->setCellValue('F'.$numrow, $jabatanper);
+                        $excel->setActiveSheetIndex(0)->setCellValue('G'.$numrow, $val['NamaStatusPendidikan']);
+                        $excel->setActiveSheetIndex(0)->setCellValue('H'.$numrow, $JKJK);
+                        $excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_num);
+                        $excel->getActiveSheet()->getStyle('B'.$numrow)->applyFromArray($style_row);
+                        $excel->getActiveSheet()->getStyle('C'.$numrow)->applyFromArray($style_row);
+                        $excel->getActiveSheet()->getStyle('D'.$numrow)->applyFromArray($style_row);
+                        $excel->getActiveSheet()->getStyle('E'.$numrow)->applyFromArray($style_row);
+                        $excel->getActiveSheet()->getStyle('F'.$numrow)->applyFromArray($style_num);
+                        $excel->getActiveSheet()->getStyle('G'.$numrow)->applyFromArray($style_num);
+                        $excel->getActiveSheet()->getStyle('H'.$numrow)->applyFromArray($style_num);
+                        $numrow++;
+                        $no++; 
+
+                    }
+                    $excel->getActiveSheet()->getColumnDimension('A')->setWidth(5);
+                    $excel->getActiveSheet()->getColumnDimension('B')->setWidth(25); 
+                    $excel->getActiveSheet()->getColumnDimension('C')->setWidth(35); 
+                    $excel->getActiveSheet()->getColumnDimension('D')->setWidth(35);
+                    $excel->getActiveSheet()->getColumnDimension('E')->setWidth(35);
+                    $excel->getActiveSheet()->getColumnDimension('F')->setWidth(20);
+                    $excel->getActiveSheet()->getColumnDimension('G')->setWidth(20);
+                    $excel->getActiveSheet()->getColumnDimension('H')->setWidth(15);
+                    $excel->getActiveSheet()->getDefaultRowDimension()->setRowHeight(-1);
+                    $excel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
+
+                    $excel->getProperties()->setCreator('Disnaker Kota Depok')
+                    ->setLastModifiedBy('Disnaker Kota Depok')                 
+                    ->setTitle('Laporan Penempatan Pencaker')                 
+                    ->setSubject("Penempatan Pencaker")                 
+                    ->setDescription("Laporan Penempatan Pencaker")                 
+                    ->setKeywords("Data Penempatan Pencaker");
+
+                    $excel->getActiveSheet(0)->setTitle('Laporan Penempatan Pencaker');
+                    $excel->getActiveSheet(0)->getPageSetup()->setPaperSize(PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);    
+                    $excel->setActiveSheetIndex(0);  
+                    $write = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');  
+                    if (ob_get_length()) ob_end_clean(); 
+                    header('Last-Modified:'. gmdate("D, d M Y H:i:s").'GMT');
+                    header('Chace-Control: no-store, no-cache, must-revalation');
+                    header('Chace-Control: post-check=0, pre-check=0', FALSE);
+                    header('Pragma: no-cache');
+                    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+                    header('Content-Disposition: attachment;filename="LaporanTerdaftar-'. date('Ymd') .'.xlsx"');    
+                    $write->save('php://output');
+                }
             }
         }
     }
-    else 
+    public function report_lama()
     {
-        redirect();
+        if ($this->isadmin())
+        {
+            $this->load->model('MsPencakerLama', 'pencaker');
+
+            $data = array();
+
+            if ($this->uri->segment(3) == 'lap_rekap_pencaker')
+            {
+                if ($this->uri->segment(4) == 'submit')
+                {
+                    $cat = $this->input->post('kategori');
+                    $type = 0;
+
+                    $data = array(
+                        'summary' => array(),
+                        'detail' => array()
+                    );
+
+                    // Report Berdasarkan Kecamatan
+                    if ($cat == 0)
+                    {
+
+                        $dataKec = $this->pencaker->GetMsKecamatan();
+                        foreach ($dataKec as $k)
+                        {
+                            $row = array(
+                                'kecamatan' => $k->NamaKecamatan,
+                                'pria' => 0,
+                                'wanita' => 0,
+                                'total' => 0
+                            );
+
+                            $wh = array(
+                                'kecamatan' => $k->IDKecamatan,
+                            );
+
+                            //get count for male
+                            $wh['jk'] = 0;
+                            $row['pria'] += $this->pencaker->GetCountCustom($cat, $wh);
+
+                            //get count for female
+                            $wh['jk'] = 1;
+                            $row['wanita'] += $this->pencaker->GetCountCustom($cat, $wh);
+                            $row['total'] = $row['pria'] + $row['wanita'];
+
+                            $data['detail'][] = $row;
+                        }
+                    }
+
+                    //Report Berdasarkan Kelompok Umur
+                    if ($cat ==1)
+                    {
+                        $umur = array(
+                            '0 s/d 14' =>array(
+                                'batasatas'=>14,
+                                'batasbawah'=>0
+                            ),
+                            '15 s/d 19'=>array(
+                                'batasatas'=>19,
+                                'batasbawah'=>15
+                            ),
+                            '20 s/d 29'=>array(
+                                'batasatas'=>29,
+                                'batasbawah'=>20
+                            ),
+                            '30 s/d 44'=>array(
+                                'batasatas'=>44,
+                                'batasbawah'=>30
+                            ),
+                            '45 s/d 54'=>array(
+                                'batasatas'=>54,
+                                'batasbawah'=>45
+                            ),
+                            '55 Keatas'=>array(
+                                'batasatas'=>0,
+                                'batasbawah'=>55
+                            )
+                        );
+
+                        foreach ($umur as $key => $value) {
+                            $row = array(
+                                'Kelompok Umur' => $key,
+                                'pria' => 0,
+                                'wanita' => 0,
+                                'total' => 0
+                            );
+
+                            $wh = array(
+                                'umur' => $value
+                            );
+
+                            //jumlah pria
+                            $wh['jk'] = 0;
+                            $row['pria'] += $this->pencaker->GetCountCustom($cat, $wh);
+
+                            //jumlah wanita
+                            $wh['jk'] = 1;
+                            $row['wanita'] += $this->pencaker->GetCountCustom($cat, $wh);
+
+                            $row['total'] = $row['pria'] + $row['wanita'];
+
+                            $data['detail'][] = $row;
+                        }
+                    }
+                    if($cat == 2)
+                    {
+                        // Report Berdasarkan Tingkat Pendidikan & Jurusan
+
+                        // Ambil data pendidikan
+
+                        $statusPendidikan = $this->pencaker->GetMsStatusPendidikan();
+                        foreach ($statusPendidikan as $p) {
+
+                            // deklarasi nilai
+                            $row = array(
+                                'pendidikan' => $p->NamaTingkatPendidikan,
+                                'pria' => 0,
+                                'wanita' => 0,
+                                'total' => 0 
+                            );
+
+                            $wh = array(
+                                'pendidikan' => $p->IDTingkatPendidikan,
+                            );
+
+                            //jumlah pria
+                            $wh['jk'] = 0;
+                            $row['pria'] += $this->pencaker->GetCountCustom($cat, $wh);
+
+                            $wh['jk'] = 1;
+                            $row['wanita'] += $this->pencaker->GetCountCustom($cat, $wh);
+
+                            $row['total'] = $row['pria'] + $row['wanita'];
+
+                            $data['detail'][] = $row;
+                        }
+                    }
+
+                    $data['summary'] = $this->pencaker->GetCount();
+                    echo json_encode($data);
+                }
+                else 
+                {
+                    $this->template->load('backend', 'admin/lap_rekap_pencaker_lama', array());
+                }
+            }
+        }
+        else 
+        {
+            redirect();
+        }
     }
-}
 
 
 }

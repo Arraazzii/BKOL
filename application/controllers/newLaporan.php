@@ -153,5 +153,29 @@ class newLaporan extends CI_Controller {
             echo json_encode('error');
         }
     }
+
+    public function ajaxTerdaftar()
+    {
+        $iduser = $this->session->userdata('iduser');
+        if ($iduser != NULL){
+            $this->load->model("MsLaporan");
+            $newDate = $this->input->post("date_from");  
+            $dateStart = date("Y-m-d", strtotime($newDate));    
+            $endDate = $this->input->post("date_to");      
+            $dateEnd = date("Y-m-d", strtotime($endDate));    
+
+        // $dateStart = "2019-01-01";      
+        // $dateEnd = "2019-07-01";  
+            $data = array(
+                "data" => $this->MsLaporan->dataByTerdaftar($dateStart, $dateEnd),
+            );
+        // echo "<pre>";
+        //     var_dump($data);
+        // echo "</pre>";
+            echo json_encode($data);
+        }else{
+            echo json_encode('error');
+        }
+    }
 }
 ?>
