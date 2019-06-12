@@ -1,4 +1,5 @@
 <!-- Content Header (Page header) -->
+<!-- filterPencakerInHome -->
 <script type="text/javascript" src="<?php echo base_url().'assets/js/printThis.js'; ?>"></script>
 <section class="content-header">
   <h1>

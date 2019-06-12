@@ -711,6 +711,19 @@ public function dataperusahaan()
                 // $this->load->view('index',$data);
                 }
                 
+                public function filterPencakerInHome(){
+                    $input = $this->input->post();
+                    $start = $input['start'];
+                    $end = $input['end'];
+                    $this->load->model('MsLaporan');
+                    
+                    $data = array(
+                        'namaDetail' => $this->MsLaporan->DataPencakerHome($start,$end),
+                        'total' => $this->MsLaporan->TotalPencakerHome($start,$end),
+                    );                
+                    echo json_encode($data);
+                }
+
                 public function datalowongan()
                 {
                     $page = $this->uri->segment(2);

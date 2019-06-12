@@ -60,6 +60,16 @@ class MsLaporan extends CI_Model
         }
         return $query->result();
     }
+
+    public function TotalPencakerHome($dateStart, $dateEnd){
+		$query = $this->db->query("SELECT COUNT(p.IDPencaker) as total, SUM(COALESCE(p.JenisKelamin = 0, 0)) as laki, SUM(COALESCE(p.JenisKelamin = 1, 0) ) as cewe FROM msstatuspendidikan as sp LEFT JOIN mspencaker as p ON sp.IDStatusPendidikan = p.IDStatusPendidikan AND p.RegisterDate BETWEEN '$dateStart' AND '$dateEnd'");
+		return $query->result_array();
+	}
+
+	public function DataPencakerHome($dateStart, $dateEnd){
+		$query = $this->db->query("SELECT a.NomorIndukPencaker, a.NamaPencaker, c.NamaStatusPendidikan, a.JenisKelamin, date(a.RegisterDate) as registerDate FROM msstatuspendidikan c JOIN mspencaker a ON c.IDStatusPendidikan = a.IDStatusPendidikan AND a.RegisterDate BETWEEN '$dateStart' AND '$dateEnd' ORDER BY a.NamaPencaker ASC");
+		return $query->result_array();
+	}
 	
 
 }
