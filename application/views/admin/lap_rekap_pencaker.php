@@ -37,9 +37,9 @@
             <div class="col-md-6">
               <select name="jenispencaker" id="jenispencaker" class="form-control input-sm">
                 <option value="all">--Silahkan Pilih--</option>
-                <option value="0">Terdaftar</option>
                 <!-- <option value="2">Diproses</option> -->
-                <option value="1">Ditempatkan</option>
+                <option value="0">Ditempatkan</option>
+                <option value="1">Terdaftar</option>
               </select>
             </div>
           </div>

@@ -30,12 +30,12 @@ class MsLaporan extends CI_Model
 	}
 
 	public function dataByPenempatan($dateStart, $dateEnd){
-		$query = $this->db->query("SELECT a.NomerPenduduk, a.NamaPencaker, a.alamat, b.NamaPerusahaan, b.Jabatan, c.NamaStatusPendidikan, a.JenisKelamin FROM msstatuspendidikan c JOIN mspencaker a ON c.IDStatusPendidikan = a.IDStatusPendidikan AND a.RegisterDate BETWEEN '$dateStart' AND '$dateEnd' LEFT JOIN mspengalaman b ON a.IDPencaker = b.IDPencaker AND b.StatusPekerjaan = '1' ORDER BY a.NamaPencaker ASC");
+		$query = $this->db->query("SELECT a.NomerPenduduk, a.NamaPencaker, a.alamat, b.NamaPerusahaan, b.Jabatan, c.NamaStatusPendidikan, a.JenisKelamin FROM msstatuspendidikan c JOIN mspencaker a ON c.IDStatusPendidikan = a.IDStatusPendidikan AND a.RegisterDate BETWEEN '$dateStart' AND '$dateEnd' LEFT JOIN mspengalaman b ON a.IDPencaker = b.IDPencaker AND b.StatusPekerjaan = '0' ORDER BY a.NamaPencaker ASC");
 		return $query->result_array();
 	}
 
 	public function dataByTerdaftar($dateStart, $dateEnd){
-		$query = $this->db->query("SELECT a.NomerPenduduk, a.NamaPencaker, a.alamat, b.NamaPerusahaan, b.Jabatan, c.NamaStatusPendidikan, a.JenisKelamin FROM msstatuspendidikan c JOIN mspencaker a ON c.IDStatusPendidikan = a.IDStatusPendidikan AND a.RegisterDate BETWEEN '$dateStart' AND '$dateEnd' LEFT JOIN mspengalaman b ON a.IDPencaker = b.IDPencaker AND b.StatusPekerjaan = '0' ORDER BY a.NamaPencaker ASC");
+		$query = $this->db->query("SELECT a.NomerPenduduk, a.NamaPencaker, a.alamat, b.NamaPerusahaan, b.Jabatan, c.NamaStatusPendidikan, a.JenisKelamin FROM msstatuspendidikan c JOIN mspencaker a ON c.IDStatusPendidikan = a.IDStatusPendidikan AND a.RegisterDate BETWEEN '$dateStart' AND '$dateEnd' LEFT JOIN mspengalaman b ON a.IDPencaker = b.IDPencaker AND b.StatusPekerjaan = '1' ORDER BY a.NamaPencaker ASC");
 		return $query->result_array();
 	}
 
@@ -71,6 +71,5 @@ class MsLaporan extends CI_Model
 		return $query->result_array();
 	}
 	
-
 }
 ?>
