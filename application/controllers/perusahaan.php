@@ -831,7 +831,7 @@ else
             $mail->addAddress($emailUser);
             $mail->AddEmbeddedImage('assets/img-lowongan.png', 'lowongan');
             $mail->Subject          = 'Lowongan Pekerjaan Baru';
-            $mail_data['subject']   = 'Dear '.$nameUser;
+            $mail_data['subject']   = $nameUser;
             $mail_data['link'] = base_url('detailLowonganPekerjaan?lowongan='.$insert);
             $mail_data['perusahaan'] = $selectPerusahaan[0]['NamaPerusahaan'];
             $mail_data['posisi']  = $input['namalowongan'];

@@ -42,6 +42,7 @@
                 <h4 class="modal-title text-center">PROFIL PERUSAHAAN</h4>
             </div>
             <div class="modal-body">
+                <img id="imgperusahaan" class="img-responsive" style="margin: 0px auto;">
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <tbody>
@@ -168,6 +169,18 @@
                 var inst = $('#modal-detail');
                 inst.modal('show');
                 ClearAddInput();
+                $.ajax({
+                    url: "<?php echo site_url('assets/file/perusahaan');?>" + "/" + getdata.IDPerusahaan + ".jpg",
+                    type:'HEAD',
+                    error: function()
+                    {
+                        //file does not exist
+                    },
+                    success: function()
+                    {
+                        $("#imgperusahaan").attr("src", "<?php echo site_url('assets/file/perusahaan/');?>" + "/" + getdata.IDPerusahaan + ".jpg");
+                    }
+                });
                 $("#namaperusahaan").html(getdata.NamaPerusahaan);
                 $('#bidangperusahaan').html(getdata.NamaBidangPerusahaan);
                 $('#email').html(getdata.Email);
@@ -225,6 +238,7 @@
 
     function ClearAddInput()
     {
+        $('#imgperusahaan').attr("src", "");
         $('#namaperusahaan').html("");
         $('#bidangperusahaan').html("");
         $('#email').html("");

@@ -27,8 +27,7 @@
             <th>Nomor Induk Pencaker</th>
             <th>Nama Lengkap</th>
             <th>Pendidikan Terakhir</th>
-            <th>Tgl Berakhir</th>
-            <th width="70">Status</th>
+            <th>Tgl Registrasi</th>
             <th class="text-center">Detail</th>
           </tr>
         </thead>
@@ -347,11 +346,10 @@
       {"data": "NomorIndukPencaker"},
       {"data": "NamaPencaker"},
       {"data": "NamaStatusPendidikan"},
-      {"data": "Expired","sortable" : false,"searchable" : false},
-      {"data": "Status","sortable" : false,"searchable" : false},
+      {"data": "RegisterDate","sortable" : false,"searchable" : false},
       {"data": "view","sortable" : false,"searchable" : false}
       ],
-      order: [[1, 'desc']],
+      order: [[4, 'desc']],
       rowCallback: function(row, data, iDisplayIndex) {
         var info = this.fnPagingInfo();
         var page = info.iPage;
