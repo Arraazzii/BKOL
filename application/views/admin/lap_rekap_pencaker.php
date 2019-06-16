@@ -26,8 +26,8 @@
               <option value="all">--Silahkan Pilih--</option>
               <option value="0">Jumlah Pencaker</option>
               <option value="1">Lamaran Diproses</option>
-              <option value="2">Laporan Penempatan</option>
               <option value="3">Laporan Terdaftar</option>
+              <option value="2">Laporan Penempatan</option>
             </select>
           </div>
         </div>
@@ -38,8 +38,8 @@
               <select name="jenispencaker" id="jenispencaker" class="form-control input-sm">
                 <option value="all">--Silahkan Pilih--</option>
                 <!-- <option value="2">Diproses</option> -->
-                <option value="0">Ditempatkan</option>
-                <option value="1">Terdaftar</option>
+                <option value="0">Terdaftar</option>
+                <option value="1">Ditempatkan</option>
               </select>
             </div>
           </div>
@@ -400,23 +400,13 @@
           $('#dataTable').DataTable().destroy();
         }
         var count = 1;
-        var html = "<table class='table table-bordered table-hover table-striped' id='dataTable'><thead><tr><th class='text-center'>No</th><th>No KTP</th><th>Nama Pencaker</th><th>Alamat</th><th>Nama Perusahaan</th><th>Jabatan</th><th>Pendidikan</th><th>Jenis Kelamin</th></tr></thead><tbody>";
+        var html = "<table class='table table-bordered table-hover table-striped' id='dataTable'><thead><tr><th class='text-center'>No</th><th>No KTP</th><th>Nama Pencaker</th><th>Alamat</th><th>Pendidikan</th><th>Jenis Kelamin</th></tr></thead><tbody>";
         $.each(response.data, function(i, resultTerdaftar){
           html += "<tr>";
           html += "<td class='text-center'>"+ (count++) +"</td>";
           html += "<td>"+ resultTerdaftar.NomerPenduduk +"</td>";
           html += "<td>"+ resultTerdaftar.NamaPencaker +"</td>";
           html += "<td>"+ resultTerdaftar.alamat +"</td>";
-          if (resultTerdaftar.NamaPerusahaan == null) {
-            html += "<td>Perusahaan Tidak Diketahui</td>";
-          }else{
-            html += "<td>"+ resultTerdaftar.NamaPerusahaan +"</td>";
-          }
-          if (resultTerdaftar.Jabatan == null) {
-            html += "<td>Jabatan Tidak Diketahui</td>";
-          }else{
-            html += "<td>"+ resultTerdaftar.Jabatan +"</td>";
-          }
           html += "<td>"+ resultTerdaftar.NamaStatusPendidikan +"</td>";
           if (resultTerdaftar.JenisKelamin == '0') {
             html += "<td>Laki - laki</td>";

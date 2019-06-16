@@ -3851,10 +3851,8 @@ public function pencaker()
                     $excel->setActiveSheetIndex(0)->setCellValue('B5', "Nomor KTP");
                     $excel->setActiveSheetIndex(0)->setCellValue('C5', "Nama Pencaker");
                     $excel->setActiveSheetIndex(0)->setCellValue('D5', "Alamat");
-                    $excel->setActiveSheetIndex(0)->setCellValue('E5', "Nama Perusahaan");
-                    $excel->setActiveSheetIndex(0)->setCellValue('F5', "Jabatan");
-                    $excel->setActiveSheetIndex(0)->setCellValue('G5', "Pendidikan");
-                    $excel->setActiveSheetIndex(0)->setCellValue('H5', "Jenis Kelamin");
+                    $excel->setActiveSheetIndex(0)->setCellValue('E5', "Pendidikan");
+                    $excel->setActiveSheetIndex(0)->setCellValue('F5', "Jenis Kelamin");
 
                     $excel->getActiveSheet()->getStyle('A5')->applyFromArray($style_col);    
                     $excel->getActiveSheet()->getStyle('B5')->applyFromArray($style_col);    
@@ -3862,8 +3860,6 @@ public function pencaker()
                     $excel->getActiveSheet()->getStyle('D5')->applyFromArray($style_col);    
                     $excel->getActiveSheet()->getStyle('E5')->applyFromArray($style_col);    
                     $excel->getActiveSheet()->getStyle('F5')->applyFromArray($style_col);    
-                    $excel->getActiveSheet()->getStyle('G5')->applyFromArray($style_col);    
-                    $excel->getActiveSheet()->getStyle('H5')->applyFromArray($style_col);    
 
                     $no = 1;
                     $numrow = 6; 
@@ -3874,33 +3870,19 @@ public function pencaker()
                         }else{
                             $JKJK = 'Perempuan';
                         }
-                        if($val['NamaPerusahaan'] == null){
-                            $namper = 'Perusahaan Tidak Diketahui';
-                        }else{
-                            $namper = $val['NamaPerusahaan'];
-                        }
-                        if($val['Jabatan'] == null){
-                            $jabatanper = 'Jabatan Tidak Diketahui';
-                        }else{
-                            $jabatanper = $val['Jabatan'];
-                        }
                         $sheet = $excel->setActiveSheetIndex(0);  
                         $excel->setActiveSheetIndex(0)->setCellValue('A'.$numrow, $no);      
                         $excel->setActiveSheetIndex(0)->setCellValueExplicit('B'.$numrow, $val['NomerPenduduk'], PHPExcel_Cell_DataType::TYPE_STRING);
                         $excel->setActiveSheetIndex(0)->setCellValue('C'.$numrow, $val['NamaPencaker']);
                         $excel->setActiveSheetIndex(0)->setCellValue('D'.$numrow, $val['alamat']);
-                        $excel->setActiveSheetIndex(0)->setCellValue('E'.$numrow, $namper);
-                        $excel->setActiveSheetIndex(0)->setCellValue('F'.$numrow, $jabatanper);
-                        $excel->setActiveSheetIndex(0)->setCellValue('G'.$numrow, $val['NamaStatusPendidikan']);
-                        $excel->setActiveSheetIndex(0)->setCellValue('H'.$numrow, $JKJK);
+                        $excel->setActiveSheetIndex(0)->setCellValue('E'.$numrow, $val['NamaStatusPendidikan']);
+                        $excel->setActiveSheetIndex(0)->setCellValue('F'.$numrow, $JKJK);
                         $excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_num);
                         $excel->getActiveSheet()->getStyle('B'.$numrow)->applyFromArray($style_row);
                         $excel->getActiveSheet()->getStyle('C'.$numrow)->applyFromArray($style_row);
                         $excel->getActiveSheet()->getStyle('D'.$numrow)->applyFromArray($style_row);
                         $excel->getActiveSheet()->getStyle('E'.$numrow)->applyFromArray($style_row);
                         $excel->getActiveSheet()->getStyle('F'.$numrow)->applyFromArray($style_num);
-                        $excel->getActiveSheet()->getStyle('G'.$numrow)->applyFromArray($style_num);
-                        $excel->getActiveSheet()->getStyle('H'.$numrow)->applyFromArray($style_num);
                         $numrow++;
                         $no++; 
 
@@ -3910,9 +3892,7 @@ public function pencaker()
                     $excel->getActiveSheet()->getColumnDimension('C')->setWidth(35); 
                     $excel->getActiveSheet()->getColumnDimension('D')->setWidth(35);
                     $excel->getActiveSheet()->getColumnDimension('E')->setWidth(35);
-                    $excel->getActiveSheet()->getColumnDimension('F')->setWidth(20);
-                    $excel->getActiveSheet()->getColumnDimension('G')->setWidth(20);
-                    $excel->getActiveSheet()->getColumnDimension('H')->setWidth(15);
+                    $excel->getActiveSheet()->getColumnDimension('F')->setWidth(25);
                     $excel->getActiveSheet()->getDefaultRowDimension()->setRowHeight(-1);
                     $excel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
 

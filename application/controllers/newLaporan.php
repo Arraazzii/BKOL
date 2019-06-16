@@ -13,16 +13,30 @@ class newLaporan extends CI_Controller {
             $dateEnd = date("Y-m-d", strtotime($endDate));    
             $kategori = $this->input->post("kategori");
 
-        // $dateStart = "2019-01-01";      
-        // $dateEnd = "2019-07-01";  
-        // $kategori = "0";
-            $data = array(
-                "data" => $this->MsLaporan->dataByKecamatan($dateStart, $dateEnd, $kategori),
-            );
-        // echo "<pre>";
-        //     var_dump($data);
-        // echo "</pre>";
-            echo json_encode($data);
+            if ($kategori == '1') {
+                $kecamatan = $this->db->query("SELECT IDKecamatan, NamaKecamatan FROM mskecamatan ORDER BY NamaKecamatan ASC")->result_array();
+                foreach ($kecamatan as $keykecamatan) {
+                    $result = $this->MsLaporan->dataNullByKecamatan($dateStart, $dateEnd, $kategori, $keykecamatan['IDKecamatan']);
+                    if ($result == NULL) {
+                        $row = array(
+                            "NamaKecamatan" => $keykecamatan['NamaKecamatan'], 
+                            "total" => 0, 
+                            "laki" => 0, 
+                            "cewe" => 0, 
+                        );
+                    }else{
+                        $row = $result[0];
+                    }
+                    
+                    $data['data'][] = $row;    
+                }
+                echo json_encode($data);
+            }else{
+                $data = array(
+                    "data" => $this->MsLaporan->dataByKecamatan($dateStart, $dateEnd, $kategori),
+                );
+                echo json_encode($data);
+            }
         }else{
             echo json_encode('error');
         }
@@ -39,16 +53,20 @@ class newLaporan extends CI_Controller {
             $dateEnd = date("Y-m-d", strtotime($endDate));    
             $kategori = $this->input->post("kategori");
 
-        // $dateStart = "2019-01-01";      
-        // $dateEnd = "2019-07-01";  
-        // $kategori = "0";
-            $data = array(
-                "data" => $this->MsLaporan->dataByUmur($dateStart, $dateEnd, $kategori),
-            );
+            if ($kategori == '1') {
+                $data = array(
+                    "data" => $this->MsLaporan->dataNullByUmur($dateStart, $dateEnd, $kategori),
+                );
+                echo json_encode($data);
+            }else{
+                $data = array(
+                    "data" => $this->MsLaporan->dataByUmur($dateStart, $dateEnd, $kategori),
+                );
+                echo json_encode($data);
+            }
         // echo "<pre>";
         //     var_dump($data);
         // echo "</pre>";
-            echo json_encode($data);
         }else{
             echo json_encode('error');
         }
@@ -65,16 +83,30 @@ class newLaporan extends CI_Controller {
             $dateEnd = date("Y-m-d", strtotime($endDate));    
             $kategori = $this->input->post("kategori");
 
-        // $dateStart = "2019-01-01";      
-        // $dateEnd = "2019-07-01";  
-        // $kategori = "0";
-            $data = array(
-                "data" => $this->MsLaporan->dataByPendidikan($dateStart, $dateEnd, $kategori),
-            );
-        // echo "<pre>";
-        //     var_dump($data);
-        // echo "</pre>";
-            echo json_encode($data);
+            if ($kategori == '1') {
+                $pendidikan = $this->db->query("SELECT IDStatusPendidikan, NamaStatusPendidikan FROM msstatuspendidikan ORDER BY NamaStatusPendidikan ASC")->result_array();
+                foreach ($pendidikan as $keypendidikan) {
+                    $result = $this->MsLaporan->dataNullByPendidikan($dateStart, $dateEnd, $kategori, $keypendidikan['IDStatusPendidikan']);
+                    if ($result == NULL) {
+                        $row = array(
+                            "NamaStatusPendidikan" => $keypendidikan['NamaStatusPendidikan'], 
+                            "total" => 0, 
+                            "laki" => 0, 
+                            "cewe" => 0, 
+                        );
+                    }else{
+                        $row = $result[0];
+                    }
+                    
+                    $data['data'][] = $row;    
+                }
+                echo json_encode($data);
+            }else{
+                $data = array(
+                    "data" => $this->MsLaporan->dataByPendidikan($dateStart, $dateEnd, $kategori),
+                );
+                echo json_encode($data);
+            }
         }else{
             echo json_encode('error');
         }
@@ -91,16 +123,30 @@ class newLaporan extends CI_Controller {
             $dateEnd = date("Y-m-d", strtotime($endDate));    
             $kategori = $this->input->post("kategori");
 
-        // $dateStart = "2019-01-01";      
-        // $dateEnd = "2019-07-01";  
-        // $kategori = "0";
-            $data = array(
-                "data" => $this->MsLaporan->dataByPosisiJabatan($dateStart, $dateEnd, $kategori),
-            );
-        // echo "<pre>";
-        //     var_dump($data);
-        // echo "</pre>";
-            echo json_encode($data);
+            if ($kategori == '1') {
+                $jabatan = $this->db->query("SELECT IDPosisiJabatan, NamaPosisiJabatan FROM msposisijabatan ORDER BY NamaPosisiJabatan ASC")->result_array();
+                foreach ($jabatan as $keyjabatan) {
+                    $result = $this->MsLaporan->dataNullByPosisiJabatan($dateStart, $dateEnd, $kategori, $keyjabatan['IDPosisiJabatan']);
+                    if ($result == NULL) {
+                        $row = array(
+                            "NamaPosisiJabatan" => $keyjabatan['NamaPosisiJabatan'], 
+                            "total" => 0, 
+                            "laki" => 0, 
+                            "cewe" => 0, 
+                        );
+                    }else{
+                        $row = $result[0];
+                    }
+                    
+                    $data['data'][] = $row;    
+                }
+                echo json_encode($data);
+            }else{
+                $data = array(
+                    "data" => $this->MsLaporan->dataByPosisiJabatan($dateStart, $dateEnd, $kategori),
+                );
+                echo json_encode($data);
+            }
         }else{
             echo json_encode('error');
         }
