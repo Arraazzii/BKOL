@@ -255,7 +255,7 @@ class admin extends CI_Controller {
         {
             redirect();
         }
-    }
+    } 
 
     public function newpencaker()
     {
@@ -284,8 +284,17 @@ class admin extends CI_Controller {
                 $getmspencakerdata = $this->MsPencaker->GetMsPencakerByIDUser($iduser);
                 if ($getmsuserdata != NULL)
                 {
+                    $getdatasUser = $this->db->query("SELECT IDStatusPendidikan, IDPosisiJabatan FROM mspencaker WHERE IDUser='$iduser'")->result_array();
+                   
+                    $ab = $getdatasUser[0]['IDStatusPendidikan'];
+                    $ac = $getdatasUser[0]['IDPosisiJabatan'];
+                    date_default_timezone_get("Asia/Jakarta");
+                    $dateNow = date("Y-m-d");
+                    $lowonganhasil = $this->db->query("SELECT a.NamaLowongan, a.GajiPerbulan, a.IDLowongan, a.Penempatan, a.SyaratKhusus, b.NamaPerusahaan, b.IDPerusahaan, a.TglBerakhir FROM mslowongan as a JOIN msperusahaan as b ON b.IDPerusahaan = a.IDPerusahaan WHERE a.IDStatusPendidikan='$ab' AND a.IDPosisiJabatan='$ac' AND a.TglBerakhir >= '$dateNow' ORDER BY a.TglBerakhir DESC LIMIT 7")->result_array();
                     // gambar
+                    if (file_exists(BASEPATH .'assets/file/temp/'.$idpencakertemp.'.jpg')){
                     rename(realpath('assets/file/temp/'.$idpencakertemp.'.jpg'), realpath('assets/file/pencaker').'/'.$getmspencakerdata->IDPencaker.'.jpg');
+                }
                     // $this->load->model('EmailModel');
                     $this->load->library('PHPMailer');
                     $this->load->library('SMTP');
@@ -299,7 +308,7 @@ class admin extends CI_Controller {
                     $mail->SMTPKeepAlive = true;
                     $mail->Charset  = 'UTF-8';
                     $mail->IsHTML(true);
-                        // $mail->SMTPDebug = 2;
+                    // $mail->SMTPDebug = 1;
                     $mail->SMTPAuth = true;
                     $mail->Host = 'smtp.gmail.com'; 
                     $mail->Port = 587;
@@ -309,19 +318,18 @@ class admin extends CI_Controller {
                     $mail->Mailer   = 'smtp';
                     $mail->WordWrap = 100;       
                     
-                    
                     $mail->setFrom($email_admin);
                     $mail->FromName = $nama_admin;
                     $mail->addAddress($getmspencakerdata->Email);
+                    $mail->AddEmbeddedImage('assets/img-acc-pencaker.png', 'acc');
                     $mail->Subject          = 'Akun Verifikasi '.$getmspencakerdata->NamaPencaker;
                     $mail_data['subject']   = $getmspencakerdata->NamaPencaker;
                     $mail_data['induk']     = $getmspencakerdata->NomorIndukPencaker;
                     $mail_data['username']  = $getmsuserdata->Username;
                     $mail_data['password']  = $getmsuserdata->Password;
-                    
+                    $mail_data['lowongan']  = $lowonganhasil;
                     $message = $this->load->view('email_temp', $mail_data, TRUE);
                     $mail->Body = $message;
-                    
                     if ($mail->send()) {
                        $this->session->set_flashdata('notifikasi', '<script>notifikasi("Pencaker Berhasil Ditambahkan", "success", "fa fa-check")</script>');
                    } else {

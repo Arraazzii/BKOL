@@ -33,11 +33,11 @@ $input = $this->session->flashdata('input');
                 <!-- /.col -->
                 <br>
                 <div class="row">
-                    <div class=" col-lg-6">
-                     <button type="button" onclick="window.location.href='<?php echo site_url() ?>'" class="btn btn-danger col-sm-12">Batal</button>
+                    <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                     <button type="button" onclick="window.location.href='<?php echo site_url() ?>'" class="btn btn-danger col-sm-12 col-xs-12">Batal</button>
                  </div>
-                 <div class=" col-lg-6">
-                    <button type="submit" class="btn btn-primary col-sm-12">Sign In</button>
+                 <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <button type="submit" class="btn btn-primary col-sm-12 col-xs-12">Sign In</button>
                 </div>
             </div>
             <br>

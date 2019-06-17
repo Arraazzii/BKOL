@@ -343,13 +343,11 @@
                 <p>
                     With best regards,<br>
                     BKOL DEPOK<br>
-                    +0 (000) 00-00-00, John Doe<br>
                 </p>
-                
             </td>
             <td class="subscription" width="300">
                 <p>
-                    Support: <a class="strong" href="mailto:#" target="_blank">BKOL Dinas Tenaga Kerja Kota Depok</a>
+                    Support: <a class="strong" href="mailto:disnaker.depok@gmail.com" target="_blank">Dinas Tenaga Kerja Kota Depok</a>
                 </p>
             </td>
         </tr>

@@ -278,6 +278,13 @@
             padding-top: 0 !important;
         }
     }
+    hr{
+        border: 1px solid #ccc;
+        width: 94%;
+    }
+    ul, li{
+        list-style: none;
+    }
 </style>
 </head>
 <body>
@@ -308,52 +315,78 @@
                     <tbody>
                         <tr>
                             <td class="padded">
-                              <h1>Verifikasi Akun BKOL</h1>
-                              <p>Selamat, akun <strong><?php echo $subject;?></strong> berhasil terverifikasi.</p>
-                              <p>Sekarang akun anda sudah aktif untuk digunakan diwebsite BKOL. Kami mengirim password login anda melalui email ini. Silahkan login dengan password tersebut</p>
-                              
-                              <p style="text-align:center;color: #333;" class="strong">
-                                Nomor Induk Anda : <u><b><?php echo $induk;?></b></u><br>
-                                Username Anda : <u><b><?php echo $username;?></b></u><br>
-                                Password Anda : <u><b><?php echo $password;?></b></u>
-                            </p>
-                            <center><a href="http://bkol.depok.go.id" class="btn" target="_blank" style="text-align:center;color: #fff;">Login Disini</a></center>
-                            <br>
-                            <p class="caption">*Jagalah kerahasiaan password anda</p>
+                                <img src="cid:acc" style="width: 100%;display: block;position: relative;margin: 0px auto;">
+                                <h1>Verifikasi Akun BKOL</h1>
+                                <p>Selamat, akun <strong><?php echo $subject;?></strong> berhasil terverifikasi.</p>
+                                <p>Sekarang akun anda sudah aktif untuk digunakan diwebsite BKOL. Kami mengirim password login anda melalui email ini. Silahkan login dengan password tersebut</p>
+
+                                <p style="text-align:center;color: #333;" class="strong">
+                                    Nomor Induk Anda : <u><b><?php echo $induk;?></b></u><br>
+                                    Username Anda : <u><b><?php echo $username;?></b></u><br>
+                                    Password Anda : <u><b><?php echo $password;?></b></u>
+                                </p>
+                                <center><a href="http://bkol.depok.go.id" class="btn" target="_blank" style="text-align:center;color: #fff;">Login Disini</a></center>
+                                <br>
+                                <p class="caption">*Jagalah kerahasiaan password anda</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="column-bottom">&nbsp;</div>
+                
+                <hr>
+                <div class="spacer">&nbsp;</div>
+                <table class="content" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td class="padded">
+                            <h1 style="text-align: center;">Lowongan Kerja Cocok Untuk Anda</h1>
+                            <?php if (!empty($lowongan)): ?>
+                                <?php foreach ($lowongan as $datalowongan) { ?>
+                                <div class="lowongan">
+                                    <p><strong><?php echo $datalowongan['NamaLowongan']; ?></strong></p>
+                                    <ul>
+                                        <li><strong>Perusahaan : <?php echo $datalowongan['NamaPerusahaan']; ?></li>
+                                            <li><strong>Lokasi : <?php echo $datalowongan['Penempatan']; ?></li>
+                                                <li><strong>Gaji : Rp <?php echo number_format($datalowongan['GajiPerbulan'],2,",","."); ?></li>
+                                                    <li><pre><?php echo $datalowongan['SyaratKhusus']; ?></pre> </li>
+                                                </ul>
+                                                <p>Tanggal Berakhir : <?php echo $datalowongan['TglBerakhir']; ?></p>
+                                                <a href="http://bkol.depok.go.id/detailLowonganPekerjaan?lowongan<?php echo $datalowongan['IDLowongan']?>" class="btn" target="_blank" style="text-align:center;color: #fff;width: 96%;padding: 2px 10px;margin-bottom: 10px;">Lihat Lowongan</a>
+                                            </div>
+                                            <?php } ?>
+                                        <?php endif ?>
+                                        <a href="http://bkol.depok.go.id/datalowongan" target="_blank" style="text-align: center; float: none;display: block;margin-top: 20px;">Lowongan Lainnya</a>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="spacer">&nbsp;</div>
+                            
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <div class="column-bottom">&nbsp;</div>
-        </td>
-    </tr>
-</tbody>
-</table>
+            <div class="spacer">&nbsp;</div>
 
-<div class="spacer">&nbsp;</div>
-
-<table class="footer center" width="602" border="0" cellspacing="0" cellpadding="0">
-    <tbody>
-        <tr>
-            <td class="border" colspan="2">&nbsp;</td>
-        </tr>
-        <tr>
-            <td class="signature" width="300">
-                <p>
-                    With best regards,<br>
-                    BKOL DEPOK<br>
-                    +0 (000) 00-00-00, John Doe<br>
-                </p>
-                
-            </td>
-            <td class="subscription" width="300">
-                <p>
-                    Support: <a class="strong" href="mailto:#" target="_blank">BKOL Dinas Tenaga Kerja Kota Depok</a>
-                </p>
-            </td>
-        </tr>
-    </tbody>
-</table>
-</center>
-</body>
-</html>
+            <table class="footer center" width="602" border="0" cellspacing="0" cellpadding="0">
+                <tbody>
+                    <tr>
+                        <td class="border" colspan="2">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td class="signature" width="300">
+                            <p>
+                                With best regards,<br>
+                                BKOL DEPOK<br><br>
+                            </p>
+                        </td>
+                        <td class="subscription" width="300">
+                            <p>
+                                Support: <a class="strong" href="mailto:disnaker.depok@gmail.com" target="_blank">Dinas Tenaga Kerja Kota Depok</a>
+                            </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </center>
+    </body>
+    </html>
