@@ -94,7 +94,7 @@
     <ul class="nav nav-tabs">
       <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true">Loker Depok</a></li>
       <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false">Loker Luar Depok</a></li>
-      <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="false">Kegiatan</a></li>
+      <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="false">Informasi</a></li>
     </ul>
     <div class="tab-content">
       <div class="tab-pane active" id="tab_1">

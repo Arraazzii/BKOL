@@ -86,9 +86,8 @@
           </div>
         </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success" id="send" onclick="SendLowongan()"><i class="fa fa-send"></i> Kirim Lowongan</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+      <div class="modal-footer" id="footermodal">
+        
       </div>
     </div>
   </div>
@@ -285,6 +284,7 @@
     $.get('<?php echo site_url('root/getlowongan') ?>/'+IDLowongan, function(getdata) {
       if (getdata.exists) 
       {
+        $("#footermodal").find("#buttonSend").remove();
         $("#modal-lowongan").modal('show');
         $("#idlowongan").val(getdata.IDLowongan);
         $("#namalowongan").html(getdata.NamaLowongan);
@@ -304,6 +304,9 @@
         } else {
           $("#send").show();
         }
+        var idlow = "SendLowongan('" + getdata.IDLowongan + "')" ;
+        var html = '<div id="buttonSend"><button type="button" class="btn btn-success" id="send" onclick="'+ idlow +'"><i class="fa fa-send"></i> Kirim Lowongan</button> <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button></div>';
+        $("#footermodal").append(html);
         
       }
       else
@@ -311,6 +314,32 @@
         notifikasi('Lowongan tidak ditemukan', 'danger', 'fa fa-exclamation-triagle');
       }
     }, 'json');
+  }
+
+    function SendLowongan(idlowongan) {
+    console.log(idlowongan);
+    $('#modal-lowongan').modal('hide');
+    swal({
+      title: '<strong>Anda Harus Login!</strong>',
+      type: 'info',
+      html:
+      'Jika anda sudah punya akun, silahkan login, jika belum anda bisa memilih menu pendaftaran!',
+      showCloseButton: true,
+      showCancelButton: true,
+      focusConfirm: false,
+      confirmButtonText:
+      'Login',
+      confirmButtonAriaLabel: 'Thumbs up, great!',
+      cancelButtonText:
+      'Daftar',
+      cancelButtonAriaLabel: 'Thumbs down',
+    });
+    $('.swal2-confirm').click(function(){
+      window.location.href = "<?php echo site_url();?>login?lowongan=" + idlowongan;
+    });
+    $('.swal2-cancel').click(function(){
+      window.location.href = "<?php echo site_url();?>register/2";
+    });
   }
 
   function viewLowonganEx(IDLowongan) {
@@ -343,31 +372,6 @@
     value = value.split(/(?=(?:...)*$)/);
     value = value.join('.');
     return value;
-  }
-
-  function SendLowongan() {
-    $('#modal-lowongan').modal('hide');
-    swal({
-      title: '<strong>Anda Harus Login!</strong>',
-      type: 'info',
-      html:
-      'Jika anda sudah punya akun, silahkan login, jika belum anda bisa memilih menu pendaftaran!',
-      showCloseButton: true,
-      showCancelButton: true,
-      focusConfirm: false,
-      confirmButtonText:
-      'Login',
-      confirmButtonAriaLabel: 'Thumbs up, great!',
-      cancelButtonText:
-      'Daftar',
-      cancelButtonAriaLabel: 'Thumbs down',
-    });
-    $('.swal2-confirm').click(function(){
-      window.location.href = "<?php echo site_url();?>login";
-    });
-    $('.swal2-cancel').click(function(){
-      window.location.href = "<?php echo site_url();?>register/2";
-    });
   }
 </script>
 <script>

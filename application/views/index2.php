@@ -147,31 +147,61 @@
       </div>
 
       <div class="footer-right">
-
-        <div class="footer-icons">
-
-          <a href="#"><i class="fa fa-facebook"></i></a>
-          <a href="#"><i class="fa fa-instagram"></i></a>
-          <a href="#"><i class="fa fa-twitter"></i></a>
-
+        <h4 style="color:#fff;">Contact Us</h4>
+        <div class="form-group">
+          <label style="color:#fff;">Email</label>
+          <input type="email" name="emailKirim" class="form-control" placeholder="example@email.com" required="">
         </div>
+        <div class="form-group">
+          <label style="color:#fff;">Isi Saran</label>
+          <textarea class="form-control" name="isiKirim" required="">Masukan Kritik dan Saran Disini</textarea>
+        </div>
+        <button type="button" class="btn btn-success btn-sm pull-right" id="buttonContactKirim">Kirim <i class="fa fa-telegram"></i></button>
+      <!-- <div class="footer-icons">
 
-      </div>
+        <a href="#"><i class="fa fa-facebook"></i></a>
+        <a href="#"><i class="fa fa-instagram"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
 
-    </footer>
-  </div>
-  <!-- ./wrapper -->
+      </div> -->
 
+    </div>
 
-  <!-- Bootstrap 3.3.7 -->
-  <script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>
-  <!-- SlimScroll -->
-  <script src="<?php echo base_url(); ?>assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-  <!-- FastClick -->
-  <script src="<?php echo base_url(); ?>assets/plugins/fastclick/lib/fastclick.js"></script>
-  <!-- bootstrap datepicker -->
-  <script src="<?php echo base_url(); ?>assets/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-  <!-- AdminLTE App -->
-  <script src="<?php echo base_url(); ?>assets/dist/js/adminlte.min.js"></script>
+  </footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- Bootstrap 3.3.7 -->
+<script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="<?php echo base_url(); ?>assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="<?php echo base_url(); ?>assets/plugins/fastclick/lib/fastclick.js"></script>
+<!-- bootstrap datepicker -->
+<script src="<?php echo base_url(); ?>assets/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<!-- AdminLTE App -->
+<script src="<?php echo base_url(); ?>assets/dist/js/adminlte.min.js"></script>
+<script src="<?php echo base_url() ?>assets/plugins/sweetalert/sweetalert2.all.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#buttonContactKirim").click(function(){
+      var emailKirim = $("input[name='emailKirim']").val();
+      var isiKirim = $("textarea[name='isiKirim']").val();
+      if (emailKirim == '' || isiKirim == '') {
+      }else{
+        $.ajax({
+          type: "POST",
+          url: "<?php echo base_url();?>root/sendContactUs",
+          data: {emailKirim:emailKirim, isiKirim:isiKirim},
+          success: function(msg) {
+            swal ( "Success" ,  "Terima kasih atas saran dan masukan yang anda berikan" ,  "success" );
+            $("input[name='emailKirim']").attr("disabled", true);
+            $("textarea[name='isiKirim']").attr("disabled", true);
+          }
+        });
+      }
+    });
+  });
+</script>
 </body>
 </html>

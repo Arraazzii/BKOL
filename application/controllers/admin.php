@@ -24,6 +24,30 @@ class admin extends CI_Controller {
         {
             $this->load->model('MsUser');
             $this->MsUser->Logout($iduser);
+            $this->load->model('MsPencakerTemp');
+            date_default_timezone_get("Asia/Jakarta");
+            $time = date("Y-m-d");
+            $userlist = $this->db->query("SELECT * FROM mspencakertemp ORDER BY IDPencakerTemp DESC")->result_array();
+            foreach ($userlist as $keylist) {
+                $date = date_create($keylist['RegisterDate']);
+                $dateDB = date_format($date, "Y-m-d");
+                $diff = abs(strtotime($time) - strtotime($dateDB));
+                $total = floor(($diff)/ (60*60*24));
+                if ($total >= 7) {
+                    var_dump($total);
+                    $path = 'assets/file/temp'.'/'.$keylist['IDPencakerTemp'].'.jpg';
+
+                    $this->db->delete('mspencakertemp',array('IDPencakerTemp'=>$keylist['IDPencakerTemp']));
+                    $this->db->delete('mspengalaman',array('IDPencakerTemp'=>$keylist['IDPencakerTemp']));
+
+                    if(file_exists($path)){
+                        unlink($path);
+                        unlink('assets/file/temp/'.$keylist['IDPencakerTemp'].'.jpg');
+                    }
+                    $this->MsPencakerTemp->DeleteByIDPencakerTemp($keylist['IDPencakerTemp']);
+
+                }
+            }
         }
         $this->session->sess_destroy();
         $this->clearsession();
@@ -51,6 +75,31 @@ class admin extends CI_Controller {
                 $getiduser = $this->MsUser->Login("000000",$input['username'],$input['password'],$this->session->userdata('session_id'));
                 if ($getiduser != NULL)
                 {
+                    $this->load->model('MsPencakerTemp');
+                    date_default_timezone_get("Asia/Jakarta");
+                    $time = date("Y-m-d");
+                    $userlist = $this->db->query("SELECT * FROM mspencakertemp ORDER BY IDPencakerTemp DESC")->result_array();
+                    foreach ($userlist as $keylist) {
+                        $date = date_create($keylist['RegisterDate']);
+                        $dateDB = date_format($date, "Y-m-d");
+                        $diff = abs(strtotime($time) - strtotime($dateDB));
+                        $total = floor(($diff)/ (60*60*24));
+                        if ($total >= 7) {
+                            var_dump($total);
+                            $path = 'assets/file/temp'.'/'.$keylist['IDPencakerTemp'].'.jpg';
+
+                            $this->db->delete('mspencakertemp',array('IDPencakerTemp'=>$keylist['IDPencakerTemp']));
+                            $this->db->delete('mspengalaman',array('IDPencakerTemp'=>$keylist['IDPencakerTemp']));
+
+                            if(file_exists($path)){
+                                unlink($path);
+                                unlink('assets/file/temp/'.$keylist['IDPencakerTemp'].'.jpg');
+                            }
+                            $this->MsPencakerTemp->DeleteByIDPencakerTemp($keylist['IDPencakerTemp']);
+
+                        }
+                    }
+                    
                     $getdata = $this->MsUser->GetMsUserByIDUser($getiduser);
                     $this->session->set_userdata("iduser",$getdata->IDUser);
                     $this->session->set_userdata("username",$getdata->Username);
@@ -285,7 +334,7 @@ class admin extends CI_Controller {
                 if ($getmsuserdata != NULL)
                 {
                     $getdatasUser = $this->db->query("SELECT IDStatusPendidikan, IDPosisiJabatan FROM mspencaker WHERE IDUser='$iduser'")->result_array();
-                   
+
                     $ab = $getdatasUser[0]['IDStatusPendidikan'];
                     $ac = $getdatasUser[0]['IDPosisiJabatan'];
                     date_default_timezone_get("Asia/Jakarta");
@@ -293,8 +342,8 @@ class admin extends CI_Controller {
                     $lowonganhasil = $this->db->query("SELECT a.NamaLowongan, a.GajiPerbulan, a.IDLowongan, a.Penempatan, a.SyaratKhusus, b.NamaPerusahaan, b.IDPerusahaan, a.TglBerakhir FROM mslowongan as a JOIN msperusahaan as b ON b.IDPerusahaan = a.IDPerusahaan WHERE a.IDStatusPendidikan='$ab' AND a.IDPosisiJabatan='$ac' AND a.TglBerakhir >= '$dateNow' ORDER BY a.TglBerakhir DESC LIMIT 7")->result_array();
                     // gambar
                     if (file_exists(BASEPATH .'assets/file/temp/'.$idpencakertemp.'.jpg')){
-                    rename(realpath('assets/file/temp/'.$idpencakertemp.'.jpg'), realpath('assets/file/pencaker').'/'.$getmspencakerdata->IDPencaker.'.jpg');
-                }
+                        rename(realpath('assets/file/temp/'.$idpencakertemp.'.jpg'), realpath('assets/file/pencaker').'/'.$getmspencakerdata->IDPencaker.'.jpg');
+                    }
                     // $this->load->model('EmailModel');
                     $this->load->library('PHPMailer');
                     $this->load->library('SMTP');
@@ -4136,6 +4185,144 @@ public function report_lama()
     {
         redirect();
     }
+}
+
+public function cmsContactUs()
+{
+    if ($this->isadmin())
+    {
+        $this->load->helper('text');
+        $this->load->model("MsCMS");
+        $data = array(
+            'cms' => $this->MsCMS->dataContactUs(),
+        );
+        $this->template->load('backend', 'admin/cmsContactUs', $data);
+    }
+    else
+    {
+        redirect();
+    }
+}
+
+public function cmsSlider()
+{
+    if ($this->isadmin())
+    {
+        $this->load->model("MsCMS");
+        $data = array(
+            'cms' => $this->MsCMS->dataSlider(),
+        );
+        $this->template->load('backend', 'admin/cmsSlider', $data);
+    }
+    else
+    {
+        redirect();
+    }
+}
+
+public function cmsSliderInsert()
+{
+    if ($this->isadmin())
+    {
+        // $cek = $this->db->query("SELECT COUNT(idslider) as id FROM msslider WHERE status='1'")->result_array();
+        // if ($cek[0]['id'] >= 3) {
+        //     echo "kebanyakan";
+        // }else{
+      date_default_timezone_get("Asia/Jakarta");
+      $gambarInsert = $this->input->post("gambarInsert");
+      $statusInsert = $this->input->post("statusInsert");
+      $config['upload_path']          = './assets/slider/';
+      $config['allowed_types']        = 'jpg|png';
+      $config['max_size']             = 2097152;
+      $this->load->library('upload', $config);
+
+      if ( ! $this->upload->do_upload('gambarInsert')){
+        echo "error";
+    }else{
+      $data = array(
+        'gambar' => $this->upload->data('file_name')['file_name'],
+        'status' => $statusInsert,
+    );
+      $this->db->insert("msslider", $data);
+      echo "success";
+  }
+  // }
+}   
+else
+{
+    redirect();
+}
+}
+
+public function cmsSliderEdit()
+{
+    if ($this->isadmin())
+    {
+        // $cek = $this->db->query("SELECT COUNT(idslider) as id FROM msslider WHERE status='1'")->result_array();
+        // if ($cek[0]['id'] >= 3) {
+        //     echo "kebanyakan";
+        // }else{          
+      date_default_timezone_get("Asia/Jakarta");
+      $statusEdit = $this->input->post("statusEdit");
+      $idEdit = $this->input->post("idedit");
+      $this->db->query("UPDATE msslider SET status='$statusEdit' WHERE idslider='$idEdit'");
+      echo "success";
+  }
+// }
+  else
+  {
+    redirect();
+}
+}
+
+public function cmsSliderEditGambar()
+{
+    if ($this->isadmin())
+    {
+        // $cek = $this->db->query("SELECT COUNT(idslider) as id FROM msslider WHERE status='1'")->result_array();
+        // if ($cek[0]['id'] >= 3) {
+        //     echo "kebanyakan";
+        // }else{          
+      date_default_timezone_get("Asia/Jakarta");
+      $statusEdit = $this->input->post("statusEdit");
+      $idEdit = $this->input->post("idedit");
+      $gambarEdit = $this->input->post("gambarEdit");
+      $config['upload_path']          = './assets/slider/';
+      $config['allowed_types']        = 'jpg|png';
+      $config['max_size']             = 2097152;
+      $this->load->library('upload', $config);
+
+      if (!$this->upload->do_upload('gambarEdit')){
+        var_dump($this->upload->display_errors());
+        echo "error";
+    }else{
+
+      $postgambar = $this->upload->data('file_name')['file_name'];
+      $query = $this->db->query("UPDATE msslider SET status='$statusEdit', gambar='$postgambar' WHERE idslider='$idEdit'");
+     // var_dump($query);
+      echo "success";
+  }
+// }
+}   
+else
+{
+    redirect();
+}
+}
+public function cmsSliderDelete()
+{
+    if ($this->isadmin())
+    {
+      $id = $this->input->post("id");
+      $query = $this->db->query("DELETE FROM msslider WHERE idslider='$id'");
+      if ($query) {
+          echo "success";
+      }
+  }
+  else
+  {
+    redirect();
+}
 }
 
 

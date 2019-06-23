@@ -77,7 +77,12 @@ public function dologin()
                 $todate = explode("-", $getmspencaker->ExpiredDate);
                 $this->session->set_userdata("aktif", (date('Ymd') >= $fromdate[0].$fromdate[1].$fromdate[2] && date('Ymd') <= $todate[0].$todate[1].$todate[2]));
             }
-            redirect("pencaker/lowongan", "refresh");
+            if (!empty($this->input->get("lowongan"))) {
+                $lowongan = $this->input->get("lowongan");
+                redirect("detailLowonganPekerjaan?lowongan=$lowongan", "refresh");
+            }else{
+                redirect("pencaker/lowongan", "refresh");
+            }
         }
         else
     {
@@ -96,7 +101,8 @@ public function dologin()
                 $this->load->model('MsPencakerTemp');
                 $cek = $this->MsPencakerTemp->cek_user($input['username'], $input['password']);
                 if($cek != NULL)
-                    $pesan = 'Mohon untuk melakukan konfirmasi <br />pendaftaran pencaker baru <br />ke nomer WA : 08978186588 <br />';
+                    // $pesan = 'Mohon untuk melakukan konfirmasi <br />pendaftaran pencaker baru <br />ke nomer WA : 08978186588 <br />';
+                    redirect("waitlist");
                 else
                     $pesan = "Nama Pengguna atau Kata Sandi salah";
             }

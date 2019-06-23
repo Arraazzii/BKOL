@@ -266,9 +266,9 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="keterampilan" class="control-label col-md-3">Keterampilan</label>
+                  <label for="keterampilan" class="control-label col-md-3">*Keterampilan</label>
                   <div class="col-md-5">
-                    <input id="keterampilan" name="keterampilan" class="form-control input-sm" type="text"  size="20">
+                    <input id="keterampilan" name="keterampilan" class="form-control input-sm" type="text"  size="20" required="">
                   </div>
                 </div>
                 <div class="form-group">
@@ -293,9 +293,9 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="nilai" class="control-label col-md-3">Nilai</label>
+                      <label for="nilai" class="control-label col-md-3">*Nilai</label>
                       <div class="col-md-5">
-                        <input id="nilai" name="nilai" class="form-control input-sm" type="text" size="20">
+                        <input id="nilai" name="nilai" class="form-control input-sm" type="number" size="20" required="">
                       </div>
                     </div>
                     <div class="form-group">

@@ -4,7 +4,7 @@ class root extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
-	 *
+	 * 
 	 * Maps to the following URL
 	 * 		http://example.com/index.php/welcome
 	 *	- or -  
@@ -63,6 +63,7 @@ class root extends CI_Controller {
         else 
         {
             $this->load->model('MsLowongan');
+            $this->load->model("MsCMS");
             $getmslowongan = $this->MsLowongan->GetGridMsLowongan(6,NULL);
             $data['MsLowonganData'] = $getmslowongan->result();
             $data['CountMsLowonganData'] = $this->MsLowongan->GetCountMsLowongan()->total_rows;
@@ -76,6 +77,7 @@ class root extends CI_Controller {
             $getmsevent = $this->MsEvent->GetGridMsEvent(5,NULL);
             $data['MsEventData'] = $getmsevent->result();
             $data['CountMsEventData'] = $this->MsEvent->GetCountMsEvent()->total_rows;
+            $data['sliderActive'] = $this->MsCMS->dataSliderActive();
             $this->template->load('frontend', 'master/home', $data);
         }
     }
@@ -132,7 +134,7 @@ class root extends CI_Controller {
                 }
                 else
                 {
-                    
+
                 }
             }
             else
@@ -194,7 +196,7 @@ class root extends CI_Controller {
                             }
                             else
                             {
-                                
+
                             }
                         }
                         else
@@ -495,7 +497,7 @@ else if ($getid == 2)
             array(
                 'field' => 'keterampilan',
                 'label' => 'Keterampilan',
-                'rules' => 'trim|required'
+                'rules' => 'required'
             ),
             array(
                 'field' => 'nemipk',
@@ -505,7 +507,7 @@ else if ($getid == 2)
             array(
                 'field' => 'nilai',
                 'label' => 'Nilai',
-                'rules' => 'required|numeric'
+                'rules' => 'required'
             ),
             array(
                 'field' => 'tahunlulus',
@@ -571,7 +573,7 @@ $getidpencakertemp = $this->MsPencakerTemp->Insert($input,$registerdate,$jumlah,
 
 if ($getidpencakertemp != NULL)
 {
-    
+
     $this->load->model('EmailModel', 'mail');
 
     $send_to = $input['email'];
@@ -1039,6 +1041,32 @@ public function dataperusahaan()
                     $this->pagination->initialize($config);
                     $data['total_rows'] = $this->MsLowongan->GetCountMsLowongan()->total_rows;
                     echo json_encode($data);
+                }
+                public function waitlist()
+                {
+                   $iduser = $this->session->userdata('iduser');
+                    if ($iduser == '')
+                    {
+                        $this->load->view('waitlist');
+                    }
+                    else
+                    {
+                        redirect();
+                    }
+                }
+
+                public function sendContactUs()
+                {
+                   date_default_timezone_get("Asia/Jakarta");
+                   $emailKirim = $this->input->post("emailKirim");
+                   $isiKirim = $this->input->post("isiKirim");
+                   $data = array(
+                    'email' => $emailKirim,
+                    'isi' => $isiKirim
+                   );
+                   $this->db->insert("mskritiksaran", $data);
+                   echo json_encode("success");
+                    
                 }
                 
             }

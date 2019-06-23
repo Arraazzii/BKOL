@@ -66,6 +66,7 @@ $route['GetKelurahan(.*)'] = "root/GetKelurahan$1";
 $route['GetKeahlian(.*)'] = "root/GetKeahlian$1";
 
 $route['frontend'] = "root/frontend";
+$route['waitlist'] = "root/waitlist";
 
 //Admin
 $route['admin/newperusahaan(.*)'] = "admin/newperusahaan$1";

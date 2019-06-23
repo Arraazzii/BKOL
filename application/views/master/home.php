@@ -82,9 +82,8 @@
           </div>
         </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" id="send" class="btn btn-success" onclick="SendLowongan()"><i class="fa fa-send"></i> Kirim Lowongan</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+      <div class="modal-footer" id="footermodal">
+        
       </div>
     </div>
   </div>
@@ -185,7 +184,7 @@
     <ul class="nav nav-pills nav-justified">
       <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true">Loker Depok</a></li>
       <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false">Loker Luar Depok</a></li>
-      <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="false">Kegiatan</a></li>
+      <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="false">Informasi</a></li>
     </ul>
     <div class="tab-content">
       <div class="tab-pane active" id="tab_1">
@@ -371,6 +370,7 @@
     $.get('<?php echo site_url('root/getlowongan') ?>/'+IDLowongan, function(getdata) {
       if (getdata.exists) 
       {
+        $("#footermodal").find("#buttonSend").remove();
         $("#modal-lowongan").modal('show');
         $("#idlowongan").val(getdata.IDLowongan);
         $("#namalowongan").html(getdata.NamaLowongan);
@@ -390,6 +390,9 @@
         } else {
           $("#send").show();
         }
+        var idlow = "SendLowongan('" + getdata.IDLowongan + "')" ;
+        var html = '<div id="buttonSend"><button type="button" class="btn btn-success" id="send" onclick="'+ idlow +'"><i class="fa fa-send"></i> Kirim Lowongan</button> <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button></div>';
+        $("#footermodal").append(html);
 
       }
       else
@@ -431,7 +434,7 @@ function noRupiah(value) {
   return value;
 }
 
-  function SendLowongan() {
+  function SendLowongan(idlowongan) {
     $('#modal-lowongan').modal('hide');
     swal({
       title: '<strong>Anda Harus Login!</strong>',
@@ -449,7 +452,7 @@ function noRupiah(value) {
       cancelButtonAriaLabel: 'Thumbs down',
     });
     $('.swal2-confirm').click(function(){
-      window.location.href = "<?php echo site_url();?>login";
+      window.location.href = "<?php echo site_url();?>login?lowongan=" + idlowongan;
     });
     $('.swal2-cancel').click(function(){
       window.location.href = "<?php echo site_url();?>register/2";

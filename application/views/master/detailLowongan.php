@@ -227,7 +227,8 @@
 					<br>
 					<?php if ($TglBerakhirPekerjaan >= $timeLimit){ ?>
 					<div class="pull-right">
-						<button type="button" id="send" class="btn btn-success" onclick="SendLowongan()"><i class="fa fa-send"></i> Kirim Lowongan</button>
+						<?php $lowongan = $this->input->get('lowongan'); ?>
+						<button type="button" id="send" class="btn btn-success" onclick="SendLowongan('<?php echo $lowongan;?>')"><i class="fa fa-send"></i> Kirim Lowongan</button>
 					</div>
 					<?php }else{ ?>
 					<!-- <div class="pull-right">
@@ -429,8 +430,13 @@
 		<?php echo $this->session->flashdata('notifikasi'); ?>
 	<?php endif ?>
 	<script type="text/javascript">
-		function SendLowongan() {
+		function SendLowongan(idlow) {
 			$('#modal-lowongan').modal('hide');
+			<?php  
+			$iduser = $this->session->userdata('iduser');
+	        	if ($iduser != '') { ?>
+	        		 window.location.href='<?php echo site_url('pencaker/registerlowongan') ?>/'+idlow;
+	        <?php }else{ ?>
 			swal({
 				title: '<strong>Anda Harus Login!</strong>',
 				type: 'info',
@@ -449,10 +455,15 @@
 			$('.swal2-confirm').click(function(){
 				window.location.href = "<?php echo site_url();?>login";
 			});
+		
 			$('.swal2-cancel').click(function(){
 				window.location.href = "<?php echo site_url();?>register/2";
 			});
+			<?php } ?>
 		}
+		function KirimLamaran(IDLowongan) {
+		    window.location.href='<?php echo site_url('pencaker/registerlowongan') ?>/'+IDLowongan;
+		  }
 	</script>
 </body>
 </html>

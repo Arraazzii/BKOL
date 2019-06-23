@@ -1147,13 +1147,12 @@ class pencaker extends CI_Controller {
 
                         //check trlowongan data is exists
                         $num = $this->TrLowonganMasuk->GetCountByPencakerID($getmspencakerdata->IDPencaker, $idlowongan);
-
-                        if ($num == 0)
+                        if ($num == 0 || empty($num))
                         {
                             $this->TrLowonganMasuk->Insert($idlowongan,$getmspencakerdata->IDPencaker);
-                            $fromdate = explode("-", $getmslowongandata->TglBerlaku);
-                            $todate = explode("-", $getmslowongandata->TglBerakhir);
-                            $this->load->model('EmailModel');
+                            // $fromdate = explode("-", $getmslowongandata->TglBerlaku);
+                            // $todate = explode("-", $getmslowongandata->TglBerakhir);
+                            // $this->load->model('EmailModel');
                             // @$this->EmailModel->sendEmail($getmsperusahaandata->EmailPemberiKerja,'Pendaftaran Lowongan Masuk','No Loker : '.$getmslowongandata->IDLowongan.'<br/>Nama Pekerjaan : '.$getmslowongandata->NamaLowongan.'<br/>Tanggal Berlaku : '.$fromdate[2].'-'.$fromdate[1].'-'.$fromdate[0].' s/d '.$todate[2].'-'.$todate[1].'-'.$todate[0].'<br/>Nama Pencaker : '.$getmspencakerdata->NamaPencaker);
                             $this->session->set_flashdata('notifikasi', '<script>notifikasi("CV anda berhasil dikirim ke "'.$getmsperusahaandata->NamaPerusahaan.', "success", "fa fa-success")</script>');
                         }

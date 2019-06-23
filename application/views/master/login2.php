@@ -233,14 +233,21 @@ $input = $this->session->flashdata('input');
   <div class="tab-content">
       <div class="tab-pane active" id="tab_1">
         <h4 class="text-center"><b>Silahkan Login</b></h4>
-        <form method="post" class="form-signin" action="<?= site_url('login/dologin') ?>" >
+
+        <?php $lowongan = $this->input->get("lowongan"); 
+            if (!empty($lowongan)) {?>
+                <form method="post" class="form-signin" action="<?= site_url("login/dologin?lowongan=$lowongan"); ?>">
+        <?php }else{ ?>
+                <form method="post" class="form-signin" action="<?= site_url("login/dologin"); ?>">
+        <?php }  ?>
             <span id="reauth-email" class="reauth-email">
                 <?php
+
                 if ($this->session->flashdata('error') != null){
                     echo "<span class='callout callout-danger'>";
                     echo $this->session->flashdata('error');
                     echo "</span>";
-                }
+                } 
                 ?>
             </span>
             <select id="idjenisuser" class="form-control" required name="idjenisuser">
@@ -259,7 +266,7 @@ $input = $this->session->flashdata('input');
                 }
                 ?>
             </select>
-            <input id="username" name="username" placeholder="Nama pengguna" required class="form-control" type="text" value="<?= $input != null ? $input['username'] : '' ?>" size="20" autofocus="">
+            <input id="username" name="username" placeholder="Nama pengguna" required class="form-control" type="text" size="20" autofocus="">
             <input id="password" name="password" placeholder="Kata sandi" class="form-control" required type="password" value="" size="20">
             <input class="btn btn-lg btn-primary btn-block btn-signin" id="login" name="login" type="submit" value="Sign in">
         </form>
@@ -278,7 +285,7 @@ $input = $this->session->flashdata('input');
                     </span>   
                 <?php endif ?>
             </span>
-            <input id="email" class="form-control" name="email" type="email" value="<?= $input != null ? $input['email'] : '' ?>" placeholder="Email Pengguna" autofocus>
+            <input id="email" class="form-control" name="email" type="email" placeholder="Email Pengguna" autofocus>
             <input class="btn btn-lg btn-primary btn-block btn-signin" id="login" name="login" type="submit" value="Kirim Sandi">
         </form>
         <!-- <a href="#" class="login-password">
