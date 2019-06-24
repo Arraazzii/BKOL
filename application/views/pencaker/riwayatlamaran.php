@@ -20,14 +20,42 @@
             <!-- row -->
             <div class="row">
                 <div class="col-md-12">
-                    <table class="table table-bordered table-striped table-hover">
+                    <?php if (!empty($lowongandata)) { ?>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label>Status</label>
+                                <select name="status" class="form-control">
+                                    <option>CV Terkirim</option> 
+                                    <option>Proses Verifikasi</option>
+                                    <option>Diterima</option>
+                                    <option>Ditolak</option>
+                                    <option>Tidak Memenuhi Syarat</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label>Tanggal Awal</label>
+                                <input type="text" name="tglAwal" id="tglAwal" class="form-control" readonly="">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label>Tanggal Akhir</label>
+                                <input type="text" name="tglAkhir" id="tglAkhir" class="form-control" readonly="">
+                            </div>
+                        </div>
+                    </div>
+                    <?php } ?>
+                    <table class="table table-bordered table-striped table-hover" id="datatable">
                         <thead>
                             <tr>
-                                <th>No</th>
+                                <th class="text-center">No</th>
                                 <th>Nama Perusahaan</th>
                                 <th>Nama Lowongan</th>
-                                <th>Tanggal Apply</th>
-                                <th>Status</th>
+                                <th class="text-center">Tanggal Apply</th>
+                                <th class="text-center">Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -39,23 +67,27 @@
                                     $status = '';
                                     $tgl = '';
                                     if ($row->StatusLowongan == 0)
-                                        $status = 'Belum diproses';
+                                        $status = '<span class="label label-info">CV Terkirim</span>';
                                     elseif ($row->StatusLowongan == 1)
-                                        $status = 'Diproses';
+                                        $status = '<span class="label label-primary">Proses Verifikasi</span>';
+                                    elseif ($row->StatusLowongan == 2)
+                                        $status = '<span class="label label-success">Diterima</span>';
                                     elseif ($row->StatusLowongan == 3)
-                                        $status = 'Tidak diterima';
+                                        $status = '<span class="label label-danger">Ditolak</span>';
+                                    elseif($row->StatusLowongan == 4)
+                                        $status = '<span class="label label-warning">Tidak Memenuhi Syarat</span>';
                                     else
-                                        $status = 'Diterima';
+                                        $status = '<span class="label label-warning">Tidak Memenuhi Syarat</span>';
 
                                     $tgl = date('d-m-Y', strtotime($row->RegisterDate));
                                     
                                     ?>
                                     <tr>
-                                        <td><?php echo $i+$this->uri->segment(3) ?></td>
+                                        <td class="text-center"><?php echo $i+$this->uri->segment(3) ?></td>
                                         <td><?php echo $row->NamaPerusahaan ?></td>
                                         <td><?php echo $row->NamaLowongan ?></td>
-                                        <td><?php echo $tgl ?></td>
-                                        <td><?php echo $status ?></td>
+                                        <td class="text-center"><?php echo $tgl ?></td>
+                                        <td class="text-center"><?php echo $status ?></td>
                                     </tr>
                                 <?php endforeach ?>
                             <?php else: ?>
@@ -80,6 +112,34 @@
         <?php endif ?>
     </div>
 </section>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap.min.css">
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript">
+    function getFormattedDate()
+    {
+        var date = new Date();
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear().toString();
+        return day + '-' + month + '-' + year;
+    }
+    $(document).ready(function(){
+        var table = $("#datatable").dataTable();
+
+         $("#tglAwal").datepicker({
+            format: "dd-mm-yyyy",
+            startDate: getFormattedDate(),
+            autoclose: true,
+        });
+
+        $("#tglAkhir").datepicker({
+            format: "dd-mm-yyyy",
+            startDate: getFormattedDate(),
+            autoclose: true,
+        });
+    });
+</script>
 <script type="text/javascript">
     window.addEventListener( "pageshow", function ( event ) {
       var historyTraversal = event.persisted || 

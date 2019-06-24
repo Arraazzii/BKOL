@@ -84,6 +84,18 @@ function GetGridMsPencakerByIDLowongan($idlowongan, $num, $offset)
     return $query;
 }
 
+function NewGetGridMsPencakerByIDLowongan($idlowongan, $num)
+{
+    $query = $this->db->query("SELECT a.IDLowonganMasuk,b.IDPencaker,b.IDUser,b.IDKelurahan,b.IDAgama,b.IDStatusPernikahan,b.IDStatusPendidikan,b.IDPosisiJabatan,a.StatusLowongan,b.NomorIndukPencaker,b.NamaPencaker,b.TempatLahir,b.TglLahir,b.JenisKelamin,b.Email,b.Telepon,b.Alamat,b.KodePos,b.Kewarganegaraan,b.Jurusan,b.Keterampilan,b.NEMIPK,b.Nilai,b.TahunLulus,b.TinggiBadan,b.BeratBadan,b.Keterangan,b.Lokasi,b.UpahYangDicari,b.ExpiredDate,b.RegisterDate,f.NamaStatusPendidikan FROM ".strtolower("TrLowonganMasuk")." AS a
+        INNER JOIN ".strtolower("MsPencaker")." AS b ON a.IDPencaker=b.IDPencaker
+        INNER JOIN ".strtolower("MsKelurahan")." AS d ON b.IDKelurahan=d.IDKelurahan
+        INNER JOIN ".strtolower("MsKecamatan")." AS e ON d.IDKecamatan=e.IDKecamatan
+        INNER JOIN ".strtolower("MsStatusPendidikan")." AS f ON a.IDStatusPendidikan=f.IDStatusPendidikan
+        WHERE a.IDLowongan='".$this->db->escape_like_str($idlowongan)."' AND a.StatusLowongan='".$num."'
+        ORDER BY a.RegisterDate DESC");
+    return $query;
+}
+
 function GetGridMsPencakerByDate($fromdate, $todate, $num, $offset)
 {
     $fromdate = explode("-", $fromdate);

@@ -1,13 +1,13 @@
 <!-- sidebar menu: : style can be found in sidebar.less -->
 <ul class="sidebar-menu" data-widget="tree">
     <li class="header">MENU PERUSAHAAN</li>
-    <li class="<?php echo $this->uri->segment(2) == 'index' || $this->uri->segment(2) == 'editprofil' ? 'active' : '' ?>">
+    <li class="<?php echo $this->uri->segment(2) == 'index' || $this->uri->segment(2) == 'editprofil' || $this->uri->segment(2) == '' ? 'active' : '' ?>">
         <a href="<?php echo site_url() ?>"><i class="fa fa-building-o"></i> <span>Profil Perusahaan</span></a>
     </li>
     <!-- <li class="<?php //echo $this->uri->segment(2) == 'pemberikerja' ? 'active' : '' ?>">
         <a href="<?php //echo site_url('perusahaan/pemberikerja') ?>"><i class="fa fa-user-plus"></i> <span>Profil Pemberi Kerja</span></a>
     </li> -->
-    <li class="<?php echo $this->uri->segment(2) == 'lowongan' && $this->uri->segment(3) == '' || $this->uri->segment(2) == 'carilowongan' && $this->uri->segment(3) == '' ? 'active' : '' ?>">
+    <li class="<?php echo $this->uri->segment(2) == 'lowongan' && $this->uri->segment(3) == '' || $this->uri->segment(2) == 'carilowongan' && $this->uri->segment(3) == '' || $this->uri->segment(2) == 'lowongan' && $this->uri->segment(3) == 'detail' || $this->uri->segment(2) == 'pencaker' ? 'active' : '' ?>">
         <a href="<?php echo site_url('perusahaan/lowongan') ?>"><i class="fa fa-list-alt"></i> <span>Daftar Lowongan Kerja</span></a>
     </li>
      <!-- <li class="<?php //echo $this->uri->segment(2) == 'lowongan' &&  $this->uri->segment(3) == 'tambahdata'? 'active' : '' ?>">

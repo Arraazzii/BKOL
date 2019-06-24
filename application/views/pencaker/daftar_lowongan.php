@@ -1,9 +1,9 @@
 <style type="text/css">
-  .text-left{
-    text-align: center;
-  }
-  .height-300 {
-    height: 300px;
+.text-left{
+  text-align: center;
+}
+.height-300 {
+  height: 300px;
 }
 </style>
 <div class="modal fade" id="modal-lowongan">
@@ -230,6 +230,16 @@
                       <?php if ($getdata->TglBerakhir <= $timeLimit){ ?>                            
                       <span class="label label-danger time">EXPIRED</span>
                       <?php } ?>
+                      <?php
+                      date_default_timezone_get("Asia/Jakarta");
+                      $time = date("Y-m-d");
+                      $date = date_create($getdata->RegisterDate);
+                      $dateDB = date_format($date, "Y-m-d");
+                      $diff = abs(strtotime($time) - strtotime($dateDB));
+                      $total = floor(($diff)/ (60*60*24));
+                      if ($total >= 7) { ?>
+                      <span class="label label-info time">Lowongan Baru</span>
+                      <?php } ?>
                     </span>
 
                     <h3 class="timeline-header"><?php echo $getdata->NamaLowongan ?></h3>
@@ -269,8 +279,8 @@
           </ul>
         </div>
         <div class="text-center">
-            <?php echo $this->pagination->create_links(); ?>
-          </div>
+          <?php echo $this->pagination->create_links(); ?>
+        </div>
         <!-- /.col -->
       </div>
       <!-- /.row -->

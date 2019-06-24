@@ -1054,7 +1054,7 @@ class pencaker extends CI_Controller {
                 $page = $this->uri->segment(3);
                 $this->load->model('MsLowongan');
                 $getmslowongan = $this->MsLowongan->GetGridMsLowonganByIDPencaker($idpencaker,10,$page);
-                $config['total_rows'] = $this->MsLowongan->GetCountMsLowonganByIDPencaker($idpencaker)->total_rows;
+                $config['total_rows'] = $this->MsLowongan->GetCountMsLowonganByIDPencakerAll($idpencaker)->total_rows;
                 $data['MsLowonganData'] = $getmslowongan;
                 $config['uri_segment'] = 3;
                 $config['base_url'] = site_url('pencaker/lowongan');

@@ -221,6 +221,16 @@
                   <?php if ($getdata->TglBerakhir <= $timeLimit){ ?>                            
                   <span class="label label-danger time">EXPIRED</span>
                   <?php } ?>
+                  <?php
+                  date_default_timezone_get("Asia/Jakarta");
+                  $time = date("Y-m-d");
+                  $date = date_create($getdata->RegisterDate);
+                  $dateDB = date_format($date, "Y-m-d");
+                  $diff = abs(strtotime($time) - strtotime($dateDB));
+                  $total = floor(($diff)/ (60*60*24));
+                  if ($total >= 7) { ?>
+                  <span class="label label-info time">Lowongan Baru</span>
+                  <?php } ?>
                   <span class="time">Tanggal Berakhir : <?php echo $getdata->TglBerakhir ?></span>
 
                   <h3 class="timeline-header"><?php echo $getdata->NamaLowongan ?></h3>
@@ -316,7 +326,7 @@
     }, 'json');
   }
 
-    function SendLowongan(idlowongan) {
+  function SendLowongan(idlowongan) {
     console.log(idlowongan);
     $('#modal-lowongan').modal('hide');
     swal({

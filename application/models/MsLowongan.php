@@ -117,6 +117,12 @@ class MsLowongan extends CI_Model
                 $query = $this->db->query("SELECT COALESCE(COUNT(IDLowongan),0) AS total_rows FROM ".strtolower("MsLowongan")." AS a INNER JOIN ".strtolower("MsPencaker")." AS b ON a.IDStatusPendidikan=b.IDStatusPendidikan WHERE b.IDPencaker='".$this->db->escape_like_str($idpencaker)."' AND a.BatasUmur>=(YEAR(CURDATE())-YEAR(b.TglLahir))-(RIGHT(CURDATE(),5)<RIGHT(b.TglLahir,5))");
                 return $query->row();
         }
+
+        function GetCountMsLowonganByIDPencakerAll($idpencaker)
+        {
+                $query = $this->db->query("SELECT COALESCE(COUNT(a.IDLowongan),0) AS total_rows FROM mslowongan as a");
+                return $query->row();
+        }
         
         function GetCountMsLowonganByDateIDPencaker($fromdate, $todate, $idpencaker)
         {

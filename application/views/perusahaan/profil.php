@@ -89,7 +89,7 @@
                         </ul>
                         <strong><i class="fa fa-map-marker margin-r-5"></i> Alamat</strong>
 
-                        <p class="">
+                        <p class="text-center">
                             <?= $MsPerusahaanData->Alamat . ', Kel. ' . ucfirst(strtolower($MsPerusahaanData->NamaKelurahan)) . ', Kec. '. ucfirst(strtolower($MsPerusahaanData->NamaKecamatan)) . ', ' . ucfirst(strtolower($MsPerusahaanData->Kota)) . ', ' . ucfirst(strtolower($MsPerusahaanData->Propinsi)) . ', ' . $MsPerusahaanData->KodePos ?>
                         </p>
                         <div class="text-center">

@@ -99,7 +99,7 @@
                     </div>
                 </div>
                 <div class="form-group <?php echo form_error('idstatuspendidikan') ? 'has-error' : '' ?>">
-                    <label for="idstatuspendidikan" class="control-label col-md-3">Pendidikan formal</label>
+                    <label for="idstatuspendidikan" class="control-label col-md-3">Minimal Pendidikan</label>
                     <div class="col-md-5">
                         <select id="idstatuspendidikan" name="idstatuspendidikan" class="form-control input-sm">
                             <option value="">(Pilih Status Pendidikan)</option>
