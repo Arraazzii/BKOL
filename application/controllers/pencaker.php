@@ -1150,29 +1150,63 @@ class pencaker extends CI_Controller {
                         if ($num == 0 || empty($num))
                         {
                             $this->TrLowonganMasuk->Insert($idlowongan,$getmspencakerdata->IDPencaker);
-                            // $fromdate = explode("-", $getmslowongandata->TglBerlaku);
-                            // $todate = explode("-", $getmslowongandata->TglBerakhir);
-                            // $this->load->model('EmailModel');
-                            // @$this->EmailModel->sendEmail($getmsperusahaandata->EmailPemberiKerja,'Pendaftaran Lowongan Masuk','No Loker : '.$getmslowongandata->IDLowongan.'<br/>Nama Pekerjaan : '.$getmslowongandata->NamaLowongan.'<br/>Tanggal Berlaku : '.$fromdate[2].'-'.$fromdate[1].'-'.$fromdate[0].' s/d '.$todate[2].'-'.$todate[1].'-'.$todate[0].'<br/>Nama Pencaker : '.$getmspencakerdata->NamaPencaker);
-                            $this->session->set_flashdata('notifikasi', '<script>notifikasi("CV anda berhasil dikirim ke "'.$getmsperusahaandata->NamaPerusahaan.', "success", "fa fa-success")</script>');
-                        }
-                        else
-                        {   
-                           $this->session->set_flashdata('notifikasi', '<script>notifikasi("Anda sudah pernah mengirimkan CV untuk loker '.$getmslowongandata->NamaLowongan.'", "warning", "fa fa-warning")</script>');
-                       }
+
+                            $this->load->library('PHPMailer');
+                            $this->load->library('SMTP');
+
+                            $email_admin = 'disnaker.depok@gmail.com';
+                            $nama_admin = 'BKOL';
+                            $password_admin = '2014umar';
+
+                            $mail = new PHPMailer();
+                            $mail->isSMTP();  
+                            $mail->SMTPKeepAlive = true;
+                            $mail->Charset  = 'UTF-8';
+                            $mail->IsHTML(true);
+                            // $mail->SMTPDebug = 1;
+                            $mail->SMTPAuth = true;
+                            $mail->Host = 'smtp.gmail.com'; 
+                            $mail->Port = 587;
+                            $mail->SMTPSecure = 'ssl';
+                            $mail->Username = $email_admin;
+                            $mail->Password = $password_admin;
+                            $mail->Mailer   = 'smtp';
+                            $mail->WordWrap = 100;       
+
+                            $mail->setFrom($email_admin);
+                            $mail->FromName = $nama_admin;
+                            $mail->addAddress($this->session->userdata('email'));
+                            $mail->AddEmbeddedImage('assets/img-cv.png', 'cv');
+                            $mail->Subject          = 'CV Berhasil Dikirim Ke '.$getmsperusahaandata->NamaPerusahaan;
+                            $mail_data['subject']   = 'CV Berhasil Dikirim Ke '.$getmsperusahaandata->NamaPerusahaan;
+                          
+                            $message = $this->load->view('email_cv', $mail_data, TRUE);
+                            $mail->Body = $message;
+                            if ($mail->send()) {
+                             $this->session->set_flashdata('notifikasi', '<script>notifikasi("CV anda berhasil dikirim ke "'.$getmsperusahaandata->NamaPerusahaan.', "success", "fa fa-success")</script>');
+                         } else {
+                          echo 'Message could not be sent.';
+                          echo 'Mailer Error: ' . $mail->ErrorInfo;
+                      }
+
+                  }
+                  else
+                  {   
+                   $this->session->set_flashdata('notifikasi', '<script>notifikasi("Anda sudah pernah mengirimkan CV untuk loker '.$getmslowongandata->NamaLowongan.'", "warning", "fa fa-warning")</script>');
+               }
                        redirect('pencaker/lowongan');
-                   }
-                   else
-                   {
-                    redirect();
-                }
-            }
+           }
+           else
+           {
+            redirect();
         }
     }
-    else
-    {
-        redirect();
-    }
+}
+}
+else
+{
+    redirect();
+}
 }
 
 public function doupdatepassword()

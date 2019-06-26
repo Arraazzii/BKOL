@@ -25,7 +25,8 @@
                         <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
                             <div class="form-group">
                                 <label>Status</label>
-                                <select name="status" class="form-control">
+                                <select name="status" class="form-control" onchange="statusFilter()" id="statusFilter">
+                                    <option value="">Semua Status</option> 
                                     <option>CV Terkirim</option> 
                                     <option>Proses Verifikasi</option>
                                     <option>Diterima</option>
@@ -37,13 +38,13 @@
                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
                                 <label>Tanggal Awal</label>
-                                <input type="text" name="tglAwal" id="tglAwal" class="form-control" readonly="">
+                                <input type="text" name="tglAwal" id="tglAwal" class="form-control date-range-filter" readonly="" data-date-split-input="true" value="01-01-2018">
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
                                 <label>Tanggal Akhir</label>
-                                <input type="text" name="tglAkhir" id="tglAkhir" class="form-control" readonly="">
+                                <input type="text" name="tglAkhir" id="tglAkhir" class="form-control date-range-filter" readonly="" data-date-split-input="true" value="31-12-2019">
                             </div>
                         </div>
                     </div>
@@ -112,33 +113,63 @@
         <?php endif ?>
     </div>
 </section>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap.min.css">
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap.min.js"></script>
 <script type="text/javascript">
-    function getFormattedDate()
-    {
-        var date = new Date();
-        var day = date.getDate();
-        var month = date.getMonth() + 1;
-        var year = date.getFullYear().toString();
-        return day + '-' + month + '-' + year;
-    }
     $(document).ready(function(){
         var table = $("#datatable").dataTable();
 
-         $("#tglAwal").datepicker({
+        $("#tglAwal").datepicker({
             format: "dd-mm-yyyy",
-            startDate: getFormattedDate(),
             autoclose: true,
+
         });
 
         $("#tglAkhir").datepicker({
             format: "dd-mm-yyyy",
-            startDate: getFormattedDate(),
             autoclose: true,
         });
     });
+
+
+    function filterRows() {
+      var from = $('#tglAwal').val();
+      var to = $('#tglAkhir').val();
+      
+  $('#datatable tbody tr').each(function(i, tr) {
+    var val = $(tr).find("td:eq(3)").html();
+    var dateVal = moment(val, "dd-mm-yyyy");
+    if (val >= from && val <= to) {
+        $(tr).css("display","table-row");
+    } else {
+        $(tr).css("display","none");
+    }
+});
+}
+
+$('#tglAwal').on("change", filterRows);
+$('#tglAkhir').on("change", filterRows);
+</script>
+<script>
+    function statusFilter() {
+      var input, filter, table, tr, td, i;
+      input = document.getElementById("statusFilter");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("datatable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[4];
+        if (td) {
+          if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+        } else {
+            tr[i].style.display = "none";
+        }
+    }       
+}
+}
 </script>
 <script type="text/javascript">
     window.addEventListener( "pageshow", function ( event ) {

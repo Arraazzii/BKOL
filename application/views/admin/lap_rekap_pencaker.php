@@ -317,7 +317,7 @@
           html += "<td class='text-center'>"+ (count++) +"</td>";
           html += "<td>"+ resultLamaran.NamaPencaker +"</td>";
           if (resultLamaran.NamaLowongan == null) {
-            html += "<td>Lowongan Tidak Diketahui</td>";
+            html += "<td>Lowongan Tidak Diketahui</td>"; 
           }else{
             html += "<td>"+ resultLamaran.NamaLowongan +"</td>";
           }
@@ -327,9 +327,17 @@
             html += "<td>"+ resultLamaran.NamaPerusahaan +"</td>";
           }
           if (resultLamaran.StatusLowongan == '0') {
-            html += "<td class='text-center'><span class='label label-warning'>Menunggu</span></td>";
+            html += "<td class='text-center'><span class='label label-info'>Belum di Proses</span></td>";
+          }else if (resultLamaran.StatusLowongan == '1'){
+            html += "<td class='text-center'><span class='label label-primary'>Proses Verifikasi</span></td>";
+          }else if (resultLamaran.StatusLowongan == '2'){
+            html += "<td class='text-center'><span class='label label-success'>Diterima</span></td>";
+          }else if (resultLamaran.StatusLowongan == '3'){
+            html += "<td class='text-center'><span class='label label-danger'>Ditolak</span></td>";
+          }else if (resultLamaran.StatusLowongan == '4'){
+            html += "<td class='text-center'><span class='label label-warning'>Tidak Memenuhi Syarat</span></td>";
           }else{
-            html += "<td class='text-center'><span class='label label-primary'>Diproses</span></td>";
+            html += "<td class='text-center'><span class='label label-warning'>Tidak Memenuhi Syarat</span></td>";
           }
           html += "</tr>";
         });

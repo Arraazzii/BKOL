@@ -356,7 +356,7 @@
     if (getdata.exists)
     {
      swal({
-       title: 'Aktifkan Data Pencaker?',
+       title: 'Aktifkan Pencaker?',
        text: "Pencaker "+getdata.NamaPencaker+" akan diaktifkan!",
        type: 'question',
        showCancelButton: true,

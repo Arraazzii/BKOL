@@ -55,6 +55,19 @@ class MsUser extends CI_Model
             return NULL;
         }
     }
+
+    function GetMsUserByIDUserEmail($iduser)
+    {
+        $query = $this->db->query("SELECT a.IDUser,a.IDJenisUser,a.Username,a.Password,a.RegisterDate,b.Email FROM msuser as a JOIN mspencaker as b ON a.IDUser = b.IDUser WHERE a.IDUser='".$this->db->escape_like_str($iduser)."'");
+        if ($query->num_rows() > 0)
+        {
+            return $query->row();
+        }
+        else
+        {
+            return NULL;
+        }
+    }
     
     function GetMsUserByIDPencaker($idpencaker)
     {

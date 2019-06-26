@@ -64,11 +64,19 @@ public function dologin()
         $getiduser = $this->MsUser->Login($input['idjenisuser'],$input['username'],$input['password'],$this->session->userdata('session_id'));
         if ($getiduser != NULL)
         {
-            $getdata = $this->MsUser->GetMsUserByIDUser($getiduser);
-            $this->session->set_userdata("iduser",$getdata->IDUser);
-            $this->session->set_userdata("username",$getdata->Username);
-            $this->session->set_userdata("idjenisuser",$getdata->IDJenisUser);
-
+            if($input['idjenisuser'] == '000001'){
+                $getdata = $this->MsUser->GetMsUserByIDUser($getiduser);
+                $this->session->set_userdata("iduser",$getdata->IDUser);
+                $this->session->set_userdata("username",$getdata->Username);
+                $this->session->set_userdata("idjenisuser",$getdata->IDJenisUser);
+            }else{
+                $getdata = $this->MsUser->GetMsUserByIDUserEmail($getiduser);
+                $this->session->set_userdata("iduser",$getdata->IDUser);
+                $this->session->set_userdata("username",$getdata->Username);
+                $this->session->set_userdata("idjenisuser",$getdata->IDJenisUser);
+                $this->session->set_userdata("email",$getdata->Email);
+            }
+            
             if ($getdata->IDJenisUser == "000002")
             {
                 $this->load->model('MsPencaker');
