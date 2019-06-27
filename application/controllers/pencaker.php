@@ -1183,7 +1183,9 @@ class pencaker extends CI_Controller {
                             $message = $this->load->view('email_cv', $mail_data, TRUE);
                             $mail->Body = $message;
                             if ($mail->send()) {
-                             $this->session->set_flashdata('notifikasi', '<script>notifikasi("CV anda berhasil dikirim ke "'.$getmsperusahaandata->NamaPerusahaan.', "success", "fa fa-success")</script>');
+                             // $this->session->set_flashdata('notifikasi', '<script>notifikasi("CV anda berhasil dikirim ke "'.$getmsperusahaandata->NamaPerusahaan.', "success", "fa fa-success")</script>');
+
+                                $this->session->set_flashdata('notifikasi', '<script>notifikasi("CV berhasil dikirim ke '.$getmslowongandata->NamaLowongan.'", "success", "fa fa-check")</script>');
                          } else {
                           echo 'Message could not be sent.';
                           echo 'Mailer Error: ' . $mail->ErrorInfo;

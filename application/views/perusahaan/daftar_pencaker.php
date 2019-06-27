@@ -756,7 +756,7 @@
               ['Tolak', 3],
               ['Terima', 2]
               ];
-              createButton(btnAction);
+              createButton(btnAction, getdata.IDPencaker);
             } 
             else if (getdata.StatusLowongan == 0)
             {
@@ -764,32 +764,32 @@
               ['Tidak Sesuai', 4],
               ['Proses', 1]
               ];
-              createButton(btnAction);
+              createButton(btnAction, getdata.IDPencaker);
             }
             else if (getdata.StatusLowongan == 2)
             {
               btnAction = [
-              ['Diproses', 1],
-              ['Batalkan', 0]
+              // ['Diproses', 1],
+              // ['Batalkan', 0]
               ];
-              createButton(btnAction);
+              createButton(btnAction, getdata.IDPencaker);
             }
             else if (getdata.StatusLowongan == 3)
             {
               btnAction = [
-              ['Diproses', 1],
-              ['Batalkan', 0]
+              // ['Diproses', 1],
+              // ['Batalkan', 0]
               ];
-              createButton(btnAction);
+              createButton(btnAction, getdata.IDPencaker);
             }
             else if (getdata.StatusLowongan == 4)
             {
               btnAction = [
-              ['Diproses', 1],
-              ['Tolak', 3],
-              ['Terima', 2]
+              // ['Diproses', 1],
+              // ['Tolak', 3],
+              // ['Terima', 2]
               ];
-              createButton(btnAction);
+              createButton(btnAction, getdata.IDPencaker);
             }
             var inst = $('#modal-detail');
             var bulan = new Array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
@@ -850,7 +850,7 @@ function clearButton() {
   $("#btnAction").find('button').remove();
 }
 
-function createButton(arr) {
+function createButton(arr, IDPencakers) {
     // console.log(arr);
     // var container = document.getElementById('btnAction');
     // for (var i = 0; i < arr.length; i++) {
@@ -865,21 +865,24 @@ function createButton(arr) {
 
     for (var i = 0; i < arr.length; i++) {
       var btn = $("<button></button>").text(arr[i][0]); 
+      var isibutton = "DoUpdate('" + arr[i][1] + "', '" + IDPencakers + "')";
+
       btn.attr({
         'class': 'btn btn-default',
-        'onclick': 'DoUpdate('+arr[i][1]+')'
+        'onclick': isibutton
       });
       container.append(btn);
     }
     container.append('<button id="modaldiss" type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>');
   }
 
-  function DoUpdate(idstatuslowongan)
+  function DoUpdate(idstatuslowongan, IDPencakerss)
   {
     $.post('<?= site_url('perusahaan/statuslowongan/updatedata') ?>',
     {
       IDLowonganMasuk: $("#idlowonganmasuk").val(),
-      StatusLowongan: idstatuslowongan
+      StatusLowongan: idstatuslowongan,
+      IDPencaker: IDPencakerss
     },
     function(getdata){
       if (getdata.valid)

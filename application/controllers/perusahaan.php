@@ -806,10 +806,10 @@ else
         $selectUser = $this->db->query("SELECT NamaPencaker, Email, IDStatusPendidikan, IDPosisiJabatan, TglLahir, Jurusan, JenisKelamin from mspencaker WHERE IDStatusPendidikan = '$pendidikanNeed' AND IDPosisiJabatan = '$posisiNeed'")->result_array();
         $selectPerusahaan = $this->db->query("SELECT NamaPerusahaan from msperusahaan WHERE IDPerusahaan = '$idperusahaan'")->result_array();
         if ($selectUser != NULL) {
-         date_default_timezone_get("Asia/Jakarta");
-         $dateNow = date("Y-m-d");
+           date_default_timezone_get("Asia/Jakarta");
+           $dateNow = date("Y-m-d");
 
-         foreach ($selectUser as $userGet) {
+           foreach ($selectUser as $userGet) {
             $emailUser = $userGet['Email'];
             $nameUser = $userGet['NamaPencaker'];
 
@@ -919,15 +919,15 @@ else
         }
 
         if ($mail->send()) {
-           $this->session->set_flashdata('notifikasi', '<script>notifikasi("Pencaker Berhasil Ditambahkan", "success", "fa fa-check")</script>');
-       } else {
-          echo 'Message could not be sent.';
-          echo 'Mailer Error: ' . $mail->ErrorInfo;
-          $this->session->set_flashdata('notifikasi', '<script>notifikasi("Lowongan Gagal Di Tambah", "danger", "fa fa-exclamation")</script>');
-          redirect('perusahaan/lowongan/tambahdata');
-      }
+         $this->session->set_flashdata('notifikasi', '<script>notifikasi("Pencaker Berhasil Ditambahkan", "success", "fa fa-check")</script>');
+     } else {
+      echo 'Message could not be sent.';
+      echo 'Mailer Error: ' . $mail->ErrorInfo;
+      $this->session->set_flashdata('notifikasi', '<script>notifikasi("Lowongan Gagal Di Tambah", "danger", "fa fa-exclamation")</script>');
+      redirect('perusahaan/lowongan/tambahdata');
+  }
 
-  }else{
+}else{
     $this->session->set_flashdata('notifikasi', '<script>notifikasi("Lowongan Gagal Di Tambah", "danger", "fa fa-exclamation")</script>');
     redirect('perusahaan/lowongan/tambahdata');
 }
@@ -1318,52 +1318,127 @@ public function statuslowongan()
         {
             $input = $this->input->post();
             $this->load->model('TrLowonganMasuk');
+            $this->load->library('PHPMailer');
+            $this->load->library('SMTP');
             if ($this->TrLowonganMasuk->UpdateStatusLowongan($input,$input['IDLowonganMasuk']))
             {
-                $data['valid'] = true;
-                $data['error'] = "Data Lowongan berhasil disimpan";
-            }
-            else
-            {
-                $data['valid'] = false;
-                $data['error'] = "Data Lowongan gagal disimpan";
-            }
+                $iduser = $input['IDPencaker'];
+                $statuslowonganInput = $input['StatusLowongan'];
+                $idLow = $input['IDLowonganMasuk'];
+                $userID = $this->db->query("SELECT Email FROM mspencaker WHERE IDPencaker = '$iduser'")->result_array();
+                $PerusahaanName = $this->db->query("SELECT c.NamaPerusahaan FROM trlowonganmasuk as a JOIN mslowongan as b ON b.IDLowongan = a.IDLowongan JOIN msperusahaan as c ON c.IDPerusahaan = b.IDPerusahaan WHERE a.IDLowonganMasuk = '$idLow'")->result_array();
+                $email_admin = 'disnaker.depok@gmail.com';
+                $nama_admin = 'BKOL';
+                $password_admin = '2014umar';
+                $mail = new PHPMailer();
+                $mail->isSMTP();  
+                $mail->SMTPKeepAlive = true;
+                $mail->Charset  = 'UTF-8';
+                $mail->IsHTML(true);
+                // $mail->SMTPDebug = 1;
+                $mail->SMTPAuth = true;
+                $mail->Host = 'smtp.gmail.com'; 
+                $mail->Port = 587;
+                $mail->SMTPSecure = 'ssl';
+                $mail->Username = $email_admin;
+                $mail->Password = $password_admin;
+                $mail->Mailer   = 'smtp';
+                $mail->WordWrap = 100;
+                $mail->setFrom($email_admin);
+                $mail->FromName = $nama_admin;
+                $mail->addAddress($userID[0]['Email']);
+
+                if ($input['StatusLowongan'] == '1') {
+                    $mail->AddEmbeddedImage('assets/img-wait.png', 'hasil');
+                    $mail->Subject          = 'CV Anda Telah Diverifikasi Oleh '.$PerusahaanName[0]['NamaPerusahaan'];
+                    $mail_data['status']   = 'CV Anda Telah Diverifikasi';
+                    $mail_data['statusDesk']   = 'Mohon Tunggu Informasi Lebih Lanjut Dari Perusahan Tersebut';
+                }else if($input['StatusLowongan'] == '2') {
+                    $mail->AddEmbeddedImage('assets/img-lowongan.png', 'hasil');
+                    $mail->Subject          = 'Selamat Anda Diterima Bekerja Di '.$PerusahaanName[0]['NamaPerusahaan'];
+                    $mail_data['status']   = 'Selamat Anda Diterima Bekerja';
+                    $mail_data['statusDesk']   = 'Mohon Tunggu Informasi Lebih Lanjut Dari Perusahan Tersebut';
+                }else if($input['StatusLowongan'] == '3') {
+                    $mail->AddEmbeddedImage('assets/img-reject.png', 'hasil');
+                    $mail->Subject          = 'CV Anda Ditolak Oleh '.$PerusahaanName[0]['NamaPerusahaan'];
+                    $mail_data['status']   = 'CV Anda Ditolak';
+                    $mail_data['statusDesk']   = 'Mohon Maaf Perusahaan Tersebut Telah Menolak CV Anda';
+                }else if($input['StatusLowongan'] == '4') {
+                    $mail->AddEmbeddedImage('assets/img-tidak-sesuai.png', 'hasil');
+                    $mail->Subject          = 'CV Tidak Sesuai Persyaratan';
+                    $mail_data['status']   = 'CV Tidak Sesuai Persyaratan';
+                    $mail_data['statusDesk']   = 'Pastikan CV Anda Sesuai Dengan Kriteria Lamaran Yang Tersedia';
+                }
+
+                $message = $this->load->view('email_hasil', $mail_data, TRUE);
+                $mail->Body = $message;
+                if ($mail->send()) {
+                    $data['valid'] = true;
+                    $data['error'] = "Data Lowongan berhasil disimpan";
+               } else {
+                  echo 'Message could not be sent.';
+                  echo 'Mailer Error: ' . $mail->ErrorInfo;
+              }
+          }
+          else
+          {
+            $data['valid'] = false;
+            $data['error'] = "Data Lowongan gagal disimpan";
+        }
             echo json_encode($data);
-        }
-        else
-        {
-            $page = $this->uri->segment(3);
-            $data['fromdate'] = $this->session->userdata('fromdate');
-            $data['todate'] = $this->session->userdata('todate');
-            $this->load->model('MsLowongan');
-            if ($data['fromdate'] == '' || $data['todate'] == '')
-            {
-                $getmslowongan = $this->MsLowongan->GetGridMsLowonganStatus(10,$page);
-                $getcount = $this->MsLowongan->GetCountMsLowonganStatus();
-            }
-            else
-            {
-                $getmslowongan = $this->MsLowongan->GetGridMsLowonganStatusByDate($data['fromdate'],$data['todate'],10,$page);
-                $getcount = $this->MsLowongan->GetCountMsLowonganStatusByDate($data['fromdate'],$data['todate']);
-            }
-                // var_dump($getcount);
-            $data['TotalPria'] = $getcount->TotalPria;
-            $data['TotalWanita'] = $getcount->TotalWanita;
-            $data['MsLowonganData'] = $getmslowongan;
-            $config['base_url'] = site_url('perusahaan/statuslowongan');
-            $config['total_rows'] = $getcount->total_rows;
-            $config['per_page'] = 10;
-            $this->pagination->initialize($config);
-            $this->template->load('backend', 'perusahaan/daftar_statuslowongan', $data);
-        }
-    }
-    if ($this->isperusahaan())
-    {
     }
     else
     {
-        redirect();
+        $page = $this->uri->segment(3);
+        $data['fromdate'] = $this->session->userdata('fromdate');
+        $data['todate'] = $this->session->userdata('todate');
+        $this->load->model('MsLowongan');
+        if ($data['fromdate'] == '' || $data['todate'] == '')
+        {
+            $getmslowongan = $this->MsLowongan->GetGridMsLowonganStatus(10,$page);
+            $getcount = $this->MsLowongan->GetCountNEWMsLowonganStatus();
+        }
+        else
+        {
+            $getmslowongan = $this->MsLowongan->GetGridMsLowonganStatusByDate($data['fromdate'],$data['todate'],10,$page);
+            $getcount = $this->MsLowongan->GetCountNEWMsLowonganStatusByDate($data['fromdate'],$data['todate']);
+        }
+                // var_dump($getcount);
+        $data['TotalPria'] = $getcount->TotalPria;
+        $data['TotalWanita'] = $getcount->TotalWanita;
+        $data['MsLowonganData'] = $getmslowongan;
+        $config['uri_segment'] = 3;
+        $config['base_url'] = site_url('perusahaan/statuslowongan');
+        $config['total_rows'] = $getcount->total_rows;
+        $config['per_page'] = 10;
+        $config["num_links"]        = 3;
+        $config['next_link']        = '&raquo;';
+        $config['prev_link']        = '&laquo;';
+        $config['full_tag_open']    = '<div class="box-tools"><nav><ul class="pagination no-margin pull-right">';
+        $config['full_tag_close']   = '</ul></nav></div>';
+        $config['num_tag_open']     = '<li>';
+        $config['num_tag_close']    = '</li>';
+        $config['cur_tag_open']     = '<li class="page-item active"><span class="page-link">';
+        $config['cur_tag_close']    = '<span class="sr-only">(current)</span></span></li>';
+        $config['next_tag_open']    = '<li>';
+        $config['next_tagl_close']  = '&raquo;</li>';
+        $config['prev_tag_open']    = '<li>';
+        $config['prev_tagl_close']  = '&laquo;</li>';
+        $config['first_tag_open']   = '<li>';
+        $config['first_tagl_close'] = '</li>';
+        $config['last_tag_open']    = '<li>';
+        $config['last_tagl_close']  = '</li>';
+        $this->pagination->initialize($config);
+        $this->template->load('backend', 'perusahaan/daftar_statuslowongan', $data);
     }
+}
+if ($this->isperusahaan())
+{
+}
+else
+{
+    redirect();
+}
 }
 
 public function caristatuslowongan()

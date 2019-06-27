@@ -88,12 +88,26 @@ class MsLowongan extends CI_Model
                 $query = $this->db->query("SELECT COUNT(a.IDLowongan) as total_rows, COUNT(IF(c.JenisKelamin=0,c.IDPencaker, NULL)) as TotalPria, COUNT(IF(c.JenisKelamin=1,c.IDPencaker,NULL)) as TotalWanita FROM (`mslowongan` as a) JOIN `msperusahaan` as b ON `a`.`IDPerusahaan` = `b`.`IDPerusahaan` JOIN `trlowonganmasuk` as c ON `c`.`IDLowongan` = `a`.`IDLowongan` WHERE b.IDUser='".$this->session->userdata('iduser')."'");
                 return $query->row();
         }
+
+        function GetCountNEWMsLowonganStatus()
+        {
+                $query = $this->db->query("SELECT COUNT(a.IDLowongan) as total_rows, COUNT(IF(c.JenisKelamin=0,c.IDPencaker, NULL)) as TotalPria, COUNT(IF(c.JenisKelamin=1,c.IDPencaker,NULL)) as TotalWanita FROM (`mslowongan` as a) JOIN `msperusahaan` as b ON `a`.`IDPerusahaan` = `b`.`IDPerusahaan` LEFT JOIN `trlowonganmasuk` as c ON `c`.`IDLowongan` = `a`.`IDLowongan` WHERE b.IDUser='".$this->session->userdata('iduser')."'");
+                return $query->row();
+        }
         
         function GetCountMsLowonganStatusByDate($fromdate, $todate)
         {
                 $fromdate = explode("-", $fromdate);
                 $todate = explode("-", $todate);
                 $query = $this->db->query("SELECT COUNT(a.IDLowongan) as total_rows, COUNT(IF(c.JenisKelamin=0,c.IDPencaker, NULL)) as TotalPria, COUNT(IF(c.JenisKelamin=1,c.IDPencaker,NULL)) as TotalWanita FROM (`mslowongan` as a) JOIN `msperusahaan` as b ON `a`.`IDPerusahaan` = `b`.`IDPerusahaan` JOIN `trlowonganmasuk` as c ON `c`.`IDLowongan` = `a`.`IDLowongan` WHERE a.TglBerlaku >= '".$this->db->escape_like_str($fromdate[2].$fromdate[1].$fromdate[0])."' AND a.TglBerlaku <= '".$this->db->escape_like_str($todate[2].$todate[1].$todate[0])."' AND b.IDUser='".$this->session->userdata('iduser')."'");
+                return $query->row();
+        }
+
+        function GetCountNEWMsLowonganStatusByDate($fromdate, $todate)
+        {
+                $fromdate = explode("-", $fromdate);
+                $todate = explode("-", $todate);
+                $query = $this->db->query("SELECT COUNT(a.IDLowongan) as total_rows, COUNT(IF(c.JenisKelamin=0,c.IDPencaker, NULL)) as TotalPria, COUNT(IF(c.JenisKelamin=1,c.IDPencaker,NULL)) as TotalWanita FROM (`mslowongan` as a) JOIN `msperusahaan` as b ON `a`.`IDPerusahaan` = `b`.`IDPerusahaan` LEFT JOIN `trlowonganmasuk` as c ON `c`.`IDLowongan` = `a`.`IDLowongan` WHERE a.TglBerlaku >= '".$this->db->escape_like_str($fromdate[2].$fromdate[1].$fromdate[0])."' AND a.TglBerlaku <= '".$this->db->escape_like_str($todate[2].$todate[1].$todate[0])."' AND b.IDUser='".$this->session->userdata('iduser')."'");
                 return $query->row();
         }
         

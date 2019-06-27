@@ -237,7 +237,7 @@
                       $dateDB = date_format($date, "Y-m-d");
                       $diff = abs(strtotime($time) - strtotime($dateDB));
                       $total = floor(($diff)/ (60*60*24));
-                      if ($total <= 7) { ?>
+                      if ($total <= 14) { ?>
                       <span class="label label-info time">Lowongan Baru</span>
                       <?php } ?>
                     </span>

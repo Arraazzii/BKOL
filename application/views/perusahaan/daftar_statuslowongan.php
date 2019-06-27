@@ -119,15 +119,14 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-            <?php if ($this->pagination->create_links()): ?>
-                <div class="box-footer">
+                 <?php if ($this->pagination->create_links()): ?>
                     <div class="pull-right">
                         <?php echo $this->pagination->create_links() ?>
                     </div>
-                </div>
                 <!-- /.box-footer -->    
             <?php endif ?>
+            </div>
+           
         </div>
     </div>
 </section>

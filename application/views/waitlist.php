@@ -47,7 +47,7 @@
   <div class="positionWait">
    <img src="<?php echo base_url();?>assets/img-wait.png" class="img-responsive">
    <h3>Akun Anda Belum Terverifikasi</h3>
-   <h5>Saat ini akun anda belum di verifikasi, silahkan datang ke DISNAKER DEPOK untuk verifikasi akun.<br> Jika akun anda sudah diverifikasi maka akan ada notifikasi melalui email. <br> Atau Mohon untuk melakukan konfirmasi pendaftaran pencaker baru <br />ke nomer WA : 08978186588 </h5>
+   <h5>Saat ini akun anda belum di verifikasi, silahkan datang ke DISNAKER DEPOK untuk verifikasi akun.<br> Jika akun anda sudah diverifikasi maka akan ada notifikasi melalui email.</h5>
    <a href="<?php echo base_url();?>login" class="btn btn-primary text-center">Kembali</a>
  </div>
 </body>
