@@ -1367,7 +1367,10 @@ public function statuslowongan()
                     $mail->AddEmbeddedImage('assets/img-tidak-sesuai.png', 'hasil');
                     $mail->Subject          = 'CV Tidak Sesuai Persyaratan';
                     $mail_data['status']   = 'CV Tidak Sesuai Persyaratan';
-                    $mail_data['statusDesk']   = 'Pastikan CV Anda Sesuai Dengan Kriteria Lamaran Yang Tersedia';
+                    $mail_data['statusDesk']   = 'Pastikan CV Anda Sesuai Dengan Kriteria Lamaran Yang Dibutuhkan';
+                }else{
+                    $data['valid'] = false;
+                    $data['error'] = "Data Lowongan gagal disimpan";
                 }
 
                 $message = $this->load->view('email_hasil', $mail_data, TRUE);

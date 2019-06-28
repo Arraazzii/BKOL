@@ -14,7 +14,7 @@
 
 <!-- Main content -->
 <section class="content">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <form method="POST" class="form-horizontal" role="form" action="<?= site_url('perusahaan/carilowongan') ?>">
             <div class="box box-default">
                 <div class="box-header with-border">

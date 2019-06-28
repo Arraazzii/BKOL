@@ -7,7 +7,7 @@
     <!-- <li class="<?php //echo $this->uri->segment(2) == 'pemberikerja' ? 'active' : '' ?>">
         <a href="<?php //echo site_url('perusahaan/pemberikerja') ?>"><i class="fa fa-user-plus"></i> <span>Profil Pemberi Kerja</span></a>
     </li> -->
-    <li class="<?php echo $this->uri->segment(2) == 'lowongan' && $this->uri->segment(3) == '' || $this->uri->segment(2) == 'carilowongan' && $this->uri->segment(3) == '' || $this->uri->segment(2) == 'lowongan' && $this->uri->segment(3) == 'detail' || $this->uri->segment(2) == 'pencaker' ? 'active' : '' ?>">
+    <li class="<?php echo $this->uri->segment(2) == 'lowongan' && $this->uri->segment(3) == '' || $this->uri->segment(2) == 'carilowongan' && $this->uri->segment(3) == '' || $this->uri->segment(2) == 'lowongan' && $this->uri->segment(3) == 'detail' || $this->uri->segment(2) == 'pencaker' || $this->uri->segment(2) == 'lowongan' && $this->uri->segment(3) == 'tambahdata'  ? 'active' : '' ?>">
         <a href="<?php echo site_url('perusahaan/lowongan') ?>"><i class="fa fa-list-alt"></i> <span>Daftar Lowongan Kerja</span></a>
     </li>
      <!-- <li class="<?php //echo $this->uri->segment(2) == 'lowongan' &&  $this->uri->segment(3) == 'tambahdata'? 'active' : '' ?>">

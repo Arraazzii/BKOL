@@ -141,11 +141,13 @@
 			<br>
 			<div class="container ">
 				<div class="box box-primary" style="padding: 0px 15px;">
+					<?php if (file_exists(BASEPATH .'/../assets/file/perusahaan/'.$idPerusahaanPekerjaan.'.jpg')){ ?>
 					<div class="row">
 						<div class="col-lg-6 col-md-6 col-sm-8 col-xs-12 col-lg-offset-3 col-md-offset-3 col-sm-offset-2 col-xs-offset-0">
 							<img src="<?php echo site_url('assets/file/perusahaan/'.$idPerusahaanPekerjaan.'.jpg') ?>" class="img-responsive col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
 						</div>
 					</div>
+					<?php } ?>
 					<div class="row">
 						<h3 class="text-center"><?php echo $lowonganPekerjaan; ?></h3>
 						<h4 class="text-center">(<?php echo $perusahaanPekerjaan; ?>)</h4>
@@ -292,19 +294,13 @@
 					<h4 class="modal-title text-center">Ubah Kata Sandi</h4>
 				</div>
 				<div class="modal-body">
-					<div class="row">
 						<input type="password" name="sandilama" id="sandilama" class="form-control" value="" required="required" placeholder="Kata Sandi Lama">
 						<span class="help-block"></span>
-					</div>
-					<div class="row">
 						<input type="password" name="sandibaru" id="sandibaru" class="form-control" value="" required="required" placeholder="Kata Sandi Baru">
 						<span class="help-block"></span>
-					</div>
-					<div class="row">
 						<input type="password" name="sandibaru_confirm" id="sandibaru_confirm" class="form-control" value="" required="required" placeholder="Konfirmasi Sandi Baru">
 						<span class="help-block"></span>
 					</div>   
-				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
 					<button type="button" id="simpansandi" class="btn btn-primary">Simpan</button>
