@@ -326,7 +326,9 @@
         </tbody>
     </table>
     <div class="spacer">&nbsp;</div>
-
+    <hr>
+    <p class="caption">*Email ini dikirim dari sistem, mohon jangan membalas email ini</p>
+    <div class="spacer">&nbsp;</div>
     <table class="footer center" width="602" border="0" cellspacing="0" cellpadding="0">
         <tbody>
             <tr>

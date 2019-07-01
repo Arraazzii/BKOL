@@ -821,7 +821,7 @@ else
             $this->load->library('PHPMailer');
             $this->load->library('SMTP');
             $email_admin = 'disnaker.depok@gmail.com';
-            $nama_admin = 'BKOL';
+            $nama_admin = 'noreply-BKOL';
             $password_admin = '2014umar';
 
             if ($this->input->post('batasumur') >= $totalUmur) {
@@ -1328,7 +1328,7 @@ public function statuslowongan()
                 $userID = $this->db->query("SELECT Email FROM mspencaker WHERE IDPencaker = '$iduser'")->result_array();
                 $PerusahaanName = $this->db->query("SELECT c.NamaPerusahaan FROM trlowonganmasuk as a JOIN mslowongan as b ON b.IDLowongan = a.IDLowongan JOIN msperusahaan as c ON c.IDPerusahaan = b.IDPerusahaan WHERE a.IDLowonganMasuk = '$idLow'")->result_array();
                 $email_admin = 'disnaker.depok@gmail.com';
-                $nama_admin = 'BKOL';
+                $nama_admin = 'noreply-BKOL';
                 $password_admin = '2014umar';
                 $mail = new PHPMailer();
                 $mail->isSMTP();  

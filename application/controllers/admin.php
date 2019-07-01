@@ -362,7 +362,7 @@ class admin extends CI_Controller {
                     $this->load->library('SMTP');
 
                     $email_admin = 'disnaker.depok@gmail.com';
-                    $nama_admin = 'BKOL';
+                    $nama_admin = 'noreply-BKOL';
                     $password_admin = '2014umar';
 
                     $mail = new PHPMailer();

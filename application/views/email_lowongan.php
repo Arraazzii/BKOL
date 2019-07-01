@@ -309,30 +309,32 @@
                         <tr>
                             <td class="padded">
                                 <img src="cid:lowongan" style="width: 100%;display: block;position: relative;margin: 0px auto;">
-                              <h1>Lowongan Pekerjaan Baru</h1>
-                              <p>Dear, <strong><?php echo $subject;?></strong> ada lowongan pekerjaan baru loh untukmu.</p>
-                              <p style="text-align: center;">Kami menunggu anda untuk mendaftar pada pekerjaan tersebut. Cek selengkapnya dengan mengklik tombol dibawah ini</p>
-                              
-                              <p style="text-align:center;color: #333;" class="strong">
-                                Perusahaan : <b><?php echo $perusahaan;?></b><br>
-                                Posisi Jabatan : <b><?php echo $posisi;?></b><br>
-                                Gaji : <b>Rp <?php echo number_format($gaji,0,",",".");?></b>
-                            </p>
-                            <center><a href="<?php echo $link;?>" class="btn" target="_blank" style="text-align:center;color: #fff;">Selengkapnya</a></center>
-                            <br>
-                            <!-- <p class="caption">*Jagalah kerahasiaan password anda</p> -->
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="column-bottom">&nbsp;</div>
-        </td>
-    </tr>
-</tbody>
+                                <h1>Lowongan Pekerjaan Baru</h1>
+                                <p>Dear, <strong><?php echo $subject;?></strong> ada lowongan pekerjaan baru loh untukmu.</p>
+                                <p style="text-align: center;">Kami menunggu anda untuk mendaftar pada pekerjaan tersebut. Cek selengkapnya dengan mengklik tombol dibawah ini</p>
+                                
+                                <p style="text-align:center;color: #333;" class="strong">
+                                    Perusahaan : <b><?php echo $perusahaan;?></b><br>
+                                    Posisi Jabatan : <b><?php echo $posisi;?></b><br>
+                                    Gaji : <b>Rp <?php echo number_format($gaji,0,",",".");?></b>
+                                </p>
+                                <center><a href="<?php echo $link;?>" class="btn" target="_blank" style="text-align:center;color: #fff;">Selengkapnya</a></center>
+                                <br>
+                                <!-- <p class="caption">*Jagalah kerahasiaan password anda</p> -->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="column-bottom">&nbsp;</div>
+            </td>
+        </tr>
+    </tbody>
 </table>
 
 <div class="spacer">&nbsp;</div>
-
+<hr>
+<p class="caption">*Email ini dikirim dari sistem, mohon jangan membalas email ini</p>
+<div class="spacer">&nbsp;</div>
 <table class="footer center" width="602" border="0" cellspacing="0" cellpadding="0">
     <tbody>
         <tr>
