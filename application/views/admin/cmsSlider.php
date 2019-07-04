@@ -182,7 +182,7 @@
  				$("#insert").click(function(){
  					var gambarInsert = $("input[name='gambarInsert']");
  					var statusInsert = $("select[name='statusInsert']").val();
- 					var fileInput = document.getElementById('gambarInsert')[0];
+ 					var fileInput = document.getElementById('gambarInsert');
  					var file = fileInput.files[0];
  					var formData = new FormData();
  					formData.append('gambarInsert', file);
