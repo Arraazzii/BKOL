@@ -33,7 +33,7 @@ class admin extends CI_Controller {
                 $dateDB = date_format($date, "Y-m-d");
                 $diff = abs(strtotime($time) - strtotime($dateDB));
                 $total = floor(($diff)/ (60*60*24));
-                if ($total >= 7) {
+                if ($total >= 14) {
                     var_dump($total);
                     $path = 'assets/file/temp'.'/'.$keylist['IDPencakerTemp'].'.jpg';
 
@@ -84,7 +84,7 @@ class admin extends CI_Controller {
                         $dateDB = date_format($date, "Y-m-d");
                         $diff = abs(strtotime($time) - strtotime($dateDB));
                         $total = floor(($diff)/ (60*60*24));
-                        if ($total >= 7) {
+                        if ($total >= 14) {
                             // var_dump($total);
                             $path = 'assets/file/temp'.'/'.$keylist['IDPencakerTemp'].'.jpg';
 

@@ -41,6 +41,7 @@
  									</div>
  								</div>
  							</div>
+ 							<small>* File extensi PNG & JPG. Maximal size 2MB</small>
  						</div>
  						<div class="modal-footer">
  							<button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
@@ -132,6 +133,7 @@
  													</div>
  												</div>
  											</div>
+ 											<small>* File extensi PNG & JPG. Maximal size 2MB</small>
  										</div>
  										<div class="modal-footer">
  											<button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>

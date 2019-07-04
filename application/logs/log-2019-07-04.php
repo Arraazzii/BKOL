@@ -26,3 +26,4 @@ ERROR - 2019-07-04 14:09:09 --> Severity: 8192  --> mysql_pconnect(): The mysql 
 ERROR - 2019-07-04 14:09:11 --> 404 Page Not Found --> assets
 ERROR - 2019-07-04 14:09:31 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
 ERROR - 2019-07-04 14:09:32 --> 404 Page Not Found --> assets
+ERROR - 2019-07-04 15:43:37 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\bkol\system\database\drivers\mysql\mysql_driver.php 91
