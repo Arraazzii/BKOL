@@ -1,0 +1,42 @@
+2018-01-01 SD 2019-12-31 
+PENCAKER BY STATUS PENDIDIKAN
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+|   BULAN   |  NAMASTATUSPENDIDIKAN  |  TOTAL  |  L  |  P  |                          
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+| "Kosong"	|    "Tidak Tamat SD"	 |   "0"   | "0" | "0" |
+|"December"	|       "SMP / MTS"	     |   "1"   | "1" | "0" |
+|"December"	|       "SMK / MAK"	     |   "85"  | "41"| "44"|
+|"December"	|        "SMA / MA"	     |   "42"  |"23" | "19"|
+|"December"	|           "D3"	     |   "35"  |"10" | "25"|
+|"December"	|         "S1 / D4"	     |   "97"  |"46" | "51"|
+|"December"	|           "S2"	     |   "4"   |"3"	 | "1" |
+|"November"	|           "D1"	     |   "1"   |"1"	 | "0" |
+|"November"	|           "D3"	     |   "20"  |"6"	 | "14"|
+|"November"	|        "S1 / D4"	     |   "30"  |"11" | "19"|
+|"November"	|           "SD"	     |   "2"   |"2"	 | "0" |
+|"November"	|           "SMP / MTS"	 |   "5"   |"4"	 | "1" |
+|"November"	|        "SMK / MAK"	 |   "133" |"66" | "67"|
+|"November"	|        "SMA / MA"	     |   "30"  |16"	 | "14"|
+|"October"	|           "SD"	     |   "1"   | "1" | "0" |
+|"October"	|        "SMP / MTS"	 |   "1"   | "1" | "0" |
+|"October"	|        "SMK / MAK"	 |   "168" |"83" | "85"|
+|"October"	|        "SMA / MA"	     |   "50"  |"27" | "23"|
+|"October"	|            "S2"	     |   "5"   |"3"	 | "2" |
+|"October"	|            "D1"	     |   "2"   |"1"	 | "1" |
+|"October"	|            "D2"	     |   "1"   |"0"	 | "1" |
+|"October"	|            "D3"	     |   "68"  |"14" | "54"|
+|"October"	|          "S1 / D4"	 |   "144" |"53" | "91"|
+|"September"|	         "D3"	     |   "1"   | "1" | "0" |
+|"September"|	       "S1 / D4"	 |   "7"   |"4"	 | "3" |
+|"September"|	         "S3"	     |   "1"   | "1" | "0" |
+|"September"|	      "SMK / MAK"	 |   "4"   | "1" | "3" |
+|"September"|	      "SMA / MA"	 |   "1"   | "1" | "0" |
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+QUERY:
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+SELECT MONTHNAME(p.RegisterDate) as Bulan, sp.NamaStatusPendidikan, COUNT(p.IDPencaker) as total, SUM(COALESCE(p.JenisKelamin = 0, 0)) as laki, SUM(COALESCE(p.JenisKelamin = 1, 0) ) as cewe FROM msstatuspendidikan as sp LEFT JOIN mspencaker as p ON sp.IDStatusPendidikan = p.IDStatusPendidikan AND p.RegisterDate BETWEEN '2018-01-01' AND '2018-12-31' GROUP BY sp.IDStatusPendidikan, Bulan ORDER BY Bulan ASC
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
