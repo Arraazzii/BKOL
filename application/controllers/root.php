@@ -430,6 +430,11 @@ else if ($getid == 2)
                 'rules' => 'trim|required'
             ),
             array(
+                'field' => 'typePekerjaan',
+                'label' => 'Tipe Pekerjaan',
+                'rules' => 'required'
+            ),
+            array(
                 'field' => 'jeniskelamin',
                 'label' => 'Jenis Kelamin',
                 'rules' => 'required'

@@ -6,6 +6,7 @@ if (!$this->input->post())
   $input['idpencaker'] = $MsPencakerData->IDPencaker;
   $input['namapencaker'] = $MsPencakerData->NamaPencaker;
   $input['jeniskelamin'] = $MsPencakerData->JenisKelamin;
+  $input['typepekerjaan'] = $MsPencakerData->TypePekerjaan;
   $input['tempatlahir'] = $MsPencakerData->TempatLahir;
   $input['tgllahir'] = $tgllahir[2].'-'.$tgllahir[1].'-'.$tgllahir[0];
   $input['email'] = $MsPencakerData->Email;
@@ -77,6 +78,13 @@ if (!$this->input->post())
           <div class="col-md-5">
             <label class="radio-inline"><input name="jeniskelamin" value="0" type="radio" <?= $input['jeniskelamin'] == 0 ? 'checked="checked"' : ''; ?>>Pria</label>
             <label class="radio-inline"><input name="jeniskelamin" value="1" type="radio" <?= $input['jeniskelamin'] == 1 ? 'checked="checked"' : ''; ?>>Wanita</label>
+          </div>
+        </div> 
+        <div class="form-group <?php echo form_error('typepekerjaan') ? 'has-error' : '' ?>">
+          <label for="typepekerjaan" class="control-label col-md-3 col-md-offset-1">Type Pekerjaan</label>
+          <div class="col-md-5">
+            <label class="radio-inline"><input name="typepekerjaan" value="0" type="radio" <?= $input['typepekerjaan'] == 0 ? 'checked="checked"' : ''; ?>>Kontrak</label>
+            <label class="radio-inline"><input name="typepekerjaan" value="1" type="radio" <?= $input['typepekerjaan'] == 1 ? 'checked="checked"' : ''; ?>>Karyawan</label>
           </div>
         </div> 
         <div class="form-group <?php echo form_error('tempatlahir') ? 'has-error' : '' ?>">

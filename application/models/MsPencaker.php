@@ -173,7 +173,7 @@ function GetMsPencakerByIDPencaker($idpencaker)
 
 function GetMsPencakerByIDUser($iduser)
 {
-    $query = $this->db->query("SELECT a.IDPencaker,a.IDUser,a.IDKelurahan,a.IDAgama,a.IDStatusPernikahan,a.IDStatusPendidikan,a.IDPosisiJabatan,a.NomorIndukPencaker,a.NamaPencaker,a.TempatLahir,a.TglLahir,a.JenisKelamin,a.Email,a.Telepon,a.Alamat,a.KodePos,a.Kewarganegaraan,a.Jurusan,a.Keterampilan,a.NEMIPK,a.Nilai,a.TahunLulus,a.TinggiBadan,a.BeratBadan,a.Keterangan,a.Lokasi,a.UpahYangDicari,a.ExpiredDate,a.RegisterDate,c.NamaKelurahan,d.NamaKecamatan,e.NamaAgama,f.NamaStatusPernikahan,g.NamaStatusPendidikan,c.IDKecamatan,h.NamaPosisiJabatan,a.NomerPenduduk AS NomerPenduduk FROM ".strtolower("MsPencaker")." AS a
+    $query = $this->db->query("SELECT a.IDPencaker, a.TypePekerjaan,a.IDUser,a.IDKelurahan,a.IDAgama,a.IDStatusPernikahan,a.IDStatusPendidikan,a.IDPosisiJabatan,a.NomorIndukPencaker,a.NamaPencaker,a.TempatLahir,a.TglLahir,a.JenisKelamin,a.Email,a.Telepon,a.Alamat,a.KodePos,a.Kewarganegaraan,a.Jurusan,a.Keterampilan,a.NEMIPK,a.Nilai,a.TahunLulus,a.TinggiBadan,a.BeratBadan,a.Keterangan,a.Lokasi,a.UpahYangDicari,a.ExpiredDate,a.RegisterDate,c.NamaKelurahan,d.NamaKecamatan,e.NamaAgama,f.NamaStatusPernikahan,g.NamaStatusPendidikan,c.IDKecamatan,h.NamaPosisiJabatan,a.NomerPenduduk AS NomerPenduduk FROM ".strtolower("MsPencaker")." AS a
         INNER JOIN ".strtolower("MsKelurahan")." AS c ON a.IDKelurahan=c.IDKelurahan
         INNER JOIN ".strtolower("MsKecamatan")." AS d ON c.IDKecamatan=d.IDKecamatan
         INNER JOIN ".strtolower("MsAgama")." AS e ON a.IDAgama=e.IDAgama
@@ -288,6 +288,7 @@ function UpdateProfile($input, $idpencaker)
     $save['NomorIndukPencaker'] = $input['nomorindukpencaker'];
     $save['NamaPencaker'] = $input['namapencaker'];
     $save['JenisKelamin'] = (int)$input['jeniskelamin'];
+    $save['TypePekerjaan'] = (int)$input['typepekerjaan'];
     $save['TempatLahir'] = $input['tempatlahir'];
     $save['TglLahir'] = $tgllahir[2].$tgllahir[1].$tgllahir[0];
     $save['Email'] = $input['email'];

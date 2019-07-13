@@ -571,6 +571,11 @@ class pencaker extends CI_Controller {
                         'rules' => 'required|valid_email|callback_check_email'
                     ),
                     array(
+                        'field' => 'typepekerjaan',
+                        'label' => 'Type Pekerjaan',
+                        'rules' => 'required'
+                    ),
+                    array(
                         'field' => 'idagama',
                         'label' => 'Agama',
                         'rules' => 'required'

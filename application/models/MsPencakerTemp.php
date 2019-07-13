@@ -135,6 +135,7 @@ class MsPencakerTemp extends CI_Model
         $save['TempatLahir'] = $input['tempatlahir'];
         $save['TglLahir'] = $tgllahir[2].$tgllahir[1].$tgllahir[0];
         $save['JenisKelamin'] = (int)$input['jeniskelamin'];
+        $save['TypePekerjaan'] = (int)$input['typePekerjaan'];
         $save['Email'] = $input['email'];
         $save['Telepon'] = $input['telepon'];
         $save['Alamat'] = $input['alamat'];
@@ -248,6 +249,7 @@ class MsPencakerTemp extends CI_Model
                 $input['tempatlahir'] = $getdata->TempatLahir;
                 $input['tgllahir'] = $getdata->TglLahir;
                 $input['jeniskelamin'] = $getdata->JenisKelamin;
+                $input['typepekerjaan'] = $getdata->TypePekerjaan;
                 $input['email'] = $getdata->Email;
                 $input['telepon'] = $getdata->Telepon;
                 $input['alamat'] = $getdata->Alamat;
@@ -377,6 +379,7 @@ class MsPencakerTemp extends CI_Model
             $save['TempatLahir'] = $input['tempatlahir'];
             $save['TglLahir'] = $input['tgllahir'];
             $save['JenisKelamin'] = (int)$input['jeniskelamin'];
+            $save['TypePekerjaan'] = (int)$input['typepekerjaan'];
             $save['Email'] = $input['email'];
             $save['Telepon'] = $input['telepon'];
             $save['Alamat'] = $input['alamat'];
@@ -396,8 +399,6 @@ class MsPencakerTemp extends CI_Model
             $save['RegisterDate'] = $registerdate;
             $this->db->insert('mspencaker', $save);
             $numRows = $this->db->affected_rows();
-
-            
 
             if ($numRows > 0)
             {

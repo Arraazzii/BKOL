@@ -26,6 +26,12 @@ class MsPengalaman extends CI_Model
                 $query = $this->db->query("SELECT IDPengalaman,IDPencaker,Jabatan,UraianKerja,NamaPerusahaan,TglMasuk,TglBerhenti,DATEDIFF(TglBerhenti, TglMasuk) as lamabekerja FROM ".strtolower("MsPengalaman")." WHERE IDPencaker='".$this->db->escape_like_str($idpencaker)."'");
                 return $query;
         }
+
+        function GetMsPengalamanByIDPencakerLIMIT($idpencaker)
+        {
+                $query = $this->db->query("SELECT IDPengalaman,IDPencaker,Jabatan,UraianKerja,NamaPerusahaan,TglMasuk,TglBerhenti,DATEDIFF(TglBerhenti, TglMasuk) as lamabekerja FROM ".strtolower("MsPengalaman")." WHERE IDPencaker='".$this->db->escape_like_str($idpencaker)."' ORDER BY IDPengalaman DESC LIMIT 3");
+                return $query;
+        }
         
         function GetMsPengalamanByIDPengalaman($idpengalaman)
         {

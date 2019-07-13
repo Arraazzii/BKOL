@@ -3107,13 +3107,13 @@ class admin extends CI_Controller {
         $data['Jurusan'] = $getmspencakerdata->Jurusan;
 
         $this->load->model('MsPengalaman');
-        $getmspengalamandata = $this->MsPengalaman->GetMsPengalamanByIDPencaker($getmspencakerdata->IDPencaker);
+        $getmspengalamandata = $this->MsPengalaman->GetMsPengalamanByIDPencakerLIMIT($getmspencakerdata->IDPencaker);
         if ($getmspengalamandata->num_rows() > 0)
         {
             $data['PengalamanData'] = $getmspengalamandata->result_array();
         }
         else
-        {
+        { 
             $data['PengalamanData'] = array();
         }
         $this->load->view('admin/view_ak',$data); 

@@ -31,7 +31,7 @@
                                     }
                                     else
                                     {
-                                        $profilepic = base_url().'assets/file/pencaker/default.jpg';
+                                        $profilepic = 'http://ssl.gstatic.com/accounts/ui/avatar_2x.png';
                                     }
                                     ?>
                                     <img src="<?php echo $profilepic;?>" width="120px" height="160px">
@@ -65,6 +65,14 @@
                                 </td>
                                 <td align="left" valign="top">
                                     <span id="jeniskelamin"><?= !$MsPencakerData->JenisKelamin ? 'Pria' : 'Wanita' ?></span>
+                                </td>
+                            </tr>
+                             <tr>
+                                <td align="left" valign="top">
+                                    Tipe Pekerja
+                                </td>
+                                <td align="left" valign="top" colspan="2">
+                                    <span id="tipePekerja"><?= !$MsPencakerData->TypePekerjaan ? 'Kontrak' : 'Karyawan' ?></span>
                                 </td>
                             </tr>
                             <tr>
@@ -164,6 +172,14 @@
                                 </td>
                                 <td align="left" valign="top" colspan="2">
                                     <span id="namastatuspernikahan"><?= $MsPencakerData->NamaStatusPernikahan ?></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td nowrap="nowrap" align="left" valign="top">
+                                    Type Pekerjaan
+                                </td>
+                                <td align="left" valign="top" colspan="2">
+                                    <span id="namastatuspernikahan">Kosong</span>
                                 </td>
                             </tr>
                         </tbody>

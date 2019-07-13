@@ -80,6 +80,14 @@
    <span id="jeniskelamin"></span>
  </td>
 </tr>
+ <tr>
+  <td nowrap="nowrap" align="left" valign="top">
+   Tipe Pekerja
+ </td>
+ <td align="left" valign="top" colspan="2">
+   <span id="typePekerjaan"></span>
+ </td>
+</tr>
 <tr>
   <td nowrap="nowrap" align="left" valign="top">
    Email
@@ -442,6 +450,7 @@ function DoView(IDPencaker)
      $('#namapencaker').html(getdata.NamaPencaker);
      $('#tempattgllahir').html(getdata.TempatLahir+', '+parseInt(tgllahir[2])+' '+bulan[parseInt(tgllahir[1]-1)]+' '+tgllahir[0]);
      $('#jeniskelamin').html(getdata.JenisKelamin == 0 ? 'Pria' : 'Wanita');
+     $('#typePekerjaan').html(getdata.TypePekerjaan == 0 ? 'Karyawan' : 'Kontrak');
      $('#email').html(getdata.Email);
      $('#telepon').html(getdata.Telepon);
      $('#alamat').html(getdata.Alamat);
