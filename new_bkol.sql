@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 13, 2019 at 08:10 AM
+-- Generation Time: Jul 13, 2019 at 02:58 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `ci_sessions` (
 --
 
 INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('7a53a5396650a6b0cfe2eca3fe549679', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36', 1562998100, 'a:3:{s:6:"iduser";s:6:"000000";s:8:"username";s:5:"admin";s:11:"idjenisuser";s:6:"000000";}');
+('33f17613f61799ab69b3e16d4d262aa8', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36', 1563022488, 'a:4:{s:9:"user_data";s:0:"";s:6:"iduser";s:6:"000000";s:8:"username";s:5:"admin";s:11:"idjenisuser";s:6:"000000";}');
 
 -- --------------------------------------------------------
 
@@ -5807,6 +5807,29 @@ CREATE TABLE IF NOT EXISTS `msresetpassword` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `mssigniture`
+--
+
+CREATE TABLE IF NOT EXISTS `mssigniture` (
+  `idSigniture` int(11) NOT NULL AUTO_INCREMENT,
+  `namaSigniture` varchar(255) NOT NULL,
+  `jabatanSigniture` varchar(255) NOT NULL,
+  `bidangSigniture` varchar(255) NOT NULL,
+  `nipSigniture` varchar(255) NOT NULL,
+  `gambarSigniture` text NOT NULL,
+  PRIMARY KEY (`idSigniture`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `mssigniture`
+--
+
+INSERT INTO `mssigniture` (`idSigniture`, `namaSigniture`, `jabatanSigniture`, `bidangSigniture`, `nipSigniture`, `gambarSigniture`) VALUES
+(1, 'MEIDI HENDIANTO GUNAWAN S.Sos', 'KASI PENEMPATAN TENAGA KERJA', 'KEPALA DISNAKER KOTA DEPOK', '1234567890', 'signiture11.png');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `msslider`
 --
 
@@ -5951,7 +5974,7 @@ CREATE TABLE IF NOT EXISTS `msuser` (
 --
 
 INSERT INTO `msuser` (`IDUser`, `IDJenisUser`, `Username`, `Password`, `session_id`, `RegisterDate`) VALUES
-('000000', '000000', 'admin', 'tobat', '7a53a5396650a6b0cfe2eca3fe549679', '2018-08-20 14:10:06'),
+('000000', '000000', 'admin', 'tobat', 'f83eba7e1247ad1b30d02d36078f7c8f', '2018-08-20 14:10:06'),
 ('000052', '000002', 'Fahruroji', 'akupadamu72', '0', '2018-09-14 21:06:39'),
 ('000044', '000001', 'rsmedika', '123456', '0', '2018-08-20 15:15:24'),
 ('000049', '000002', 'pencaker', '222111', 'c7e437c2bd7f2114e91fcc4cd717d934', '2018-09-10 14:50:58'),

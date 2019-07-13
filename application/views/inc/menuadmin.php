@@ -31,7 +31,7 @@
         </ul>
     </li>
     <li class="treeview <?php 
-    $arrmaster = array('pencaker', 'perusahaan', 'jenislowongan', 'keahlian', 'kabupaten', 'kecamatan', 'kelurahan', 'posisijabatan', 'jurusan', 'event');
+    $arrmaster = array('pencaker', 'perusahaan', 'jenislowongan', 'keahlian', 'kabupaten', 'kecamatan', 'kelurahan', 'posisijabatan', 'jurusan', 'event', 'cmsAK');
 
     if(in_array($this->uri->segment(2), $arrmaster))
     {
@@ -94,6 +94,11 @@
     <li class="<?php echo $this->uri->segment(2) == 'event' ? 'active' : '' ?>">
         <a href="<?php echo base_url('admin/event') ?>"> 
             <i class="fa fa-circle-o"></i> Data Kegiatan
+        </a>
+    </li>
+    <li class="<?php echo $this->uri->segment(2) == 'cmsAK' ? 'active' : '' ?>">
+        <a href="<?php echo base_url('admin/cmsAK') ?>">
+            <i class="fa fa-circle-o"></i> Pengaturan AK 1
         </a>
     </li>
 </ul>

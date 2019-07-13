@@ -20,5 +20,11 @@ class MsCMS extends CI_Model
 
 	}
 
+	public function dataAk(){
+		$query = $this->db->query("SELECT * FROM mssigniture ORDER BY idSigniture DESC LIMIT 1");
+		return $query->result_array();
+
+	}
+
 }
 ?>

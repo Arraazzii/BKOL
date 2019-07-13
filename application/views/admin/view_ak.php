@@ -246,7 +246,7 @@
             <div class="row">
                 <div class="col-6">
                     <div class="padding-10">
-                        <h4>PENDIDIKAN FORMAL :</h4>
+                        <h4>PENDIDIKAN FORMAL TERAKHIR :</h4>
                         <table class="text-center">
                             <thead>
                                 <tr>
@@ -304,14 +304,16 @@
                         </tbody>
                     </table>
                     <div class="float-right">
+                        <?php foreach ($ak as $cms) { ?>
                         <div class="text-center">
                             <h5 class="margin-5">MENGETAHUI</h5>
-                            <h5 class="margin-5">A.N KEPALA DISNAKER KOTA DEPOK</h5>
-                            <h5 class="margin-5">KASI PENEMPATAN TENAGA KERJA</h5>
-                            <br>
-                            <br>
-                            <h5 class="border-bottom-1">MEIDI HENDIANTO GUNAWAN S.Sos</h5>
+                            <h5 class="margin-5">A.N <?php echo $cms['bidangSigniture']; ?></h5>
+                            <h5 class="margin-5"><?php echo $cms['jabatanSigniture']; ?></h5>
+                            <img src="<?php echo base_url();?>assets/file/signiture/<?php echo $cms['gambarSigniture']; ?>" style="width: 100px;height: 37.5px;object-fit: cover;object-position: center;display: block;margin: 0px auto;">
+                            <h5 class="border-bottom-1"><?php echo $cms['namaSigniture']; ?></h5>
+                            <h5>">NIP : <?php echo $cms['nipSigniture']; ?></h5>
                         </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
@@ -328,7 +330,7 @@
                                 <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="pasfoto">
                             <?php } ?>
                             <br>
-                            <h5 class="text-center">Tanda Tangan Pencari Kerja</h5>
+                            <h5 class="text-center">Tanda Tangan <br> Pencari Kerja</h5>
                         </div>
                         <div class="col-9">
                             <div class="text-center">
