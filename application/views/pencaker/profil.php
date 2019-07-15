@@ -69,10 +69,10 @@
                             </tr>
                              <tr>
                                 <td align="left" valign="top">
-                                    Tipe Pekerja
+                                    Minat Pekerja
                                 </td>
                                 <td align="left" valign="top" colspan="2">
-                                    <span id="tipePekerja"><?= !$MsPencakerData->TypePekerjaan ? 'Kontrak' : 'Karyawan' ?></span>
+                                    <span id="tipePekerja"><?= !$MsPencakerData->TypePekerjaan ? 'Wirausaha' : 'Karyawan' ?></span>
                                 </td>
                             </tr>
                             <tr>

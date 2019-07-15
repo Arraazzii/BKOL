@@ -52,7 +52,7 @@
           </div>
         </div>
         <div class="form-group <?php echo form_error('typePekerjaan') ? 'has-error' : '' ?>">
-          <label for="typePekerjaan" class="control-label col-md-3">*Tipe Pekerja</label>
+          <label for="typePekerjaan" class="control-label col-md-3">*Minat Pekerja</label>
           <div class="col-md-5">
             <label class="radio-inline"><input name="typePekerjaan" value="0" type="radio" 
               <?php  
@@ -61,7 +61,7 @@
                   echo 'checked="checked"';
               }
               ?>
-              >Kontrak</label>
+              >Wirausaha</label>
               <label class="radio-inline"><input name="typePekerjaan" value="1" type="radio"
                 <?php  
                 if (isset($input['typePekerjaan'])) {
