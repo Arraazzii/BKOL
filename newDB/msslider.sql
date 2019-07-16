@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 28, 2019 at 03:08 PM
+-- Generation Time: Jul 16, 2019 at 05:18 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -23,16 +23,16 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mskritiksaran`
+-- Table structure for table `msslider`
 --
 
-CREATE TABLE IF NOT EXISTS `mskritiksaran` (
-  `idKritikSaran` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(255) NOT NULL,
-  `isi` text NOT NULL,
-  `tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`idKritikSaran`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+CREATE TABLE IF NOT EXISTS `msslider` (
+  `idslider` int(11) NOT NULL AUTO_INCREMENT,
+  `gambar` text NOT NULL,
+  `tanggalUpload` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `status` enum('0','1','','') NOT NULL,
+  PRIMARY KEY (`idslider`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
