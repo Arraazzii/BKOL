@@ -587,6 +587,7 @@ public function pencaker()
                 $data['Keterangan'] = $getmspencakerdata->Keterangan;
                 $data['NamaPosisiJabatan'] = $getmspencakerdata->NamaPosisiJabatan;
                 $data['Lokasi'] = $getmspencakerdata->Lokasi;
+                $data['TypePekerjaan'] = $getmspencakerdata->TypePekerjaan;
                 $data['UpahYangDicari'] = 'Rp ' . number_format($getmspencakerdata->UpahYangDicari);
                 $data['Password'] = $getmspencakerdata->password;
             }
@@ -832,6 +833,7 @@ public function pencaker()
                     $data['TinggiBadan'] = $getmspencakertempdata->TinggiBadan;
                     $data['BeratBadan'] = $getmspencakertempdata->BeratBadan;
                     $data['Keterangan'] = $getmspencakertempdata->Keterangan;
+                    $data['TypePekerjaan'] = $getmspencakertempdata->TypePekerjaan;
                     $data['NamaPosisiJabatan'] = $getmspencakertempdata->NamaPosisiJabatan;
                     $data['Lokasi'] = $getmspencakertempdata->Lokasi;
                     $data['UpahYangDicari'] = number_format($getmspencakertempdata->UpahYangDicari);
@@ -3107,6 +3109,7 @@ public function pencaker()
         $data['TahunLulus'] = $getmspencakerdata->TahunLulus;
         $data['Keterampilan'] = $getmspencakerdata->Keterampilan;
         $data['Jurusan'] = $getmspencakerdata->Jurusan;
+        $data['Minat'] = $getmspencakerdata->TypePekerjaan;
 
         $this->load->model('MsPengalaman');
         $getmspengalamandata = $this->MsPengalaman->GetMsPengalamanByIDPencakerLIMIT($getmspencakerdata->IDPencaker);

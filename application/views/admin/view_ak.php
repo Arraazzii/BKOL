@@ -309,9 +309,9 @@
                             <h5 class="margin-5">MENGETAHUI</h5>
                             <h5 class="margin-5">A.N <?php echo $cms['bidangSigniture']; ?></h5>
                             <h5 class="margin-5"><?php echo $cms['jabatanSigniture']; ?></h5>
-                            <img src="<?php echo base_url();?>assets/file/signiture/<?php echo $cms['gambarSigniture']; ?>" style="width: 100px;height: 37.5px;object-fit: cover;object-position: center;display: block;margin: 0px auto;">
+                            <img src="<?php echo base_url();?>assets/file/signiture/<?php echo $cms['gambarSigniture']; ?>" style="width: 100px;height: 38px;object-fit: cover;object-position: center;display: block;margin: 0px auto; padding:3px 0px;">
                             <h5 class="border-bottom-1"><?php echo $cms['namaSigniture']; ?></h5>
-                            <h5>">NIP : <?php echo $cms['nipSigniture']; ?></h5>
+                            <h5>NIP : <?php echo $cms['nipSigniture']; ?></h5>
                         </div>
                         <?php } ?>
                     </div>
@@ -435,6 +435,14 @@
                                     </div>
                                     <div class="col-7 ">
                                         <h4>: <?php echo $Alamat;?></h4>
+                                    </div>
+                                </div>
+                                <div class="row text-left padding-l-r-5">
+                                    <div class="col-5 ">
+                                        <h4>MINAT KERJA</h4>
+                                    </div>
+                                    <div class="col-7 ">
+                                        <h4>: <?php if($Minat == '0'){echo 'Wirausaha';}else{echo 'Karyawan';}?></h4>
                                     </div>
                                 </div>
                             </div>

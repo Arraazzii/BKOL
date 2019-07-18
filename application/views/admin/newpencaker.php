@@ -450,7 +450,7 @@ function DoView(IDPencaker)
      $('#namapencaker').html(getdata.NamaPencaker);
      $('#tempattgllahir').html(getdata.TempatLahir+', '+parseInt(tgllahir[2])+' '+bulan[parseInt(tgllahir[1]-1)]+' '+tgllahir[0]);
      $('#jeniskelamin').html(getdata.JenisKelamin == 0 ? 'Pria' : 'Wanita');
-     $('#typePekerjaan').html(getdata.TypePekerjaan == 0 ? 'Karyawan' : 'Kontrak');
+     $('#typePekerjaan').html(getdata.TypePekerjaan == 0 ? 'Wirausaha' : 'Karyawan');
      $('#email').html(getdata.Email);
      $('#telepon').html(getdata.Telepon);
      $('#alamat').html(getdata.Alamat);
@@ -490,6 +490,7 @@ function ClearAddInput()
   $('#namapencaker').html("");
   $('#tempattgllahir').html("");
   $('#jeniskelamin').html("");
+  $('#typePekerjaan').html("");
   $('#email').html("");
   $('#telepon').html("");
   $('#alamat').html("");

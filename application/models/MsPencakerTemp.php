@@ -64,7 +64,7 @@ class MsPencakerTemp extends CI_Model
 
     function GetMsPencakerTempByIDPencakerTemp($idpencakertemp)
     {
-        $query = $this->db->query("SELECT a.IDPencakerTemp,a.NomerPenduduk,a.IDKelurahan,a.IDAgama,a.IDStatusPernikahan,a.IDStatusPendidikan,a.IDPosisiJabatan,a.NomorIndukPencaker,a.NamaPencaker,a.TempatLahir,a.TglLahir,a.JenisKelamin,a.Email,a.Telepon,a.Alamat,a.KodePos,a.Kewarganegaraan,a.Jurusan,a.Keterampilan,a.NEMIPK,a.Nilai,a.TahunLulus,a.TinggiBadan,a.BeratBadan,a.Keterangan,a.Lokasi,a.UpahYangDicari,a.RegisterDate,c.NamaKelurahan,d.NamaKecamatan,e.NamaAgama,f.NamaStatusPernikahan,g.NamaStatusPendidikan,c.IDKecamatan,h.NamaPosisiJabatan FROM ".strtolower("MsPencakerTemp")." AS a
+        $query = $this->db->query("SELECT a.IDPencakerTemp,a.NomerPenduduk,a.IDKelurahan,a.IDAgama,a.IDStatusPernikahan,a.IDStatusPendidikan,a.IDPosisiJabatan,a.TypePekerjaan,a.NomorIndukPencaker,a.NamaPencaker,a.TempatLahir,a.TglLahir,a.JenisKelamin,a.Email,a.Telepon,a.Alamat,a.KodePos,a.Kewarganegaraan,a.Jurusan,a.Keterampilan,a.NEMIPK,a.Nilai,a.TahunLulus,a.TinggiBadan,a.BeratBadan,a.Keterangan,a.Lokasi,a.UpahYangDicari,a.RegisterDate,c.NamaKelurahan,d.NamaKecamatan,e.NamaAgama,f.NamaStatusPernikahan,g.NamaStatusPendidikan,c.IDKecamatan,h.NamaPosisiJabatan FROM ".strtolower("MsPencakerTemp")." AS a
             INNER JOIN ".strtolower("MsKelurahan")." AS c ON a.IDKelurahan=c.IDKelurahan
             INNER JOIN ".strtolower("MsKecamatan")." AS d ON c.IDKecamatan=d.IDKecamatan
             INNER JOIN ".strtolower("MsAgama")." AS e ON a.IDAgama=e.IDAgama

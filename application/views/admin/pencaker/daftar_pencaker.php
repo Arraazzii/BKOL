@@ -479,6 +479,7 @@
     $('#jeniskelamin').html("");
     $('#email').html("");
     $('#telepon').html("");
+    $('#typePekerjaan').html("");
     $('#alamat').html("");
     $('#namakecamatan').html("");
     $('#namakelurahan').html("");

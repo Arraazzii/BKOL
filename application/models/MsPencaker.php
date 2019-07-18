@@ -151,7 +151,7 @@ function GetIDPencakerByIDUser($iduser)
 
 function GetMsPencakerByIDPencaker($idpencaker)
 {
-    $query = $this->db->query("SELECT a.IDPencaker,a.IDUser,a.IDKelurahan,a.IDAgama,a.IDStatusPernikahan,a.IDStatusPendidikan,a.IDPosisiJabatan,a.NomorIndukPencaker,a.NamaPencaker,a.TempatLahir,a.TglLahir,a.JenisKelamin,a.Email,a.Telepon,a.Alamat,a.KodePos,a.Kewarganegaraan,a.Keterampilan,a.NEMIPK,a.Nilai,a.TahunLulus,a.TinggiBadan,a.BeratBadan,a.Keterangan,a.Lokasi,a.UpahYangDicari,a.ExpiredDate,a.RegisterDate,c.NamaKelurahan,d.NamaKecamatan,e.NamaAgama,f.NamaStatusPernikahan,g.NamaStatusPendidikan,c.IDKecamatan,h.NamaPosisiJabatan, i.Jurusan, a.NomerPenduduk AS NomerPenduduk, j.password  FROM ".strtolower("MsPencaker")." AS a
+    $query = $this->db->query("SELECT a.IDPencaker,a.TypePekerjaan,a.IDUser,a.IDKelurahan,a.IDAgama,a.IDStatusPernikahan,a.IDStatusPendidikan,a.IDPosisiJabatan,a.NomorIndukPencaker,a.NamaPencaker,a.TempatLahir,a.TglLahir,a.JenisKelamin,a.Email,a.Telepon,a.Alamat,a.KodePos,a.Kewarganegaraan,a.Keterampilan,a.NEMIPK,a.Nilai,a.TahunLulus,a.TinggiBadan,a.BeratBadan,a.Keterangan,a.Lokasi,a.UpahYangDicari,a.ExpiredDate,a.RegisterDate,c.NamaKelurahan,d.NamaKecamatan,e.NamaAgama,f.NamaStatusPernikahan,g.NamaStatusPendidikan,c.IDKecamatan,h.NamaPosisiJabatan, i.Jurusan, a.NomerPenduduk AS NomerPenduduk, j.password  FROM ".strtolower("MsPencaker")." AS a
         INNER JOIN ".strtolower("MsKelurahan")." AS c ON a.IDKelurahan=c.IDKelurahan
         INNER JOIN ".strtolower("MsKecamatan")." AS d ON c.IDKecamatan=d.IDKecamatan
         INNER JOIN ".strtolower("MsAgama")." AS e ON a.IDAgama=e.IDAgama
