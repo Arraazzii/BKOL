@@ -209,7 +209,7 @@ class perusahaan extends CI_Controller {
         $config['overwrite'] = TRUE;
         $this->load->library('upload', $config);
 
-        if(isset($_FILES['logoperusahaan']) && !empty($_FILES['logoperusahaan']['name']))
+        if(isset($_FILES['logoperusahaan']) && $_FILES['logoperusahaan']['name'] != NULL)
         {
             $namafile = $_FILES["logoperusahaan"]["name"];
             $ext = pathinfo($namafile, PATHINFO_EXTENSION);
@@ -919,7 +919,7 @@ else
         }
 
         if ($mail->send()) {
-         $this->session->set_flashdata('notifikasi', '<script>notifikasi("Pencaker Berhasil Ditambahkan", "success", "fa fa-check")</script>');
+         $this->session->set_flashdata('notifikasi', '<script>notifikasi("Data Berhasil Ditambahkan", "success", "fa fa-check")</script>');
      } else {
       echo 'Message could not be sent.';
       echo 'Mailer Error: ' . $mail->ErrorInfo;

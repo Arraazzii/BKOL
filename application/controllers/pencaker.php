@@ -683,7 +683,7 @@ class pencaker extends CI_Controller {
         $config['overwrite'] = TRUE;
         $this->load->library('upload', $config);
 
-        if(isset($_FILES['photo']) && !empty($_FILES['photo']['name']))
+        if(isset($_FILES['photo']) && $_FILES['photo']['name'] != NULL)
         {
             $namafile = $_FILES["photo"]["name"];
             $ext = pathinfo($namafile, PATHINFO_EXTENSION);
@@ -1152,7 +1152,7 @@ class pencaker extends CI_Controller {
 
                         //check trlowongan data is exists
                         $num = $this->TrLowonganMasuk->GetCountByPencakerID($getmspencakerdata->IDPencaker, $idlowongan);
-                        if ($num == 0 || empty($num))
+                        if ($num == 0 || $num == NULL)
                         {
                             $this->TrLowonganMasuk->Insert($idlowongan,$getmspencakerdata->IDPencaker);
 

@@ -83,8 +83,8 @@ if (!$this->input->post())
         <div class="form-group <?php echo form_error('typepekerjaan') ? 'has-error' : '' ?>">
           <label for="typepekerjaan" class="control-label col-md-3 col-md-offset-1">Minat Pekerjaan</label>
           <div class="col-md-5">
-            <label class="radio-inline"><input name="typepekerjaan" value="0" type="radio" <?= $input['typepekerjaan'] == 0 ? 'checked="checked"' : ''; ?>>Wirausaha</label>
-            <label class="radio-inline"><input name="typepekerjaan" value="1" type="radio" <?= $input['typepekerjaan'] == 1 ? 'checked="checked"' : ''; ?>>Karyawan</label>
+            <label class="radio-inline"><input name="typepekerjaan" value="0" type="radio" <?= $input['typepekerjaan'] == 0 ? 'checked="checked"' : ''; ?>>Karyawan</label>
+            <label class="radio-inline"><input name="typepekerjaan" value="1" type="radio" <?= $input['typepekerjaan'] == 1 ? 'checked="checked"' : ''; ?>>Wirausaha</label>
           </div>
         </div> 
         <div class="form-group <?php echo form_error('tempatlahir') ? 'has-error' : '' ?>">

@@ -144,7 +144,7 @@
 
       <h3>BKOL<span>Depok</span></h3>
 
-      <p class="footer-company-name">Dinas Tenaga Kerja Kota Depok &copy; 2018</p>
+      <p class="footer-company-name">Dinas Tenaga Kerja Kota Depok &copy; 2019</p>
     </div>
 
     <div class="footer-center">

@@ -85,7 +85,7 @@ public function dologin()
                 $todate = explode("-", $getmspencaker->ExpiredDate);
                 $this->session->set_userdata("aktif", (date('Ymd') >= $fromdate[0].$fromdate[1].$fromdate[2] && date('Ymd') <= $todate[0].$todate[1].$todate[2]));
             }
-            if (!empty($this->input->get("lowongan"))) {
+            if ($this->input->get("lowongan") != NULL) {
                 $lowongan = $this->input->get("lowongan");
                 redirect("detailLowonganPekerjaan?lowongan=$lowongan", "refresh");
             }else{

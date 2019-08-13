@@ -5,9 +5,9 @@ class admin extends CI_Controller {
 
     public function index()
     {
-        if (empty($this->session->userdata('iduser')))
+        if ($this->session->userdata('iduser') == NULL)
         {
-            $data['route'] = $this->uri->segment(1);
+            // $data['route'] = $this->uri->segment(1);
             $this->load->view('admin/login', $data);
             // $this->load->view('index2',$data); 
         }
@@ -393,28 +393,28 @@ class admin extends CI_Controller {
                     $message = $this->load->view('email_temp', $mail_data, TRUE);
                     $mail->Body = $message;
                     if ($mail->send()) {
-                       $this->session->set_flashdata('notifikasi', '<script>notifikasi("Pencaker Berhasil Ditambahkan", "success", "fa fa-check")</script>');
-                   } else {
-                      echo 'Message could not be sent.';
-                      echo 'Mailer Error: ' . $mail->ErrorInfo;
-                  }
+                     $this->session->set_flashdata('notifikasi', '<script>notifikasi("Pencaker Berhasil Ditambahkan", "success", "fa fa-check")</script>');
+                 } else {
+                  echo 'Message could not be sent.';
+                  echo 'Mailer Error: ' . $mail->ErrorInfo;
+              }
                     // $this->EmailModel->sendEmail($getmspencakerdata->Email,'[Aktivasi] Pendaftaran Pencaker Baru','Data Pencaker anda telah diaktifkan.<br/>Terimakasih atas pastisipasi anda dalam menggunakan aplikasi ini,<br/>Data pendaftaran anda adalah sebagai berikut :<br/><br/>Nomer ID : '.$getmsuserdata->NomorIndukPencaker.'<br/>Nama Pengguna : '.$getmsuserdata->Username.'<br/>Kata Sandi : '.$getmsuserdata->Password.'<br/><br/>Untuk aktivasi akun dan pencetakan kartu AK-1 mohon untuk membawa dokumen-dokumen sebagai berikut :<br/><br/>1. Foto kopi KTP Depok yang masih berlaku<br/>2. Ijazah SD, SMP, SLTA Sampai Terakhir/ Asli/ Fotocopy Yang dilegalisir<br/>3. Pas Foto 3 x 4 Sebanyak 2 (dua) Lembar<br/>4. Kartu AK-I yang masih berlaku<br/><br/>ke pusat pelayanan terpadu Dinas Tenaga Kerja Kota Depok<br/>Jl. Margonda Raya No.54 Kec.Pancoran Mas, Depok - JABAR<br/>Telp. 021-77204211,Fax. 021-77211866');
                     // $this->session->set_flashdata('notifikasi', '<script>notifikasi("Pencaker Berhasil Ditambahkan", "success", "fa fa-check")</script>');
-              }
           }
-          else if ($iduser == 'exists') {
-            $this->session->set_flashdata('notifikasi', '<script>notifikasi("Pencaker Sudah Terdaftar", "danger", "fa fa-exclamation")</script>');
-        }
-        else
-        {
-            $this->session->set_flashdata('notifikasi', '<script>notifikasi("Pencaker Gagal Ditambah", "danger", "fa fa-exclamation")</script>');
-        }
-        redirect('admin/newpencaker');
+      }
+      else if ($iduser == 'exists') {
+        $this->session->set_flashdata('notifikasi', '<script>notifikasi("Pencaker Sudah Terdaftar", "danger", "fa fa-exclamation")</script>');
     }
     else
     {
-        redirect();
+        $this->session->set_flashdata('notifikasi', '<script>notifikasi("Pencaker Gagal Ditambah", "danger", "fa fa-exclamation")</script>');
     }
+    redirect('admin/newpencaker');
+}
+else
+{
+    redirect();
+}
 }
 
 public function deletepencakertemp()
@@ -454,32 +454,66 @@ public function exportperusahaantemp()
     if ($this->isadmin())
     {
         $idperusahaantemp = $this->uri->segment(3);
+        $dataUser = $this->db->query("SELECT Email, Username, Password, NamaPerusahaan From msperusahaantemp WHERE IDPerusahaanTemp='$idperusahaantemp'")->result_array();
         $this->load->model('MsPerusahaanTemp');
         $iduser = $this->MsPerusahaanTemp->Export($idperusahaantemp);
         if ($iduser != NULL)
         {
+            error_reporting(0);
             $this->load->model('MsUser');
             $getmsuserdata = $this->MsUser->GetMsUserByIDUser($iduser);
             $this->load->model('MsPerusahaan');
             $getmsperusahaandata = $this->MsPerusahaan->GetMsPerusahaanByIDUser($iduser);
-            if ($getmsuserdata != NULL && $getmsperusahaandata != NULL)
-            {
-                $this->load->model('EmailModel');
-                @$this->EmailModel->sendEmail($getmsperusahaandata->EmailPemberiKerja,'[Aktivasi] Pendaftaran Perusahaan Baru','Data Perusahaan anda telah diaktifkan.<br/>Nama Pengguna : '.$getmsuserdata->Username.'<br/>Kata Sandi : '.$getmsuserdata->Password);
-                $this->seterrormsg(NULL,"Pencaker berhasil ditambah");
-            }
-            $this->session->set_flashdata('notifikasi', '<script>notifikasi("Perusahaan Berhasil Diaktifkan", "success", "fa fa-check")</script>');
-        }
-        else
-        {
-            $this->session->set_flashdata('notifikasi', '<script>notifikasi("Perusahaan Gagal Diaktifkan", "danger", "fa fa-exclamation")</script>');
-        }
-        redirect('admin/newperusahaan');
-    }
-    else
-    {
-        redirect();
-    }
+           
+            $this->load->library('PHPMailer');
+            $this->load->library('SMTP');
+
+            $email_admin = 'disnaker.depok@gmail.com';
+            $nama_admin = 'noreply-BKOL';
+            $password_admin = '2014umar';
+
+            $mail = new PHPMailer();
+            $mail->isSMTP();  
+            $mail->SMTPKeepAlive = true;
+            $mail->Charset  = 'UTF-8';
+            $mail->IsHTML(true);
+            // $mail->SMTPDebug = 1;
+            $mail->SMTPAuth = true;
+            $mail->Host = 'smtp.gmail.com'; 
+            $mail->Port = 587;
+            $mail->SMTPSecure = 'ssl';
+            $mail->Username = $email_admin;
+            $mail->Password = $password_admin;
+            $mail->Mailer   = 'smtp';
+            $mail->WordWrap = 100;       
+
+            $mail->setFrom($email_admin);
+            $mail->FromName = $nama_admin;
+            $mail->addAddress($dataUser[0]['Email']);
+            $mail->AddEmbeddedImage('assets/img-lowongan.png', 'acc');
+            $mail->Subject          = 'Akun Verifikasi Perusahaan '.$dataUser[0]['NamaPerusahaan'];
+            $mail_data['username']  = $dataUser[0]['Username'];
+            $mail_data['password']  = $dataUser[0]['Password'];
+            $message = $this->load->view('email_perusahaan', $mail_data, TRUE);
+            $mail->Body = $message;
+            if ($mail->send()) {
+             $this->session->set_flashdata('notifikasi', '<script>notifikasi("Perusahaan Berhasil Ditambahkan", "success", "fa fa-check")</script>');
+         } else {
+          echo 'Message could not be sent.';
+          echo 'Mailer Error: ' . $mail->ErrorInfo;
+      }
+      $this->session->set_flashdata('notifikasi', '<script>notifikasi("Perusahaan Berhasil Diaktifkan", "success", "fa fa-check")</script>');
+  }
+  else
+  {
+    $this->session->set_flashdata('notifikasi', '<script>notifikasi("Perusahaan Gagal Diaktifkan", "danger", "fa fa-exclamation")</script>');
+}
+redirect('admin/newperusahaan');
+}
+else
+{
+    redirect();
+}
 }
 
 public function deleteperusahaantemp()
@@ -3418,12 +3452,12 @@ public function pencaker()
                         }
                         $data['detail'] = $datahasil;
                     }else{
-                     $data['detail'] = $this->MsLaporan->dataByKecamatan($start, $end, $type);
-                 }
-             }
+                       $data['detail'] = $this->MsLaporan->dataByKecamatan($start, $end, $type);
+                   }
+               }
                 //Report Berdasarkan Kelompok Umur
-             if ($cat == 'umur')
-             {
+               if ($cat == 'umur')
+               {
                 $this->load->model("MsLaporan");
                 if ($type == '1') {
                     $data['detail'] = $this->MsLaporan->dataNullByUmur($start, $end, $type);
@@ -3480,15 +3514,15 @@ public function pencaker()
                     }
                     $data['detail'] = $datahasil;
                 }else{
-                   $data['detail'] = $this->MsLaporan->dataByPosisiJabatan($start, $end, $type);
-               }
-           }
+                 $data['detail'] = $this->MsLaporan->dataByPosisiJabatan($start, $end, $type);
+             }
+         }
 
-           $this->load->model("MsLaporan");
-           $data['summary'] = $this->MsLaporan->GetCountByPeriod($type, $start, $end, $cat);
-           $data['jenis'] = 0;
-       } else if($jenis == 1)
-       {
+         $this->load->model("MsLaporan");
+         $data['summary'] = $this->MsLaporan->GetCountByPeriod($type, $start, $end, $cat);
+         $data['jenis'] = 0;
+     } else if($jenis == 1)
+     {
         $this->load->model("MsLaporan");
         $data['detail'] = $this->MsLaporan->dataByLamaran($start, $end);
                 // $data['summary'] = $this->MsLaporan->GetCountByPeriod($type, $start, $end, $cat);
@@ -3814,53 +3848,53 @@ public function export_laporan()
                     }elseif($val['StatusLowongan'] == '4'){
                         $statusLowongan = 'Tidak Memenuhi Persyaratan';
                     }else{
-                       $statusLowongan = 'Tidak Memenuhi Persyaratan';
-                   }
-                   $excel->setActiveSheetIndex(0)->setCellValue('A'.$numrow, $no);      
-                   $excel->setActiveSheetIndex(0)->setCellValue('B'.$numrow, $val['NamaPencaker']);
-                   $excel->setActiveSheetIndex(0)->setCellValue('C'.$numrow, $val['NamaLowongan']);
-                   $excel->setActiveSheetIndex(0)->setCellValue('D'.$numrow, $val['NamaPerusahaan']);
-                   $excel->setActiveSheetIndex(0)->setCellValue('E'.$numrow, $statusLowongan);
-                   $excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_num);
-                   $excel->getActiveSheet()->getStyle('B'.$numrow)->applyFromArray($style_row);
-                   $excel->getActiveSheet()->getStyle('C'.$numrow)->applyFromArray($style_row);
-                   $excel->getActiveSheet()->getStyle('D'.$numrow)->applyFromArray($style_row);
-                   $excel->getActiveSheet()->getStyle('E'.$numrow)->applyFromArray($style_num);
-                   $numrow++;
-                   $no++; 
+                     $statusLowongan = 'Tidak Memenuhi Persyaratan';
+                 }
+                 $excel->setActiveSheetIndex(0)->setCellValue('A'.$numrow, $no);      
+                 $excel->setActiveSheetIndex(0)->setCellValue('B'.$numrow, $val['NamaPencaker']);
+                 $excel->setActiveSheetIndex(0)->setCellValue('C'.$numrow, $val['NamaLowongan']);
+                 $excel->setActiveSheetIndex(0)->setCellValue('D'.$numrow, $val['NamaPerusahaan']);
+                 $excel->setActiveSheetIndex(0)->setCellValue('E'.$numrow, $statusLowongan);
+                 $excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_num);
+                 $excel->getActiveSheet()->getStyle('B'.$numrow)->applyFromArray($style_row);
+                 $excel->getActiveSheet()->getStyle('C'.$numrow)->applyFromArray($style_row);
+                 $excel->getActiveSheet()->getStyle('D'.$numrow)->applyFromArray($style_row);
+                 $excel->getActiveSheet()->getStyle('E'.$numrow)->applyFromArray($style_num);
+                 $numrow++;
+                 $no++; 
 
-               }
+             }
 
-               $excel->getActiveSheet()->getColumnDimension('A')->setWidth(5);
-               $excel->getActiveSheet()->getColumnDimension('B')->setWidth(40); 
-               $excel->getActiveSheet()->getColumnDimension('C')->setWidth(40); 
-               $excel->getActiveSheet()->getColumnDimension('D')->setWidth(40);
-               $excel->getActiveSheet()->getColumnDimension('E')->setWidth(15);
-               $excel->getActiveSheet()->getDefaultRowDimension()->setRowHeight(-1);
-               $excel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
+             $excel->getActiveSheet()->getColumnDimension('A')->setWidth(5);
+             $excel->getActiveSheet()->getColumnDimension('B')->setWidth(40); 
+             $excel->getActiveSheet()->getColumnDimension('C')->setWidth(40); 
+             $excel->getActiveSheet()->getColumnDimension('D')->setWidth(40);
+             $excel->getActiveSheet()->getColumnDimension('E')->setWidth(15);
+             $excel->getActiveSheet()->getDefaultRowDimension()->setRowHeight(-1);
+             $excel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
 
-               $excel->getProperties()->setCreator('Disnaker Kota Depok')
-               ->setLastModifiedBy('Disnaker Kota Depok')                 
-               ->setTitle('Rekap Lamaran yang di proses')                 
-               ->setSubject("Lamaran Diproses")                 
-               ->setDescription("Laporan Lamaran Diproses")                 
-               ->setKeywords("Data Pencaker");
+             $excel->getProperties()->setCreator('Disnaker Kota Depok')
+             ->setLastModifiedBy('Disnaker Kota Depok')                 
+             ->setTitle('Rekap Lamaran yang di proses')                 
+             ->setSubject("Lamaran Diproses")                 
+             ->setDescription("Laporan Lamaran Diproses")                 
+             ->setKeywords("Data Pencaker");
 
-               $excel->getActiveSheet(0)->setTitle('Rekap Lamaran Di Proses');
-               $excel->getActiveSheet(0)->getPageSetup()->setPaperSize(PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);    
-               $excel->setActiveSheetIndex(0);  
-               $write = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');  
-               if (ob_get_length()) ob_end_clean(); 
-               header('Last-Modified:'. gmdate("D, d M Y H:i:s").'GMT');
-               header('Chace-Control: no-store, no-cache, must-revalation');
-               header('Chace-Control: post-check=0, pre-check=0', FALSE);
-               header('Pragma: no-cache');
-               header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-               header('Content-Disposition: attachment;filename="LamaranDiproses-'. date('Ymd') .'.xlsx"');    
-               $write->save('php://output');
-           }
-           elseif($jenis == 2)
-           {
+             $excel->getActiveSheet(0)->setTitle('Rekap Lamaran Di Proses');
+             $excel->getActiveSheet(0)->getPageSetup()->setPaperSize(PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);    
+             $excel->setActiveSheetIndex(0);  
+             $write = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');  
+             if (ob_get_length()) ob_end_clean(); 
+             header('Last-Modified:'. gmdate("D, d M Y H:i:s").'GMT');
+             header('Chace-Control: no-store, no-cache, must-revalation');
+             header('Chace-Control: post-check=0, pre-check=0', FALSE);
+             header('Pragma: no-cache');
+             header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+             header('Content-Disposition: attachment;filename="LamaranDiproses-'. date('Ymd') .'.xlsx"');    
+             $write->save('php://output');
+         }
+         elseif($jenis == 2)
+         {
 
             $excel->setActiveSheetIndex(0)->setCellValue('A1', "LAPORAN PENEMPATAN PENCAKER");
             $excel->setActiveSheetIndex(0)->setCellValue('A2', "BKOL KOTA DEPOK");

@@ -207,6 +207,9 @@
     .padding-l-r-5{
         padding: 0px 5px;
     }
+    .alamat{
+        font-size: 10.5px;
+    }
     table { 
         width: 100%; 
         border-collapse: collapse; 
@@ -241,13 +244,12 @@
 </head>
 <body>
     <div class="container">
-        <hr>
         <div class="content" style="padding: 5px 15px;">
             <div class="row">
                 <div class="col-6">
                     <div class="padding-10">
                         <h4>PENDIDIKAN FORMAL TERAKHIR :</h4>
-                        <table class="text-center">
+                        <table class="text-center" style="text-transform: uppercase;">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -267,7 +269,7 @@
                         </table>
 
                         <h4>KETERAMPILAN / PENGALAMAN KERJA :</h4>
-                        <table class="text-center">
+                        <table class="text-center" style="text-transform: uppercase;">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -284,6 +286,25 @@
                                     <td><?php echo substr($peng['TglBerhenti'], 0, 4);?></td>
                                 </tr>
                             <?php endforeach ?>
+                            <?php $totalRow = count($PengalamanData);
+                            if ($totalRow == 1) {  ?>
+                            <tr>
+                                <td>2</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <?php }elseif ($totalRow == 2){ ?>
+                            <tr>
+                                <td>3</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <?php } ?>
                             <?php }else{ ?> 
                             <tr>
                                 <td>1</td>
@@ -309,7 +330,7 @@
                             <h5 class="margin-5">MENGETAHUI</h5>
                             <h5 class="margin-5">A.N <?php echo $cms['bidangSigniture']; ?></h5>
                             <h5 class="margin-5"><?php echo $cms['jabatanSigniture']; ?></h5>
-                            <img src="<?php echo base_url();?>assets/file/signiture/<?php echo $cms['gambarSigniture']; ?>" style="width: 100px;height: 38px;object-fit: cover;object-position: center;display: block;margin: 0px auto; padding:3px 0px;">
+                            <img src="<?php echo base_url();?>assets/file/signiture/<?php echo $cms['gambarSigniture']; ?>" style="width: 100px;height: 50px;object-fit: cover;object-position: center;display: block;margin: 0px auto; padding:2px 0px;">
                             <h5 class="border-bottom-1"><?php echo $cms['namaSigniture']; ?></h5>
                             <h5>NIP : <?php echo $cms['nipSigniture']; ?></h5>
                         </div>
@@ -325,9 +346,9 @@
                             <br>
                             <?php $path = 'assets/file/pencaker'.'/'.$IDPencaker.'.jpg';
                             if(file_exists($path)){ ?>
-                                <img src="<?php echo base_url();?>assets/file/pencaker/<?php echo $IDPencaker; ?>.jpg" class="pasfoto">
+                            <img src="<?php echo base_url();?>assets/file/pencaker/<?php echo $IDPencaker; ?>.jpg" class="pasfoto">
                             <?php }else{ ?>
-                                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="pasfoto">
+                            <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="pasfoto">
                             <?php } ?>
                             <br>
                             <h5 class="text-center">Tanda Tangan <br> Pencari Kerja</h5>
@@ -372,21 +393,21 @@
                                     <div class="col-7  d-flex">
                                         : 
                                         <div class="kotak"><?php echo substr($NomerPenduduk,0,1);?></div>
-                                        <div class="kotak"><?php echo substr($NomerPenduduk,0,1);?></div>
-                                        <div class="kotak"><?php echo substr($NomerPenduduk,0,1);?></div>
-                                        <div class="kotak"><?php echo substr($NomerPenduduk,0,1);?></div>
-                                        <div class="kotak"><?php echo substr($NomerPenduduk,0,1);?></div>
-                                        <div class="kotak"><?php echo substr($NomerPenduduk,0,1);?></div>
-                                        <div class="kotak"><?php echo substr($NomerPenduduk,0,1);?></div>
-                                        <div class="kotak"><?php echo substr($NomerPenduduk,0,1);?></div>
-                                        <div class="kotak"><?php echo substr($NomerPenduduk,0,1);?></div>
-                                        <div class="kotak"><?php echo substr($NomerPenduduk,0,1);?></div>
-                                        <div class="kotak"><?php echo substr($NomerPenduduk,0,1);?></div>
-                                        <div class="kotak"><?php echo substr($NomerPenduduk,0,1);?></div>
-                                        <div class="kotak"><?php echo substr($NomerPenduduk,0,1);?></div>
-                                        <div class="kotak"><?php echo substr($NomerPenduduk,0,1);?></div>
-                                        <div class="kotak"><?php echo substr($NomerPenduduk,0,1);?></div>
-                                        <div class="kotak"><?php echo substr($NomerPenduduk,0,1);?></div>
+                                        <div class="kotak"><?php echo substr($NomerPenduduk,1,1);?></div>
+                                        <div class="kotak"><?php echo substr($NomerPenduduk,2,1);?></div>
+                                        <div class="kotak"><?php echo substr($NomerPenduduk,3,1);?></div>
+                                        <div class="kotak"><?php echo substr($NomerPenduduk,4,1);?></div>
+                                        <div class="kotak"><?php echo substr($NomerPenduduk,5,1);?></div>
+                                        <div class="kotak"><?php echo substr($NomerPenduduk,6,1);?></div>
+                                        <div class="kotak"><?php echo substr($NomerPenduduk,7,1);?></div>
+                                        <div class="kotak"><?php echo substr($NomerPenduduk,8,1);?></div>
+                                        <div class="kotak"><?php echo substr($NomerPenduduk,9,1);?></div>
+                                        <div class="kotak"><?php echo substr($NomerPenduduk,10,1);?></div>
+                                        <div class="kotak"><?php echo substr($NomerPenduduk,11,1);?></div>
+                                        <div class="kotak"><?php echo substr($NomerPenduduk,12,1);?></div>
+                                        <div class="kotak"><?php echo substr($NomerPenduduk,13,1);?></div>
+                                        <div class="kotak"><?php echo substr($NomerPenduduk,14,1);?></div>
+                                        <div class="kotak"><?php echo substr($NomerPenduduk,15,1);?></div>
                                     </div>
                                 </div>
                                 <div class="row text-left padding-l-r-5">
@@ -434,7 +455,7 @@
                                         <h4>ALAMAT</h4>
                                     </div>
                                     <div class="col-7 ">
-                                        <h4>: <?php echo $Alamat;?></h4>
+                                        <h4 class="alamat">: <?php echo $Alamat;?></h4>
                                     </div>
                                 </div>
                                 <div class="row text-left padding-l-r-5">
@@ -442,7 +463,7 @@
                                         <h4>MINAT KERJA</h4>
                                     </div>
                                     <div class="col-7 ">
-                                        <h4>: <?php if($Minat == '0'){echo 'Wirausaha';}else{echo 'Karyawan';}?></h4>
+                                        <h4>: <?php if($Minat == '0'){echo 'Karyawan';}else{echo 'Wirausaha';}?></h4>
                                     </div>
                                 </div>
                             </div>
@@ -452,7 +473,6 @@
             </div>
         </div>
     </div>
-    <hr>
 </div>
 </body>
 </html>

@@ -67,12 +67,12 @@
                                     <span id="jeniskelamin"><?= !$MsPencakerData->JenisKelamin ? 'Pria' : 'Wanita' ?></span>
                                 </td>
                             </tr>
-                             <tr>
+                            <tr>
                                 <td align="left" valign="top">
                                     Minat Pekerja
                                 </td>
                                 <td align="left" valign="top" colspan="2">
-                                    <span id="tipePekerja"><?= !$MsPencakerData->TypePekerjaan ? 'Wirausaha' : 'Karyawan' ?></span>
+                                    <span id="tipePekerja"><?= !$MsPencakerData->TypePekerjaan ? 'Karyawan' : 'Wirausaha' ?></span>
                                 </td>
                             </tr>
                             <tr>
@@ -179,7 +179,7 @@
                                     Type Pekerjaan
                                 </td>
                                 <td align="left" valign="top" colspan="2">
-                                    <span id="namastatuspernikahan">Kosong</span>
+                                    <span id="TypePekerjaan"><?= $MsPencakerData->TypePekerjaan == '0' ? 'Karyawan' : 'Wirausaha' ?></span>
                                 </td>
                             </tr>
                         </tbody>
@@ -254,14 +254,14 @@
                         <?php endif ?>
                     </div>
                     <div class="box-footer text-right">
-                       <a class="btn btn-default btn-sm" href="<?php echo base_url();?>pencaker/pengalaman"><i class="fa fa-edit"></i> Detail Pengalaman</a>
-                   </div>
-               </div>
-           </div>
-       </div>
-   </section>
+                     <a class="btn btn-default btn-sm" href="<?php echo base_url();?>pencaker/pengalaman"><i class="fa fa-edit"></i> Detail Pengalaman</a>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </section>
 
-<script type="text/javascript">
+ <script type="text/javascript">
     window.addEventListener( "pageshow", function ( event ) {
       var historyTraversal = event.persisted || 
       ( typeof window.performance != "undefined" && 

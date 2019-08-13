@@ -85,7 +85,7 @@
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th class="text-center">ID Loker</th>
+                                <th class="text-center">Nomor</th>
                                 <th class="text-center">Nama Pekerjaan</th>
                                 <th class="text-center">Tgl Berlaku</th>
                                 <th class="text-center">Tgl Berakhir</th>
@@ -96,13 +96,13 @@
                         </thead>
                         <tbody>
                             <?php if ($MsLowonganData->num_rows > 0): ?>
-                                <?php foreach ($MsLowonganData->result() as $getdata): ?>
+                                <?php $no = 1; foreach ($MsLowonganData->result() as $getdata): ?>
                                     <?php  
                                     $this->load->model('MsLowongan');
                                     $count = $this->MsLowongan->GetCountStatusByIDLowongan($getdata->IDLowongan);
                                     ?>
                                     <tr>
-                                        <td class="text-center"><?php echo $getdata->IDLowongan ?></td>
+                                        <td class="text-center"><?php echo $no++; ?></td>
                                         <td class="text-center"><?php echo $getdata->NamaLowongan ?></td>
                                         <td class="text-center"><?php echo $getdata->TglBerlaku ?></td>
                                         <td class="text-center"><?php echo $getdata->TglBerakhir ?></td>

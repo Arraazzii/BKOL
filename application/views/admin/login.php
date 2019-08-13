@@ -1,4 +1,4 @@
-<?php if (empty($this->session->userdata('iduser'))) {?>
+<?php if ($this->session->userdata('iduser') == NULL) {?>
 
 <?php $this->load->view('inc/header');
 $input = $this->session->flashdata('input');

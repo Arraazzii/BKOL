@@ -16,11 +16,11 @@
   <div class="box">
     <div class="box-header with-border text-center">
       <h3 class="box-title">DAFTAR LOWONGAN KERJA</h3>
+      <a href="<?php echo base_url();?>perusahaan/lowongan/tambahdata" class="btn btn-default pull-right"><i class="fa fa-plus"></i></a><br><br>
     </div>
     <!-- /.box-header -->
     <!-- form start -->
     <div class="box-body table-responsive">
-      <a href="<?php echo base_url();?>perusahaan/lowongan/tambahdata" class="btn btn-default pull-right"><i class="fa fa-plus"></i></a><br><br>
       <table class="table table-bordered table-striped" id="tabel-lowongan">
         <thead>
           <tr>
@@ -38,7 +38,6 @@
       </table>
     </div>
   </div>
-</div>
 </section>
 
 <script>

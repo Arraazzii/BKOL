@@ -947,7 +947,7 @@ public function dataperusahaan()
                     $config['file_name'] = $idpencaker.".jpg";
                     $config['overwrite'] = TRUE;
                     $this->load->library('upload', $config);
-                    if(isset($_FILES['photo']) && !empty($_FILES['photo']['name']))
+                    if(isset($_FILES['photo']) && $_FILES['photo']['name'] != NULL)
                     {
                         $namafile = $_FILES["photo"]["name"];
                         $ext = pathinfo($namafile, PATHINFO_EXTENSION);
@@ -1074,6 +1074,18 @@ public function dataperusahaan()
                     
                 }
                 
+                public function checkUnamePencaker(){
+                    $username = $this->input->post("username");
+                    $cek = $this->db->query("SELECT Username FROM mspencakertemp WHERE Username = '$username' ORDER BY IDPencakerTemp DESC LIMIT 1")->result_array();
+                    $cek2 = $this->db->query("SELECT Username FROM msuser WHERE Username = '$username' ORDER BY IDUser DESC LIMIT 1")->result_array();
+                    if ($cek == 0 || $cek2 == NULL) {
+                        echo "ok";
+                    }else{
+                        echo "fail";
+                    }
+
+                }
+
             }
 
             /* End of file welcome.php */

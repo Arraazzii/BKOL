@@ -2,7 +2,7 @@
 
 class MsPerusahaanTemp extends CI_Model
 {
-    
+
     function GetCountMsPerusahaanTemp()
     {
         $this->db->select('*');
@@ -171,14 +171,14 @@ class MsPerusahaanTemp extends CI_Model
     function Export($idperusahaantemp)
     {
         $registerdate = date('Y-m-d H:i:s');
-        $query = $this->db->query("SELECT Username,Password,IDBidangPerusahaan,IDKelurahan,NamaPerusahaan,Email,Telepon,Alamat,KodePos,Kota,Propinsi,NamaPemberiKerja,JabatanPemberiKerja,TeleponPemberiKerja,EmailPemberiKerja,RegisterDate FROM ".strtolower('MsPerusahaanTemp')." WHERE IDPerusahaanTemp='".$idperusahaantemp."'");
-        if ($query->num_rows() > 0)
+        $query = $this->db->query("SELECT Username,Password,IDBidangPerusahaan,IDKelurahan,NamaPerusahaan,Email,Telepon,Alamat,KodePos,Kota,Propinsi,NamaPemberiKerja,JabatanPemberiKerja,TeleponPemberiKerja,EmailPemberiKerja,RegisterDate FROM ".strtolower('MsPerusahaanTemp')." WHERE IDPerusahaanTemp='".$idperusahaantemp."'")->row();
+        if ($query != NULL)
         {
-            $getdata = $query->row();
+            $getdata = $query;
             $username = $getdata->Username;
             $password = $getdata->Password;
             $iduser = $this->InsertMsUser('000001', $username, $password, $registerdate);
-            if ($iduser != '')
+            if ($iduser != NULL)
             {
                 $input['iduser'] = $iduser;
                 $input['idbidangperusahaan'] = $getdata->IDBidangPerusahaan;
@@ -207,9 +207,10 @@ class MsPerusahaanTemp extends CI_Model
                     $this->db->delete(strtolower(('MsUser')));
                     return NULL;
                 }
-            }
+            }else{
             return NULL;
         }
+    }
         else
         {
             return NULL;
@@ -240,24 +241,29 @@ class MsPerusahaanTemp extends CI_Model
 
     function InsertMsUser($idjenisuser, $username, $password, $registerdate)
     {
-        $data['IDUser'] = $this->GetLastIDUser();
-        $data['IDJenisUser'] = $idjenisuser;
-        $data['Username'] = $username;
-        $data['Password'] = $password;
-        $data['RegisterDate'] = $registerdate;
-        $this->db->query(
-            "INSERT INTO ".strtolower("MsUser")."
-            SELECT * FROM (SELECT ".$this->db->escape($data['IDUser'])." AS IDUser,".$this->db->escape($data['IDJenisUser'])." AS IDJenisUser,".$this->db->escape($data['Username'])." AS Username,".$this->db->escape($data['Password'])." AS Password,'0' AS session_id,".$this->db->escape($data['RegisterDate'])." AS RegisterDate) as TMP
-            WHERE NOT EXISTS (
-                SELECT IDUser FROM ".strtolower("MsUser")." WHERE IDJenisUser='".$this->db->escape_like_str($data['IDJenisUser'])."' AND Username='".$this->db->escape_like_str($data['Username']).")'
-            ) LIMIT 1");
-        if ($this->db->affected_rows() > 0)
-        {
-            return $data['IDUser'];
-        }
-        else
-        {
+        $cek = $this->db->query("SELECT COUNT(Username) as total from msuser WHERE Username='$username'")->result_array();
+        if ($cek[0]['total'] != '0') {
             return NULL;
+        }else{
+            $data['IDUser'] = $this->GetLastIDUser();
+            $data['IDJenisUser'] = $idjenisuser;
+            $data['Username'] = $username;
+            $data['Password'] = $password;
+            $data['RegisterDate'] = $registerdate;
+            $query = $this->db->query(
+                "INSERT INTO ".strtolower("MsUser")."
+                SELECT * FROM (SELECT ".$this->db->escape($data['IDUser'])." AS IDUser,".$this->db->escape($data['IDJenisUser'])." AS IDJenisUser,".$this->db->escape($data['Username'])." AS Username,".$this->db->escape($data['Password'])." AS Password,'0' AS session_id,".$this->db->escape($data['RegisterDate'])." AS RegisterDate) as TMP
+                WHERE NOT EXISTS (
+                    SELECT IDUser FROM ".strtolower("MsUser")." WHERE IDJenisUser='".$this->db->escape_like_str($data['IDJenisUser'])."' AND Username='".$this->db->escape_like_str($data['Username']).")'
+                ) LIMIT 1");
+            if ($query)
+            {
+                return $data['IDUser'];
+            }
+            else
+            {
+                return NULL;
+            }
         }
     }
 

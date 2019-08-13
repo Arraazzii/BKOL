@@ -318,24 +318,29 @@ class MsPencakerTemp extends CI_Model
 
     function InsertMsUser($idjenisuser, $username, $password, $registerdate)
     {
-        $data['IDUser'] = $this->GetLastIDUser();
-        $data['IDJenisUser'] = $idjenisuser;
-        $data['Username'] = $username;
-        $data['Password'] = $password;
-        $data['RegisterDate'] = $registerdate;
-        $this->db->query(
-            "INSERT INTO ".strtolower("MsUser")."
-            SELECT * FROM (SELECT ".$this->db->escape($data['IDUser'])." AS IDUser,".$this->db->escape($data['IDJenisUser'])." AS IDJenisUser,".$this->db->escape($data['Username'])." AS Username,".$this->db->escape($data['Password'])." AS Password,'0' AS session_id,".$this->db->escape($data['RegisterDate'])." AS RegisterDate) as TMP
-            WHERE NOT EXISTS (
-                SELECT IDUser FROM ".strtolower("MsUser")." WHERE IDJenisUser='".$this->db->escape_like_str($data['IDJenisUser'])."' AND Username='".$this->db->escape_like_str($data['Username']).")'
-            ) LIMIT 1");
-        if ($this->db->affected_rows() > 0)
-        {
-            return $data['IDUser'];
-        }
-        else
-        {
+        $cek = $this->db->query("SELECT COUNT(Username) as total from msuser WHERE Username='$username'")->result_array();
+        if ($cek[0]['total'] != '0') {
             return NULL;
+        }else{
+            $data['IDUser'] = $this->GetLastIDUser();
+            $data['IDJenisUser'] = $idjenisuser;
+            $data['Username'] = $username;
+            $data['Password'] = $password;
+            $data['RegisterDate'] = $registerdate;
+            $this->db->query(
+                "INSERT INTO ".strtolower("MsUser")."
+                SELECT * FROM (SELECT ".$this->db->escape($data['IDUser'])." AS IDUser,".$this->db->escape($data['IDJenisUser'])." AS IDJenisUser,".$this->db->escape($data['Username'])." AS Username,".$this->db->escape($data['Password'])." AS Password,'0' AS session_id,".$this->db->escape($data['RegisterDate'])." AS RegisterDate) as TMP
+                WHERE NOT EXISTS (
+                    SELECT IDUser FROM ".strtolower("MsUser")." WHERE IDJenisUser='".$this->db->escape_like_str($data['IDJenisUser'])."' AND Username='".$this->db->escape_like_str($data['Username']).")'
+                ) LIMIT 1");
+            if ($this->db->affected_rows() > 0)
+            {
+                return $data['IDUser'];
+            }
+            else
+            {
+                return NULL;
+            }
         }
     }
 

@@ -399,7 +399,7 @@
           $('#namapencaker').html(getdata.NamaPencaker);
           $('#tempattgllahir').html(getdata.TempatLahir+', '+parseInt(tgllahir[2])+' '+bulan[parseInt(tgllahir[1]-1)]+' '+tgllahir[0]);
           $('#jeniskelamin').html(getdata.JenisKelamin == 0 ? 'Pria' : 'Wanita');
-          $('#typePekerjaan').html(getdata.TypePekerjaan == 0 ? 'Wirausaha' : 'Karyawan');
+          $('#typePekerjaan').html(getdata.TypePekerjaan == 0 ? 'Karyawan' : 'Wirausaha');
           $('#email').html(getdata.Email);
           $('#telepon').html(getdata.Telepon);
           $('#alamat').html(getdata.Alamat);

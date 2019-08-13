@@ -274,10 +274,10 @@
         <div class="box-body table-responsive">
           <table class="table table-bordered">
             <tbody>
-              <tr>
+              <!-- <tr>
                 <td width="180">No Loker</td>
                 <td><?= $MsLowonganData->IDLowongan ?></td>
-              </tr>
+              </tr> -->
               <tr>
                 <td>Nama Pekerjaan</td>
                 <td><?= $MsLowonganData->NamaLowongan ?></td>

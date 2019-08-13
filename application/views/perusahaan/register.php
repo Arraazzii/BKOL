@@ -29,6 +29,7 @@
           <div class="col-md-6">
             <input class="form-control input-sm" id="username" name="username" type="text" value="<?= isset($input['username']) ? $input['username'] : '' ?>" size="20" autofocus>
             <?php echo form_error('username', '<span class="help-block">', '</span>'); ?>
+            <span id="unameId"></span>
           </div>
         </div>
         <div class="form-group <?php echo form_error('password') ? 'has-error' : '' ?>">
@@ -172,13 +173,39 @@
       <div class="text-center">
         <input type="hidden" name="submit" value="submit">
         <a href="<?= site_url() ?>" class="btn btn-default btn-sm">Batal</a>
-        <button type="submit" class="btn btn-success btn-sm">Simpan</button>
+        <button type="submit" class="btn btn-success btn-sm" id="sim">Simpan</button>
       </div>
       <br>
     </div>
 
   </form>
 </section>
+<script type="text/javascript">
+  $(document).ready(function(){
+   $("#unameId").html("<span style='color:#3c8dbc;'>*Silahkan Masukan Username</span>");
+   $("#username").on("keyup keypress", function(){
+    var username = $(this).val();
+    if (username == '') {
+      $("#unameId").html("<span style='color:#3c8dbc;'>*Silahkan Masukan Username</span>");
+    }else{
+      $.ajax({
+        type: "POST",
+        url: "<?php echo base_url();?>root/checkUnamePencaker",
+        data: {username:username},
+        success: function(msg) {
+          if (msg == 'ok') {
+            $("#unameId").html("<span style='color:green;'>*Username Dapat Digunakan</span>");
+            $("#sim").attr("disabled", false);
+          }else if(msg == 'fail'){
+            $("#unameId").html("<span style='color:red;'>*Username Sudah Dipakai</span>");
+            $("#sim").attr("disabled", true);
+          }
+        }
+      });
+    }
+  });
+ });
+</script>
 <script type="text/javascript">
   $("#idkecamatan").change(function() {
     var IDKecamatan = $("#idkecamatan").val();
@@ -230,12 +257,12 @@
 </script>
 <!-- /.content -->
 <script type="text/javascript">
-    window.addEventListener( "pageshow", function ( event ) {
-      var historyTraversal = event.persisted || 
-      ( typeof window.performance != "undefined" && 
-          window.performance.navigation.type === 2 );
-      if ( historyTraversal ) {
-        window.location.reload();
+  window.addEventListener( "pageshow", function ( event ) {
+    var historyTraversal = event.persisted || 
+    ( typeof window.performance != "undefined" && 
+      window.performance.navigation.type === 2 );
+    if ( historyTraversal ) {
+      window.location.reload();
     }
-});
+  });
 </script>

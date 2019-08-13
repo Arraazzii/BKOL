@@ -23,7 +23,7 @@ class EmailModel extends CI_Model
         $this->load->library('email', $this->config);
         $this->email->set_newline("\r\n");
 
-        $this->email->from($this->config['smtp_user'], 'Disnaker Kota Depok');
+        $this->email->from($this->config['smtp_user'], 'noreply BKOL');
         $this->email->to($to);
 
         $this->email->subject($subject);

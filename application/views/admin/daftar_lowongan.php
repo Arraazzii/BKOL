@@ -178,7 +178,7 @@
                       <h4>Pelamar Kerja :</h4>
                       <ul class="list-group">
                         <?php foreach ($tabledaftar as $keydaftar) { ?>
-                        <li class="list-group-item"><?php echo $no++; ?>. <?php echo $keydaftar['NamaPencaker'];?> (<?php echo $keydaftar['Email']; ?>) <?php if($keydaftar['StatusLowongan'] == '0'){echo "<span class='label label-warning pull-right'>Menunggu</span>";}else{echo "<span class='label label-primary pull-right'>Diproses</span>";} ?></span></li>
+                        <li class="list-group-item"><?php echo $no++; ?>. <?php echo $keydaftar['NamaPencaker'];?> (<?php echo $keydaftar['Email']; ?>) <?php if($keydaftar['StatusLowongan'] == '0'){echo "<span class='label label-info pull-right'>Belum di Proses</span>";}elseif($keydaftar['StatusLowongan'] == '1'){echo "<span class='label label-primary pull-right'>Proses Verifikasi</span>";}elseif($keydaftar['StatusLowongan'] == '2'){echo "<span class='label label-success pull-right'>Diterima</span>";}elseif($keydaftar['StatusLowongan'] == '3'){echo "<span class='label label-danger pull-right'>Ditolak</span>";}elseif($keydaftar['StatusLowongan'] == '4'){echo "<span class='label label-warning pull-right'>Tidak Memenuhi Syarat</span>";} ?></span></li>
                         <?php } ?>
                       </ul>
                       <?php } ?>
